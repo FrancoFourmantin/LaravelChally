@@ -1,0 +1,36 @@
+Proyecto: RED SOCIAL
+La idea del proyecto consiste en crear una red social centrada en desafíos para que las personas suban y completen desafíos con el fin de armar un Perfil de tipo Portfolio.
+
+========================
+
+Una red social para que la gente ponga a prueba sus aptitudes creativas con el único fin de constituir un portfolio. Esta red social es un excelente punto de partida para armar un portfolio desde cero para posteriormente presentar para entrevistas de trabajo, etc.
+
+La gente puede: 
+· Postear Desafíos
+· Responder a Desafíos de otras personas
+
+La idea de la red social es que ocurran las siguientes cosas: 
+· Que las personas logren armar un "Perfil Portfolio" a partir de sus participaciones en diferentes desafíos. 
+· Que las personas suban sus propios desafíos para que el resto de las personas en un mismo área de interés participen.
+
+
+
+========================
+
+¿Qué áreas podrían haber?
+· Área Artistas: Diseño de Artwork. 
+· Área Web: Diseño de Interacciones / X Web
+· Área ........
+
+========================
+
+¿Cómo serían las secciones en base a las consignas?
+
+Home: Información general del proyecto con un gancho copado  para que la gente se registre
+F.A.Q: Preguntas Frecuentes
+Formulario de Registro: Para que las personas se registren con sus datos personales y áreas de expertise
+Formulario de Login: Iniciar sesión
+Formulario de Contacto: Contactarse con nosotros por alguna pregunta
+Perfil de Usuario: Un perfil donde se vea toda la info de la persona
+Vista de posteos: un feed de desafíos de áreas de expertise y amigos añadidos.
+Vista de "mis amigos": Una sección donde se puede ver el listado de todas las personas que elegiste seguir.

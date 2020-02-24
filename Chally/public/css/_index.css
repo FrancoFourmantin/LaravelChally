@@ -1,0 +1,101 @@
+
+/* INICIO INDEX */
+
+section.hero{
+    background-image:url('../img/hero-background.jpg');
+    background-size:cover;
+    background-repeat:no-repeat;
+}
+
+
+section.pasos img:hover{
+    transform:scale(1.05);
+}
+
+
+section.pasos img{
+    width:30%;
+    transition:all 0.25s ease;
+}
+
+
+
+section.categorias{
+    background-image:none;
+    background-color:#2e3035;
+    background-size:cover;
+    background-repeat:no-repeat;
+}
+
+
+
+section.categorias .item .cont{
+    border-radius:30px;
+    background-color:#fff;
+    cursor:pointer;
+    transition:all 0.25s ease;
+}
+
+
+.cont:hover{
+    transform:scale(1.05);
+}
+
+
+
+
+.carousel-inner{
+    overflow:visible;
+}
+
+.carousel{
+    top:50px;
+}
+
+.carousel-control-prev.desktop{
+    left:-150px;
+}
+
+.carousel-control-next.desktop{
+    right:-150px;
+}
+
+.item img{
+    border-top-left-radius:30px;
+    border-top-right-radius:30px;
+}
+
+
+.hero-form{
+    background-color:#fff;
+    border-radius:10px;
+}
+
+.hero-form img{
+    width:60px;
+}
+
+
+.hero h1{
+    text-shadow: 0px 0px 12px rgba(0,0,0,0.34);
+    font-weight:700;
+}
+
+.destacados a{
+    transition:all 0.25s ease;
+}
+
+.destacados img.challenger{
+    max-width:100px;
+}
+
+.destacados a:hover{
+    transform:scale(1.05);
+}
+
+@media screen and (min-width:768px){
+    section.categorias{
+        background-image:url('../img/misc-background.jpg');
+    }
+
+}

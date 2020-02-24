@@ -1,0 +1,48 @@
+/* INICIO FEED */
+
+.contenedor-feed{
+}
+
+
+.card-contenido,.card-content-attached,.card-footer{
+    padding:.75rem 1.25rem
+}
+
+
+.alert-danger a{
+    color:#721c24;
+    font-weight:bold;
+}
+
+.posteo img{
+    width:50px;
+}
+
+.dificultad img{
+    width:20px;
+}
+
+.card-footer span{
+    cursor:pointer;
+    transition:all 0.25s ease;
+}
+
+.card-footer span:hover{
+    transform:scale(1.15);
+}
+
+span.likes:hover{
+    color:#dd0000;
+}
+
+span.comments:hover{
+    color:#1bb76e;
+}
+
+span.compartidos:hover{
+    color:#0366d6;
+}
+
+.metadata.d-flex span:first-child{
+    margin-right:30px;
+}

@@ -1,0 +1,133 @@
+body.perfil .col-4{
+    padding: 0;
+}
+.boton_opciones{
+    padding: 0px;
+}
+
+body.perfil{
+    width: 100%;
+    background-color: #eeeeee;
+    box-sizing: border-box;
+}
+
+.container-fluid{
+    padding: 0;
+}
+
+header.profile{
+   /*background-image: url(../img/misc-background.jpg);*/
+    background-size: cover;
+
+}
+a, a:hover {
+    text-decoration: none;
+    color: black;
+}
+
+.barra-amigos {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    margin: 20px auto;
+    padding-left: 20px;
+}
+.contenedor-amigos {
+    padding-bottom: 30px;
+    width: 320px;
+    margin: 0 auto;
+}
+.tarjeta-amigo {
+    display: inline-block;
+    width: 90%;
+    margin-left: 5%;
+    height: 350px;
+    text-align: center;
+    background-color: white;
+}
+.contenedor-foto-portada {
+    height: 100px;
+    overflow: hidden;
+}
+.foto-portada {
+    width: 100%;
+}
+.info-amigo {
+    position: relative;
+    top: -50px;
+}
+.foto-perfil {
+    height: 100px;
+    border-radius: 50%;
+    border: 4px solid white;
+    box-shadow: inset;
+    
+}
+.nombre, .nombre-usuario {
+    margin: 20px;
+}
+.boton-mensaje {
+    display: inline-block;
+    width: 100px;
+    padding: 5px;
+    background-color: #1bb76e;
+    border: 1px solid  #1bb76e;
+    border-radius: 5px;
+    color: white;
+    margin-right: 5px;
+}
+.estado-amigo {
+    display: inline-block;
+    width: 100px;
+    padding: 5px;
+    background-color: white;
+    border: 1px solid  #1bb76e;
+    border-radius: 5px;
+    color:  #1bb76e;
+    margin-left: 5px;
+}
+.boton-mensaje:hover {
+    background-color: #3bd78e;
+    border: 1px solid  #3bd78e;
+    color: white;
+}
+.estado-amigo:hover {
+    background-color: #1bb76e;
+    color: white;
+}
+.ver-perfil {
+    display: inline-block;
+    margin-top: 20px;
+}
+.ver-perfil:hover {
+    color:  #808b86;
+}
+/* Media Queries para amigos.php */
+@media screen and (min-width: 576px) {
+    .contenedor-amigos {
+        width: 550px;
+    }
+    .tarjeta-amigo {
+        width: 45%;
+        margin-left: 3%;
+    }
+}
+@media screen and (min-width: 992px) {
+    .contenedor-amigos {
+        width: 900px;
+    }
+    .tarjeta-amigo {
+        width: 30%;
+        margin-left: 3%;
+    }
+}
+@media screen and (min-width: 1200px) {
+    .contenedor-amigos {
+        width: 1100px;
+    }
+    .tarjeta-amigo {
+        width: 22%;
+        margin-left: 2%;
+    }
+}

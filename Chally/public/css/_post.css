@@ -1,0 +1,9 @@
+/* INICIO FEED */
+
+.contenedor-feed{
+}
+
+
+.card.categorias ul,ul.requisitos{
+    list-style-type:none;
+}

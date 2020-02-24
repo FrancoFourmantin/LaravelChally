@@ -1,0 +1,44 @@
+/* INICIO FAQ */
+
+section.faq-hero{
+    background:#2e3035;
+    background-size:cover;
+    background-repeat:no-repeat;
+}
+
+section.faq-hero img{
+    width:50%;
+}
+
+
+.selector-faq > div{
+    transition:all 0.25s ease;
+}
+
+.selector-faq a:hover{
+    text-decoration:none !important;
+}
+
+.selector-faq > div:hover{
+    transform:scale(1.05);
+    text-decoration:none !important;
+}
+
+
+section.faq{
+    background-color:#2e3035;
+    background-image:none;
+    background-size:cover;
+    background-repeat:no-repeat;
+} 
+
+@media screen and (min-width:768px){
+
+    section.faq{
+        background-image:url('../img/faq-background.jpg');
+    }
+
+    section.faq-hero{
+        background-image:url('../img/misc-background.jpg');
+    }
+}

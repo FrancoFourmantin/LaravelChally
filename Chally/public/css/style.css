@@ -1,0 +1,181 @@
+/* IMPORTS DE PAGINAS ESPECIFICAS */
+
+@import '_index.css';
+
+@import '_login.css';
+
+@import '_registro.css';
+
+@import '_perfil.css';
+
+@import '_amigos.css';
+
+@import '_contacto.css';
+
+@import '_faq.css';
+
+@import '_feed.css';
+
+@import '_post.css';
+
+
+@import '_recuperar-contrasena.css';
+
+
+/* ESTILOS GLOBALES */
+
+*{
+    font-family:'Rubik',sans-serif;
+    font-weight:400;
+    margin:0;
+    padding:0;
+}
+
+body{
+    overflow-x:hidden;
+}
+
+.vh-100{
+    height:auto !important;
+    min-height:100vh !important;
+}
+
+.h-100{
+    height:100%;
+}
+
+footer{
+    background-color:#2e3035;
+}
+
+footer h4{
+    color:#1bb76e;
+}
+
+footer p,footer a{
+    color:#fff;
+    transition:all 0.25s ease;
+}
+
+footer a:hover{
+    color:#1bb76e;
+    text-decoration:none;
+}
+
+.navbar-brand img{
+    width:120px;
+}
+
+/* FIX DE FLECHA DE DESPLEGADO NO CENTRADA */
+.nav-item.dropdown{
+    display:flex;
+    align-items:center;
+}
+
+.btn-secondary{
+    border:0 !important;
+    background-color:#1bb76e !important;
+}
+
+.btn-secondary:hover{
+    background-color:#54c992 !important;
+}
+
+.color-verde{
+    color:#1bb76e;
+}
+a.color-verde:hover {
+    color:#1bb76e;
+    text-decoration: underline;
+}
+
+.bg-verde{
+    background-color:#1bb76e;
+}
+
+.bg-gris{
+    background-color:#2e3035;
+}
+
+.bg-white{
+    background-color:#fefefe;
+}
+
+.nav-item#post-cta{
+    border: 2px solid #51c790;
+    border-radius: 5px;
+    background-color: #1bb76e;
+}
+
+.nav-item#post-cta a{
+    color:#fff !important;
+}
+
+.nav-item{
+    margin-left:10px;
+}
+
+.navbar-brand img{
+    width:160px;
+}
+
+.nav-item .nav-link{
+    color:#1bb76e !important;
+    transition:all 0.25s ease;
+}
+
+.nav-item .nav-link:hover{
+    color:#54c992 !important;
+}
+
+.card .btn-link{
+    color:#2e3035;
+}
+
+.subrayado{
+    text-decoration:underline
+}
+
+.texto-chico{
+    font-size:0.8em;
+}
+
+section.destacados h2{
+    border-bottom:1px solid #1bb76e;
+}
+
+/* FIX DROPDOWN MENU */
+.dropdown-menu {
+    right: 0 !important;
+    left: auto !important;
+}
+
+.dropdown-item{
+    font-size:0.85em;
+}
+
+/* ESTILOS PARA LA FOTO DE PERFIL */
+/* Un contenedor que encierra la foto de perfil en un círculo */
+.contenedor-main-foto {
+    margin: 0 auto;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+}
+/* Un contenedor más chico para la parte de configuracion */
+.mini-contenedor-foto {
+    margin: 0 auto;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+}
+/* Foto de perfil */
+.main-foto {
+    display: block;
+    position: relative;
+    left: 50%;
+    transform: translatex(-50%);
+    height: 100%;
+}

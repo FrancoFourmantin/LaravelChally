@@ -1,0 +1,92 @@
+
+body.recuperar{
+    background: #1bb76e;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.contenedor-recuperar{
+    background-color: #fefefe;
+    width: 30%;
+    padding: 20px;
+    display: grid;
+    justify-items:center;
+    border-radius: 3px;
+    -webkit-box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.27);
+    -moz-box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.27);
+    box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.27);
+}
+
+.codigo_recuperacion{
+    -webkit-appearance: none;
+    -moz-appearance:textfield;
+}
+
+
+.recuperar-title{
+    grid-column: 1 / -1;
+}
+
+form.recuperar{
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+}
+
+form.recuperar > p {
+    grid-column: 1 / -1;
+}
+
+form.recuperar > button {
+    grid-column: -1/1;
+}
+
+form.recuperar > label{
+    display:block;
+}
+
+
+
+@media (max-width:700px){
+    .contenedor-recuperar{
+        width: 100%;
+    }
+}
+
+
+@media (max-width:1000px){
+    .contenedor-recuperar{
+        width: 80%;
+    }
+    
+    form.recuperar{
+        grid-template-columns: 1fr;
+    }
+
+    .ingreso-mail{
+        width: 80%;
+    }
+}
+
+/*Ingrese mail*/
+
+.ingreso-mail{
+    background-color: white;
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 40%;
+    padding: 40px;
+    grid-gap:20px;
+    justify-items: center;
+    border-radius: 3px;
+    -webkit-box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.27);
+    -moz-box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.27);
+    box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.27);
+}  
+
+

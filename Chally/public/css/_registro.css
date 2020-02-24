@@ -1,0 +1,105 @@
+/* INICIO REGISTRO */
+small.error{
+    color:red;
+}
+/* INICIO CONTACTO */
+.contenedor-registro{
+    background-image: url(../img/background_contacto.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:50%;
+    object-fit: cover;
+}
+
+
+.registro-form{
+    background-color:#fff;
+    border-radius:10px;
+}
+
+
+.registro-form img{
+    width:60px;
+}
+
+.seleccion-intereses{
+
+}
+
+.seleccion-intereses label{
+    flex-basis:0;
+    flex-grow:1;
+    position:relative;
+    text-align:center;
+    cursor:pointer;
+}
+
+.seleccion-intereses label:before {
+    content: url("https://cdn1.iconfinder.com/data/icons/windows8_icons_iconpharm/26/unchecked_checkbox.png");
+    position: absolute;
+    z-index: 100;
+    color:#1bb76e;
+    bottom: 0;
+    left:0;
+    opacity:0.25;
+}
+
+
+.seleccion-intereses  :checked+label:before {
+    content: url("https://cdn1.iconfinder.com/data/icons/windows8_icons_iconpharm/26/checked_checkbox.png");
+    opacity:1;
+
+  }
+
+.seleccion-intereses  input[type=checkbox] {
+    display: none;
+  }
+
+  /*pure cosmetics:*/
+.seleccion-intereses img {
+    width:100%;
+    transition:all 0.25s ease;
+  }
+
+.seleccion-intereses img:hover{
+    opacity:0.5;
+}
+
+.seleccion-intereses img:hover{
+    -webkit-box-shadow: inset 0px 0px 300px 0px rgba(140,70,140,1);
+-moz-box-shadow: inset 0px 0px 300px 0px rgba(140,70,140,1);
+box-shadow: inset 0px 0px 300px 0px rgba(140,70,140,1);
+}
+
+.seleccion-intereses  label {
+    margin: 10px;
+}
+
+.processing{
+    background-image:url('../img/background-welcome.gif');
+    background-size:cover;
+    background-position:50%;
+    background-repeat:no-repeat;
+}
+
+.processing a{
+    text-decoration:underline;
+    color:#1bb76e;
+}
+
+.procesando{
+    min-height:500px;
+}
+
+.procesando .small:hover{
+    text-decoration:underline;
+}
+
+@media screen and (min-width:576px){
+    .seleccion-intereses label:before {
+        bottom: -35px;
+        left: 50%;
+        transform: translateX(-50%);        
+    }
+
+}

@@ -1,0 +1,50 @@
+/* INICIO  PROFILE */
+
+body.perfil .col-4{
+    padding: 0;
+}
+.boton_opciones{
+    padding: 0px;
+}
+
+body.perfil{
+    width: 100%;
+    background-color: #eeeeee;
+    box-sizing: border-box;
+}
+
+.container-fluid{
+    padding: 0;
+}
+
+header.profile{
+   /*background-image: url(../img/misc-background.jpg);*/
+    background-size: cover;
+
+}
+
+.previsualizacion_amigos{
+    background-color: rgb(255, 255, 255);
+}
+
+.info_profile{
+    width: 100%;
+    background-image: url('../img/background_profile.jpg');
+    background-size: cover;
+}
+
+.caja-amigo{
+    max-width: 50px;
+    max-height: 30px;
+}
+
+.informacion_usuario  {
+     
+    background-color: rgb(255, 255, 255);
+}
+
+.profile-pic{
+    max-width:200px;
+}
+
+/*FIN ESTILOS PROFILE*/

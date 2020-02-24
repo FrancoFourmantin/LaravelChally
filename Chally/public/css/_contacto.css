@@ -1,0 +1,21 @@
+/* INICIO CONTACTO */
+.contenedor-perfil{
+    background-image: url(../img/background_contacto2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+    background-attachment:fixed;
+}
+
+
+.contacto-form{
+    background-color:#fff;
+    border-radius:10px;
+}
+
+
+.contacto-form img.logo{
+    width:60px;
+}

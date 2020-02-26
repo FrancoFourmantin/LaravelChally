@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 14-02-2020 a las 00:46:15
--- Versión del servidor: 10.4.8-MariaDB
--- Versión de PHP: 7.3.11
+-- Host: 127.0.0.1
+-- Generation Time: Feb 26, 2020 at 04:47 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `chally_db`
+-- Database: `chally_db`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `amistades`
+-- Table structure for table `amistades`
 --
 
 CREATE TABLE `amistades` (
@@ -38,7 +38,7 @@ CREATE TABLE `amistades` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `archivos`
+-- Table structure for table `archivos`
 --
 
 CREATE TABLE `archivos` (
@@ -50,7 +50,7 @@ CREATE TABLE `archivos` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `categorias`
+-- Table structure for table `categorias`
 --
 
 CREATE TABLE `categorias` (
@@ -60,7 +60,7 @@ CREATE TABLE `categorias` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `categorias`
+-- Dumping data for table `categorias`
 --
 
 INSERT INTO `categorias` (`id_categoria`, `nombre`, `descripcion`) VALUES
@@ -71,7 +71,7 @@ INSERT INTO `categorias` (`id_categoria`, `nombre`, `descripcion`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `comentarios`
+-- Table structure for table `comentarios`
 --
 
 CREATE TABLE `comentarios` (
@@ -85,7 +85,7 @@ CREATE TABLE `comentarios` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `desafios`
+-- Table structure for table `desafios`
 --
 
 CREATE TABLE `desafios` (
@@ -103,7 +103,7 @@ CREATE TABLE `desafios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `desafios`
+-- Dumping data for table `desafios`
 --
 
 INSERT INTO `desafios` (`id_desafio`, `fecha_creacion`, `fecha_limite`, `imagen`, `descripcion`, `id_respuesta_ganadora`, `id_categoria`, `id_autor`, `dificultad`, `requisitos`, `nombre`) VALUES
@@ -114,7 +114,7 @@ INSERT INTO `desafios` (`id_desafio`, `fecha_creacion`, `fecha_limite`, `imagen`
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `desafios_destacados`
+-- Table structure for table `desafios_destacados`
 --
 
 CREATE TABLE `desafios_destacados` (
@@ -127,7 +127,22 @@ CREATE TABLE `desafios_destacados` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `intereses`
+-- Table structure for table `failed_jobs`
+--
+
+CREATE TABLE `failed_jobs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `intereses`
 --
 
 CREATE TABLE `intereses` (
@@ -138,7 +153,7 @@ CREATE TABLE `intereses` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `intereses`
+-- Dumping data for table `intereses`
 --
 
 INSERT INTO `intereses` (`id_interes`, `nombre`, `id_usuario`, `id_categoria`) VALUES
@@ -152,7 +167,7 @@ INSERT INTO `intereses` (`id_interes`, `nombre`, `id_usuario`, `id_categoria`) V
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `likes`
+-- Table structure for table `likes`
 --
 
 CREATE TABLE `likes` (
@@ -166,7 +181,45 @@ CREATE TABLE `likes` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `respuestas`
+-- Table structure for table `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '2014_10_12_000000_create_users_table', 1),
+(2, '2014_10_12_100000_create_password_resets_table', 1),
+(3, '2019_08_19_000000_create_failed_jobs_table', 1),
+(4, '2020_02_26_004346_add_columns_to_users', 2),
+(5, '2020_02_26_005226_rename_columns', 3),
+(6, '2020_02_26_010117_change_name_to_usuarios', 3),
+(7, '2020_02_26_010238_change_name_to_users', 3),
+(8, '2020_02_26_033857_update_avatar_attribute', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `respuestas`
 --
 
 CREATE TABLE `respuestas` (
@@ -180,10 +233,39 @@ CREATE TABLE `respuestas` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuarios`
+-- Table structure for table `usuarios`
 --
 
 CREATE TABLE `usuarios` (
+  `id_usuario` bigint(20) UNSIGNED NOT NULL,
+  `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mail` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `fecha_nacimiento` date NOT NULL,
+  `sexo` char(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `apellido` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `username` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `avatar` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `usuarios`
+--
+
+INSERT INTO `usuarios` (`id_usuario`, `nombre`, `mail`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `fecha_nacimiento`, `sexo`, `apellido`, `username`, `avatar`) VALUES
+(1, 'Franco', 'francofourmantin@gmail.com', NULL, '$2y$10$2QGdZKni.YBAzGT.j58Q2OpiH0DEobfQ0CYXzvFnIPpk6FnkD/qPa', NULL, '2020-02-26 06:41:27', '2020-02-26 06:41:27', '1998-09-21', 'h', 'Ariel', 'franklinss', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `usuarios_old`
+--
+
+CREATE TABLE `usuarios_old` (
   `id_usuario` int(11) NOT NULL,
   `fecha_nacimiento` date NOT NULL,
   `sexo` char(1) DEFAULT NULL,
@@ -196,10 +278,10 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `usuarios`
+-- Dumping data for table `usuarios_old`
 --
 
-INSERT INTO `usuarios` (`id_usuario`, `fecha_nacimiento`, `sexo`, `nombre`, `apellido`, `contrasena`, `username`, `mail`, `avatar`) VALUES
+INSERT INTO `usuarios_old` (`id_usuario`, `fecha_nacimiento`, `sexo`, `nombre`, `apellido`, `contrasena`, `username`, `mail`, `avatar`) VALUES
 (1, '1998-09-21', 'h', 'Franco', 'Fourmantin', '$2y$10$bR0jDF6inx29uICA5H60U.oNBKaPJC6RE', 'franklinss', 'francofourmantin@gmail.com', 'img_5df7b954b822e.png'),
 (2, '1981-05-29', 'h', 'Matias', 'Bruno', '$2y$10$APje3LOVckLEQ.ZA2s35J.c3e82kcV/0i', 'matiasbr1', 'matias@mail.com', 'img_5df68b928a2d4.jpg'),
 (3, '1994-11-24', 'h', 'Emiliano', 'Gioia', '$2y$10$oqhBCHEiBTdE.m8HE/BgS.5Ef.FvbX2Ts', 'EmilianoG', 'emiliano@gioia.com.ar', 'img_5df80ba7eafe4.jpg'),
@@ -212,11 +294,11 @@ INSERT INTO `usuarios` (`id_usuario`, `fecha_nacimiento`, `sexo`, `nombre`, `ape
 (10, '1998-09-21', 'h', 'Franco', 'Fourmantin', '$2y$10$RpEKCaOVH7kDTAs68mKr.OLKGqQPZzV7xxo5Cb8ZPYhtK5v5vDhuO', '420Franklin', 'francooo@gmail.com', 'img_5e45dc3a6e7a5.jpg');
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `amistades`
+-- Indexes for table `amistades`
 --
 ALTER TABLE `amistades`
   ADD PRIMARY KEY (`id_amistad`),
@@ -224,20 +306,20 @@ ALTER TABLE `amistades`
   ADD KEY `id_usuario2` (`id_usuario2`);
 
 --
--- Indices de la tabla `archivos`
+-- Indexes for table `archivos`
 --
 ALTER TABLE `archivos`
   ADD PRIMARY KEY (`id_archivo`),
   ADD KEY `id_respuesta` (`id_respuesta`);
 
 --
--- Indices de la tabla `categorias`
+-- Indexes for table `categorias`
 --
 ALTER TABLE `categorias`
   ADD PRIMARY KEY (`id_categoria`);
 
 --
--- Indices de la tabla `comentarios`
+-- Indexes for table `comentarios`
 --
 ALTER TABLE `comentarios`
   ADD PRIMARY KEY (`id_comentario`),
@@ -246,7 +328,7 @@ ALTER TABLE `comentarios`
   ADD KEY `id_usuario` (`id_usuario`);
 
 --
--- Indices de la tabla `desafios`
+-- Indexes for table `desafios`
 --
 ALTER TABLE `desafios`
   ADD PRIMARY KEY (`id_desafio`),
@@ -255,7 +337,7 @@ ALTER TABLE `desafios`
   ADD KEY `id_autor` (`id_autor`);
 
 --
--- Indices de la tabla `desafios_destacados`
+-- Indexes for table `desafios_destacados`
 --
 ALTER TABLE `desafios_destacados`
   ADD PRIMARY KEY (`id_desafio_destacado`),
@@ -263,7 +345,13 @@ ALTER TABLE `desafios_destacados`
   ADD KEY `id_categoria` (`id_categoria`);
 
 --
--- Indices de la tabla `intereses`
+-- Indexes for table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `intereses`
 --
 ALTER TABLE `intereses`
   ADD PRIMARY KEY (`id_interes`),
@@ -271,7 +359,7 @@ ALTER TABLE `intereses`
   ADD KEY `id_categoria` (`id_categoria`);
 
 --
--- Indices de la tabla `likes`
+-- Indexes for table `likes`
 --
 ALTER TABLE `likes`
   ADD PRIMARY KEY (`id_like`),
@@ -280,7 +368,19 @@ ALTER TABLE `likes`
   ADD KEY `id_usuario` (`id_usuario`);
 
 --
--- Indices de la tabla `respuestas`
+-- Indexes for table `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Indexes for table `respuestas`
 --
 ALTER TABLE `respuestas`
   ADD PRIMARY KEY (`id_respuesta`),
@@ -288,136 +388,161 @@ ALTER TABLE `respuestas`
   ADD KEY `id_autor` (`id_autor`);
 
 --
--- Indices de la tabla `usuarios`
+-- Indexes for table `usuarios`
 --
 ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id_usuario`),
+  ADD UNIQUE KEY `users_email_unique` (`mail`);
+
+--
+-- Indexes for table `usuarios_old`
+--
+ALTER TABLE `usuarios_old`
   ADD PRIMARY KEY (`id_usuario`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `amistades`
+-- AUTO_INCREMENT for table `amistades`
 --
 ALTER TABLE `amistades`
   MODIFY `id_amistad` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `archivos`
+-- AUTO_INCREMENT for table `archivos`
 --
 ALTER TABLE `archivos`
   MODIFY `id_archivo` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `categorias`
+-- AUTO_INCREMENT for table `categorias`
 --
 ALTER TABLE `categorias`
   MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `comentarios`
+-- AUTO_INCREMENT for table `comentarios`
 --
 ALTER TABLE `comentarios`
   MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `desafios`
+-- AUTO_INCREMENT for table `desafios`
 --
 ALTER TABLE `desafios`
   MODIFY `id_desafio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT de la tabla `desafios_destacados`
+-- AUTO_INCREMENT for table `desafios_destacados`
 --
 ALTER TABLE `desafios_destacados`
   MODIFY `id_desafio_destacado` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `intereses`
+-- AUTO_INCREMENT for table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `intereses`
 --
 ALTER TABLE `intereses`
   MODIFY `id_interes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT de la tabla `likes`
+-- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
   MODIFY `id_like` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `respuestas`
+-- AUTO_INCREMENT for table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `respuestas`
 --
 ALTER TABLE `respuestas`
   MODIFY `id_respuesta` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `usuarios`
+-- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
+  MODIFY `id_usuario` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `usuarios_old`
+--
+ALTER TABLE `usuarios_old`
   MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `amistades`
+-- Constraints for table `amistades`
 --
 ALTER TABLE `amistades`
-  ADD CONSTRAINT `amistades_ibfk_1` FOREIGN KEY (`id_usuario1`) REFERENCES `usuarios` (`id_usuario`),
-  ADD CONSTRAINT `amistades_ibfk_2` FOREIGN KEY (`id_usuario2`) REFERENCES `usuarios` (`id_usuario`);
+  ADD CONSTRAINT `amistades_ibfk_1` FOREIGN KEY (`id_usuario1`) REFERENCES `usuarios_old` (`id_usuario`),
+  ADD CONSTRAINT `amistades_ibfk_2` FOREIGN KEY (`id_usuario2`) REFERENCES `usuarios_old` (`id_usuario`);
 
 --
--- Filtros para la tabla `archivos`
+-- Constraints for table `archivos`
 --
 ALTER TABLE `archivos`
   ADD CONSTRAINT `archivos_ibfk_1` FOREIGN KEY (`id_respuesta`) REFERENCES `respuestas` (`id_respuesta`);
 
 --
--- Filtros para la tabla `comentarios`
+-- Constraints for table `comentarios`
 --
 ALTER TABLE `comentarios`
   ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`id_desafio`) REFERENCES `desafios` (`id_desafio`),
   ADD CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`id_respuesta`) REFERENCES `respuestas` (`id_respuesta`),
-  ADD CONSTRAINT `comentarios_ibfk_3` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`);
+  ADD CONSTRAINT `comentarios_ibfk_3` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios_old` (`id_usuario`);
 
 --
--- Filtros para la tabla `desafios`
+-- Constraints for table `desafios`
 --
 ALTER TABLE `desafios`
   ADD CONSTRAINT `desafios_ibfk_1` FOREIGN KEY (`id_respuesta_ganadora`) REFERENCES `respuestas` (`id_respuesta`),
   ADD CONSTRAINT `desafios_ibfk_2` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id_categoria`),
-  ADD CONSTRAINT `desafios_ibfk_3` FOREIGN KEY (`id_autor`) REFERENCES `usuarios` (`id_usuario`);
+  ADD CONSTRAINT `desafios_ibfk_3` FOREIGN KEY (`id_autor`) REFERENCES `usuarios_old` (`id_usuario`);
 
 --
--- Filtros para la tabla `desafios_destacados`
+-- Constraints for table `desafios_destacados`
 --
 ALTER TABLE `desafios_destacados`
   ADD CONSTRAINT `desafios_destacados_ibfk_1` FOREIGN KEY (`id_desafio`) REFERENCES `desafios` (`id_desafio`),
   ADD CONSTRAINT `desafios_destacados_ibfk_2` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id_categoria`);
 
 --
--- Filtros para la tabla `intereses`
+-- Constraints for table `intereses`
 --
 ALTER TABLE `intereses`
-  ADD CONSTRAINT `intereses_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`),
+  ADD CONSTRAINT `intereses_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios_old` (`id_usuario`),
   ADD CONSTRAINT `intereses_ibfk_2` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id_categoria`);
 
 --
--- Filtros para la tabla `likes`
+-- Constraints for table `likes`
 --
 ALTER TABLE `likes`
   ADD CONSTRAINT `likes_ibfk_1` FOREIGN KEY (`id_desafio`) REFERENCES `desafios` (`id_desafio`),
   ADD CONSTRAINT `likes_ibfk_2` FOREIGN KEY (`id_respuesta`) REFERENCES `respuestas` (`id_respuesta`),
-  ADD CONSTRAINT `likes_ibfk_3` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`);
+  ADD CONSTRAINT `likes_ibfk_3` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios_old` (`id_usuario`);
 
 --
--- Filtros para la tabla `respuestas`
+-- Constraints for table `respuestas`
 --
 ALTER TABLE `respuestas`
   ADD CONSTRAINT `respuestas_ibfk_1` FOREIGN KEY (`id_desafio`) REFERENCES `desafios` (`id_desafio`),
-  ADD CONSTRAINT `respuestas_ibfk_2` FOREIGN KEY (`id_autor`) REFERENCES `usuarios` (`id_usuario`);
+  ADD CONSTRAINT `respuestas_ibfk_2` FOREIGN KEY (`id_autor`) REFERENCES `usuarios_old` (`id_usuario`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

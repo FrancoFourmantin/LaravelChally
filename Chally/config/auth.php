@@ -2,6 +2,8 @@
 
 return [
 
+
+
     /*
     |--------------------------------------------------------------------------
     | Authentication Defaults
@@ -68,7 +70,8 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Usuario::class,
+            'table' => 'usuarios'
         ],
 
         // 'users' => [

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use App\User;
+use App\Usuario;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -49,25 +49,49 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $messages = [
+            'required' => 'El campo :attribute es obligatorio.',
+            'string' => 'El campo :attribute debe ser un texto',
+            'max' => 'El campo :attribute tiene un maximo de :max',
+            'date' => 'El campo :attribute debe ser una fecha',
+            'mimes' => 'El campo :attribute debe ser :mimes',
+            'unique' => 'El campo :attribute ya existe en la base de datos',
+            'confirmed' => 'Los campos deben conincidir',
+            'min' => 'El campo :attribute tiene un minimo de :min'
+        ];
+
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'nombre' => ['required', 'string', 'max:255'],
+            'username' => ['required' , 'string' , 'max:255'],
+            'apellido' => ['required' , 'string' , 'max:255'],
+            'fecha_nacimiento' => ['required' , 'date'],
+            'sexo' => ['required'],
+            //'avatar' => ['required','mimes:jpeg,png,jpg,bmp','max:5000'],
+            'mail' => ['required', 'string', 'email', 'max:255', 'unique:usuarios' , 'confirmed'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+        ], $messages);
+
+        
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return \App\Usuario
      */
     protected function create(array $data)
+
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
+        echo 'estoy por guardar';
+        return Usuario::create([
+            'nombre' => $data['nombre'],
+            'mail' => $data['mail'],
             'password' => Hash::make($data['password']),
+            'fecha_nacimiento' => $data['fecha_nacimiento'],
+            'sexo' => $data['sexo'],
+            'apellido' => $data['apellido'],
+            'username' => $data['username']
         ]);
     }
 }

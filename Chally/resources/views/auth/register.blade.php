@@ -58,16 +58,15 @@ if($_POST){
                     <div class="col-12 col-sm-12 col-md-8 col-lg-5 shadow contacto-form px-5 py-3 d-flex flex-column align-items-center my-5">
                         <a href="index.php"><img  src="img/logo_c.svg" class="logo" alt=""></a>
                         <h3 class="color-verde text-center mb-5 ">Registro</h3>
-                        <form class="w-100 needs-validation" method="POST" action="registro.php" enctype="multipart/form-data">
-                            
+                        <form class="w-100 needs-validation" method="POST" action="{{ route('register')}}" enctype="multipart/form-data">
+                            @csrf
                             <div class="form-row">
                                 
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputName">Tu nombre</label>
-                                        <input type="text" class="form-control" name="name" required value="<?php if($_POST){
-                                            echo $nuevoUsuario->getNombre(); } ?>">
-                                        <small><?php if($_POST && isset($errores['name'])) {echo $errores['name']; } ?></small>
+                                        <input type="text" class="form-control" name="nombre" required value="{{ old('nombre') }}">
+                                        <small>@error('nombre')  {{$message}} @enderror</small>
 
                                     </div>
                                 </div>
@@ -75,9 +74,8 @@ if($_POST){
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputName">Tu Apellido</label>
-                                        <input type="text" class="form-control" name="lastname" value="<?php if($_POST){
-                                            echo $nuevoUsuario->getApellido(); } ?>" required>
-                                        <small><?php if($_POST && isset($errores['lastname'])) {echo $errores['lastname']; } ?></small>
+                                        <input type="text" class="form-control" name="apellido" value="{{ old('apellido') }}" required>
+                                        <small>@error('apellido')  {{$message}} @enderror</small>
 
                                     </div>
                                 </div>
@@ -85,9 +83,8 @@ if($_POST){
                                 <div class="col-12 col-sm-12 col-md-12 col-lg-12  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputName">Nombre de usuario</label>
-                                        <input type="text" class="form-control" name="username" value="<?php if($_POST){
-                                            echo $nuevoUsuario->getUsername(); } ?>" required>
-                                        <small><?php if($_POST && isset($errores['username'])) {echo $errores['username']; } ?></small>
+                                        <input type="text" class="form-control" name="username" value="{{old('username')}}" required>
+                                        <small>@error('username') {{$message}} @enderror</small>
                                       
                                     </div>
                                 </div>
@@ -95,10 +92,8 @@ if($_POST){
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputMail">Tu mail</label>
-                                        <input type="email" class="form-control " name="email" value="<?php if($_POST){
-                                            echo $nuevoUsuario->getMail(); } ?>" required>
-                                            
-                                           <small><?php if($_POST && isset($errores['email'])) {echo $errores['email']; } ?></small>
+                                        <input type="mail" class="form-control " name="mail" value="{{old('mail')}}" required>
+                                           <small>@error('mail') {{$message}} @enderror</small>
 
                                         </div>
                                 </div>
@@ -106,25 +101,24 @@ if($_POST){
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6   mb-0 mb-md-4">
                                     <div class="form-group">
                                         <label for="inputMail">Confirmacion mail</label>
-                                        <input type="email" class="form-control " name="validacion_email" value="<?php if($_POST){
-                                            echo $nuevoUsuario->getMail(); } ?>" required>
+                                        <input type="email" class="form-control " name="mail_confirmation" value="" required>
                                         </div>
-                                        <small></small>
+                                        <small>@error('mail') {{$message}} @enderror</small>
                                 </div>
                                 
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputPassword">Contraseña<a href="http://" target="_blank" rel="noopener noreferrer"></a></label>
                                         <input type="password" class="form-control " name="password" data-toggle="tooltip" data-placement="bottom" title="Mínimo de 8 caracteres, un número, una mayúscula y un caracter especial." required>
-                                        <small><?php if($_POST && isset($errores['password'])) {echo $errores['password']; } ?></small>
+                                        <small>@error('password') {{$mesagge}} @enderror</small>
                                         </div>
                                 </div>
                                 
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputPassword">Confirma contraseña<a href="http://" target="_blank" rel="noopener noreferrer"></a></label>
-                                        <input type="password" class="form-control" name="confirm-password" required>
-                                        <small><?php if($_POST && isset($errores['confirm-password'])) {echo $errores['confirm-password']; } ?></small>
+                                        <input type="password" class="form-control" name="password_confirmation" required>
+                                        <small>@error('password') {{$mesagge}} @enderror</small>
                                     </div>
                                 </div>
                                 
@@ -133,14 +127,13 @@ if($_POST){
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-6  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputFechaNac">Fecha de nacimiento</label>
-                                        <input type="date" class="form-control" name="birth" placeholder="Date of Birth" value="<?php if($_POST){
-                                            echo $nuevoUsuario->getFecha_nacimiento(); } ?>"required>
+                                    <input type="date" class="form-control" name="fecha_nacimiento" placeholder="Date of Birth" value="{{old('fecha_nacimiento')}}"required>
                                     </div>
                                 </div>
                                 
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-6  mb-0 mb-md-4">
                                     <label for="">Sexo</label>
-                                    <select class="custom-select" name="sex" value="" >
+                                    <select class="custom-select" name="sexo" value="" >
                                         <option selected>Seleccionar</option>
                                         <option value="h" <?php if($_POST) {
                                             if($nuevoUsuario->getSexo() == "h"){
@@ -161,7 +154,7 @@ if($_POST){
                                 <div class="form-group">
                                     <label for="exampleFormControlFile1">Tu foto de perfil</label>
                                     <input type="file" class="form-control-file" name="avatar">
-                                    <small><?php if($_POST && isset($errores['avatar'])) {echo $errores['avatar']; } ?></small>
+                                    <small>@error('avatar') {{$message}} @enderror</small>
                
                                 </div>
                                 
@@ -169,15 +162,19 @@ if($_POST){
                                 
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-9 mb-0 mb-md-4 ">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="true" name="tyc_check" <?php if(isset($_POST['tyc_check'])){
-                                            echo "checked";}?>>
+                                        <input class="form-check-input" type="checkbox" value="true" name="tyc_check">
                                         <label class="form-check-label"  for="invalidCheck">
                                             Acepto los <a href="#" class="subrayado">términos y condiciones</a> y la <a href="#" class="subrayado">política de privacidad</a>.
                                         </label>
-                                        <small></small>
-                                        <small></small>
+                                        <small>@error('tyc-check') {{$message}} @enderror</small>
                                     </div>
                                 </div>
+
+                                @if(count($errors))
+                                    @foreach($errors->all() as $error)
+                                         <p>{{$error}}</p>
+                                @endforeach
+                                @endif
                                 
                                 <div class="col-12 ">
                                     <!--

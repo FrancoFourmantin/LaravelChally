@@ -15,3 +15,30 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+/**
+ * 
+ *  Rutas de Registro
+ * 
+ */
+
+Route::get('/registrarse');
+
+
+/**
+ * 
+ * Rutas de Login
+ * 
+ */
+
+ /**
+ * 
+ * Rutas de Posteos
+ * 
+ */
+
+ 
+  
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

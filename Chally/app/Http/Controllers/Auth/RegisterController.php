@@ -57,7 +57,8 @@ class RegisterController extends Controller
             'mimes' => 'El campo :attribute debe ser :mimes',
             'unique' => 'El campo :attribute ya existe en la base de datos',
             'confirmed' => 'Los campos deben conincidir',
-            'min' => 'El campo :attribute tiene un minimo de :min'
+            'min' => 'El campo :attribute tiene un minimo de :min',
+            'not_in' => 'El campo :attribute no puede quedar vacio'
         ];
 
         return Validator::make($data, [
@@ -65,10 +66,12 @@ class RegisterController extends Controller
             'username' => ['required' , 'string' , 'max:255'],
             'apellido' => ['required' , 'string' , 'max:255'],
             'fecha_nacimiento' => ['required' , 'date'],
-            'sexo' => ['required'],
+            'sexo' => ['required', 'not_in:0'],
             //'avatar' => ['required','mimes:jpeg,png,jpg,bmp','max:5000'],
             'mail' => ['required', 'string', 'email', 'max:255', 'unique:usuarios' , 'confirmed'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'tyc_check' => ['accepted'],
+            'intereses' => ['required', 'array' , 'min:1']
         ], $messages);
 
         

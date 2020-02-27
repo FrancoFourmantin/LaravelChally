@@ -133,19 +133,10 @@ if($_POST){
                                 
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-6  mb-0 mb-md-4">
                                     <label for="">Sexo</label>
-                                    <select class="custom-select" name="sexo" value="" >
-                                        <option selected>Seleccionar</option>
-                                        <option value="h" <?php if($_POST) {
-                                            if($nuevoUsuario->getSexo() == "h"){
-                                                echo "selected";
-                                            }
-                                            }?>>Hombre</option>
-
-                                        <option value="m" <?php if($_POST) {
-                                            if($nuevoUsuario->getSexo() == "m"){
-                                                echo "selected";
-                                            }
-                                            }?>>Mujer</option>
+                                    <select class="custom-select" name="sexo" >
+                                        <option selected value="0">Seleccionar</option>
+                                        <option value="h">Hombre</option>
+                                        <option value="m">Mujer</option>
                                     </select>
                                     <small ></small>
             
@@ -200,17 +191,17 @@ if($_POST){
                                                     
                                                     <div class="seleccion-intereses d-flex flex-column flex-md-row">
                                                         
-                                                        <input type="checkbox" id="myCheckbox1" name="diseno_y_arte" <?php if(isset($_POST['diseno_y_arte'])){echo "checked";}?>  />
+                                                        <input type="checkbox" id="myCheckbox1" name="intereses[]" value="diseno_y_arte"/>
                                                         <label for="myCheckbox1">
                                                             <img src="img/categoria-diseno.jpg"><p class="mt-2">Diseño y Arte</p>
                                                         </label>
                                                         
-                                                        <input type="checkbox" id="myCheckbox2"  name="fotografia" <?php if(isset($_POST['fotografia'])){echo "checked";}?>  />
+                                                        <input type="checkbox" id="myCheckbox2"  name="intereses[]" value="fotografia" />
                                                         <label for="myCheckbox2">
                                                             <img src="img/categoria-fotografia.jpg"><p class="mt-2">Fotografía</p>
                                                         </label>
                                                         
-                                                        <input type="checkbox" id="myCheckbox3" name="programacion_y_logica" <?php if(isset($_POST['programacion_y_logica'])){echo "checked";}?> />
+                                                        <input type="checkbox" id="myCheckbox3" name="intereses[]" value="programacion_y_logica"/>
                                                         <label for="myCheckbox3">
                                                             <img src="img/categoria-programacion.jpg"><p class="mt-2">Programación y Lógica</p>
                                                         </label>

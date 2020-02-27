@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 
@@ -21,8 +21,6 @@ Route::get('/', function () {
  *  Rutas de Registro
  * 
  */
-
-Route::get('/registrarse');
 
 
 /**
@@ -42,3 +40,4 @@ Route::get('/registrarse');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+

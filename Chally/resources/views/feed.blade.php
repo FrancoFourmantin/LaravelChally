@@ -1,17 +1,4 @@
-{{-- <?php/*
 
-include('funciones.php');
-session_start();
-
-//Mantenemos la sesion
-$usuario= Usuario::mantenerSesion();
-
-//Vamos a obtener todos los desafios
-$desafios = Desafio::listarDesafios();
-
-//var_dump($desafios);
-
-*/?> --}}
 @extends('layouts/plantilla-header')
 @section('title' , 'Feed - Chally')
 @section('clases-body' , 'animated fadeIn')
@@ -19,8 +6,6 @@ $desafios = Desafio::listarDesafios();
 @section('main')
 
 
-  
-  <!--Seccion Posteos -->
   
 	<div class="container contenedor-feed mt-3 mb-5">
     <div class="row">
@@ -144,6 +129,8 @@ $desafios = Desafio::listarDesafios();
 
 </div>
 
-</div>
+</div>  <!--Seccion Posteos -->
+  
+
 
 @endsection

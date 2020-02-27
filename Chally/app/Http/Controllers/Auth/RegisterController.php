@@ -58,7 +58,8 @@ class RegisterController extends Controller
             'unique' => 'El campo :attribute ya existe en la base de datos',
             'confirmed' => 'Los campos deben conincidir',
             'min' => 'El campo :attribute tiene un minimo de :min',
-            'not_in' => 'El campo :attribute no puede quedar vacio'
+            'not_in' => 'El campo :attribute no puede quedar vacio',
+            'accepted' => 'Debes aceptar este campo para poder continuar'
         ];
 
         return Validator::make($data, [
@@ -86,7 +87,6 @@ class RegisterController extends Controller
     protected function create(array $data)
 
     {
-        echo 'estoy por guardar';
         return Usuario::create([
             'nombre' => $data['nombre'],
             'mail' => $data['mail'],

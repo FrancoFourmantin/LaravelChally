@@ -18,7 +18,7 @@
 <body class='@yield('clases-body')'>
     @if (isset($_SESSION))
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-5">
-        <a class="navbar-brand" href="index.php"><img src="img/logo_chally.svg" alt=""></a>
+        <a class="navbar-brand" href="/"><img src="img/logo_chally.svg" alt=""></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -32,11 +32,11 @@
                 </li>
                 
                 <li class="nav-item">
-                    <a class="nav-link" href="feed.php"><i class="fas fa-newspaper"></i> &nbsp; Inicio</a>
+                    <a class="nav-link" href="/feed"><i class="fas fa-newspaper"></i> &nbsp; Inicio</a>
                 </li>
                 
                 <li class="nav-item"> 
-                    <a class="nav-link" href="profile.php"><i class="fas fa-user"></i> &nbsp; @yield('nombre') @yield('apellido')</a>
+                    <a class="nav-link" href="/perfil"><i class="fas fa-user"></i> &nbsp; @yield('nombre') @yield('apellido')</a>
                 </li>
                 
                 <li class="nav-item">
@@ -52,7 +52,7 @@
                         
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="modify-profile.php"><i class="fas fa-cog"></i> Modificar perfil</a>
+                        <a class="dropdown-item" href="/modificar-perfil"><i class="fas fa-cog"></i> Modificar perfil</a>
                         <a class="dropdown-item" href="logout.php"><i class="fas fa-times"></i> Cerrar Sesión</a>
                     </li>
                 </ul>
@@ -60,7 +60,7 @@
         </nav>
         @else
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-5">
-            <a class="navbar-brand" href="index.php"><img src="img/logo_chally.svg" alt=""></a>
+            <a class="navbar-brand" href="/"><img src="img/logo_chally.svg" alt=""></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -71,7 +71,7 @@
                         <a class="nav-link" href="faq.php"><i class="fas fa-question"></i> &nbsp; Preguntas Frecuentes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="login.php"><i class="fas fa-user"></i> &nbsp; Registrarse / Iniciar Sesión</a>
+                        <a class="nav-link" href="/register"><i class="fas fa-user"></i> &nbsp; Registrarse / Iniciar Sesión</a>
                     </li>
                     
                 </ul>

@@ -1,48 +1,4 @@
-<!--<?php/*
-require_once('config.php');
-
-session_start();
-//SI EXISTE LA COOKIE, LA USA PARA CARGAR LA SESIÓN
-if(isset($_COOKIE["email"])) {
-    crearSesionConCookies();
-}
-
-
-//SI LA SESIÓN ESTÁ INICIADA NO SE PUEDE ACCEDER AL REGISTRO
-if(isset($_SESSION["email"])) {
-    header("location:feed.php");
-}
-
-
-// 1) Verifico si estamos en Post
-if($_POST){
-
-    // 2) Creo la instancia con todos los datos (por mas que estos sean erróneos)
-    $nuevoUsuario = new Usuario($_POST['name'],$_POST['lastname'],$_POST['username'],$_POST['password'],$_POST['email'],$_POST['birth'],$_POST['sex'],$_FILES['avatar']);
-
-    // 3) Hago el método de validación y almaceno los potenciales errores en un array llamado $errores
-    $errores = $nuevoUsuario->validarRegistro();
-
-    //var_dump($errores);
-
-    // 4) Si el array de errores está vacío...
-    if(!$errores){
-
-        // 5) Guardo el usuario en la base de datos
-        Usuario::saveUsuario($nuevoUsuario);
-
-        // 6) Creo la sesión 
-        Usuario::crearSesion($nuevoUsuario);
-        header('location:processing.php');
-
-
-    }
-}
-    
-    */
-    ?>-->
-    
-    @extends('layouts/plantilla-header')
+    @extends('layouts/plantilla')
     @section('title' , 'Registro Chally')
     @section('clases-body' , 'animated fadeIn')
     
@@ -56,7 +12,7 @@ if($_POST){
                     
                     
                     <div class="col-12 col-sm-12 col-md-8 col-lg-5 shadow contacto-form px-5 py-3 d-flex flex-column align-items-center my-5">
-                        <a href="index.php"><img  src="img/logo_c.svg" class="logo" alt=""></a>
+                        <a href="/"><img  src="img/logo_c.svg" class="logo" alt=""></a>
                         <h3 class="color-verde text-center mb-5 ">Registro</h3>
                         <form class="w-100 needs-validation" method="POST" action="{{ route('register')}}" enctype="multipart/form-data">
                             @csrf
@@ -93,7 +49,7 @@ if($_POST){
                                     <div class="form-group">
                                         <label for="inputMail">Tu mail</label>
                                         <input type="mail" class="form-control " name="mail" value="{{old('mail')}}" required>
-                                           <small>@error('mail') {{$message}} @enderror</small>
+                                        <small>@error('mail') {{$message}} @enderror</small>
 
                                         </div>
                                 </div>
@@ -102,8 +58,8 @@ if($_POST){
                                     <div class="form-group">
                                         <label for="inputMail">Confirmacion mail</label>
                                         <input type="email" class="form-control " name="mail_confirmation" value="" required>
-                                        </div>
                                         <small>@error('mail') {{$message}} @enderror</small>
+                                    </div>
                                 </div>
                                 
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6  mb-0 mb-md-4 ">
@@ -142,12 +98,11 @@ if($_POST){
             
                                 </div>
                                 
-                                <div class="form-group">
-                                    <label for="exampleFormControlFile1">Tu foto de perfil</label>
+                                <!--<div class="form-group">
+                                    <label for="imagen_de_perfil">Tu foto de perfil</label>
                                     <input type="file" class="form-control-file" name="avatar">
-                                    <small>@error('avatar') {{$message}} @enderror</small>
-               
-                                </div>
+                                    <small>@--error('avatar') {{--$message--}} @--enderror</small>
+                                </div>-->
                                 
                                 
                                 
@@ -160,12 +115,6 @@ if($_POST){
                                         <small>@error('tyc-check') {{$message}} @enderror</small>
                                     </div>
                                 </div>
-
-                                @if(count($errors))
-                                    @foreach($errors->all() as $error)
-                                         <p>{{$error}}</p>
-                                @endforeach
-                                @endif
                                 
                                 <div class="col-12 ">
                                     <!--

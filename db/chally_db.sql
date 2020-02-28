@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 26, 2020 at 04:47 AM
+-- Generation Time: Feb 28, 2020 at 02:53 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -202,7 +202,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (5, '2020_02_26_005226_rename_columns', 3),
 (6, '2020_02_26_010117_change_name_to_usuarios', 3),
 (7, '2020_02_26_010238_change_name_to_users', 3),
-(8, '2020_02_26_033857_update_avatar_attribute', 4);
+(8, '2020_02_26_033857_update_avatar_attribute', 4),
+(9, '2020_02_28_014732_rename_mail_column_in_usuarios_table', 5);
 
 -- --------------------------------------------------------
 
@@ -239,7 +240,7 @@ CREATE TABLE `respuestas` (
 CREATE TABLE `usuarios` (
   `id_usuario` bigint(20) UNSIGNED NOT NULL,
   `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `mail` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -256,8 +257,9 @@ CREATE TABLE `usuarios` (
 -- Dumping data for table `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuario`, `nombre`, `mail`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `fecha_nacimiento`, `sexo`, `apellido`, `username`, `avatar`) VALUES
-(1, 'Franco', 'francofourmantin@gmail.com', NULL, '$2y$10$2QGdZKni.YBAzGT.j58Q2OpiH0DEobfQ0CYXzvFnIPpk6FnkD/qPa', NULL, '2020-02-26 06:41:27', '2020-02-26 06:41:27', '1998-09-21', 'h', 'Ariel', 'franklinss', NULL);
+INSERT INTO `usuarios` (`id_usuario`, `nombre`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `fecha_nacimiento`, `sexo`, `apellido`, `username`, `avatar`) VALUES
+(1, 'Franco', 'francofourmantin@gmail.com', NULL, '$2y$10$2QGdZKni.YBAzGT.j58Q2OpiH0DEobfQ0CYXzvFnIPpk6FnkD/qPa', NULL, '2020-02-26 06:41:27', '2020-02-26 06:41:27', '1998-09-21', 'h', 'Ariel', 'franklinss', NULL),
+(2, 'Franklins', 'franco@gmail.com', NULL, '$2y$10$r4RpmftW1rgTQSy0lEj3qO5C.JbQkwSbcQoOUaD0Nf9NQmgMwE55W', NULL, '2020-02-28 03:51:07', '2020-02-28 03:51:07', '1998-09-21', 'h', '420', '420Franklin', NULL);
 
 -- --------------------------------------------------------
 
@@ -392,7 +394,7 @@ ALTER TABLE `respuestas`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id_usuario`),
-  ADD UNIQUE KEY `users_email_unique` (`mail`);
+  ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
 -- Indexes for table `usuarios_old`
@@ -462,7 +464,7 @@ ALTER TABLE `likes`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `respuestas`
@@ -474,7 +476,7 @@ ALTER TABLE `respuestas`
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_usuario` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `usuarios_old`

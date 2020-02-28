@@ -28,7 +28,7 @@
                 
                 
                 <li class="nav-item" id="post-cta">
-                    <a class="nav-link" href="create-post.php"><i class="fas fa-plus"></i> &nbsp; Crear Desafío</a>
+                    <a class="nav-link" href="/crear-posteo"><i class="fas fa-plus"></i> &nbsp; Crear Desafío</a>
                 </li>
                 
                 <li class="nav-item">
@@ -68,10 +68,11 @@
                 <ul class="navbar-nav ml-auto">
                     
                     <li class="nav-item">
-                        <a class="nav-link" href="faq.php"><i class="fas fa-question"></i> &nbsp; Preguntas Frecuentes</a>
+                        <a class="nav-link" href="/faq"><i class="fas fa-question"></i> &nbsp; Preguntas Frecuentes</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/register"><i class="fas fa-user"></i> &nbsp; Registrarse / Iniciar Sesión</a>
+                    <li class="nav-item p-2">
+                        <i class="fas fa-user color-verde"></i><a style="display: inline" class="nav-link" href="/register">Registrarse </a><a style="display: inline" class="nav-link" href="/login">Iniciar Sesion</a>
+                        {{-- <a class="nav-link" href="/register"> &nbsp; Registrarse / Iniciar Sesión</a> --}}
                     </li>
                     
                 </ul>
@@ -105,10 +106,10 @@
                         
                         <div class="col-12 col-md-4 mb-4 mb-md-0">
                             <h4>Accesos Rápidos</h4>
-                            <a href="index.php">Home</a><br>
-                            <a href="login.php">Iniciar Sesión / Registrarse</a><br>
-                            <a href="faq.php">Preguntas Frecuentes</a><br>
-                            <a href="contacto.php">Contacto</a><br>
+                            <a href="/">Home</a><br>
+                            <a href="/login">Iniciar Sesión / Registrarse</a><br>
+                            <a href="/faq">Preguntas Frecuentes</a><br>
+                            <a href="/contacto">Contacto</a><br>
                             <a href="#">Política de Privacidad</a>
                         </div>    
                     </div>

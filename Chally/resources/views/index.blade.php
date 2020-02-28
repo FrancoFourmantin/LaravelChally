@@ -16,7 +16,7 @@
                 <h3 class="color-verde text-center mb-4">¡Creá tu cuenta ahora!</h3>
                 
                 
-                <form class="w-100" method="GET" action="/register">
+                <form class="w-100" method="GET" action="/index-register">
 
                 <div class="form-group">
                     <label for="inputName">Tu nombre</label>
@@ -270,31 +270,31 @@
                 <a class="d-block" href="profile.php">
                     <img src="img/users/user-1.jpg" class="challenger rounded-circle shadow mb-3" alt="Foto de Usuario">
                     <p>Federico Gonzalez <br> @federico48</p>
-                    <a class="btn btn-secondary" href="profile.php">Seguir</a>
+                    <a class="btn btn-secondary" href="">Seguir</a>
                 </a>
             </div>
 
             <div class="col-12 col-md-6 col-lg-3  mb-5 mb-sm-0 text-center">
-                <a class="d-block" href="profile.php">
+                <a class="d-block" href="">
                     <img src="img/users/user-2.jpg" class="challenger rounded-circle shadow mb-3" alt="Foto de Usuario">
                     <p>Mark Johnson <br> @mark87</p>
-                    <a class="btn btn-secondary" href="profile.php">Seguir</a>
+                    <a class="btn btn-secondary" href="">Seguir</a>
                 </a>
             </div>
 
             <div class="col-12   col-md-6 col-lg-3  mb-5 mb-sm-0 text-center">
-                <a class="d-block" href="profile.php">
+                <a class="d-block" href="">
                     <img src="img/users/user-3.jpg" class="challenger rounded-circle shadow mb-3" alt="Foto de Usuario">
                     <p>Irina Paez <br> @irp58</p>
-                    <a class="btn btn-secondary" href="profile.php">Seguir</a>
+                    <a class="btn btn-secondary" href="">Seguir</a>
                 </a>
             </div>
 
             <div class="col-12   col-md-6 col-lg-3  mb-5 mb-sm-0  text-center ">
-                <a class="d-block" href="profile.php">
+                <a class="d-block" href="">
                     <img src="img/users/user-4.jpg" class="challenger rounded-circle shadow mb-3" alt="Foto de Usuario">
                     <p>Jorge Gonzalez <br> @jorgito1988</p>
-                    <a class="btn btn-secondary" href="profile.php">Seguir</a>
+                    <a class="btn btn-secondary" href="">Seguir</a>
                 </a>
             </div>
 
@@ -355,7 +355,7 @@
                             </div>
                         </div>
                     </div>
-                    <a class="btn btn-secondary mt-3 w-100" href="faq.php">Ver más </a>
+                    <a class="btn btn-secondary mt-3 w-100" href="/faq">Ver más </a>
             </div>
         </div>
     </section> <!-- CIERRE SECCION PREGUNTAS -->

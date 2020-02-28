@@ -13,8 +13,8 @@
                 </div>
 
                 <h3>Iniciar sesión</h3>
-                <input type="mail" id="email" name="mail" value="{{old('mail')}}" placeholder="Correo electrónico" required><br>
-                @error('mail')
+                <input type="email" id="email" name="email" value="{{old('email')}}" placeholder="Correo electrónico" required><br>
+                @error('email')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>

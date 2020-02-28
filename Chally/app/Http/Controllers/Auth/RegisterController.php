@@ -8,6 +8,7 @@ use App\Usuario;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -69,7 +70,7 @@ class RegisterController extends Controller
             'fecha_nacimiento' => ['required' , 'date'],
             'sexo' => ['required', 'not_in:0'],
             //'avatar' => ['required','mimes:jpeg,png,jpg,bmp','max:5000'],
-            'mail' => ['required', 'string', 'email', 'max:255', 'unique:usuarios' , 'confirmed'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:usuarios' , 'confirmed'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'tyc_check' => ['accepted'],
             'intereses' => ['required', 'array' , 'min:1']
@@ -89,12 +90,20 @@ class RegisterController extends Controller
     {
         return Usuario::create([
             'nombre' => $data['nombre'],
-            'mail' => $data['mail'],
+            'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'fecha_nacimiento' => $data['fecha_nacimiento'],
             'sexo' => $data['sexo'],
             'apellido' => $data['apellido'],
             'username' => $data['username']
         ]);
+    }
+
+    public function mostrarRegistroConDatos(Request $data){
+        $nameHero = $data->input('nameHero');
+        $lastnameHero = $data->input('lastnameHero');
+        $mailHero = $data->input('mailHero');
+        $vac = compact('nameHero' , 'lastnameHero' , 'mailHero');
+        return view('auth/register' , $vac);
     }
 }

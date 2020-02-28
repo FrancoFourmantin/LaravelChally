@@ -18,6 +18,18 @@ Route::get('/', function () {
 
 /**
  * 
+ * Rutas de index
+ */
+
+ Route::view('/faq' , 'faq');
+ Route::view('/perfil' , 'perfil');
+ Route::get('/index-register' , 'Auth\RegisterController@mostrarRegistroConDatos');
+ Route::view('/contacto' , 'contacto');
+
+ 
+
+/**
+ * 
  *  Rutas de Registro
  * 
  */
@@ -40,4 +52,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
 

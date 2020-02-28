@@ -21,7 +21,7 @@
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputName">Tu nombre</label>
-                                        <input type="text" class="form-control" name="nombre" required value="{{ old('nombre') }}">
+                                        <input type="text" class="form-control" name="nombre" required value="@if($nameHero ?? '') {{$nameHero ?? ''}} @else {{ old('nombre') }} @endif">
                                         <small>@error('nombre')  {{$message}} @enderror</small>
 
                                     </div>
@@ -30,7 +30,7 @@
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputName">Tu Apellido</label>
-                                        <input type="text" class="form-control" name="apellido" value="{{ old('apellido') }}" required>
+                                        <input type="text" class="form-control" name="apellido" value="@if($lastnameHero ?? '') {{$lastnameHero ?? ''}} @else {{ old('apellido') }} @endif" required>
                                         <small>@error('apellido')  {{$message}} @enderror</small>
 
                                     </div>
@@ -48,8 +48,8 @@
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputMail">Tu mail</label>
-                                        <input type="mail" class="form-control " name="mail" value="{{old('mail')}}" required>
-                                        <small>@error('mail') {{$message}} @enderror</small>
+                                        <input type="email" class="form-control " name="email" value="@if($mailHero ?? '') {{$mailHero ?? ''}} @else {{ old('email') }} @endif" required>
+                                        <small>@error('email') {{$message}} @enderror</small>
 
                                         </div>
                                 </div>
@@ -57,8 +57,8 @@
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6   mb-0 mb-md-4">
                                     <div class="form-group">
                                         <label for="inputMail">Confirmacion mail</label>
-                                        <input type="email" class="form-control " name="mail_confirmation" value="" required>
-                                        <small>@error('mail') {{$message}} @enderror</small>
+                                        <input type="email" class="form-control " name="email_confirmation" value="" required>
+                                        <small>@error('email') {{$message}} @enderror</small>
                                     </div>
                                 </div>
                                 

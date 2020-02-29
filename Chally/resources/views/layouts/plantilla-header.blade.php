@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://kit.fontawesome.com/959125d25f.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
+    <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
+    <link rel="shortcut icon" type="image/png" href="{{ asset('img/favicon.png')}}"/>
     
     
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,500,700,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <title>@yield('title')</title>
 </head>
 
 <body class='@yield('clases-body')'>
-    @if (isset($_SESSION))
+    @if (Auth::user() != null)
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-5">
         <a class="navbar-brand" href="/"><img src="img/logo_chally.svg" alt=""></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,7 +36,7 @@
                 </li>
                 
                 <li class="nav-item"> 
-                    <a class="nav-link" href="/perfil"><i class="fas fa-user"></i> &nbsp; @yield('nombre') @yield('apellido')</a>
+                    <a class="nav-link" href="/perfil"><i class="fas fa-user"></i> &nbsp; {{ Auth::user()->nombre }} {{ Auth::user()->apellido }}</a>
                 </li>
                 
                 <li class="nav-item">
@@ -52,8 +52,15 @@
                         
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/modificar-perfil"><i class="fas fa-cog"></i> Modificar perfil</a>
-                        <a class="dropdown-item" href="logout.php"><i class="fas fa-times"></i> Cerrar Sesión</a>
+                        <a class="dropdown-item" href="/editar-perfil" onclick="event.preventDefault();document.getElementById('edit-form').submit();"><i class="fas fa-cog"></i> Modificar perfil</a>
+                    <form id ="edit-form" action="/editar-perfil" method="GET" style="display:none">
+                        @csrf
+                        <input type="hidden" value=" {{ Auth::user()->id_usuario}}" name="id_usuario">
+                    </form>
+                        <a class="dropdown-item" href="{{ route('logout') }}"  onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fas fa-times"></i> Cerrar Sesión</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                     </li>
                 </ul>
             </div>

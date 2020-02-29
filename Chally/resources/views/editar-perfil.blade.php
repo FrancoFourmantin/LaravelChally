@@ -1,25 +1,3 @@
-{{-- <?php/*
-session_start();
-$_SESSION['email']="eg@gmail.com";
-
-$listaDeUsuarios = file_get_contents('jsonPrueba.json');
-$arrayUsuarios = json_decode($listaDeUsuarios, true);
-
-function verificarUsuario ($array){
-
-    foreach ($array as $usuario){
-        if ($usuario['email'] == $_SESSION['email']){
-          return $usuario;
-        }
-}
-}
-
-
-$usuario = verificarUsuario($arrayUsuarios);
-
-$title="Modificar Perfil";
-include("include/head.php");
-*/?> --}}
 @extends('layouts/plantilla-header')
 @section('title' , 'Editar perfil')
 @section('clases-body' , 'animated fadeIn')
@@ -36,28 +14,47 @@ include("include/head.php");
                     
                     <div class="col-12 col-sm-12 col-md-8 col-lg-5 shadow contacto-form px-5 py-3 d-flex flex-column my-3">
                         <h3 class="color-verde text-left mb-3 mx-0"><a href="feed.php"><i class="fas fa-arrow-left color-verde"></i></a>  Tu perfil</h3>
-                        <form class="w-100 needs-validation" method="POST" action="register.php">
+                        <form class="w-100 needs-validation" method="POST" action="/editar-perfil" enctype="multipart/form-data">
+                        @csrf
+
+                        <input type="hidden" value="{{Auth::user()->id_usuario}}" name="id_usuario">
                             
+                        <div class="text-center">
+                            <div class="mini-contenedor-foto">
+                                <img class="main-foto" src='{{asset ('avatars/'.Auth::user()->avatar)}}' alt="avatar">
+                            </div>
+                        </div>
+
+                    
+                        <div class="custom-file my-3">
+                            <input type="file" id="inputGroupFile01" class="custom-file-input" name="avatar" aria-describedby="inputGroupFileAddon01">
+                            <label class="custom-file-label" for="inputGroupFile01">Cambiar imagen de perfil</label>
+                            <small class="error">@error('avatar') {{$message}} @enderror</small>
+                        </div>
+
+
                             <div class="form-row">
                                 
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputName">Tu nombre</label>
-                                        <input type="text" class="form-control" name="nombre" id="inputName" value="<?//=$usuario['nombre'];?>" required>
+                                        <input type="text" class="form-control" name="nombre" id="inputName" value='{{Auth::user()->nombre}}' required>
+                                        <small class="error">@error('nombre') {{$message}} @enderror</small>
                                     </div>
                                 </div>
                                 
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputName">Tu Apellido</label>
-                                        <input type="text" class="form-control" name="apellido" id="inputName" value="<?//=$usuario['apellido'];?>" required>
+                                    <input type="text" class="form-control" name="apellido" id="inputName" value="{{Auth::user()->apellido}}" required>
+                                    <small class="error">@error('apellido') {{$message}} @enderror</small>
                                     </div>
                                 </div>
                                 
                                 <div class="col-12 col-sm-12 col-md-12 col-lg-12  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputName">Nombre de usuario</label>
-                                        <input type="text" class="form-control" name="username" id="inputName" data-toggle="tooltip" data-placement="top" title="Test" value="<?//=$usuario['username'];?>"  disabled> 
+                                    <input type="text" class="form-control" name="username" id="inputName" data-toggle="tooltip" data-placement="top" title="Test" value="{{Auth::user()->username}}"  disabled> 
                                         <small class="text-muted">Este dato no se puede modificar</small>
 
                                     </div>
@@ -66,14 +63,16 @@ include("include/head.php");
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputMail">Tu mail</label>
-                                        <input type="email" class="form-control" name="email" id="inputMail" value="<?//=$usuario['email'];?>" required>
+                                        <input type="email" class="form-control" name="email" id="inputMail" value="{{Auth::user()->email}}" required>
+                                        <small class="error">@error('email') {{$message}} @enderror</small>
                                     </div>
                                 </div>
                                 
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6   mb-0 mb-md-4">
                                     <div class="form-group">
                                         <label for="inputMail">Confirmacion mail</label>
-                                        <input type="email" class="form-control" name="cemail" value="<?//=$usuario['email'];?>" id="inputMail" required>
+                                        <input type="email" class="form-control" name="email_confirmation" value="{{Auth::user()->email}}" id="inputMail" required>
+                                        <small class="error">@error('email') {{$message}} @enderror</small>
                                     </div>
                                 </div>
                                 
@@ -83,20 +82,22 @@ include("include/head.php");
                                     <!-- DEBERIA HACER UNA FUNCION APARTE PARA LA CONTRASEÑA Y QUE SEA OPCIONAL; ES DECIR QUE SI ESTA VACIO NO PASE NADA -->
                                         <label for="inputPassword">Contraseña<a href="http://" target="_blank" rel="noopener noreferrer"></a></label>
                                         <input type="password" class="form-control" name="password" id="inputPassword" required>
+                                        <small class="error">@error('password') {{$message}} @enderror</small>
                                     </div>
                                 </div>
                                 
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputPassword">Confirma contraseña<a href="http://" target="_blank" rel="noopener noreferrer"></a></label>
-                                        <input type="password" class="form-control is-valid" name="cpassword" id="inputPassword" required>
+                                        <input type="password" class="form-control is-valid" name="password_confirmation" id="inputPassword" required>
+                                        <small class="error">@error('password') {{$message}} @enderror</small>
                                     </div>
                                 </div>
 
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-6  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputFechaNac">Fecha de nacimiento</label>
-                                        <input type="date" class="form-control" id="inputFechaNac" name="cumpleanos" value="<?//=$usuario['cumpleanos'];?>" placeholder="Date of Birth" required disabled>
+                                        <input type="date" class="form-control" id="inputFechaNac" name="fecha_nacimiento" value="{{Auth::user()->fecha_nacimiento}}" placeholder="Date of Birth" required disabled>
                                         <small class="text-muted">Este dato no se puede modificar</small>
 
                                     </div>
@@ -105,11 +106,15 @@ include("include/head.php");
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-6  mb-0 mb-md-4">
                                     <label for="">Sexo</label>
                                     <select class="custom-select" disabled>
-                                    <option selected value=""><?//=$usuario['sexo'];?></option>
+                                    <option value="h" {{ Auth::user()->sexo == 'h'  ? 'selected' : '' }}>Hombre</option>
+                                    <option value="m" {{ Auth::user()->sexo == 'f'  ? 'selected' : '' }}>Mujer</option>
                                     </select>
                                     <small class="text-muted">Este dato no se puede modificar</small>
-        
-                                </div>                                
+                                    
+
+                                </div>        
+
+                  
                                 
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-12 ">
                                 <!--

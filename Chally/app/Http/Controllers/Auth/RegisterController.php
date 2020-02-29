@@ -63,6 +63,7 @@ class RegisterController extends Controller
             'accepted' => 'Debes aceptar este campo para poder continuar'
         ];
 
+  
         return Validator::make($data, [
             'nombre' => ['required', 'string', 'max:255'],
             'username' => ['required' , 'string' , 'max:255'],
@@ -86,14 +87,21 @@ class RegisterController extends Controller
      * @return \App\Usuario
      */
     protected function create(array $data)
-
     {
+        if ($data['sexo'] == 'h'){
+            $nombreImagen = 'primera-imagen-hombre.png';
+        }else{
+            $nombreImagen = 'primera-imagen-mujer.png';
+        }
+
+
         return Usuario::create([
             'nombre' => $data['nombre'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'fecha_nacimiento' => $data['fecha_nacimiento'],
             'sexo' => $data['sexo'],
+            'avatar' => $nombreImagen,
             'apellido' => $data['apellido'],
             'username' => $data['username']
         ]);

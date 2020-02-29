@@ -21,10 +21,13 @@ Route::get('/', function () {
  * Rutas de index
  */
 
- Route::view('/faq' , 'faq');
- Route::view('/perfil' , 'perfil');
- Route::get('/index-register' , 'Auth\RegisterController@mostrarRegistroConDatos');
- Route::view('/contacto' , 'contacto');
+ Route::view('/faq' , 'faq'); //Rua para faq
+ Route::view('/perfil' , 'perfil'); //Ruta simple para perfil
+ Route::get('/index-register' , 'Auth\RegisterController@mostrarRegistroConDatos'); //Ruta para enviar al usuariao a regiser despues de llenar el formulario de index
+ Route::view('/contacto' , 'contacto'); //Ruta para contacto
+ Route::get('/home/feed' , 'HomeController@index');  //Ruta para enviar al usuario al feed despues del login
+ Route::get('/editar-perfil' , 'UsuarioController@edit'); //Ruta para mostrar datos a editar del usuario
+ Route::post('/editar-perfil', 'UsuarioController@updateValidator'); //Ruta para verificar y guardar actualizacion de perfil
 
  
 

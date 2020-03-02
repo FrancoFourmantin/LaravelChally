@@ -66,7 +66,7 @@
                                     <div class="form-group">
                                         <label for="inputPassword">Contraseña<a href="http://" target="_blank" rel="noopener noreferrer"></a></label>
                                         <input type="password" class="form-control " name="password" data-toggle="tooltip" data-placement="bottom" title="Mínimo de 8 caracteres, un número, una mayúscula y un caracter especial." required>
-                                        <small>@error('password') {{$mesagge}} @enderror</small>
+                                        <small>@error('password') {{$message}} @enderror</small>
                                         </div>
                                 </div>
                                 

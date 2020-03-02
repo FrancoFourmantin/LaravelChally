@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use App\Desafio;
 
 class DesafioController extends Controller
 {
@@ -23,6 +25,7 @@ class DesafioController extends Controller
      */
     public function create()
     {
+        return view('desafio.crear');
         //
     }
 
@@ -34,7 +37,49 @@ class DesafioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $mensajes = [
+            'required' => "Este campo :attribute es obligatorio",
+            'min' => "Necesitan haber minimo :min caracteres",
+            'max' => "El máximo es de :max caracteres",
+            'image' => "La imagen no es válida",
+            'size' => "La imagen supera el peso máximo de :size kb",
+            'numeric' => "El campo debe ser un número",
+            'date' => "La fecha no es válida"
+        ];
+
+        $reglas= [
+            'nombre' => 'required|min:20|max:70',
+            'imagen' => 'required|file|image|max:1024',
+            'id_categoria' => 'required|numeric',
+            'descripcion' => 'required|string|min:50',
+            'requisitos' => 'required|string|min:50',
+            'dificultad' => 'required|numeric',
+            'fecha_limite' => 'required|date|after:tomorrow',
+        ];
+
+        $request->validate($reglas,$mensajes);
+        
+        
+        $nuevoDesafio = new Desafio();
+        $nuevoDesafio->fecha_actualizacion=NULL;
+        $nuevoDesafio->nombre = $request->nombre;
+        $nombreImagenDesafio = time() . '.' . request()->imagen->getClientOriginalExtension();
+        $request->file('imagen')->move(public_path('desafios') , $nombreImagenDesafio);
+        $nuevoDesafio->imagen = $nombreImagenDesafio;
+        $nuevoDesafio->id_categoria = $request->categoria;
+        $nuevoDesafio->descripcion = $request->descripcion;
+        $nuevoDesafio->requisitos = $request->requisitos;
+        $nuevoDesafio->dificultad = $request->dificultad;
+        $nuevoDesafio->fecha_limite = $request->fecha_limite;
+
+        $nuevoDesafio->id_autor = Auth::user()->id_usuario;
+        $nuevoDesafio->fecha_creacion = date('Y-m-d');
+
+        $nuevoDesafio->save();
+
+        return redirect('/home/feed');
+
     }
 
     /**

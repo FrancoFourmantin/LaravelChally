@@ -46,7 +46,13 @@ Route::get('/', function () {
 
  /**
  * 
- * Rutas de Posteos
+ * Rutas de Posteos */
+
+ Route::get('/desafio/crear','DesafioController@create');
+ Route::post('/desafio/crear','DesafioController@store');
+
+ /*
+ * 
  * 
  */
 

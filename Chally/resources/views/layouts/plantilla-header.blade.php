@@ -28,7 +28,7 @@
                 
                 
                 <li class="nav-item" id="post-cta">
-                    <a class="nav-link" href="/crear-posteo"><i class="fas fa-plus"></i> &nbsp; Crear Desafío</a>
+                    <a class="nav-link" href="/desafio/crear"><i class="fas fa-plus"></i> &nbsp; Crear Desafío</a>
                 </li>
                 
                 <li class="nav-item">

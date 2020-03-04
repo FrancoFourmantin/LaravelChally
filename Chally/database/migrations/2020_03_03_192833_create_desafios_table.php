@@ -26,7 +26,6 @@ class CreateDesafiosTable extends Migration
             $table->date('fecha_limite');
             $table->timestamp('fecha_actualizacion')->nullable();
             $table->timestamp('fecha_creacion')->nullable();
-
             $table->foreign('id_autor')->references('id_usuario')->on('usuarios');
 
 

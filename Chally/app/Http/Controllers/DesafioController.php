@@ -92,7 +92,9 @@ class DesafioController extends Controller
      */
     public function show($id)
     {
-        //
+        $desafio=Desafio::find($id);
+        $vac=compact("desafio");
+        return view("desafio.ver",$vac);
     }
 
     /**

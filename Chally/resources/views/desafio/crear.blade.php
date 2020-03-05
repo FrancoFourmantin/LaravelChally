@@ -42,10 +42,10 @@
                                 <div class="form-group mt-4">
                                         <label for="dificultad" class="font-weight-bold">Categoria</label>
                                         <select class="form-control" name="id_categoria" id="categoria">
-                                             <option value="0" {{ old('dificultad') == "0" ? "selected" : ""}}>Seleccionar categoria</option>
-                                            <option value="1" {{ old('dificultad') == "1" ? "selected" : ""}}>Diseño y Programacion</option>
-                                            <option value="2" {{ old('dificultad') == "2" ? "selected" : ""}}>Fotografia</option>   
-                                            <option value="3" {{ old('dificultad') == "3" ? "selected" : ""}}>Programacion y Logica</option>
+                                             <option value="0" {{ old('id_categoria') == "0" ? "selected" : ""}}>Seleccionar categoria</option>
+                                            <option value="1" {{ old('id_categoria') == "1" ? "selected" : ""}}>Diseño e Ilustración</option>
+                                            <option value="2" {{ old('id_categoria') == "2" ? "selected" : ""}}>Fotografia</option>   
+                                            <option value="3" {{ old('id_categoria') == "3" ? "selected" : ""}}>Programacion y Logica</option>
                                         </select>
                                         <??>
                                     </div>

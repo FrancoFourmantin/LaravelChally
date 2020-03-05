@@ -23,7 +23,8 @@ class CreacionDeUsuariosDePrueba extends Seeder
             'fecha_nacimiento' => '1998-09-21',
             'sexo' => 'h',
             'apellido' => 'Fourmantin',
-            'username' => 'Fraklins420'
+            'username' => 'Fraklins420',
+            'avatar' => 'primera-imagen-hombre.png'
         ]);
 
         DB::table('usuarios')->insert([
@@ -35,7 +36,9 @@ class CreacionDeUsuariosDePrueba extends Seeder
             'fecha_nacimiento' => '1994-09-20',
             'sexo' => 'h',
             'apellido' => 'Gioia',
-            'username' => 'EmilianoGioia'
+            'username' => 'EmilianoGioia',
+            'avatar' => 'primera-imagen-hombre.png'
+
         ]);
 
 
@@ -48,7 +51,9 @@ class CreacionDeUsuariosDePrueba extends Seeder
             'fecha_nacimiento' => '1990-09-21',
             'sexo' => 'h',
             'apellido' => 'Bruno',
-            'username' => 'MatiasBruno'
+            'username' => 'MatiasBruno',
+            'avatar' => 'primera-imagen-hombre.png'
+
         ]);
 
 
@@ -62,7 +67,9 @@ class CreacionDeUsuariosDePrueba extends Seeder
             'fecha_nacimiento' => '2000-09-21',
             'sexo' => 'm',
             'apellido' => 'Apellido',
-            'username' => 'JuanCruz'
+            'username' => 'JuanCruz',
+            'avatar' => 'primera-imagen-hombre.png'
+
         ]);
     }
 }

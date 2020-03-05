@@ -14,23 +14,22 @@
             <aside class="d-none d-md-block sticky-top">
 
                 <div class="card shadow  p-3 mt-1 mb-4 text-center">
-                    <p class="font-weight-bold mb-0"> Matías Bruno</p>
-                    <p>44 Puntos</p>
 
-                    <img class="rounded-circle d-block m-auto shadow" style="max-width:50%" src="img/foto-matias-bruno.jpg" alt="">
-                    <br>
-                    <a href="#" class="btn btn-secondary">Ver perfil</a>
+                    <a href={{ "../../usuario/" . $desafio->getUsuario->username}}> <img class="rounded-circle" style="max-width:70px" src="{{asset('avatars/' . $desafio->getUsuario->avatar . '')}}" alt="Imagen de usuario">
+                   
+                    <p class="font-weight-bold mb-0"> {{$desafio->getUsuario->nombre}}  {{$desafio->getUsuario->apellido}}</p>
+                    <p class="mb-0">44 Puntos</p>
                 </div>
 
                 <div class="card shadow  p-3 mt-1 mb-4">
                     <p class="font-weight-bold mb-0">Fecha Límite de Respuesta</p>
-                    <p class="mb-0">24/04/20</p>
+                    <p class="mb-0">{{$desafio->fecha_limite}}</p>
                 </div>
 
                 <div class="card shadow  p-3 mt-1 mb-3 categorias">
-                    <p class="font-weight-bold mb-0">Categorías</p>
+                    <p class="font-weight-bold mb-0">Categoría</p>
                     <ul class="mb-0">
-                        <li>Diseño y Arte</li>
+                        <li>{{$desafio->getCategoria->nombre}}</li>
                     </ul>
                 </div>
 
@@ -57,50 +56,33 @@
 
                         <div class="card mb-5">
 
-                            <div class="card-header posteo d-flex align-items-center">
-                                <img class="rounded-circle" src="img/foto-matias-bruno.jpg" alt="Foto de Usuario">
-                                <p class="mb-0 ml-3">Matías Bruno <span class="text-secondary texto-chico">(hace 2 horas)</span></p>    
-                                
-
-                                <div class="ml-auto">
-                                    <a class="" href="edit-post.php"><i class="fas fa-pen"></i></a>
-                                    &nbsp;
-
-                                    <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal"><i class="far fa-trash-alt"></i></button>
-                                </div>
-
-                            </div>
-
                             <div class="card-contenido">
                                 <div class="row">
 
 
                                     <div class="row card-content-attached">
                                         <div class="col-12">
-                                            <img src="img/challys/viajes-especiales-landscape.jpg" class="img-fluid mb-3" alt="Desafío Viajes Espaciales">
+                                            <img src="{{asset('desafios/' . $desafio->imagen)}}" class="img-fluid mb-3" alt="Desafío Viajes Espaciales">
                                         </div>
 
                                         <div class="col-12">
-                                            <h2 class="ml-0 color-verde mb-3">Diseñá una landing page para una agencia ficticia de viajes interplanetarios</h3>
+                                            <h2 class="ml-0 color-verde mb-3">{{$desafio->nombre}}</h3>
 
                                             <div class="metadata d-flex">
-                                                <span class="dificultad">Dificultad: <img src="img/logo_c.svg" alt=""> <img src="img/logo_c.svg" alt=""> <img src="img/logo_c.svg" alt=""> <img src="img/logo_c_gris.svg" alt=""> <img src="img/logo_c_gris.svg" alt=""> </span>
+                                                <span class="dificultad">Dificultad: Nivel {{$desafio->dificultad}} </span>
                                                 <span class="participantes"><i class="fas fa-user"></i>&nbsp; 18 Participantes</span>
                                             </div>
                                             <hr>
 
                                             <h5>Descripción</h5>
-                                            <p>El desafío consiste en Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos amet qui officia repellat inventore natus molestiae, ullam odio aut similique! Accusantium obcaecati, asperiores culpa officiis aliquam esse impedit sit distinctio.</p>
+                                        <p><?php echo nl2br($desafio->descripcion) ?></p>
 
                                             <hr>
 
                                             <h5>Requisitos y Condiciones</h5>
                                             <ul class="requisitos">
-                                                <li><i class="fas fa-check color-verde"></i></i> &nbsp;La landing page no necesariamente debe estar programada</li>
-                                                <li><i class="fas fa-check color-verde"></i></i> &nbsp;El diseño pueden realizarse con cualquier software de diseño</li>
-                                                <li><i class="fas fa-check color-verde"></i></i> &nbsp;El diseños debe subirse en formato JPG/PNG</li>
-                                                <li><i class="fas fa-check color-verde"></i></i> &nbsp;Todos los materiales gráficos pueden diseñarse desde cero o bien ser tomados de bancos públicos.</li>
-                                                <li><i class="fas fa-check color-verde"></i></i> &nbsp;La landing page deberá contar si o si con una call to action de tipo formulario</li>
+                                                <!--<li><i class="fas fa-check color-verde"></i></i> &nbsp;La landing page no necesariamente debe estar programada</li>-->
+                                                <p><?php echo nl2br($desafio->requisitos) ?></p>
                                             </ul>
 
                                         </div>

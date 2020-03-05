@@ -13,7 +13,10 @@
                     
                     
                     <div class="col-12 col-sm-12 col-md-8 col-lg-5 shadow contacto-form px-5 py-3 d-flex flex-column my-3">
-                        <h3 class="color-verde text-left mb-3 mx-0"><a href="feed.php"><i class="fas fa-arrow-left color-verde"></i></a>  Tu perfil</h3>
+                        <p class="color-verde text-left mb-3 mx-0"><a href="feed.php"><i class="fas fa-arrow-left color-verde"></i>Volver atrás</p></a>
+
+                        <h3 class="color-verde text-left mb-3 mx-0 text-center">Tu perfil</h3>
+
                         <form class="w-100 needs-validation" method="POST" action="/editar-perfil" enctype="multipart/form-data">
                         @csrf
 

@@ -13,7 +13,9 @@
 
 
                 <div class="col-12 col-sm-12 col-md-8 col-lg-5 shadow contacto-form px-5 py-3 d-flex flex-column my-3">
-                    <h3 class="color-verde text-left mb-3 mx-0"><a href="../feed"><i class="fas fa-arrow-left color-verde"></i></a> Nuevo Desafío</h3>
+                    <p class="color-verde text-left mb-3 mx-0"><a href="../feed"><i class="fas fa-arrow-left color-verde"></i></a>&nbsp;Volver atrás</p>
+                    <h3 class="color-verde text-left mb-3 mx-0"><a href="../feed"></a> Nuevo Desafío</h3>
+
                     <form class="w-100 needs-validation" method="POST" action="crear" enctype="multipart/form-data">
                         @csrf
 
@@ -32,8 +34,8 @@
 
 
                                 <div class="custom-file form-group my-3">
-                                    <label class="custom-file-label" for="inputGroupFile01">Foto principal del desafío</label>
-                                    <input type="file" id="inputGroupFile01" class="custom-file-input" name="imagen" aria-describedby="inputGroupFileAddon01" value="{{old('imagen')}}">
+                                    <label class="font-weight-bold" for="inputGroupFile01">Foto del desafío</label>
+                                    <input type="file" id="inputGroupFile01" class="form-control-file" name="imagen" value="{{old('imagen')}}">
                                     <small>Foto cuadrada ilustrativa del desafío (Tamaño recomendado: 1000x1000px)</small>
                                     <small class="text-danger"> @error ('imagen') {{$message}} @enderror </small>
                                 </div>
@@ -85,7 +87,7 @@
                                     <label class="font-weight-bold" for="fechaLimite">Fecha Límite de envío de respuestas</label>
                                     <input type="date" class="form-control" name="fecha_limite" id="fechaLimite" placeholder="" value="{{ old ('fechalimite')}}">
                                     <small>¡El mínimo es de una semana!</small>
-                                    <small class="text-danger"> @error ('fechalimite') {{$message}} @enderror </small>
+                                    <small class="text-danger"> @error ('fecha_limite') {{$message}} @enderror </small>
 
                                 </div>
 

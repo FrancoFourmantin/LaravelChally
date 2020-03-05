@@ -15,7 +15,7 @@ class DesafioController extends Controller
      */
     public function index()
     {
-        $desafios = Desafio::all();
+        $desafios = Desafio::orderBy('fecha_creacion','asc')->get();
         $vac = compact('desafios');
         return view('feed',$vac);
     }
@@ -43,19 +43,21 @@ class DesafioController extends Controller
         $mensajes = [
             'required' => "Este campo :attribute es obligatorio",
             'min' => "Necesitan haber minimo :min caracteres",
-            'max' => "El máximo es de :max caracteres",
+            'max' => "El peso máximo de la imagen es de :max kb",
             'image' => "La imagen no es válida",
             'size' => "La imagen supera el peso máximo de :size kb",
             'numeric' => "El campo debe ser un número",
-            'date' => "La fecha no es válida"
+            'date' => "La fecha no es válida",
+            'not_in' => "Debes seleccionar una categoría",
+
         ];
 
         $reglas= [
-            'nombre' => 'required|min:20|max:70',
+            'nombre' => 'required|',
             'imagen' => 'required|file|image|max:1024',
-            'id_categoria' => 'required|numeric',
-            'descripcion' => 'required|string|min:50',
-            'requisitos' => 'required|string|min:50',
+            'id_categoria' => 'required|numeric|not_in:0',
+            'descripcion' => 'required|string|min:10',
+            'requisitos' => 'required|string|min:10',
             'dificultad' => 'required|numeric',
             'fecha_limite' => 'required|date|after:tomorrow',
         ];

@@ -51,6 +51,9 @@ Route::get('/', function () {
  Route::get('/desafio/crear','DesafioController@create');
  Route::post('/desafio/crear','DesafioController@store');
  Route::get('/desafio/ver/{id}','DesafioController@show');
+ Route::get('/desafio/editar/{id}','DesafioController@edit');
+ Route::post('/desafio/editar/{id}','DesafioController@update');
+
 
  /*
  * 

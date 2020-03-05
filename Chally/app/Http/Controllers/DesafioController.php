@@ -107,7 +107,9 @@ class DesafioController extends Controller
      */
     public function edit($id)
     {
-        //
+        $desafio=Desafio::find($id);
+        $vac=compact("desafio");
+        return view("desafio.editar",$vac);
     }
 
     /**
@@ -119,7 +121,59 @@ class DesafioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $mensajes = [
+            'required' => "Este campo :attribute es obligatorio",
+            'min' => "Necesitan haber minimo :min caracteres",
+            'max' => "El peso máximo de la imagen es de :max kb",
+            'image' => "La imagen no es válida",
+            'size' => "La imagen supera el peso máximo de :size kb",
+            'numeric' => "El campo debe ser un número",
+            'date' => "La fecha no es válida",
+            'not_in' => "Debes seleccionar una categoría",
+
+        ];
+
+        $reglas= [
+            'nombre' => 'required|',
+            'imagen' => 'file|image|max:1024',
+            'id_categoria' => 'required|numeric|not_in:0',
+            'descripcion' => 'required|string|min:10',
+            'requisitos' => 'required|string|min:10',
+            'dificultad' => 'required|numeric',
+            'fecha_limite' => 'required|date|after:tomorrow',
+        ];
+
+        $request->validate($reglas,$mensajes);
+        
+        
+        $nuevoDesafio = new Desafio();
+        $nuevoDesafio->fecha_actualizacion=NULL;
+        $nuevoDesafio->nombre = $request->nombre;
+
+        if($request->imagen){
+            $nombreImagenDesafio = time() . '.' . request()->imagen->getClientOriginalExtension();
+            $request->file('imagen')->move(public_path('desafios') , $nombreImagenDesafio);
+            $urlImagen= $nombreImagenDesafio;
+        }
+        else{
+            $desafioAnterior = Desafio::find($id);
+            $urlImagen= $desafioAnterior->imagen;
+        }
+
+        $nuevoDesafio->imagen = $urlImagen;
+        $nuevoDesafio->id_categoria = $request->id_categoria;
+        $nuevoDesafio->descripcion = $request->descripcion;
+        $nuevoDesafio->requisitos = $request->requisitos;
+        $nuevoDesafio->dificultad = $request->dificultad;
+        $nuevoDesafio->fecha_limite = $request->fecha_limite;
+
+        $nuevoDesafio->id_autor = Auth::user()->id_usuario;
+        $nuevoDesafio->fecha_creacion = date('Y-m-d');
+
+        $nuevoDesafio->save();
+
+        return redirect('/feed');
+
     }
 
     /**

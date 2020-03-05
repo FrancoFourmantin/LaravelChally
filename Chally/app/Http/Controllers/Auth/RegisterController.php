@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Usuario;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -61,24 +62,24 @@ class RegisterController extends Controller
             'min' => 'El campo :attribute debe tener un mínimo de :min caracteres',
             'not_in' => 'El campo :attribute no puede quedar vacio',
             'accepted' => 'Debes aceptar este campo para poder continuar',
-            'before' => 'La fecha es inválida'
+            'before' => 'La fecha es inválida(debe ser mayor de 13 años)'
         ];
 
-  
+        $date = Carbon::now();
+        $before = $date->subYears(13)->format('Y-m-d');
+
+
         return Validator::make($data, [
             'nombre' => ['required', 'string', 'min:3', 'max:255'],
-            'username' => ['required' , 'string' ,'min:3', 'max:255'],
-            'apellido' => ['required' , 'string' ,'min:5', 'max:255'],
-            'fecha_nacimiento' => ['required' , 'date','before:2002-01-01'],
+            'username' => ['required', 'string', 'min:3', 'max:255'],
+            'apellido' => ['required', 'string', 'min:5', 'max:255'],
+            'fecha_nacimiento' => ["required", "date", "before:$before"],
             'sexo' => ['required', 'not_in:0'],
-            //'avatar' => ['required','mimes:jpeg,png,jpg,bmp','max:5000'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:usuarios' , 'confirmed'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:usuarios', 'confirmed'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'tyc_check' => ['accepted'],
-            'intereses' => ['required', 'array' , 'min:1']
+            'intereses' => ['required', 'array', 'min:1']
         ], $messages);
-
-        
     }
 
     /**
@@ -89,9 +90,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        if ($data['sexo'] == 'h'){
+        if ($data['sexo'] == 'h') {
             $nombreImagen = 'primera-imagen-hombre.png';
-        }else{
+        } else {
             $nombreImagen = 'primera-imagen-mujer.png';
         }
 
@@ -108,11 +109,12 @@ class RegisterController extends Controller
         ]);
     }
 
-    public function mostrarRegistroConDatos(Request $data){
+    public function mostrarRegistroConDatos(Request $data)
+    {
         $nameHero = $data->input('nameHero');
         $lastnameHero = $data->input('lastnameHero');
         $mailHero = $data->input('mailHero');
-        $vac = compact('nameHero' , 'lastnameHero' , 'mailHero');
-        return view('auth/register' , $vac);
+        $vac = compact('nameHero', 'lastnameHero', 'mailHero');
+        return view('auth/register', $vac);
     }
 }

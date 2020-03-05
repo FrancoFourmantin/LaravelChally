@@ -7,6 +7,7 @@ use Auth;
 use Illuminate\Contracts\Session\Session;
 use App\Usuario;
 use Illuminate\Support\Facades\Validator;
+
 class UsuarioController extends Controller
 {
 
@@ -31,7 +32,6 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-    
     }
 
     /**
@@ -69,7 +69,7 @@ class UsuarioController extends Controller
         $id =  $request->input('id_usuario');
         $usuario = Usuario::find($id);
         $vac = compact('usuario');
-        return view('/editar-perfil' , $vac);
+        return view('/editar-perfil', $vac);
     }
 
     /**
@@ -82,12 +82,12 @@ class UsuarioController extends Controller
     public function update(Request $request)
     {
         $id = $request['id_usuario'];
-        
+
         $usuario = Usuario::find($id);
-        if($request->file('avatar')){
+        if ($request->file('avatar')) {
             $avatarName = time() . '.' . request()->avatar->getClientOriginalExtension();
-            $request->file('avatar')->move(public_path('avatars') , $avatarName);
-        }else{
+            $request->file('avatar')->move(public_path('avatars'), $avatarName);
+        } else {
             $avatarName = Auth::user()->avatar;
         }
 
@@ -95,17 +95,17 @@ class UsuarioController extends Controller
         $usuario->apellido = $request->input('apellido');
         $usuario->email = $request->input('email');
         $usuario->avatar = $avatarName;
-        $usuario->password = password_hash($request->input('password'),PASSWORD_DEFAULT);
+        $usuario->password = password_hash($request->input('password'), PASSWORD_DEFAULT);
 
         $usuario->save();
 
         $mensajeExito = "Perfil actualizado con exito";
 
-        return redirect('/editar-perfil')->with("mensajeExito",$mensajeExito);
-        
+        return redirect('/editar-perfil')->with("mensajeExito", $mensajeExito);
     }
 
-    protected function updateValidator(Request $request){
+    protected function updateValidator(Request $request)
+    {
 
         $messages = [
             'required' => 'El campo :attribute es obligatorio.',
@@ -119,21 +119,20 @@ class UsuarioController extends Controller
             'not_in' => 'El campo :attribute no puede quedar vacio',
             'accepted' => 'Debes aceptar este campo para poder continuar',
         ];
-        
-        
+
+
         $request->validate([
             'nombre' => ['min:1', 'string', 'max:255'],
             //'username' => ['required' , 'string' , 'max:255'],
-            'apellido' => ['min:1' , 'string' , 'max:255'],
+            'apellido' => ['min:1', 'string', 'max:255'],
             //'fecha_nacimiento' => ['required' , 'date'],
             //'sexo' => ['required', 'not_in:0'],
-            'avatar' => [ 'image','mimes:jpeg,png,jpg,bmp','max:5000' , 'nullable'],
-            'email' => ['required', 'string', 'email', 'max:255' , 'confirmed'],
+            'avatar' => ['image', 'mimes:jpeg,png,jpg,bmp', 'max:5000', 'nullable'],
+            'email' => ['required', 'string', 'email', 'max:255', 'confirmed'],
             'password' => ['required', 'string', 'min:8', 'confirmed']
         ], $messages);
 
         return $this->update($request);
-        
     }
 
     /**

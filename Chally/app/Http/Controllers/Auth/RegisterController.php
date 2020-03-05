@@ -30,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/feed';
 
     /**
      * Create a new controller instance.
@@ -58,17 +58,18 @@ class RegisterController extends Controller
             'mimes' => 'El campo :attribute debe ser :mimes',
             'unique' => 'El campo :attribute ya existe en la base de datos',
             'confirmed' => 'Los campos deben conincidir',
-            'min' => 'El campo :attribute tiene un minimo de :min',
+            'min' => 'El campo :attribute debe tener un mínimo de :min caracteres',
             'not_in' => 'El campo :attribute no puede quedar vacio',
-            'accepted' => 'Debes aceptar este campo para poder continuar'
+            'accepted' => 'Debes aceptar este campo para poder continuar',
+            'before' => 'La fecha es inválida'
         ];
 
   
         return Validator::make($data, [
-            'nombre' => ['required', 'string', 'max:255'],
-            'username' => ['required' , 'string' , 'max:255'],
-            'apellido' => ['required' , 'string' , 'max:255'],
-            'fecha_nacimiento' => ['required' , 'date'],
+            'nombre' => ['required', 'string', 'min:3', 'max:255'],
+            'username' => ['required' , 'string' ,'min:3', 'max:255'],
+            'apellido' => ['required' , 'string' ,'min:5', 'max:255'],
+            'fecha_nacimiento' => ['required' , 'date','before:2002-01-01'],
             'sexo' => ['required', 'not_in:0'],
             //'avatar' => ['required','mimes:jpeg,png,jpg,bmp','max:5000'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:usuarios' , 'confirmed'],

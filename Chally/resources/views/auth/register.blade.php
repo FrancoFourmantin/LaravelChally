@@ -22,7 +22,7 @@
                                     <div class="form-group">
                                         <label for="inputName">Tu nombre</label>
                                         <input type="text" class="form-control" name="nombre" required value="@if($nameHero ?? '') {{$nameHero ?? ''}} @else {{ old('nombre') }} @endif">
-                                        <small>@error('nombre')  {{$message}} @enderror</small>
+                                        <small class="text-danger">@error('nombre')  {{$message}} @enderror</small>
 
                                     </div>
                                 </div>
@@ -31,7 +31,7 @@
                                     <div class="form-group">
                                         <label for="inputName">Tu Apellido</label>
                                         <input type="text" class="form-control" name="apellido" value="@if($lastnameHero ?? '') {{$lastnameHero ?? ''}} @else {{ old('apellido') }} @endif" required>
-                                        <small>@error('apellido')  {{$message}} @enderror</small>
+                                        <small class="text-danger">@error('apellido')  {{$message}} @enderror</small>
 
                                     </div>
                                 </div>
@@ -40,7 +40,7 @@
                                     <div class="form-group">
                                         <label for="inputName">Nombre de usuario</label>
                                         <input type="text" class="form-control" name="username" value="{{old('username')}}" required>
-                                        <small>@error('username') {{$message}} @enderror</small>
+                                        <small class="text-danger">@error('username') {{$message}} @enderror</small>
                                       
                                     </div>
                                 </div>
@@ -49,7 +49,7 @@
                                     <div class="form-group">
                                         <label for="inputMail">Tu mail</label>
                                         <input type="email" class="form-control " name="email" value="@if($mailHero ?? '') {{$mailHero ?? ''}} @else {{ old('email') }} @endif" required>
-                                        <small>@error('email') {{$message}} @enderror</small>
+                                        <small class="text-danger">@error('email') {{$message}} @enderror</small>
 
                                         </div>
                                 </div>
@@ -58,15 +58,15 @@
                                     <div class="form-group">
                                         <label for="inputMail">Confirmacion mail</label>
                                         <input type="email" class="form-control " name="email_confirmation" value="" required>
-                                        <small>@error('email') {{$message}} @enderror</small>
+                                        <small class="text-danger">@error('email') {{$message}} @enderror</small>
                                     </div>
                                 </div>
                                 
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6  mb-0 mb-md-4 ">
                                     <div class="form-group">
                                         <label for="inputPassword">Contraseña<a href="http://" target="_blank" rel="noopener noreferrer"></a></label>
-                                        <input type="password" class="form-control " name="password" data-toggle="tooltip" data-placement="bottom" title="Mínimo de 8 caracteres, un número, una mayúscula y un caracter especial." required>
-                                        <small>@error('password') {{$message}} @enderror</small>
+                                        <input type="password" class="form-control " name="password" data-toggle="tooltip" data-placement="bottom" title="Mínimo de 8 caracteres" required>
+                                        <small class="text-danger">@error('password') {{$message}} @enderror</small>
                                         </div>
                                 </div>
                                 
@@ -74,7 +74,7 @@
                                     <div class="form-group">
                                         <label for="inputPassword">Confirma contraseña<a href="http://" target="_blank" rel="noopener noreferrer"></a></label>
                                         <input type="password" class="form-control" name="password_confirmation" required>
-                                        <small>@error('password') {{$message}} @enderror</small>
+                                        <small class="text-danger">@error('password') {{$message}} @enderror</small>
                                     </div>
                                 </div>
                                 
@@ -84,17 +84,19 @@
                                     <div class="form-group">
                                         <label for="inputFechaNac">Fecha de nacimiento</label>
                                     <input type="date" class="form-control" name="fecha_nacimiento" placeholder="Date of Birth" value="{{old('fecha_nacimiento')}}"required>
+                                    <small class="text-danger">@error('fecha_nacimiento') {{$message}} @enderror</small>
+
                                     </div>
                                 </div>
                                 
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-6  mb-0 mb-md-4">
                                     <label for="">Sexo</label>
                                     <select class="custom-select" name="sexo" >
-                                        <option selected value="0">Seleccionar</option>
-                                        <option value="h">Hombre</option>
-                                        <option value="m">Mujer</option>
+                                        <option value="0">Seleccionar</option>
+                                        <option value="h"  {{ old('sexo') == "h" ? "selected" : ""}}>Hombre</option>
+                                        <option value="m" {{ old('sexo') == "m" ? "selected" : ""}}>Mujer</option>
                                     </select>
-                                    <small ></small>
+                                    <small class="text-danger">@error('sexo') {{$message}} @enderror</small>
             
                                 </div>
                                 

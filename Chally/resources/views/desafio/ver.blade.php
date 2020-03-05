@@ -1,18 +1,4 @@
-<!--<?php/*
 
-require_once("funciones.php");
-
-session_start();
-//SI EXISTE LA COOKIE, LA USA PARA CARGAR LA SESIÓN
-if(isset($_COOKIE["email"])) {
-    crearSesionConCookies();
-}
-//SI LA SESIÓN NO ESTÁ INICIADA NO SE PUEDE ACCEDER AL FEED
-if(!isset($_SESSION["email"])) {
-    header("location:index.php");
-}
-*/
-?>-->
 @extends('layouts/plantilla-header')
 @section('title' , 'Post')
 @section('clases-body' , 'animated fadeIn')

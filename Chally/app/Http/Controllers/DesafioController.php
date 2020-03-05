@@ -15,7 +15,9 @@ class DesafioController extends Controller
      */
     public function index()
     {
-        //
+        $desafios = Desafio::all();
+        $vac = compact('desafios');
+        return view('feed',$vac);
     }
 
     /**
@@ -67,7 +69,7 @@ class DesafioController extends Controller
         $nombreImagenDesafio = time() . '.' . request()->imagen->getClientOriginalExtension();
         $request->file('imagen')->move(public_path('desafios') , $nombreImagenDesafio);
         $nuevoDesafio->imagen = $nombreImagenDesafio;
-        $nuevoDesafio->id_categoria = $request->categoria;
+        $nuevoDesafio->id_categoria = $request->id_categoria;
         $nuevoDesafio->descripcion = $request->descripcion;
         $nuevoDesafio->requisitos = $request->requisitos;
         $nuevoDesafio->dificultad = $request->dificultad;
@@ -78,7 +80,7 @@ class DesafioController extends Controller
 
         $nuevoDesafio->save();
 
-        return redirect('/home/feed');
+        return redirect('/feed');
 
     }
 

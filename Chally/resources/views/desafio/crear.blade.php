@@ -1,47 +1,3 @@
-<?php
-
-/*
-session_start();
-require('funciones.php');
-$title = "Subir nuevo desafío";
-$usuario= Usuario::mantenerSesion();
-
-//Doble chequeo de si existe POST (tanto aqui como en la clase)
-if($_POST){
-    if(isset($_POST)){
-
-        //Validamos los campos con clase estatica validarCampos que retorna errores en caso de que los haya
-        
-        $errores = Desafio::validarCampos();    
-
-        //var_dump($errores);
-        //Si no existen errores pasamos a crear la clase
-        if(!$errores){
-            //echo "No encontre erroes";
-            $newDesafio = new Desafio;
-            $newDesafio->setNombre($_POST['name']);
-            $newDesafio->setDescripcion($_POST['descripcion']);
-            $newDesafio->setDificultad($_POST['dificultad']);
-            $newDesafio->setFecha_creacion(date('Y-m-d'));
-            $newDesafio->setFecha_limite($_POST['fechaLimite']);
-            $newDesafio->setId_autor($usuario['id_usuario']);
-            $newDesafio->setRequisitos($_POST['requisitos']);
-            $newDesafio->setId_categoria($_POST['categoria']);
-            $newDesafio->setId_respuesta_ganadora(null);
-            $newDesafio->setImagen(Desafio::archivarImagen());  //Esto devuelve el nombre de la imagen que es lo que tenemos que guardar en la DB
-            $seGuardoEnDb = $newDesafio->guardarEnDB();
-            header( 'location:feed.php' );
- 
-            //header('location:feed.php');exit;
-        }
-
-            //var_dump($errores) ;
-    }
-}
-include("include/head.php"); */
-?> 
-
-
 @extends('layouts/plantilla-header')
 @section('title' , 'Crear posteo')
 @section('clases-body' , 'animated fadeIn')
@@ -57,7 +13,7 @@ include("include/head.php"); */
 
 
                 <div class="col-12 col-sm-12 col-md-8 col-lg-5 shadow contacto-form px-5 py-3 d-flex flex-column my-3">
-                    <h3 class="color-verde text-left mb-3 mx-0"><a href="feed.php"><i class="fas fa-arrow-left color-verde"></i></a> Nuevo Desafío</h3>
+                    <h3 class="color-verde text-left mb-3 mx-0"><a href="../feed"><i class="fas fa-arrow-left color-verde"></i></a> Nuevo Desafío</h3>
                     <form class="w-100 needs-validation" method="POST" action="crear" enctype="multipart/form-data">
                         @csrf
 

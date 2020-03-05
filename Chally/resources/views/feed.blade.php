@@ -44,7 +44,9 @@
                 <!--Menu para elegir vista de posteos-->
                 <!--Fin menu para elegir vista de posteos-->
 
-                {{-- <?//php foreach($desafios as $desafio){?> --}}
+                
+
+                @foreach ($desafios as $desafio) 
                 <div class="row">
                     <div class="col-12">
 
@@ -52,19 +54,16 @@
                         <div class="card mb-5">
 
                             <div class="card-header posteo d-flex align-items-center">
-                                <img class="rounded-circle" src="avatars/<?//=$desafio['avatar']?>" alt="Foto de Usuario">
-                                <p class="mb-0 ml-3"><?//=$desafio['username']?>&nbsp;<span class="text-secondary texto-chico">Comenzó el <?//=$desafio['fecha_creacion']?> / Finaliza el <?//=$desafio['fecha_limite']?></span></p>    
+                               <a href={{ "../usuario/" . $desafio->getUsuario->username}}> <img class="rounded-circle" src="{{asset('avatars/' . $desafio->getUsuario->avatar . '')}}" alt="Imagen de usuario">
+                                <p class="mb-0 ml-3">{{$desafio->getUsuario->username}}</a>
+                                <span class="text-secondary texto-chico">Comenzó el {{$desafio->fecha_creacion}} / Finaliza el {{$desafio->fecha_limite}}</span>
+                                </p>    
                                 
-                               <?//php if($desafio['id_usuario'] == $usuario['id_usuario'] ):?>
                                 <div class="ml-auto">
                                 <div class="ml-auto">
-                                    <a class="" href="edit-post.php?id_desafio=<?//=$desafio['id_desafio']?>"><i class="fas fa-pen"></i></a>
+                                    <a class="" href="desafio/editar/{{$desafio->id}}"><i class="fas fa-pen"></i></a>
                                     &nbsp;
 
-
-                                   <!-- <form method="post"> 
-                                        <input class="btn" type="submit" name="button1" value='<i class="far fa-trash-alt"></i>'/>
-                                    </form>-->
                                     <form action="delete-post.php" style="display: inline" method="POST">
                                     <button type="submit" class="btn" data-toggle="modal" value="<?//=$desafio['id_desafio']?>" name="id_desafio"><i class="far fa-trash-alt"></i></button>
                                     </form>
@@ -80,23 +79,21 @@
 
                                     <div class="row card-content-attached">
                                         <div class="col-12 col-md-4">
-                                            <img src="img_post/<?//=$desafio['imagen']?>" class="img-fluid" alt="Desafío Viajes Espaciales">
+                                            <img src="{{asset('desafios/' . $desafio->imagen .'')}}" class="img-fluid" alt="Imagen de Desafío">
                                         </div>
 
                                         <div class="col-12 col-md-8">
-                                            <h3 class="ml-0"><?//=$desafio['nombre_desafio']?></h3>
+                                            <h3 class="ml-0">{{$desafio->nombre}}</h3>
 
                                             <div class="metadata d-flex ">
-                                                <span class="dificultad">Dificultad: <?//php for ($i = 0 ; $i < $desafio['dificultad'] ; $i++){ echo "<img src='img/logo_c.svg' alt=''>"; }?>  <?php// for ($i = $desafio['dificultad'] ; $i < 5 ; $i++){ echo "<img src='img/logo_c_gris.svg' alt=''>"; }?>  
+                                                <span class="dificultad">Dificultad: Nivel {{$desafio->dificultad}} 
                                                 <span class="participantes"><i class="fas fa-user"></i>&nbsp; 18 Participantes</span>
 
                                             </div>
                                             <br>
-                                            <h4>Descripcion:</h4>
-                                            <p><?//=$desafio['descripcion']?></p>
-                                            <h4>Requisitos</h4>
-                                            <p><?//=$desafio['requisitos']?></p>
-                                            <a href="#" class="btn btn-secondary">Abrir desafío</a>
+                                            <p> <?php echo nl2br(substr($desafio->descripcion,0,255),false) . "..." ; ?> </p>
+
+                                            <a href="desafio/ver/{{$desafio->id}}" class="btn btn-secondary">Ver más</a>
                                         </div>
                                     </div>
 
@@ -120,6 +117,9 @@
 																								
                     </div>
                 </div>
+
+                @endforeach
+
             </div>
 
         </div>

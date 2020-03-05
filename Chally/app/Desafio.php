@@ -1,9 +1,8 @@
 <?php
 
 namespace App;
-
 use Illuminate\Database\Eloquent\Model;
-
+use App\Usuario;
 class Desafio extends Model
 {
     //
@@ -15,4 +14,8 @@ class Desafio extends Model
     protected $fillable= [
         'id_desafio','fecha_creacion','fecha_limite','imagen','descripcion','id_respuesta_ganadora','id_categoria','id_autor','dificultad','requisitos','nombre'
     ];
+
+    public function getUsuario(){
+        return $this->belongsTo('App\Usuario','id_autor','id_usuario');
+    }
 }

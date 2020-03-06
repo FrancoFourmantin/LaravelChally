@@ -27,6 +27,6 @@ class Desafio extends Model
     }
 
     public function getRespuestas(){
-        return $this->hasMany('App\Respuesta','id','id_desafio')
+        return $this->hasMany('App\Respuesta','id','id_desafio');
     }
 }

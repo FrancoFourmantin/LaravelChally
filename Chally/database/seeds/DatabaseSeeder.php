@@ -14,5 +14,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CreacionDeUsuariosDePrueba::class);
         $this->call(categoriasTableSeeder::class);
         $this->call(desafiosTableSeeder::class);
+        $this->call(createRespuestasSeeder::class);
+
     }
 }

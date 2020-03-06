@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Desafio;
+use App\Respuesta;
 
 class Usuario extends Authenticatable
 {
@@ -15,7 +16,11 @@ class Usuario extends Authenticatable
     use Notifiable;
 
     public function getDesafios(){
-        return $this->hasMany('App\Desafio','id','id_autor');
+        return $this->hasMany('App\Desafio','id_usuario','id_autor');
+    }
+
+    public function getRespuestas(){
+        return $this->hasMany('App\Respuesta','id_usuario','id_autor');
     }
 
     /**

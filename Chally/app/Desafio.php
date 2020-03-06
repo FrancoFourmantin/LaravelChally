@@ -3,6 +3,9 @@
 namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Usuario;
+use App\Categoria;
+use App\Respuesta;
+
 class Desafio extends Model
 {
     //
@@ -21,5 +24,9 @@ class Desafio extends Model
 
     public function getCategoria(){
         return $this->hasOne('App\Categoria','id','id_categoria');
+    }
+
+    public function getRespuestas(){
+        return $this->hasMany('App\Respuesta','id','id_desafio')
     }
 }

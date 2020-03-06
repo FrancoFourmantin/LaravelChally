@@ -53,6 +53,7 @@ Route::get('/', function () {
  Route::get('/desafio/ver/{id}','DesafioController@show');
  Route::get('/desafio/editar/{id}','DesafioController@edit');
  Route::post('/desafio/editar/{id}','DesafioController@update');
+ Route::get('/desafio/borrar/{id}','DesafioController@destroy');
 
 
  /*

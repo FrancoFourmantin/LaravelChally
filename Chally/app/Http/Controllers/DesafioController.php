@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Desafio;
+use Carbon\Carbon;
+
 
 class DesafioController extends Controller
 {
@@ -78,7 +80,7 @@ class DesafioController extends Controller
         $nuevoDesafio->fecha_limite = $request->fecha_limite;
 
         $nuevoDesafio->id_autor = Auth::user()->id_usuario;
-        $nuevoDesafio->fecha_creacion = date('Y-m-d');
+        $nuevoDesafio->fecha_creacion = date('Y-m-d H:i:s');
 
         $nuevoDesafio->save();
 
@@ -146,29 +148,23 @@ class DesafioController extends Controller
         $request->validate($reglas,$mensajes);
         
         
-        $nuevoDesafio = new Desafio();
-        $nuevoDesafio->fecha_actualizacion=NULL;
+        $nuevoDesafio = Desafio::find($id);
+        $nuevoDesafio->fecha_actualizacion=Carbon::now();
         $nuevoDesafio->nombre = $request->nombre;
 
         if($request->imagen){
             $nombreImagenDesafio = time() . '.' . request()->imagen->getClientOriginalExtension();
             $request->file('imagen')->move(public_path('desafios') , $nombreImagenDesafio);
             $urlImagen= $nombreImagenDesafio;
-        }
-        else{
-            $desafioAnterior = Desafio::find($id);
-            $urlImagen= $desafioAnterior->imagen;
+            $nuevoDesafio->imagen = $urlImagen;
         }
 
-        $nuevoDesafio->imagen = $urlImagen;
+
         $nuevoDesafio->id_categoria = $request->id_categoria;
         $nuevoDesafio->descripcion = $request->descripcion;
         $nuevoDesafio->requisitos = $request->requisitos;
         $nuevoDesafio->dificultad = $request->dificultad;
         $nuevoDesafio->fecha_limite = $request->fecha_limite;
-
-        $nuevoDesafio->id_autor = Auth::user()->id_usuario;
-        $nuevoDesafio->fecha_creacion = date('Y-m-d');
 
         $nuevoDesafio->save();
 
@@ -184,6 +180,18 @@ class DesafioController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+
+        $desafioBorrar = Desafio::find($id);
+
+        if($desafioBorrar->id_autor != Auth::user()->id_usuario){
+            return "Acceso denegado";
+        }
+        else{
+            $desafioBorrar->delete();
+            return view ('feed');
+        }
+
+
     }
 }

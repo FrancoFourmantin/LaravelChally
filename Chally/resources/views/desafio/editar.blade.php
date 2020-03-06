@@ -73,6 +73,9 @@
                                 </div>
 
 
+
+
+
                                 <div class="form-group mt-4">
                                     <label for="dificultad" class="font-weight-bold">Nivel de Dificultad</label>
                                     <select class="form-control" name="dificultad" id="dificultad">
@@ -93,6 +96,8 @@
                                     <small class="text-danger"> @error ('fecha_limite') {{$message}} @enderror </small>
 
                                 </div>
+
+                                <input type="hidden" class="form-control" name="id" id="id" value="{{$desafio->id}}">
 
 
 

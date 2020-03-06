@@ -59,14 +59,20 @@
                                 <span class="text-secondary texto-chico">Comenzó el {{$desafio->fecha_creacion}} / Finaliza el {{$desafio->fecha_limite}}</span>
                                 </p>    
                                 
+
                                 <div class="ml-auto">
                                 <div class="ml-auto">
+                                    @if ($desafio->id_autor == Auth::user()->id_usuario)
                                     <a class="" href="desafio/editar/{{$desafio->id}}"><i class="fas fa-pen"></i></a>
                                     &nbsp;
+                                    <a class="" href="desafio/borrar/{{$desafio->id}}"><i class="fas fa-trash-alt"></i></a>
 
+                                    <!--
                                     <form action="delete-post.php" style="display: inline" method="POST">
                                     <button type="submit" class="btn" data-toggle="modal" value="<?//=$desafio['id_desafio']?>" name="id_desafio"><i class="far fa-trash-alt"></i></button>
                                     </form>
+                                    -->
+                                    @endif
                                 </div>
                                 </div>
                                <?//php endif; ?>

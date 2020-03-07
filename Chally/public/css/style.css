@@ -31,6 +31,14 @@
     padding:0;
 }
 
+.respuesta-datausuario{
+    border-right:1px solid #eee;
+}
+
+.categorias-feed{
+    list-style-type:none;
+}
+
 body{
     overflow-x:hidden;
 }

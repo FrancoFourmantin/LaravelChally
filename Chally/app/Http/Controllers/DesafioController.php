@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Desafio;
 use App\Respuesta;
+use App\Categoria;
 use Carbon\Carbon;
 
 
@@ -19,9 +20,21 @@ class DesafioController extends Controller
     public function index()
     {
         $desafios = Desafio::orderBy('fecha_creacion','desc')->get();
-        $vac = compact('desafios');
+        $categorias = Categoria::all();
+        $vac = compact('desafios','categorias');
         return view('feed',$vac);
     }
+
+    public function indexCategoria($id)
+    {
+        $desafios = Desafio::where("id_categoria",$id)->get();
+        $categorias = Categoria::all();
+        $categoriaActual= Categoria::find($id);
+
+        $vac = compact('desafios','categorias','categoriaActual');
+        return view('feed',$vac);
+    }
+
 
     /**
      * Show the form for creating a new resource.

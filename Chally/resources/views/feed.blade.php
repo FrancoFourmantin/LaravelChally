@@ -28,6 +28,21 @@
                     <a href="#" class="btn btn-secondary">Ver invitaciones</a>
                 </div>
 
+                <p class="color-verde font-weight-bold mb-1 ml-3 "><i class="fas fa-list"></i>&nbsp;Filtrar por categoría</p>
+                <div class="card shadow  p-3 mt-1 mb-4">
+                    <ul class="categorias-feed mb-0">
+                        @foreach ($categorias as $categoria)
+                        <li>
+                            <a href="/feed/categoria-{{$categoria->id}}">{{$categoria->nombre}}</a>
+                            <br>
+                        </li>
+                        @endforeach
+                    </ul>
+
+                </div>
+
+
+
                 <p class="color-verde font-weight-bold mb-1 ml-3"><i class="fas fa-trophy"></i>&nbsp;Chally destacado de la semana</p>
                 <div class="card shadow  p-3 mt-1 mb-4">
                     <p>Creá un pixel-art de un momento épico de la TV Argentina</p>
@@ -44,7 +59,17 @@
                 <!--Menu para elegir vista de posteos-->
                 <!--Fin menu para elegir vista de posteos-->
 
-                
+                @if( Request::is('feed/categoria*') )
+                <h3 class="color-verde ml-0">Últimos desafíos de la categoría {{$categoriaActual->nombre}}</h3>
+                <p>Encontramos {{$desafios->count()}} 
+                    @if ($desafios->count() == 1)
+                    desafío disponible
+                    @else
+                    desafíos disponibles
+                    @endif en esta categoría </p>
+                <br>
+                @endif
+
 
                 @foreach ($desafios as $desafio) 
 
@@ -64,7 +89,7 @@
                                 <div class="ml-auto">
                                 <div class="ml-auto">
                                     @if ($desafio->id_autor == Auth::user()->id_usuario)
-                                    <a class="" href="desafio/editar/{{$desafio->id}}"><i class="fas fa-pen"></i></a>
+                                    <a class="" href="/desafio/editar/{{$desafio->id}}"><i class="fas fa-pen"></i></a>
                                     &nbsp;
                                     
                                     <a type="button" data-toggle="modal" data-target="#borrar-{{$desafio->id}}"><i class="fas fa-trash-alt"></i></a>
@@ -115,14 +140,14 @@
                                             <h3 class="ml-0">{{$desafio->nombre}}</h3>
 
                                             <div class="metadata d-flex ">
-                                                <span class="dificultad"> <b>Dificultad</b>: Nivel {{$desafio->dificultad}} 
-                                                <span class="participantes">&nbsp;<b>Participantes</b>: X</span>
+                                                <span class="dificultad"> <b>Dificultad</b>: Nivel {{$desafio->dificultad}} &nbsp;&nbsp;&nbsp;
+                                                <span class="participantes">&nbsp;<b>Participantes</b>: {{$desafio->getRespuestas->count()}}</span>
 
                                             </div>
                                             <br>
                                             <p> <?php echo nl2br(substr($desafio->descripcion,0,255),false) . "..." ; ?> </p>
 
-                                            <a href="desafio/ver/{{$desafio->id}}" class="btn btn-secondary">Ver más</a>
+                                            <a href="/desafio/ver/{{$desafio->id}}" class="btn btn-secondary">Ver más</a>
                                         </div>
                                     </div>
 

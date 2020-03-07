@@ -14,10 +14,11 @@
         <div class="col-3">
 
             <aside class="d-none d-md-block sticky-top">
+                <a href="/feed"><p class="color-verde text-left mb-3 mx-0"><i class="fas fa-arrow-left color-verde"></i>&nbsp;Volver al feed</p></a>
 
                 <div class="card shadow  p-3 mt-1 mb-4 text-center">
 
-                    <a href={{ "../../usuario/" . $desafio->getUsuario->username}}> <img class="rounded-circle" style="max-width:70px" src="{{asset('avatars/' . $desafio->getUsuario->avatar . '')}}" alt="Imagen de usuario">
+                    <a href={{ "../../usuario/" . $desafio->getUsuario->username}}> <img class="rounded-circle" style="max-width:70px" src="{{asset('avatars/' . $desafio->getUsuario->avatar . '')}}" alt="Imagen de usuario"></a>
                    
                     <p class="font-weight-bold mb-0"> {{$desafio->getUsuario->nombre}}  {{$desafio->getUsuario->apellido}}</p>
                     <p class="mb-0">44 Puntos</p>
@@ -71,8 +72,8 @@
                                             <h2 class="ml-0 color-verde mb-3">{{$desafio->nombre}}</h3>
 
                                             <div class="metadata d-flex">
-                                                <span class="dificultad">Dificultad: Nivel {{$desafio->dificultad}} </span>
-                                                <span class="participantes"><i class="fas fa-user"></i>&nbsp; 18 Participantes</span>
+                                                <span class="dificultad">Dificultad: Nivel {{$desafio->dificultad}} </span>&nbsp;&nbsp;&nbsp;
+                                                <span class="participantes">Participantes: {{$desafio->getRespuestas->count()}}</span>
                                             </div>
                                             <hr>
 
@@ -134,12 +135,21 @@
 
                                         <div class="row card-content-attached">
 
-                                            <div class="col-3 text-center d-flex flex-column ">
+                                            <div class="col-3 text-center d-flex flex-column respuesta-datausuario ">
 
                                                     <a href={{ "../../usuario/" . $respuesta->getUsuario->username}}> <img class="rounded-circle mb-2" style="max-width:70px" src="{{asset('avatars/' . $respuesta->getUsuario->avatar . '')}}" alt="Imagen de usuario"></a>
                                                 
                                                     <p class="font-weight-bold mb-0"> {{$respuesta->getUsuario->nombre}}  {{$respuesta->getUsuario->apellido}}</p>
                                                     <p class="mb-0">44 Puntos</p>
+
+                                                    <br>
+                                                    <small>Enviado el {{$respuesta->created_at}}</small>
+
+                                                    <br>
+                                                    @if ($respuesta->updated_at != NULL)
+                                                    <small>Última actualización: {{$respuesta->updated_at}}</small>
+
+                                                    @endif
                                             </div>
 
 

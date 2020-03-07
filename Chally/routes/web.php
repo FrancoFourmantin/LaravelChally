@@ -26,6 +26,8 @@ Route::get('/', function () {
  Route::get('/index-register' , 'Auth\RegisterController@mostrarRegistroConDatos'); //Ruta para enviar al usuariao a regiser despues de llenar el formulario de index
  Route::view('/contacto' , 'contacto'); //Ruta para contacto
  Route::get('/feed' , 'DesafioController@index');  //Ruta para enviar al usuario al feed despues del login
+ Route::get('/feed/categoria-{id}' , 'DesafioController@indexCategoria');  //Ruta para enviar al usuario al feed despues del login
+
  Route::get('/editar-perfil' , 'UsuarioController@edit'); //Ruta para mostrar datos a editar del usuario
  Route::post('/editar-perfil', 'UsuarioController@updateValidator'); //Ruta para verificar y guardar actualizacion de perfil
 

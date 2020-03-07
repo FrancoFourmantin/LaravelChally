@@ -65,7 +65,7 @@
                         <div class="col-12 col-sm-12 col-md-6 col-lg-6   mb-0 mb-md-4">
                             <div class="form-group">
                                 <label for="inputMail">Confirmacion mail</label>
-                                <input type="email" class="form-control " name="email_confirmation" value="" required>
+                                <input type="email" class="form-control " name="email_confirmation" value="{{old('email')}}" required>
                                 <small class="text-danger">@error('email') {{$message}} @enderror</small>
                             </div>
                         </div>
@@ -127,13 +127,12 @@
                             <!--
                                         <button class="btn btn-secondary float-right     mt-1" type="submit">Registrarse</button>
                                     -->
-                            <button type="button" class="btn btn-secondary" data-toggle="modal"
-                                data-target="#exampleModal">
+                            <button type="submit" class="btn btn-secondary">
                                 Registrarme
                             </button>
 
 
-                            <!-- Modal -->
+                            <!-- Modal 
                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-xl" role="document">
@@ -184,6 +183,7 @@
                                     </div>
                                 </div>
                             </div>
+                            -->
 
                         </div>
                 </form>

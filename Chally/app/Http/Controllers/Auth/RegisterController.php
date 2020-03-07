@@ -78,7 +78,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:usuarios', 'confirmed'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'tyc_check' => ['accepted'],
-            'intereses' => ['required', 'array', 'min:1']
+            /** 'intereses' => ['required', 'array', 'min:1'] */
         ], $messages);
     }
 

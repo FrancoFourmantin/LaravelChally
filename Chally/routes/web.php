@@ -55,12 +55,15 @@ Route::get('/', function () {
  Route::post('/desafio/editar/{id}','DesafioController@update');
  Route::get('/desafio/borrar/{id}','DesafioController@destroy');
 
+ 
 
- /*
- * 
- * 
- */
+ /* Rutas de Respuestas */
 
+ Route::get('desafio/ver/{idDesafio}/respuesta/crear','RespuestaController@create');
+ Route::post('desafio/ver/{idDesafio}/respuesta/crear','RespuestaController@store');
+ Route::get('/respuesta/editar/{id}','RespuestaController@edit');
+ Route::post('/respuesta/editar/{id}','RespuestaController@update');
+ Route::get('/respuesta/borrar/{id}','RespuestaController@destroy');
  
   
 Auth::routes();

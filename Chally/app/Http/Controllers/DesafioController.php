@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Desafio;
+use App\Respuesta;
 use Carbon\Carbon;
 
 
@@ -17,7 +18,7 @@ class DesafioController extends Controller
      */
     public function index()
     {
-        $desafios = Desafio::orderBy('fecha_creacion','asc')->get();
+        $desafios = Desafio::orderBy('fecha_creacion','desc')->get();
         $vac = compact('desafios');
         return view('feed',$vac);
     }
@@ -84,7 +85,7 @@ class DesafioController extends Controller
 
         $nuevoDesafio->save();
 
-        return redirect('/feed');
+        return redirect('/desafio/ver/' . $nuevoDesafio->id);
 
     }
 

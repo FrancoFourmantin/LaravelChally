@@ -47,6 +47,7 @@
                 
 
                 @foreach ($desafios as $desafio) 
+
                 <div class="row">
                     <div class="col-12">
 
@@ -56,7 +57,7 @@
                             <div class="card-header posteo d-flex align-items-center">
                                <a href={{ "../usuario/" . $desafio->getUsuario->username}}> <img class="rounded-circle" src="{{asset('avatars/' . $desafio->getUsuario->avatar . '')}}" alt="Imagen de usuario">
                                 <p class="mb-0 ml-3">{{$desafio->getUsuario->username}}</a>
-                                <span class="text-secondary texto-chico">Comenzó el {{$desafio->fecha_creacion}} / Finaliza el {{$desafio->fecha_limite}}</span>
+                                <span class="text-secondary texto-chico">Comenzó el {{$desafio->fecha_creacion}} / <span class="text-danger">Finaliza el {{$desafio->fecha_limite}}</span></span>
                                 </p>    
                                 
 
@@ -65,13 +66,35 @@
                                     @if ($desafio->id_autor == Auth::user()->id_usuario)
                                     <a class="" href="desafio/editar/{{$desafio->id}}"><i class="fas fa-pen"></i></a>
                                     &nbsp;
-                                    <a class="" href="desafio/borrar/{{$desafio->id}}"><i class="fas fa-trash-alt"></i></a>
+                                    
+                                    <a type="button" data-toggle="modal" data-target="#borrar-{{$desafio->id}}"><i class="fas fa-trash-alt"></i></a>
 
-                                    <!--
-                                    <form action="delete-post.php" style="display: inline" method="POST">
-                                    <button type="submit" class="btn" data-toggle="modal" value="<?//=$desafio['id_desafio']?>" name="id_desafio"><i class="far fa-trash-alt"></i></button>
-                                    </form>
-                                    -->
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="borrar-{{$desafio->id}}" tabindex="-1" role="dialog"  aria-hidden="true">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Borrar desafío</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            </div>
+                                            <div class="modal-body">
+                                            ¿Estás seguro de borrar el desafío <b>{{$desafio->nombre}}</b>? <br><br> Todos los datos y respuestas al desafío serán eliminados permanentemente. Esta acción no se puede deshacer.
+                                            </div>
+                                            <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar borrado</button>
+                                            <form action="desafio/borrar/{{$desafio->id}}">
+                                                <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i> &nbsp;Eliminar</button>
+                                            </form>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+
+
+
                                     @endif
                                 </div>
                                 </div>
@@ -92,8 +115,8 @@
                                             <h3 class="ml-0">{{$desafio->nombre}}</h3>
 
                                             <div class="metadata d-flex ">
-                                                <span class="dificultad">Dificultad: Nivel {{$desafio->dificultad}} 
-                                                <span class="participantes"><i class="fas fa-user"></i>&nbsp; 18 Participantes</span>
+                                                <span class="dificultad"> <b>Dificultad</b>: Nivel {{$desafio->dificultad}} 
+                                                <span class="participantes">&nbsp;<b>Participantes</b>: X</span>
 
                                             </div>
                                             <br>

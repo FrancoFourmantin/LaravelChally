@@ -1,59 +1,4 @@
-<!-- <?php/*
-session_start();
-require('funciones.php');
 
-
-
-if($_POST){
-    $errores = [];
-    if (isset($_POST)){
-        $errores = validarModificacion($_POST);
-        if(!$errores) {
-            if(isset($_POST['name'])){
-                modificarJson($_POST['name'], "name" , $_SESSION['name'] , $_SESSION['id']);
-            }
-
-            if(isset($_POST['lastname'])){
-                modificarJson($_POST['lastname'] , "lastname" , $_SESSION['lastname'] , $_SESSION['id']);
-            }
-
-            if(isset($_POST['email'])){
-                modificarJson($_POST['email'] , "email" , $_SESSION['email'] , $_SESSION['id']);
-            }
-
-            if(isset($_POST['password'])){
-                if(!empty($_POST['password'])){
-                    $usuario = buscarUsuario("id" , $_SESSION['id']);
-                    modificarJson($_POST['password'] , "password" , $usuario['password'] , $_SESSION['id']);
-                }
-            }
-            if(isset($_POST['diseno_y_logica']) || isset($_POST['fotografia']) || isset($_POST['programacion_y_logica'])){
-                $intereses = arrayIntereses($_POST);
-                modificarJson($intereses , 'intereses' , $_SESSION['intereses'] , $_SESSION['id']);
-            }
-
-            if(isset($_FILES['avatar'])){
-                if($_FILES["avatar"]["error"] != 4) {
-                    $nombreImagen = guardarAvatar();
-                    modificarJson($nombreImagen , 'avatar' , $_SESSION['avatar'] , $_SESSION['id']); 
-                    }
-            }
-            
-        }
-
-        $_SESSION = buscarUsuario("id" , $_SESSION['id']);
-
-    }
-}
-
-
-
-$title="Modificar Perfil";
-$usuario= Usuario::mantenerSesion();
-include("include/head.php");
-
-*/
-?> -->
 @extends('layouts/plantilla-header')
 @section('title' , 'Modificar perfil')
 @section('clases-body' , 'animated fadeIn')
@@ -68,8 +13,8 @@ include("include/head.php");
                     
                     
                     <div class="col-12 col-sm-12 col-md-8 col-lg-5 shadow contacto-form px-5 py-3 d-flex flex-column my-3">
-                        <h3 class="color-verde text-left mb-3 mx-0"><a href="feed.php"><i class="fas fa-arrow-left color-verde"></i></a>  Tu perfil</h3>
-                        <form class="w-100 needs-validation" method="POST" action="modify-profile.php" enctype="multipart/form-data">
+                        <h3 class="color-verde text-left mb-3 mx-0"><a href="feed"><i class="fas fa-arrow-left color-verde"></i></a>  Tu perfil</h3>
+                        <form class="w-100 needs-validation" method="POST" action="modify-profile" enctype="multipart/form-data">
 
 
                         <div class="text-center">

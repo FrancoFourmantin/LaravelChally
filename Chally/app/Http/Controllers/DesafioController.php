@@ -189,7 +189,7 @@ class DesafioController extends Controller
         }
         else{
             $desafioBorrar->delete();
-            return view ('feed');
+            return redirect ('feed');
         }
 
 

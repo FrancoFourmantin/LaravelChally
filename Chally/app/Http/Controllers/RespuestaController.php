@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Desafio;
 use App\Respuesta;
+use Carbon\Carbon;
 use Auth;
 
 class RespuestaController extends Controller
@@ -86,7 +87,9 @@ class RespuestaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $respuesta=Respuesta::find($id);
+        $vac=compact("respuesta");
+        return view("respuesta.editar",$vac);
     }
 
     /**
@@ -96,9 +99,40 @@ class RespuestaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_respuesta)
     {
-        //
+        $mensajes = [
+            'required' => "Este campo :attribute es obligatorio",
+            'file' => "El archivo no es válido"
+
+        ];
+
+        $reglas= [
+            'descripcion' => 'required|string',
+            'archivo' => 'file',
+        ];
+
+        $request->validate($reglas,$mensajes);
+        
+        
+        $nuevaRespuesta = Respuesta::find($id_respuesta);
+        $nuevaRespuesta->updated_at=Carbon::now();
+        $nuevaRespuesta->descripcion = $request->descripcion;
+
+        if($request->archivo){
+            $nuevaRespuesta->descripcion = $request->descripcion;
+            $nombreArchivoRespuesta = time() . '.' . request()->archivo->getClientOriginalExtension();
+            $request->file('archivo')->move(public_path('respuestas') , $nombreArchivoRespuesta);
+            $nuevaRespuesta->archivo = $nombreArchivoRespuesta;
+        }
+
+
+        $nuevaRespuesta->descripcion = $request->descripcion;
+
+
+        $nuevaRespuesta->save();
+
+        return redirect('/desafio/ver/' . $nuevaRespuesta->id_desafio);
     }
 
     /**
@@ -109,6 +143,16 @@ class RespuestaController extends Controller
      */
     public function destroy($id)
     {
-        //
+    
+        $respuestaBorrar = Respuesta::find($id);
+
+        if($respuestaBorrar->id_autor != Auth::user()->id_usuario){
+            return "Acceso denegado";
+        }
+        else{
+            $respuestaBorrar->delete();
+            return redirect ('/desafio/ver/' . $respuestaBorrar->id_desafio);
+        }
+
     }
 }

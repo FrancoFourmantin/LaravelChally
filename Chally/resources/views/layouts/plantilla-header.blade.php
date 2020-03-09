@@ -42,7 +42,8 @@
                 </li>
 
                 <li class="nav-item">
-                <a class="nav-link" href="/usuario/{{ Auth::user()->username}}"><i class="fas fa-user"></i> &nbsp; {{ Auth::user()->nombre }}
+                    <a class="nav-link" href="/usuario/{{ Auth::user()->username}}"><i class="fas fa-user"></i> &nbsp;
+                        {{ Auth::user()->nombre }}
                         {{ Auth::user()->apellido }}</a>
                 </li>
 
@@ -63,7 +64,8 @@
                         <a class="dropdown-item" href="/editar-perfil"
                             onclick="event.preventDefault();document.getElementById('edit-form').submit();"><i
                                 class="fas fa-cog"></i> Modificar perfil</a>
-                        <form id="edit-form" action="/editar-perfil" method="GET" style="display:none">
+                        <form id="edit-form" action="/editar-perfil" method="POST" style="display:none">
+                            @method('PATCH')
                             @csrf
                             <input type="hidden" value=" {{ Auth::user()->id_usuario}}" name="id_usuario">
                         </form>

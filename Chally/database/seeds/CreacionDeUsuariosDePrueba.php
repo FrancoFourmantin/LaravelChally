@@ -17,27 +17,27 @@ class CreacionDeUsuariosDePrueba extends Seeder
         DB::table('usuarios')->insert([
             'nombre' => 'Franco',
             'email' => 'franco@gmail.com',
-            'password' => Hash::make('hola123.'),
+            'password' => Hash::make('1234'),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'fecha_nacimiento' => '1998-09-21',
             'sexo' => 'h',
             'apellido' => 'Fourmantin',
             'username' => 'Fraklins420',
-            'avatar' => 'primera-imagen-hombre.png'
+            'avatar' => 'foto-franco.jpg'
         ]);
 
         DB::table('usuarios')->insert([
             'nombre' => 'Emiliano',
             'email' => 'Emiliano@gmail.com',
-            'password' => Hash::make('hola123.'),
+            'password' => Hash::make('1234'),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'fecha_nacimiento' => '1994-09-20',
+            'fecha_nacimiento' => '1994-11-24',
             'sexo' => 'h',
             'apellido' => 'Gioia',
-            'username' => 'EmilianoGioia',
-            'avatar' => 'primera-imagen-hombre.png'
+            'username' => 'Emilianog94',
+            'avatar' => 'foto-emi.jpg'
 
         ]);
 
@@ -45,14 +45,14 @@ class CreacionDeUsuariosDePrueba extends Seeder
         DB::table('usuarios')->insert([
             'nombre' => 'Matias',
             'email' => 'matias@gmail.com',
-            'password' => Hash::make('hola123.'),
+            'password' => Hash::make('1234'),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'fecha_nacimiento' => '1990-09-21',
             'sexo' => 'h',
             'apellido' => 'Bruno',
             'username' => 'MatiasBruno',
-            'avatar' => 'primera-imagen-hombre.png'
+            'avatar' => 'foto-matias.jpg'
 
         ]);
 
@@ -61,14 +61,14 @@ class CreacionDeUsuariosDePrueba extends Seeder
         DB::table('usuarios')->insert([
             'nombre' => 'Juan Cruz',
             'email' => 'juan@gmail.com',
-            'password' => Hash::make('hola123.'),
+            'password' => Hash::make('1234'),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'fecha_nacimiento' => '2000-09-21',
             'sexo' => 'm',
-            'apellido' => 'Apellido',
+            'apellido' => 'Andrada',
             'username' => 'JuanCruz',
-            'avatar' => 'primera-imagen-hombre.png'
+            'avatar' => 'foto-matias.jpg'
 
         ]);
     }

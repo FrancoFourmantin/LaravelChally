@@ -65,7 +65,7 @@ class RespuestaController extends Controller
         $nuevaRespuesta->id_desafio = $id_desafio;
         $nuevaRespuesta->save();
 
-        return redirect('/desafio/ver/' . $nuevaRespuesta->id_desafio);
+        return redirect('/desafio/ver/' . $nuevaRespuesta->id_desafio)->with("mensaje","¡Tu respuesta fue publicada satisfactoriamente!");
     }
 
     /**
@@ -132,7 +132,7 @@ class RespuestaController extends Controller
 
         $nuevaRespuesta->save();
 
-        return redirect('/desafio/ver/' . $nuevaRespuesta->id_desafio);
+        return redirect('/desafio/ver/' . $nuevaRespuesta->id_desafio)->with("mensaje","¡Editaste tu respuesta satisfactoriamente!");
     }
 
     /**
@@ -151,7 +151,7 @@ class RespuestaController extends Controller
         }
         else{
             $respuestaBorrar->delete();
-            return redirect ('/desafio/ver/' . $respuestaBorrar->id_desafio);
+            return redirect ('/desafio/ver/' . $respuestaBorrar->id_desafio)->with("mensaje","¡Eliminaste tu respuesta satisfactoriamente!");
         }
 
     }

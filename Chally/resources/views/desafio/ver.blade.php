@@ -10,6 +10,13 @@
   <!--Seccion Posteos -->
   
 	<div class="container contenedor-feed mt-3 mb-5">
+            
+        
+        @if (session()->has('mensaje'))
+        <div class="col-12 text-center bg-success text-white rounded py-3 mb-2">
+            {{session()->get('mensaje')}}
+        </div>
+        @endif
     <div class="row">
         <div class="col-3">
 
@@ -82,6 +89,42 @@
 
 
                                     <div class="row card-content-attached">
+                                        <div class="col-12 text-right">
+                                            @if ($desafio->id_autor == Auth::user()->id_usuario)
+                                            <a class="" href="/desafio/editar/{{$desafio->id}}"><i class="fas fa-pen"></i>&nbsp;Editar desafío</a>
+                                            &nbsp;
+                                            
+                                            <a type="button" data-toggle="modal" data-target="#borrar-{{$desafio->id}}"><i class="fas fa-trash-alt"></i>&nbsp;Borrar desafío</a>
+        
+        
+                                            <!-- Modal -->
+                                            <div class="modal text-left fade" id="borrar-{{$desafio->id}}" tabindex="-1" role="dialog"  aria-hidden="true">
+                                                <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Borrar desafío</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                    ¿Estás seguro de borrar el desafío <b>{{$desafio->nombre}}</b>? <br><br> Todos los datos y respuestas al desafío serán eliminados permanentemente. Esta acción no se puede deshacer.
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar borrado</button>
+                                                    <form action="/desafio/borrar/{{$desafio->id}}">
+                                                        <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i> &nbsp;Eliminar</button>
+                                                    </form>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
+        
+                                            <hr>
+        
+                                            @endif
+                                        </div>
+
                                         <div class="col-12">
                                             <img src="{{asset('desafios/' . $desafio->imagen)}}" class="img-fluid mb-3" alt="Imagen de desafío">
                                         </div>

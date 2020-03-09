@@ -212,7 +212,7 @@
 
                                                 <h5>Mi solución</h5>
                                             <p><?php echo nl2br($respuesta->descripcion) ?></p>
-
+                                           
                                             <img src="{{asset('respuestas/' . $respuesta->archivo)}}" class="img-fluid mb-3" alt="Imagen de respuesta">
 
 

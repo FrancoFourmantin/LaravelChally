@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Contracts\Session\Session;
 use App\Usuario;
+use App\Desafio;
 use Illuminate\Support\Facades\Validator;
 
 class UsuarioController extends Controller
@@ -51,11 +52,22 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($username)
     {
-        $usuario = Usuario::find($id);
-        $vac = compact('usuario');
-        return $vac;
+        
+        if($username == Auth::user()->username){
+            $puede_editar = true;
+        }else{
+            $puede_editar = false;
+        }
+
+
+        $usuario = Usuario::where('username' , 'like', $username)->first();
+        $id_usuario = $usuario->id_usuario; 
+        $desafios = Desafio::all()->where('id_autor' , $id_usuario);
+        $vac = compact('usuario' ,'puede_editar', 'desafios');
+        
+        return view('perfil' , $vac);
     }
 
     /**

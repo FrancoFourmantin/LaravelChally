@@ -18,7 +18,10 @@
 </head>
 
 <body class='@yield(' clases-body')'>
+
     @if (Auth::user() != null)
+
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-5">
         <a class="navbar-brand" href="/"><img src="{{asset(('img/logo_chally.svg'))}}" alt=""></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -39,7 +42,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/perfil"><i class="fas fa-user"></i> &nbsp; {{ Auth::user()->nombre }}
+                <a class="nav-link" href="/usuario/{{ Auth::user()->username}}"><i class="fas fa-user"></i> &nbsp; {{ Auth::user()->nombre }}
                         {{ Auth::user()->apellido }}</a>
                 </li>
 

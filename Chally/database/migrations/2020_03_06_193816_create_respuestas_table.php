@@ -18,7 +18,7 @@ class CreateRespuestasTable extends Migration
             $table->timestamps();
             $table->unsignedbigInteger('id_autor');
             $table->unsignedbigInteger('id_desafio');
-            $table->string('descripcion');
+            $table->string('descripcion', 500);
             $table->string('archivo');
             $table->foreign('id_autor')->references('id_usuario')->on('usuarios');
             $table->foreign('id_desafio')->references('id')->on('desafios');

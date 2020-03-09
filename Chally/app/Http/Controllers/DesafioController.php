@@ -75,7 +75,7 @@ class DesafioController extends Controller
             'descripcion' => 'required|string|min:10',
             'requisitos' => 'required|string|min:10',
             'dificultad' => 'required|numeric',
-            'fecha_limite' => 'required|date|after:tomorrow',
+            'fecha_limite' => 'required|numeric',
         ];
 
         $request->validate($reglas,$mensajes);
@@ -91,14 +91,14 @@ class DesafioController extends Controller
         $nuevoDesafio->descripcion = $request->descripcion;
         $nuevoDesafio->requisitos = $request->requisitos;
         $nuevoDesafio->dificultad = $request->dificultad;
-        $nuevoDesafio->fecha_limite = $request->fecha_limite;
+        $nuevoDesafio->fecha_limite = Carbon::now()->add($request->fecha_limite,'day')->format('Y-m-d');
 
         $nuevoDesafio->id_autor = Auth::user()->id_usuario;
         $nuevoDesafio->fecha_creacion = date('Y-m-d H:i:s');
 
         $nuevoDesafio->save();
 
-        return redirect('/desafio/ver/' . $nuevoDesafio->id);
+        return redirect('/desafio/ver/' . $nuevoDesafio->id)->with("mensaje","¡Listo " . Auth::user()->nombre . "! creaste satisfactoriamente tu desafío");
 
     }
 
@@ -156,7 +156,7 @@ class DesafioController extends Controller
             'descripcion' => 'required|string|min:10',
             'requisitos' => 'required|string|min:10',
             'dificultad' => 'required|numeric',
-            'fecha_limite' => 'required|date|after:tomorrow',
+            'fecha_limite' => 'required|numeric',
         ];
 
         $request->validate($reglas,$mensajes);
@@ -178,11 +178,10 @@ class DesafioController extends Controller
         $nuevoDesafio->descripcion = $request->descripcion;
         $nuevoDesafio->requisitos = $request->requisitos;
         $nuevoDesafio->dificultad = $request->dificultad;
-        $nuevoDesafio->fecha_limite = $request->fecha_limite;
+        $nuevoDesafio->fecha_limite = Carbon::now()->add($request->fecha_limite,'day')->format('Y-m-d');
 
         $nuevoDesafio->save();
-
-        return redirect('/feed');
+        return redirect('/desafio/ver/' . $nuevoDesafio->id)->with("mensaje","¡Editaste el desafío satisfactoriamente!");
 
     }
 
@@ -202,8 +201,9 @@ class DesafioController extends Controller
             return "Acceso denegado";
         }
         else{
+            $desafioBorrar->getRespuestas()->delete();
             $desafioBorrar->delete();
-            return redirect ('feed');
+            return redirect ('feed')->with("mensaje","¡Tu desafío " . $desafioBorrar->nombre . " fue eliminado satisfactoriamente");
         }
 
 

@@ -8,6 +8,13 @@
 
 <div class="container contenedor-feed mt-3 mb-5">
     <div class="row">
+
+        @if (session()->has('mensaje'))
+        <div class="col-12 text-center bg-success text-white rounded py-3 mb-2">
+            {{session()->get('mensaje')}}
+        </div>
+        @endif
+
         <div class="col-3">
 
             <aside class="d-none d-md-block sticky-top">

@@ -10,7 +10,7 @@
         <section class="container px-5">
             <div class="row align-items-start">
 
-                <div class="col-5">
+                <div class="col-12 col-md-5">
 
                     <div class="seccion-derecha my-3">
                         <!--Menu para elegir vista de posteos-->
@@ -29,7 +29,7 @@
 
         
                                                 <div class="col-12">
-                                                    <p class="color-verde text-left mb-3 mx-0"><a href="../feed" class="color-verde"><i class="fas fa-arrow-left color-verde"></i>&nbsp;Volver al desafío</a></p>
+                                                    <p class="color-verde text-left mb-3 mx-0"><a href="../" class="color-verde"><i class="fas fa-arrow-left color-verde"></i>&nbsp;Volver al desafío</a></p>
 
                                                     <h2>Resumen del desafío</h2>
                                                     <h4 class="ml-0 color-verde mb-3">{{$desafio->nombre}}</h4>

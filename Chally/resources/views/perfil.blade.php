@@ -18,7 +18,7 @@
       </div>
       <h1>{{ $usuario->nombre }} {{$usuario->apellido}}</h1>
       <h2>{{ $usuario->username}}</h2>
-      <h3>Challys creados: 0</h3>
+    <h3>Challys creados: {{$countDesafios}}</h3>
       <h3>Challys resueltos: 9</h3>
 
       {{-- Modal para agregar amigo --}}

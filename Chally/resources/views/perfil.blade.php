@@ -18,16 +18,20 @@
       </div>
       <h1>{{ $usuario->nombre }} {{$usuario->apellido}}</h1>
       <h2>{{ $usuario->username}}</h2>
-    <h3>Challys creados: {{$countDesafios}}</h3>
-      <h3>Challys resueltos: 9</h3>
+      <h3>Challys creados: {{$countDesafios}}</h3>
+      <h3>Challys resueltos: 0</h3>
 
       {{-- Modal para agregar amigo --}}
-
+      @if($amistad == 'not amigos')
       <a class="btn bg-verde" type="button" data-toggle="modal" data-target="#agregar-{{$usuario->username}}">Agregar
         amigo</a>
-
+      @elseif($amistad == 'enviada')
       <a class="btn bg-verde" type="button" data-toggle="modal" data-target="#cancelar-{{$usuario->username}}">Solicitud
         enviada!</a>
+      @elseif($amistad == "not amigos")
+
+      @endif
+
 
       <!-- Modal -->
       <div class="modal fade text-body" id="agregar-{{$usuario->username}}" tabindex="-1" role="dialog"

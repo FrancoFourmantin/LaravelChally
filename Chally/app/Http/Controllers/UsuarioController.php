@@ -7,6 +7,8 @@ use Auth;
 use Illuminate\Contracts\Session\Session;
 use App\Usuario;
 use App\Desafio;
+use App\Amistad;
+use App\Http\Controllers\AmistadController;
 use Illuminate\Support\Facades\Validator;
 
 class UsuarioController extends Controller
@@ -54,21 +56,24 @@ class UsuarioController extends Controller
      */
     public function show($username)
     {
-        
-        if($username == Auth::user()->username){
+
+        if ($username == Auth::user()->username) {
             $puede_editar = true;
-        }else{
+        } else {
             $puede_editar = false;
         }
 
 
-        $usuario = Usuario::where('username' , 'like', $username)->first();
-        $id_usuario = $usuario->id_usuario; 
-        $desafios = Desafio::all()->where('id_autor' , $id_usuario);
+
+        $usuario = Usuario::where('username', 'like', $username)->first();
+        $id_usuario = $usuario->id_usuario;
+        $desafios = Desafio::all()->where('id_autor', $id_usuario);
         $countDesafios = count($desafios);
-        $vac = compact('usuario' ,'puede_editar', 'desafios' ,'countDesafios');
-        
-        return view('perfil' , $vac);
+        $amistad = AmistadController::verificarAmistad(Auth::user()->id_usuario, $id_usuario);
+
+        $vac = compact('usuario', 'puede_editar', 'desafios', 'countDesafios', 'amistad');
+
+        return view('perfil', $vac);
     }
 
     /**
@@ -158,5 +163,4 @@ class UsuarioController extends Controller
     {
         //
     }
-
 }

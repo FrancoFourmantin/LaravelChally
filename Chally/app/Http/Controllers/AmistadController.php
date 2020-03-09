@@ -52,9 +52,10 @@ class AmistadController extends Controller
         return redirect("/usuario/$username");
     }
 
-    public function verificarAmistad($id_usuario_1, $id_usuario_2)
+    static function verificarAmistad($id_usuario_1, $id_usuario_2)
     {
-        $amistad = Amistad::where('id_usuario_1', $id_usuario_1);
+        $amistad = Amistad::where('id_usuario_1', $id_usuario_1)->first();
+
         if ($amistad) {
             if ($amistad->id_usuario_2 == $id_usuario_2 && $amistad->updated_at == null) {
                 //solicitud enviada pero no aceptada
@@ -66,7 +67,7 @@ class AmistadController extends Controller
             }
         }
 
-        return "rechazada";
+        return "not amigos";
     }
 
     /**

@@ -65,7 +65,8 @@ class UsuarioController extends Controller
         $usuario = Usuario::where('username' , 'like', $username)->first();
         $id_usuario = $usuario->id_usuario; 
         $desafios = Desafio::all()->where('id_autor' , $id_usuario);
-        $vac = compact('usuario' ,'puede_editar', 'desafios');
+        $countDesafios = count($desafios);
+        $vac = compact('usuario' ,'puede_editar', 'desafios' ,'countDesafios');
         
         return view('perfil' , $vac);
     }
@@ -157,4 +158,5 @@ class UsuarioController extends Controller
     {
         //
     }
+
 }

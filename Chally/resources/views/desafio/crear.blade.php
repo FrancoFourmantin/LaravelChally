@@ -85,8 +85,13 @@
 
                                 <div class="form-group mt-4">
                                     <label class="font-weight-bold" for="fechaLimite">Fecha Límite de envío de respuestas</label>
-                                    <input type="date" class="form-control" name="fecha_limite" id="fechaLimite" placeholder="" value="{{ old ('fechalimite')}}">
-                                    <small>¡El mínimo es de una semana!</small>
+                                    <select class="form-control" name="fecha_limite" id="fechaLimite">
+
+                                        <option value="7" {{ old('fecha_limite') == "7" ? "selected" : ""}}  >Una semana</option>
+                                        <option value="14" {{ old('fecha_limite') == "14" ? "selected" : ""}}>Dos semanas</option>
+                                        <option value="30" {{ old('fecha_limite') == "30" ? "selected" : ""}}>Un mes</option>
+                                    </select>
+
                                     <small class="text-danger"> @error ('fecha_limite') {{$message}} @enderror </small>
 
                                 </div>

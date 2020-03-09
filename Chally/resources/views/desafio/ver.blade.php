@@ -51,7 +51,7 @@
                 @else 
                 <div class="card shadow  p-3 mt-1 mb-3">
                     <p class="font-weight-bold">¿Tenés tu solución lista?</p>
-                    <a href="{{$desafio->id}}/respuesta/crear" class="btn btn-secondary">Editá tu respuesta</a>
+                    <a href="{{$desafio->id}}/respuesta/crear" class="btn btn-secondary">Publicá tu respuesta</a>
                 </div>
 
                 @endif

@@ -31,9 +31,10 @@ Route::group(['middleware' => 'auth'], function () {
      */
     Route::patch('/editar-perfil', 'UsuarioController@edit'); //Ruta para mostrar datos a editar del usuario
     Route::get('/usuario/{username}', 'UsuarioController@show'); //Ruta para mostrar usuario;
-    Route::post('/editar-perfil', 'UsuarioController@updateValidator'); //Ruta para verificar y guardar actualizacion de perfil
+    Route::post('/editar-perfil/modificar', 'UsuarioController@update'); //Ruta para verificar y guardar actualizacion de perfil
     Route::get('/usuario/agregar/{username}', 'AmistadController@store'); //Ruta para enviar solicitud de amistad
-
+    Route::get('/usuario/{username}/solicitudes' , 'AmistadController@edit'); //Ruta para mostrar solicitudes de amistadd
+    Route::get('/usuario/{username}/{estado}' , 'AmistadController@update'); //Ruta para aceptar o rechazar amistad
 
 
     /**

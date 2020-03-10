@@ -17,7 +17,8 @@
 
                         <h3 class="color-verde text-left mb-3 mx-0 text-center">Tu perfil</h3>
 
-                        <form class="w-100 needs-validation" method="POST" action="/editar-perfil" enctype="multipart/form-data">
+                        <form class="w-100 needs-validation" method="POST" action="/editar-perfil/modificar" enctype="multipart/form-data">
+                
                         @csrf
 
                         <input type="hidden" value="{{Auth::user()->id_usuario}}" name="id_usuario">

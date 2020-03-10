@@ -32,8 +32,8 @@
                 <p class="color-verde font-weight-bold mb-1 ml-3"><i class="fas fa-user-friends"></i>&nbsp;Invitaciones
                 </p>
                 <div class="card shadow  p-3 mt-1 mb-4">
-                    <p>Tenés 6 invitaciones de amigos pendientes</p>
-                    <a href="#" class="btn btn-secondary">Ver invitaciones</a>
+                    <p>Tenés {{Auth::user()->getSolicitudesDeAmistad()}} invitaciones de amigos pendientes</p>
+                    <a href="/usuario/{{Auth::user()->username}}/solicitudes" class="btn btn-secondary">Ver invitaciones</a>
                 </div>
 
                 <p class="color-verde font-weight-bold mb-1 ml-3 "><i class="fas fa-list"></i>&nbsp;Filtrar por

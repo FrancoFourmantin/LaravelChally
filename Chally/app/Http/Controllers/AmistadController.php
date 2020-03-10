@@ -6,7 +6,7 @@ use Auth;
 use App\Usuario;
 use Illuminate\Http\Request;
 use App\Amistad;
-use Carbon\Carbon;
+use Carbon\Carbon;  
 
 class AmistadController extends Controller
 {
@@ -87,9 +87,23 @@ class AmistadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($username)
     {
-        //
+        $usuario = Usuario::where('username' , $username)->first();
+        $id_usuario_2 = $usuario->id_usuario;
+
+        //Todas las solicitudes son aquellas que tengan updated_at en null 
+        $solicitudes = Amistad::all()->where('id_usuario_2' , $id_usuario_2)->where('updated_at' , NULL);
+        $usuarios = [];
+        foreach ($solicitudes as $solicitud) {
+            $usuarios[] = Usuario::find($solicitud->id_usuario_1);
+        }
+        if(!empty($usuarios)){
+            return view('solicitudes' , compact('usuarios'));   
+        }else{
+            return view('solicitudes')->with('mensaje' , "Parece que no tienes ninguna solicitud de amistad pendiente!!");
+        }
+        
     }
 
     /**
@@ -99,9 +113,22 @@ class AmistadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($username , $estado)
     {
-        //
+        $usuario = Usuario::where('username' , $username)->first();
+        $id_usuario_1 = $usuario->id_usuario;
+        $amistad = Amistad::where('id_usuario_1' , $id_usuario_1)->where('id_usuario_2' , Auth::user()->id_usuario)->first();
+        $id_amistad = $amistad->id_amistad;
+        if($estado == 'aceptar'){
+            $amistad->updated_at = Carbon::now();
+        }else{
+            $amistad->destroy($id_amistad);
+        }
+
+            $amistad->save();
+
+
+        return redirect("/usuario/" . Auth::user()->username . "/solicitudes");
     }
 
     /**

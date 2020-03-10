@@ -99,6 +99,34 @@ class UsuarioController extends Controller
      */
     public function update(Request $request)
     {
+
+        $messages = [
+            'required' => 'El campo :attribute es obligatorio.',
+            'string' => 'El campo :attribute debe ser un texto',
+            'max' => 'El campo :attribute tiene un maximo de :max',
+            'date' => 'El campo :attribute debe ser una fecha',
+            'mimes' => 'El campo :attribute debe ser :mimes',
+            'unique' => 'El campo :attribute ya existe en la base de datos',
+            'confirmed' => 'Los campos deben conincidir',
+            'min' => 'El campo :attribute tiene un minimo de :min',
+            'not_in' => 'El campo :attribute no puede quedar vacio',
+            'accepted' => 'Debes aceptar este campo para poder continuar',
+        ];
+
+
+        $request->validate([
+            'nombre' => ['min:1', 'string', 'max:255'],
+            //'username' => ['required' , 'string' , 'max:255'],
+            'apellido' => ['min:1', 'string', 'max:255'],
+            //'fecha_nacimiento' => ['required' , 'date'],
+            //'sexo' => ['required', 'not_in:0'],
+            'avatar' => ['image', 'mimes:jpeg,png,jpg,bmp', 'max:5000', 'nullable'],
+            'email' => ['required', 'string', 'email', 'max:255', 'confirmed'],
+            'password' => ['required', 'string', 'min:8', 'confirmed']
+        ], $messages);
+
+
+
         $id = $request['id_usuario'];
 
         $usuario = Usuario::find($id);

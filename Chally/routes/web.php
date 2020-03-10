@@ -68,5 +68,3 @@ Route::view('/contacto', 'contacto'); //Ruta para contacto
 
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

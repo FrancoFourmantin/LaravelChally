@@ -86,35 +86,32 @@
                                     <div class="carousel-inner carousel-desktop">
                                         <div class="carousel-item active">
                                             <div class="row">
-                                            @foreach($categorias as $categoria)
-                                                <div class="col-4 item">
-                                                    <div class="cont shadow">
-                                                        <img class="img-fluid" src="img/{{$categoria->imagen}}" alt="Categoria de {{$categoria->nombre}} - Chally">
-                                                        <h3 class="pt-3 font-weight-bold">{{$categoria->nombre}}</h3>
-                                                        <p class="text-secondary">4258 Desafíos Abiertos</p>
-                                                        <a class="btn btn-secondary mb-4" href="#">Ver Desafíos Destacados</a>                                                    
+                                                @for($i = 0; $i < 3; $i++)
+                                                    <div class="col-4 item">
+                                                        <div class="cont shadow">
+                                                            <img class="img-fluid" src="img/{{$categorias[$i % count($categorias)]->imagen}}" alt="Categoria de {{$categorias[$i % count($categorias)]->nombre}} - Chally">
+                                                            <h3 class="pt-3 font-weight-bold">{{$categorias[$i % count($categorias)]->nombre}}</h3>
+                                                            <p class="text-secondary">4258 Desafíos Abiertos</p>
+                                                            <a class="btn btn-secondary mb-4" href="#">Ver Desafíos Destacados</a>                                                    
+                                                        </div>
                                                     </div>
-
-                                                </div>
-                                            @endforeach
-
+                                                @endfor
                                             </div>
                                         </div>
 
                                         <div class="carousel-item">
                                             <div class="row">
-                                            @foreach($categorias as $categoria)
-                                                <div class="col-4 item">
-                                                    <div class="cont shadow">
-                                                        <img class="img-fluid" src="img/{{$categoria->imagen}}" alt="Categoria de {{$categoria->nombre}} - Chally">
-                                                        <h3 class="pt-3 font-weight-bold">{{$categoria->nombre}}</h3>
-                                                        <p class="text-secondary">4258 Desafíos Abiertos</p>
-                                                        <a class="btn btn-secondary mb-4" href="#">Ver Desafíos Destacados</a>                                                    
+                                                @for($i = 3; $i < 6; $i++)
+                                                    <div class="col-4 item">
+                                                        <div class="cont shadow">
+                                                            <img class="img-fluid" src="img/{{$categorias[$i % count($categorias)]->imagen}}" alt="Categoria de {{$categorias[$i % count($categorias)]->nombre}} - Chally">
+                                                            <h3 class="pt-3 font-weight-bold">{{$categorias[$i % count($categorias)]->nombre}}</h3>
+                                                            <p class="text-secondary">4258 Desafíos Abiertos</p>
+                                                            <a class="btn btn-secondary mb-4" href="#">Ver Desafíos Destacados</a>                                                    
+                                                        </div>
+
                                                     </div>
-
-                                                </div>
-                                            @endforeach
-
+                                                @endfor
                                             </div>
                                         </div>
 
@@ -133,53 +130,7 @@
                     </div>
                 </div> <!-- CIERRE CONTAINER CARRUSEL -->
 
-                <div class="col-12 d-block d-md-none text-center pb-5">
-                    
-                <div id="carouselExampleControls" class="carousel slide"  data-ride="carousel"> <!-- data-ride="carousel" Para activar Autoplay -->
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <div class="row d-flex justify-content-center">
-                                                <div class="col-10 item pb-3">
-                                                    <div class="cont shadow bg-white">
-                                                        <img class="img-fluid" src="img/categoria-diseno.jpg" alt="Categoria de Diseño - Chally">
-                                                        <h3 class="pt-3 px-2 font-weight-bold">Diseño y Arte</h3>
-                                                        <p class="text-secondary">4258 Desafíos Abiertos</p>
-                                                        <a class="btn btn-secondary mb-4 mx-3" href="#">Ver Desafíos Destacados</a>                                                    
-                                                    </div>
-                                                </div>                                               
-                            </div>
-                        </div>
-
-
-                        <div class="carousel-item">
-                            <div class="row d-flex justify-content-center">
-                                                <div class="col-10 item pb-3">
-                                                    <div class="cont shadow bg-white">
-                                                        <img class="img-fluid" src="img/categoria-fotografia.jpg" alt="Categoria de Fotografía - Chally">
-                                                        <h3 class="pt-3 font-weight-bold">Fotografía</h3>
-                                                        <p class="text-secondary">4258 Desafíos Abiertos</p>
-                                                        <a class="btn btn-secondary mb-4" href="#">Ver Desafíos Destacados</a>                                                    
-                                                    </div>
-                                                </div>                                               
-                            </div>
-                        </div>
-
-                        <div class="carousel-item">
-                            <div class="row d-flex justify-content-center">
-                                                <div class="col-10 item pb-3">
-                                                    <div class="cont shadow bg-white">
-                                                    <img class="img-fluid" src="img/categoria-programacion.jpg" alt="Categoria de Programación - Chally">
-                                                        <h3 class="pt-3 font-weight-bold">Programación y Lógica</h3>
-                                                        <p class="text-secondary">4258 Desafíos Abiertos</p>
-                                                        <a class="btn btn-secondary mb-4" href="#">Ver Desafíos Destacados</a>                                                    
-                                                    </div>
-                                                </div>                                               
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div>
+                
 
                     
 
@@ -193,29 +144,30 @@
                 <h2 class="color-verde">Challys destacados de la Semana</h2>
             </div>
 
-            @foreach($desafios as $desafio)
+            @for($i = 0; $i < 4; $i++)
                 <div class="col-lg-3 col-md-6 mb-5 mb-sm-0 ">
                 <a  class="d-block" href="#">
-                    <img src="desafios/{{$desafio->imagen}}" class="img-fluid shadow mb-2" alt="Foto de Desafío">
-                    <p>{{$desafio->nombre}} </p>
+                    <img src="desafios/<?=$desafios[$i % count($desafios)]->imagen?>" class="img-fluid shadow mb-2" alt="Foto de Desafío">
+                    <p><?=$desafios[$i % count($desafios)]->nombre?></p>
                     <p class="text-secondary">¡985 challengers participando!</p>
                 </a>
                 </div>
-            @endforeach
+            @endfor
 
             <div class="col-12 mt-5 mb-3">
                 <h2 class="color-verde">Challengers Destacados del Mes</h2>
             </div>
 
-            @foreach($usuarios as $usuario)
+            @for($i = 0; $i < 4; $i++)
                 <div class="col-12 col-md-6 col-lg-3 mb-5 mb-sm-0 text-center">
                     <a class="d-block" href="profile.php">
-                        <img src="avatars/{{$usuario->avatar}}" class="challenger rounded-circle shadow mb-3" alt="Foto de Usuario">
-                        <p>{{$usuario->nombre . ' ' . $usuario->apellido}} <br>{{$usuario->username}}</p>
+                        <img src="avatars/{{$usuarios[$i % count($usuarios)]->avatar}}" class="challenger rounded-circle shadow mb-3" alt="Foto de Usuario">
+                        <p>{{$usuarios[$i % count($usuarios)]->nombre . ' ' . $usuarios[$i % count($usuarios)]->apellido}}
+                        <br>{{$usuarios[$i % count($usuarios)]->username}}</p>
                         <a class="btn btn-secondary" href="">Seguir</a>
                     </a>
                 </div>
-            @endforeach
+            @endfor
             
 
         </div>

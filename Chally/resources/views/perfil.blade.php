@@ -33,6 +33,7 @@
                 Son amigos!
               </div>
               @elseif($amistad == "persona")
+              
               @endif
               
               

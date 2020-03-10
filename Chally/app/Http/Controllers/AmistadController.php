@@ -125,11 +125,18 @@ class AmistadController extends Controller
         $id_amistad = $amistad->id_amistad;
         if($estado == 'aceptar'){
             $amistad->updated_at = Carbon::now();
+            $amistad_2 = new Amistad();
+            $amistad_2->id_usuario_1 = Auth::user()->id_usuario;
+            $amistad_2->id_usuario_2 = $id_usuario_1;
+            $amistad_2->created_at = Carbon::now();
+            $amistad_2->updated_at = Carbon::now();
+            $amistad_2->save();
         }else{
             $amistad->destroy($id_amistad);
         }
 
             $amistad->save();
+            
 
 
         return redirect("/usuario/" . Auth::user()->username . "/solicitudes");

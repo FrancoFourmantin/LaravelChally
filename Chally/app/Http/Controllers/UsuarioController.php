@@ -71,19 +71,25 @@ class UsuarioController extends Controller
         $countDesafios = count($desafios);
         $amistad = AmistadController::verificarAmistad(Auth::user()->id_usuario, $id_usuario);
         $amistades = Amistad::all()->where('id_usuario_2' , Auth::user()->id_usuario)->where('updated_at' , "!=" , null);
+        //dd($amistades); 
         $amigos = [];
-
-
-        $contador = 1;
-        while($contador <= 6){
-            if(isset($amistades[$contador])){
-                $id_amigo = $amistades[$contador]->id_usuario_1;
+        $contador = count($amistades);
+        for( $i = 0 ; $i < $contador ; $i++){
+            if(isset($amistades[$i])){
+                $id_amigo = $amistades[$i]->id_usuario_1;
                 $amigos[] = Usuario::find($id_amigo);
-                $contador++;
+                $contador--;
             }else{
                 break;
             }
         }
+    ;
+
+
+
+       
+
+      
 
         $vac = compact('usuario', 'puede_editar', 'desafios', 'countDesafios', 'amistad' , 'amigos');
 

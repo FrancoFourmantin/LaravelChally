@@ -3,19 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Categoria;
+use App\Usuario;
+use App\Desafio;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Show the application dashboard.
      *
@@ -23,6 +16,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('feed');
+        $categorias = Categoria::all();
+        $usuarios = Usuario::all();
+        $desafios = Desafio::all();
+        return view('index', ['categorias' => $categorias, 'usuarios' => $usuarios,'desafios' => $desafios]);
     }
 }

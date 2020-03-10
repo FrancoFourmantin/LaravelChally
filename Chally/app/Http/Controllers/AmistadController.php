@@ -65,6 +65,10 @@ class AmistadController extends Controller
             if ($amistad->id_usuario_2 == $id_usuario_2 && $amistad->updated_at != null) {
                 return "amigos";
             }
+
+            if($id_usuario_2 == $id_usuario_1){
+                return "persona";
+            }
         }
 
         return "not amigos";

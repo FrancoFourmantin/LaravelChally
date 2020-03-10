@@ -32,6 +32,7 @@
               <div class="text-white bg-verde d-inline-block p-2 rounded">
                 Son amigos!
               </div>
+              @elseif($amistad == "persona")
               @endif
               
               

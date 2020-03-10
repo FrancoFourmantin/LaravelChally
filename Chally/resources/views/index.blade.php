@@ -86,70 +86,34 @@
                                     <div class="carousel-inner carousel-desktop">
                                         <div class="carousel-item active">
                                             <div class="row">
+                                            @foreach($categorias as $categoria)
                                                 <div class="col-4 item">
                                                     <div class="cont shadow">
-                                                        <img class="img-fluid" src="img/categoria-diseno.jpg" alt="Categoria de Diseño - Chally">
-                                                        <h3 class="pt-3 font-weight-bold">Diseño y Arte</h3>
+                                                        <img class="img-fluid" src="img/{{$categoria->imagen}}" alt="Categoria de {{$categoria->nombre}} - Chally">
+                                                        <h3 class="pt-3 font-weight-bold">{{$categoria->nombre}}</h3>
                                                         <p class="text-secondary">4258 Desafíos Abiertos</p>
                                                         <a class="btn btn-secondary mb-4" href="#">Ver Desafíos Destacados</a>                                                    
                                                     </div>
 
                                                 </div>
-
-                                                <div class="col-4 item">
-                                                    <div class="cont shadow">
-                                                        <img class="img-fluid" src="img/categoria-programacion.jpg" alt="Categoria de Programación - Chally">
-                                                        <h3 class="pt-3 font-weight-bold">Programación y Lógica</h3>
-                                                        <p class="text-secondary">4258 Desafíos Abiertos</p>
-                                                        <a class="btn btn-secondary mb-4" href="#">Ver Desafíos Destacados</a>                                                    
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="col-4 item">
-                                                    <div class="cont shadow">
-                                                        <img class="img-fluid" src="img/categoria-fotografia.jpg" alt="Categoria de Fotografía - Chally">
-                                                        <h3 class="pt-3 font-weight-bold">Fotografía</h3>
-                                                        <p class="text-secondary">4258 Desafíos Abiertos</p>
-                                                        <a class="btn btn-secondary mb-4" href="#">Ver Desafíos Destacados</a>                                                    
-                                                    </div>
-
-                                                </div>
+                                            @endforeach
 
                                             </div>
                                         </div>
 
                                         <div class="carousel-item">
                                             <div class="row">
+                                            @foreach($categorias as $categoria)
                                                 <div class="col-4 item">
                                                     <div class="cont shadow">
-                                                        <img class="img-fluid" src="img/categoria-diseno.jpg" alt="Categoria de Diseño - Chally">
-                                                        <h3 class="pt-3 font-weight-bold">Diseño y Arte</h3>
+                                                        <img class="img-fluid" src="img/{{$categoria->imagen}}" alt="Categoria de {{$categoria->nombre}} - Chally">
+                                                        <h3 class="pt-3 font-weight-bold">{{$categoria->nombre}}</h3>
                                                         <p class="text-secondary">4258 Desafíos Abiertos</p>
                                                         <a class="btn btn-secondary mb-4" href="#">Ver Desafíos Destacados</a>                                                    
                                                     </div>
 
                                                 </div>
-
-                                                <div class="col-4 item">
-                                                    <div class="cont shadow">
-                                                        <img class="img-fluid" src="img/categoria-programacion.jpg" alt="Categoria de Programación - Chally">
-                                                        <h3 class="pt-3 font-weight-bold">Programación y Lógica</h3>
-                                                        <p class="text-secondary">4258 Desafíos Abiertos</p>
-                                                        <a class="btn btn-secondary mb-4" href="#">Ver Desafíos Destacados</a>                                                    
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="col-4 item">
-                                                    <div class="cont shadow">
-                                                        <img class="img-fluid" src="img/categoria-fotografia.jpg" alt="Categoria de Fotografía - Chally">
-                                                        <h3 class="pt-3 font-weight-bold">Fotografía</h3>
-                                                        <p class="text-secondary">4258 Desafíos Abiertos</p>
-                                                        <a class="btn btn-secondary mb-4" href="#">Ver Desafíos Destacados</a>                                                    
-                                                    </div>
-
-                                                </div>
+                                            @endforeach
 
                                             </div>
                                         </div>
@@ -229,75 +193,30 @@
                 <h2 class="color-verde">Challys destacados de la Semana</h2>
             </div>
 
-            <div class="col-lg-3 col-md-6 mb-5 mb-sm-0 ">
-            <a  class="d-block" href="#">
-                <img src="img/challys/rectangle/fallout.jpg" class="img-fluid shadow mb-2" alt="Foto de Desafío">
-                <p>Creá un cover vintage de un videojuego actual </p>
-                <p class="text-secondary">¡985 challengers participando!</p>
-            </a>
-            </div>
-            
-
-            <div class="col-lg-3 col-md-6  mb-5 mb-sm-0">
-            <a class="d-block" href="#">
-                <img src="img/challys/rectangle/viajes-espaciales.jpg" class="img-fluid shadow mb-2" alt="Foto de Desafío">
-                <p>Desarrollá una landing page para una agencia ficticia de viajes interplanetarios </p>
-                <p class="text-secondary">¡42 challengers participando!</p>
-            </a>
-            </div>
-
-            <div class="col-lg-3 col-md-6  mb-5 mb-sm-0">
-                <a class="d-block" href="#">
-                <img src="img/challys/rectangle/vr.jpg" class="img-fluid shadow mb-2" alt="Foto de Desafío">
-                <p>Diseñá una infografía sobre un nuevo casco de realidad virtual  </p>
-                <p class="text-secondary">¡511 challengers participando!</p>
+            @foreach($desafios as $desafio)
+                <div class="col-lg-3 col-md-6 mb-5 mb-sm-0 ">
+                <a  class="d-block" href="#">
+                    <img src="desafios/{{$desafio->imagen}}" class="img-fluid shadow mb-2" alt="Foto de Desafío">
+                    <p>{{$desafio->nombre}} </p>
+                    <p class="text-secondary">¡985 challengers participando!</p>
                 </a>
-            </div>
-
-            <div class="col-lg-3 col-md-6  mb-5 mb-sm-0">
-                <a class="d-block" href="#">
-                    <img src="img/challys/rectangle/light-painting.jpg" class="img-fluid shadow mb-2" alt="Foto de Desafío">
-                    <p>Sacá una foto con la técnica de light painting en un parque cercano</p>
-                    <p class="text-secondary">¡44 challengers participando!</p>
-                </a>
-            </div>
+                </div>
+            @endforeach
 
             <div class="col-12 mt-5 mb-3">
                 <h2 class="color-verde">Challengers Destacados del Mes</h2>
             </div>
 
-            <div class="col-12 col-md-6 col-lg-3 mb-5 mb-sm-0 text-center">
-                <a class="d-block" href="profile.php">
-                    <img src="img/users/user-1.jpg" class="challenger rounded-circle shadow mb-3" alt="Foto de Usuario">
-                    <p>Federico Gonzalez <br> @federico48</p>
-                    <a class="btn btn-secondary" href="">Seguir</a>
-                </a>
-            </div>
-
-            <div class="col-12 col-md-6 col-lg-3  mb-5 mb-sm-0 text-center">
-                <a class="d-block" href="">
-                    <img src="img/users/user-2.jpg" class="challenger rounded-circle shadow mb-3" alt="Foto de Usuario">
-                    <p>Mark Johnson <br> @mark87</p>
-                    <a class="btn btn-secondary" href="">Seguir</a>
-                </a>
-            </div>
-
-            <div class="col-12   col-md-6 col-lg-3  mb-5 mb-sm-0 text-center">
-                <a class="d-block" href="">
-                    <img src="img/users/user-3.jpg" class="challenger rounded-circle shadow mb-3" alt="Foto de Usuario">
-                    <p>Irina Paez <br> @irp58</p>
-                    <a class="btn btn-secondary" href="">Seguir</a>
-                </a>
-            </div>
-
-            <div class="col-12   col-md-6 col-lg-3  mb-5 mb-sm-0  text-center ">
-                <a class="d-block" href="">
-                    <img src="img/users/user-4.jpg" class="challenger rounded-circle shadow mb-3" alt="Foto de Usuario">
-                    <p>Jorge Gonzalez <br> @jorgito1988</p>
-                    <a class="btn btn-secondary" href="">Seguir</a>
-                </a>
-            </div>
-
+            @foreach($usuarios as $usuario)
+                <div class="col-12 col-md-6 col-lg-3 mb-5 mb-sm-0 text-center">
+                    <a class="d-block" href="profile.php">
+                        <img src="avatars/{{$usuario->avatar}}" class="challenger rounded-circle shadow mb-3" alt="Foto de Usuario">
+                        <p>{{$usuario->nombre . ' ' . $usuario->apellido}} <br>{{$usuario->username}}</p>
+                        <a class="btn btn-secondary" href="">Seguir</a>
+                    </a>
+                </div>
+            @endforeach
+            
 
         </div>
     </section> <!-- CIERRE SECCION DE DESTACADOS -->

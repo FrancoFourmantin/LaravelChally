@@ -12,9 +12,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-})->middleware('guest');
+Route::get('/', 'HomeController@index');
 
 
 

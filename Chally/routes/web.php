@@ -29,7 +29,7 @@ Route::group(['middleware' => 'auth'], function () {
      * 
      * Rutas de usuarios
      */
-    Route::patch('/editar-perfil', 'UsuarioController@edit'); //Ruta para mostrar datos a editar del usuario
+    Route::get('/editar-perfil', 'UsuarioController@edit'); //Ruta para mostrar datos a editar del usuario
     Route::get('/usuario/{username}', 'UsuarioController@show'); //Ruta para mostrar usuario;
     Route::post('/editar-perfil/modificar', 'UsuarioController@update'); //Ruta para verificar y guardar actualizacion de perfil
     Route::get('/usuario/agregar/{username}', 'AmistadController@store'); //Ruta para enviar solicitud de amistad

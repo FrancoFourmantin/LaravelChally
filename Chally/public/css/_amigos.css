@@ -1,5 +1,6 @@
 body.perfil .col-4{
     padding: 0;
+
 }
 .boton_opciones{
     padding: 0px;
@@ -9,6 +10,7 @@ body.perfil{
     width: 100%;
     background-color: #eeeeee;
     box-sizing: border-box;
+    height: 100vh !important; 
 }
 
 .container-fluid{

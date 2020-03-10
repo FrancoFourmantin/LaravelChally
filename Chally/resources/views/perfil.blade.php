@@ -158,18 +158,22 @@
                       </section>
                       
                       <section class="previsualizacion_amigos shadow p-3 mt-3 mb-3">
-                        <h4><a class="color-verde" href="amigos.php">Lista de amigos</a></h4>
+                        <h4><a class="color-verde" href="">Lista de amigos</a></h4>
                         <div class="container-fluid">
                           <div class="row">
+
+                            @foreach($amigos as $amigo)
+                                
                             <div class="col-4">
                               <div class=" text-center  p-1 m-1">
-                                <a href="#" class="text-decoration-none "><img class=" rounded-circle"
-                                  src="http://lorempixel.com/50/50/people" alt="meme"></a>
+                              <a href="/usuario/{{$amigo->username}}" class="text-decoration-none "><img class=" rounded-circle"
+                              src="{{asset("avatars/$amigo->avatar")}}" alt="meme" max-width="50px" height="50px"></a>
                                   
                                 </div>
                               </div>
+                            @endforeach
                               
-                              <div class="col-4">
+                              {{-- <div class="col-4">
                                 <div class=" text-center  p-1 m-1">
                                   <a href="#" class="text-decoration-none "><img class=" rounded-circle"
                                     src="http://lorempixel.com/50/50/people" alt="meme"></a>
@@ -210,7 +214,7 @@
                                             src="http://lorempixel.com/50/50/people" alt="meme"></a>
                                             
                                           </div>
-                                        </div>
+                                        </div> --}}
                                       </div>
                                       
                                     </div>

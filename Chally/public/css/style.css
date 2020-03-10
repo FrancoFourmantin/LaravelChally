@@ -54,6 +54,8 @@ body{
 
 footer{
     background-color:#2e3035;
+    position: relative;
+    bottom: 0px;
 }
 
 footer h4{

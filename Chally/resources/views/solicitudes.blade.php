@@ -4,14 +4,9 @@
 
 @section('main')
     
-
-  <!--Seccion PORTADA -->
-  
-
-
-  <!--Fin Seccion PORTADA -->
     @if(isset($usuarios))
   <!--Seccion Amigos -->
+ 
   <div class="contenedor-amigos container">
     @foreach($usuarios as $usuario)
         <div class="tarjeta-amigo">
@@ -31,16 +26,15 @@
         </div>  
     @endforeach
     </div>
+
     
     @else
-    
-    
-    
-    <div class="col-12 text-center bg-success text-white rounded py-3 mb-2 mt-2">
+       <div class="col-12 text-center bg-success text-white rounded py-3 mb-2 mt-2">
         Parece que no tienes solicitudes de amistad pendientes :):)
-    </div>
+       </div>
     
-</div>
 @endif
+</div>
+</div>
 
 @endsection

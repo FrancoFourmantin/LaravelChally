@@ -68,8 +68,8 @@
                         <a class="dropdown-item" href="/editar-perfil"
                             onclick="event.preventDefault();document.getElementById('edit-form').submit();"><i
                                 class="fas fa-cog"></i> Modificar perfil</a>
-                        <form id="edit-form" action="/editar-perfil" method="post" style="display:none">
-                            @method('PATCH')
+                        <form id="edit-form" action="/editar-perfil" method="get" style="display:none">
+                            
                             @csrf
                             <input type="hidden" value="{{ Auth::user()->id_usuario}}" name="id_usuario">
                         </form>

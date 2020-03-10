@@ -70,8 +70,22 @@ class UsuarioController extends Controller
         $desafios = Desafio::all()->where('id_autor', $id_usuario);
         $countDesafios = count($desafios);
         $amistad = AmistadController::verificarAmistad(Auth::user()->id_usuario, $id_usuario);
+        $amistades = Amistad::all()->where('id_usuario_2' , Auth::user()->id_usuario)->where('updated_at' , "!=" , null);
+        $amigos = [];
 
-        $vac = compact('usuario', 'puede_editar', 'desafios', 'countDesafios', 'amistad');
+
+        $contador = 1;
+        while($contador <= 6){
+            if(isset($amistades[$contador])){
+                $id_amigo = $amistades[$contador]->id_usuario_1;
+                $amigos[] = Usuario::find($id_amigo);
+                $contador++;
+            }else{
+                break;
+            }
+        }
+
+        $vac = compact('usuario', 'puede_editar', 'desafios', 'countDesafios', 'amistad' , 'amigos');
 
         return view('perfil', $vac);
     }
@@ -124,7 +138,6 @@ class UsuarioController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'confirmed'],
             'password' => ['required', 'string', 'min:8', 'confirmed']
         ], $messages);
-
 
 
         $id = $request['id_usuario'];

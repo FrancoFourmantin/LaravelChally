@@ -70,28 +70,30 @@ class UsuarioController extends Controller
         $desafios = Desafio::all()->where('id_autor', $id_usuario);
         $countDesafios = count($desafios);
         $amistad = AmistadController::verificarAmistad(Auth::user()->id_usuario, $id_usuario);
-        $amistades = Amistad::all()->where('id_usuario_2' , Auth::user()->id_usuario)->where('updated_at' , "!=" , null);
-        //dd($amistades); 
+        $amistades = Amistad::all()->where('id_usuario_2' , $id_usuario)->where('updated_at' , "!=" , null);
+        
         $amigos = [];
-        $contador = count($amistades);
-        for( $i = 0 ; $i < $contador ; $i++){
-            if(isset($amistades[$i])){
-                $id_amigo = $amistades[$i]->id_usuario_1;
-                $amigos[] = Usuario::find($id_amigo);
-                $contador--;
-            }else{
+   
+        $i = 0;
+        if(count($amistades) > 1){
+            while ($i < 6) {
+                foreach ($amistades as $amistad) {
+                    $id_amigo = $amistad->id_usuario_1;
+                    $amigos[] = Usuario::find($id_amigo);
+                }
+                if(!isset($amistades[$i+1])){
                 break;
+                }
+                $i++;
+            }
+        }else{
+            foreach ($amistades as $amistad) {
+                $id_amigo = $amistad->id_usuario_1;
+                $amigos[] = Usuario::find($id_amigo);
             }
         }
-    ;
 
-
-
-       
-
-      
-
-        $vac = compact('usuario', 'puede_editar', 'desafios', 'countDesafios', 'amistad' , 'amigos');
+         $vac = compact('usuario', 'puede_editar', 'desafios', 'countDesafios', 'amistad' , 'amigos');
 
         return view('perfil', $vac);
     }

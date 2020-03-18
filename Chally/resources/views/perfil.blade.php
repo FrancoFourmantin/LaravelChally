@@ -22,17 +22,17 @@
           <h3>Challys resueltos: 0</h3>
           
           {{-- Modal para agregar amigo --}}
-          @if($amistad == 'not amigos')
+          @if($amistad  == 'not amigos')
           <a class="btn bg-verde" type="button" data-toggle="modal" data-target="#agregar-{{$usuario->username}}">Agregar
             amigo</a>
-            @elseif($amistad == 'enviada')
+            @elseif($amistad  == 'enviada')
             <a class="btn bg-verde" type="button" data-toggle="modal" data-target="#cancelar-{{$usuario->username}}">Solicitud
               enviada!</a>
-              @elseif($amistad == "amigos")
+              @elseif($amistad  == "amigos")
               <div class="text-white bg-verde d-inline-block p-2 rounded">
                 Son amigos!
               </div>
-              @elseif($amistad == "persona")
+              @elseif($amistad  == "persona")
               
               @endif
               
@@ -82,7 +82,7 @@
                         <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-trash"></i>
                           &nbsp;Cancelar</button>
                           <form action="/usuario/cancelar/{{$usuario->username}}">
-                            <button type="submit" class="btn btn-secondary">Emilinar solicitud</button>
+                            <button type="submit" class="btn btn-secondary">Emiliminar solicitud</button>
                           </form>
                         </div>
                       </div>
@@ -164,8 +164,7 @@
                         <div class="container-fluid">
                           <div class="row">
 
-                            @foreach($amigos as $amigo)
-                                
+                            @foreach($amigos as $amigo)       
                             <div class="col-4">
                               <div class=" text-center  p-1 m-1">
                               <a href="/usuario/{{$amigo->username}}" class="text-decoration-none "><img class=" rounded-circle"

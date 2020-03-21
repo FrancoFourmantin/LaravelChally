@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Categoria;
+use App\Http\Requests\CategoriasRequest;
 use Illuminate\Http\Request;
 
 class CategoriaController extends Controller
@@ -23,7 +25,9 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        //
+        $categorias = Categoria::latest()->get();
+
+        return view('crear-categorias' , compact('categorias'));
     }
 
     /**
@@ -32,9 +36,18 @@ class CategoriaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoriasRequest $request)
     {
-        //
+        $categoria = Categoria::create([
+            'nombre' => $request->nuevaCategoria
+        ]);
+
+        if($request->categoriaPadre && $request->categoriaPadre !== 'none'){
+            $categoriaPadre = Categoria::find($request->categoriaPadre);
+            $categoriaPadre->appendNode($categoria);
+        }
+
+        return redirect()->back();
     }
 
     /**

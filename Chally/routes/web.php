@@ -66,5 +66,6 @@ Route::view('/faq', 'faq'); //Rua para faq
 Route::get('/index-register', 'Auth\RegisterController@mostrarRegistroConDatos'); //Ruta para enviar al usuariao a regiser despues de llenar el formulario de index
 Route::view('/contacto', 'contacto'); //Ruta para contacto
 
-
+Route::get("/categorias" , "CategoriaController@create");
+Route::post("/agregarCategoria" , "CategoriaController@store");
 Auth::routes();

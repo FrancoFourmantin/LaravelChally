@@ -145,8 +145,7 @@
 
                                             <h5>Requisitos y Condiciones</h5>
                                             <ul class="requisitos">
-                                                <!--<li><i class="fas fa-check color-verde"></i></i> &nbsp;La landing page no necesariamente debe estar programada</li>-->
-                                                <p><?php echo nl2br($desafio->requisitos) ?></p>
+                                                <?php echo nl2br($desafio->requisitos) ?>
                                             </ul>
 
                                         </div>

@@ -72,10 +72,10 @@ class DesafioController extends Controller
             'nombre' => 'required|',
             'imagen' => 'required|file|image|max:1024',
             'id_categoria' => 'required|numeric|not_in:0',
-            'descripcion' => 'required|string|min:10',
-            'requisitos' => 'required|string|min:10',
-            'dificultad' => 'required|numeric',
-            'fecha_limite' => 'required|numeric',
+            'descripcion' => 'required|string|min:30',
+            'requisitos' => 'required|string|min:5',
+            'dificultad' => 'required|numeric|not_in:0',
+            'fecha_limite' => 'required|numeric|not_in:0',
         ];
 
         $request->validate($reglas,$mensajes);

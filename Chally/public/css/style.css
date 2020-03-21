@@ -89,6 +89,13 @@ footer a:hover{
     background-color:#1bb76e !important;
 }
 
+.btn-dark{
+    border:0 !important;
+    background-color:#6c757d !important;
+}
+
+
+
 .btn-secondary:hover{
     background-color:#54c992 !important;
 }
@@ -107,6 +114,10 @@ a.color-verde:hover {
 
 .bg-gris{
     background-color:#2e3035;
+}
+
+.bg-gris-claro{
+    background-color:rgba(0,0,0,.03);
 }
 
 .bg-white{
@@ -191,3 +202,26 @@ section.destacados h2{
     transform: translatex(-50%);
     height: 100%;
 }
+
+ul.requisitos li::before{
+    font-family: "FontAwesome";
+    content: "\f00c";
+    display: inline-block;
+    padding-right: 3px;
+    vertical-align: middle;
+    font-weight: 900;
+    color:#1bb76e;
+}
+
+.opacity-0{
+    opacity:0;
+}
+
+.opacity-1{
+    opacity:1;
+}
+
+#output,#step-2{
+    transition:all 0.5s ease;
+}
+

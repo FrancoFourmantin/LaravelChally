@@ -121,11 +121,11 @@ class AmistadController extends Controller
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
-    public function update($estado , $username )
+    public function update($username , $estado )
     {
         $usuario = Usuario::where('username' , $username)->first();
         $id_usuario_1 = $usuario->id_usuario;
-        $amistad = Amistad::where('id_usuario_1' ,  Auth::user()->id_usuario)->where('id_usuario_2' , $id_usuario_1)->first();
+        $amistad = Amistad::where('id_usuario_1' ,  $id_usuario_1)->where('id_usuario_2' , Auth::user()->id_usuario)->first();
         $id_amistad = $amistad->id_amistad;
         if($estado == 'aceptar'){
             $amistad->updated_at = Carbon::now();

@@ -24,9 +24,10 @@ class CategoriaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        $categorias = Categoria::latest()->get();
+    {   
+        $categorias = Categoria::get()->toTree();
 
+        // $categorias = Categoria::latest()->get();
         return view('crear-categorias' , compact('categorias'));
     }
 
@@ -46,6 +47,7 @@ class CategoriaController extends Controller
             $categoriaPadre = Categoria::find($request->categoriaPadre);
             $categoriaPadre->appendNode($categoria);
         }
+
 
         return redirect()->back();
     }

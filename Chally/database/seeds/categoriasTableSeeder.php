@@ -32,6 +32,5 @@ class categoriasTableSeeder extends Seeder
             '_lft' => 5,
             '_rgt' => 6
         ]);
-
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\soloUnHijo;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CategoriasRequest extends FormRequest
@@ -24,7 +25,8 @@ class CategoriasRequest extends FormRequest
     public function rules()
     {
         return [
-            'nuevaCategoria' => 'required'
+            'nuevaCategoria' => 'required|unique:categorias,nombre',
+            'categoriaPadre' => [new soloUnHijo]
         ];
     }
 }

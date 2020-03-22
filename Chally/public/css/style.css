@@ -26,149 +26,159 @@
 
 /* ESTILOS GLOBALES */
 
-*{
-    font-family:'Rubik',sans-serif;
-    font-weight:400;
-    margin:0;
-    padding:0;
+* {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
 }
 
-.respuesta-datausuario{
-    border-right:1px solid #eee;
+::placeholder {
+    color: rgba(0, 0, 0, 0.3) !important;
 }
 
-.categorias-feed{
-    list-style-type:none;
+.respuesta-datausuario {
+    border-right: 1px solid #eee;
 }
 
-body{
-    overflow-x:hidden;
+.categorias-feed {
+    list-style-type: none;
 }
 
-.vh-100{
-    height:auto !important;
-    min-height:100vh !important;
+body {
+    overflow-x: hidden;
 }
 
-.h-100{
-    height:100%;
+.vh-100 {
+    height: auto !important;
+    min-height: 100vh !important;
 }
 
-footer{
-    background-color:#2e3035;
-    position: relative
+.h-100 {
+    height: 100%;
+}
+
+footer {
+    background-color: #2e3035;
+    position: relative;
     bottom: 0px;
 }
 
-footer h4{
-    color:#1bb76e;
+footer h4 {
+    color: #1bb76e;
 }
 
-footer p,footer a{
-    color:#fff;
-    transition:all 0.25s ease;
+footer p,
+footer a {
+    color: #fff;
+    transition: all 0.25s ease;
 }
 
-footer a:hover{
-    color:#1bb76e;
-    text-decoration:none;
+footer a:hover {
+    color: #1bb76e;
+    text-decoration: none;
 }
 
-.navbar-brand img{
-    width:120px;
+.navbar-brand img {
+    width: 120px;
 }
 
 /* FIX DE FLECHA DE DESPLEGADO NO CENTRADA */
-.nav-item.dropdown{
-    display:flex;
-    align-items:center;
+.nav-item.dropdown {
+    display: flex;
+    align-items: center;
 }
 
-.btn-secondary{
-    border:0 !important;
-    background-color:#1bb76e !important;
+.btn-secondary {
+    border: 0 !important;
+    background-color: #1bb76e !important;
 }
 
-.btn-dark{
-    border:0 !important;
-    background-color:#6c757d !important;
+.btn-dark {
+    border: 0 !important;
+    background-color: #6c757d !important;
 }
 
 
 
-.btn-secondary:hover{
-    background-color:#54c992 !important;
+.btn-secondary:hover {
+    background-color: #54c992 !important;
 }
 
-.color-verde{
-    color:#1bb76e;
+.color-verde {
+    color: #1bb76e;
 }
+
 a.color-verde:hover {
-    color:#1bb76e;
+    color: #1bb76e;
     text-decoration: underline;
 }
 
-.bg-verde{
-    background-color:#1bb76e;
+.bg-verde {
+    background-color: #1bb76e;
 }
 
-.bg-gris{
-    background-color:#2e3035;
+.bg-gris {
+    background-color: #2e3035;
 }
 
-.bg-gris-claro{
-    background-color:rgba(0,0,0,.03);
+.bg-gris-claro {
+    background-color: rgba(0, 0, 0, .03);
 }
 
-.bg-white{
-    background-color:#fefefe;
+.bg-white {
+    background-color: #fefefe;
 }
 
-.white{
-    color:#fff !important;
+.white {
+    color: #fff !important;
 }
 
-.nav-item#post-cta{
+.nav-item#post-cta {
     border: 2px solid #51c790;
     border-radius: 5px;
     background-color: #1bb76e;
 }
 
-.nav-item#post-cta a{
-    color:#fff !important;
+.nav-item#post-cta a {
+    color: #fff !important;
 }
 
-.nav-item{
-    margin-left:10px;
+.nav-item {
+    margin-left: 10px;
 }
 
-.navbar-brand img{
-    width:160px;
+.navbar-brand img {
+    width: 160px;
 }
 
-.nav-item .nav-link{
-    color:#1bb76e !important;
-    transition:all 0.25s ease;
+.nav-item .nav-link {
+    color: #1bb76e !important;
+    transition: all 0.25s ease;
 }
 
-.nav-item .nav-link:hover{
-    color:#54c992 !important;
+.nav-item .nav-link:hover {
+    color: #54c992 !important;
 }
 
-.card .btn-link{
-    color:#2e3035;
+.card .btn-link {
+    color: #2e3035;
 }
 
-.subrayado{
-    text-decoration:underline
+.subrayado {
+    text-decoration: underline
 }
 
-.texto-chico{
-    font-size:0.8em;
+.texto-chico {
+    font-size: 0.8em;
 }
 
-section.destacados h2{
-    border-bottom:1px solid #1bb76e;
+.texto-grande {
+    font-size: 1.5em;
+}
+
+section.destacados h2 {
+    border-bottom: 1px solid #1bb76e;
 }
 
 /* FIX DROPDOWN MENU */
@@ -177,8 +187,8 @@ section.destacados h2{
     left: auto !important;
 }
 
-.dropdown-item{
-    font-size:0.85em;
+.dropdown-item {
+    font-size: 0.85em;
 }
 
 /* ESTILOS PARA LA FOTO DE PERFIL */
@@ -191,34 +201,35 @@ section.destacados h2{
     height: 100px;
     overflow: hidden;
 }
+
 /* Foto de perfil */
 .main-foto {
     display: block;
     position: relative;
-    border-radius:50%;
-    width:50%;
-    top:-80px;
+    border-radius: 50%;
+    width: 50%;
+    top: -80px;
 }
 
-ul.requisitos li::before{
+ul.requisitos li::before {
     font-family: "FontAwesome";
     content: "\f00c";
     display: inline-block;
     padding-right: 3px;
     vertical-align: middle;
     font-weight: 900;
-    color:#1bb76e;
+    color: #1bb76e;
 }
 
-.opacity-0{
-    opacity:0;
+.opacity-0 {
+    opacity: 0;
 }
 
-.opacity-1{
-    opacity:1;
+.opacity-1 {
+    opacity: 1;
 }
 
-#output,#step-2{
-    transition:all 0.5s ease;
+#output,
+#step-2 {
+    transition: all 0.5s ease;
 }
-

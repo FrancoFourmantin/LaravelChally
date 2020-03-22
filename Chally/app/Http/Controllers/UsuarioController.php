@@ -147,7 +147,14 @@ class UsuarioController extends Controller
             //'sexo' => ['required', 'not_in:0'],
             'avatar' => ['image', 'mimes:jpeg,png,jpg,bmp', 'max:5000', 'nullable'],
             'email' => ['required', 'string', 'email', 'max:255', 'confirmed'],
-            'password' => ['required', 'string', 'min:8', 'confirmed']
+            'password' => ['string', 'min:8', 'confirmed','nullable'],
+            'cover' => ['image', 'mimes:jpeg,png,jpg,bmp', 'max:5000', 'nullable'],
+            'bio' => ['string', 'max:1000'],
+            'link_linkedin' => ['string','nullable'],
+            'link_behance' => ['string','nullable'],
+            'link_github' => ['string','nullable'],
+            'link_website' => ['string','nullable']                      
+
         ], $messages);
 
 
@@ -161,11 +168,31 @@ class UsuarioController extends Controller
             $avatarName = Auth::user()->avatar;
         }
 
+
+        if ($request->file('cover')) {
+            $coverName = time() . '.' . request()->cover->getClientOriginalExtension();
+            $request->file('cover')->move(public_path('covers'), $coverName);
+        } else {
+            $coverName = Auth::user()->cover;
+        }
+
+        if($request->input('password'){
+            $usuario->password = password_hash($request->input('password'), PASSWORD_DEFAULT)
+        })
+
+
         $usuario->nombre = $request->input('nombre');
         $usuario->apellido = $request->input('apellido');
         $usuario->email = $request->input('email');
         $usuario->avatar = $avatarName;
-        $usuario->password = password_hash($request->input('password'), PASSWORD_DEFAULT);
+        $usuario->cover = $coverName;
+        $usuario->bio = $request->input('bio');
+        $usuario->link_linkedin = $request->input('link_linkedin');
+        $usuario->link_behance = $request->input('link_behance');
+        $usuario->link_github = $request->input('link_github');
+        $usuario->link_website = $request->input('link_website');
+
+
 
         $usuario->save();
 

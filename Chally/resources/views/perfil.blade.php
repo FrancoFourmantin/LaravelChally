@@ -126,9 +126,7 @@
 
                       @if($usuario->bio) 
                       <span class="font-weight-bold">Bio</span><br>
-                      <p class="text-secondary">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut quis excepturi, cum veritatis delectus
-                        inventore, deserunt aliquam ea repellat quam reprehenderit, saepe possimus dignissimos fuga animi
-                        recusandae. Esse, earum ullam!</p>
+                      <p class="text-secondary">{{$usuario->bio}}</p>
 
                         <hr>
                       @endif
@@ -141,19 +139,19 @@
                         <div class="d-flex flex-row justify-content-around redes">
 
                           @if ($usuario->link_linkedin)
-                          <a href="{{$usuario->link_linkedin}}"><i class="fab fa-linkedin-in"></i></a>
+                          <a href="{{$usuario->link_linkedin}}" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                           @endif
 
-                          @if ($usuario->link_linkedin)
-                          <a href="{{$usuario->link_behance}}"><i class="fab fa-behance"></i></a>
+                          @if ($usuario->link_behance)
+                          <a href="{{$usuario->link_behance}}" target="_blank"><i class="fab fa-behance"></i></a>
                           @endif
 
-                          @if ($usuario->link_linkedin)
-                          <a href="{{$usuario->link_github}}"><i class="fab fa-github"></i></a>
+                          @if ($usuario->link_github)
+                          <a href="{{$usuario->link_github}}" target="_blank"><i class="fab fa-github"></i></a>
                           @endif
 
-                          @if ($usuario->link_linkedin)
-                          <a href="{{$usuario->link_website}}"><i class="fas fa-external-link-alt"></i></i></a>
+                          @if ($usuario->link_website)
+                          <a href="{{$usuario->link_website}}" target="_blank"><i class="fas fa-globe-americas"></i></i></a>
                           @endif
                         </div>
 

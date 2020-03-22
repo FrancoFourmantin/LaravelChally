@@ -124,6 +124,10 @@ a.color-verde:hover {
     background-color:#fefefe;
 }
 
+.white{
+    color:#fff !important;
+}
+
 .nav-item#post-cta{
     border: 2px solid #51c790;
     border-radius: 5px;
@@ -178,14 +182,7 @@ section.destacados h2{
 }
 
 /* ESTILOS PARA LA FOTO DE PERFIL */
-/* Un contenedor que encierra la foto de perfil en un círculo */
-.contenedor-main-foto {
-    margin: 0 auto;
-    border-radius: 50%;
-    width: 200px;
-    height: 200px;
-    overflow: hidden;
-}
+
 /* Un contenedor más chico para la parte de configuracion */
 .mini-contenedor-foto {
     margin: 0 auto;
@@ -198,9 +195,9 @@ section.destacados h2{
 .main-foto {
     display: block;
     position: relative;
-    left: 50%;
-    transform: translatex(-50%);
-    height: 100%;
+    border-radius:50%;
+    width:50%;
+    top:-80px;
 }
 
 ul.requisitos li::before{

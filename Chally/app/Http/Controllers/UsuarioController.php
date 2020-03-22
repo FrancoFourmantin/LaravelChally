@@ -8,6 +8,7 @@ use Illuminate\Contracts\Session\Session;
 use App\Usuario;
 use App\Desafio;
 use App\Amistad;
+use App\Respuesta;
 use App\Http\Controllers\AmistadController;
 use Illuminate\Support\Facades\Validator;
 
@@ -68,6 +69,8 @@ class UsuarioController extends Controller
         $usuario = Usuario::where('username', 'like', $username)->first();
         $id_usuario = $usuario->id_usuario;
         $desafios = Desafio::all()->where('id_autor', $id_usuario);
+        $respuestas = Respuesta::all()->where('id_autor',$id_usuario);
+        $countRespuestas = count($respuestas);
         $countDesafios = count($desafios);
         $amistad = AmistadController::verificarAmistad(Auth::user()->id_usuario, $id_usuario);
         $amistades = Amistad::all()->where('id_usuario_2' , $id_usuario)->where('updated_at' , "!=" , null);
@@ -93,7 +96,7 @@ class UsuarioController extends Controller
             }
         }
 
-         $vac = compact('usuario', 'puede_editar', 'desafios', 'countDesafios', 'amistad' , 'amigos');
+         $vac = compact('usuario', 'puede_editar', 'desafios','respuestas', 'countDesafios', 'countRespuestas', 'amistad' , 'amigos');
 
         return view('perfil', $vac);
     }

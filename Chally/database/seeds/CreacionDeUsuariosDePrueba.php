@@ -24,7 +24,10 @@ class CreacionDeUsuariosDePrueba extends Seeder
             'sexo' => 'h',
             'apellido' => 'Fourmantin',
             'username' => 'Fraklins420',
-            'avatar' => 'foto-franco.jpg'
+            'avatar' => 'foto-franco.jpg',
+            'cover' => 'cover.jpg',
+            'bio' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit consectetur corporis, laudantium debitis ex suscipit expedita officia provident distinctio asperiores. Quidem nesciunt doloribus sed omnis itaque atque, ducimus beatae iste!',
+            
         ]);
 
         DB::table('usuarios')->insert([
@@ -37,7 +40,13 @@ class CreacionDeUsuariosDePrueba extends Seeder
             'sexo' => 'h',
             'apellido' => 'Gioia',
             'username' => 'Emilianog94',
-            'avatar' => 'foto-emi.jpg'
+            'avatar' => 'foto-emi.jpg',
+            'cover' => 'cover.jpg',
+            'bio' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit consectetur corporis, laudantium debitis ex suscipit expedita officia provident distinctio asperiores. Quidem nesciunt doloribus sed omnis itaque atque, ducimus beatae iste!',
+            'link_linkedin' => 'https://www.linkedin.com/in/emilianogioia/',
+            'link_behance' => 'https://www.behance.net/emilianogioia',
+            'link_website' => 'https://emilianogioia.com.ar',
+            'link_github' => 'https://github.com/emilianog94',
 
         ]);
 
@@ -52,8 +61,9 @@ class CreacionDeUsuariosDePrueba extends Seeder
             'sexo' => 'h',
             'apellido' => 'Bruno',
             'username' => 'MatiasBruno',
-            'avatar' => 'foto-matias.jpg'
-
+            'avatar' => 'foto-matias.jpg',
+            'cover' => 'cover.jpg',
+            'bio' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit consectetur corporis, laudantium debitis ex suscipit expedita officia provident distinctio asperiores. Quidem nesciunt doloribus sed omnis itaque atque, ducimus beatae iste!',
         ]);
 
 
@@ -68,8 +78,9 @@ class CreacionDeUsuariosDePrueba extends Seeder
             'sexo' => 'm',
             'apellido' => 'Andrada',
             'username' => 'JuanCruz',
-            'avatar' => 'foto-matias.jpg'
-
+            'avatar' => 'foto-matias.jpg',
+            'cover' => 'cover.jpg',
+            'bio' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit consectetur corporis, laudantium debitis ex suscipit expedita officia provident distinctio asperiores. Quidem nesciunt doloribus sed omnis itaque atque, ducimus beatae iste!',
         ]);
     }
 }

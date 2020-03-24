@@ -55,6 +55,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/respuesta/editar/{id}', 'RespuestaController@edit');
     Route::post('/respuesta/editar/{id}', 'RespuestaController@update');
     Route::get('/respuesta/borrar/{id}', 'RespuestaController@destroy');
+
+    /* Ruta especial para ver la lista de amigos */
+    
+    Route::get("/amigos", "AmistadController@show");
 });
 
 /**

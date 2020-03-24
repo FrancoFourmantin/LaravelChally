@@ -28,7 +28,7 @@ a, a:hover {
 }
 
 .barra-amigos {
-    background-color: white;
+    background-color: #eee;
     display: flex;
     align-items: center;
     height: 50px;
@@ -44,9 +44,10 @@ a, a:hover {
     display: inline-block;
     width: 90%;
     margin-left: 5%;
-    height: 350px;
+    margin-bottom: 20px;
+    height: 300px;
     text-align: center;
-    background-color: white;
+    background-color: #eee;
 }
 .contenedor-foto-portada {
     height: 100px;
@@ -57,7 +58,7 @@ a, a:hover {
 }
 .info-amigo {
     position: relative;
-    top: -50px;
+    margin-top: 10px;
 }
 .foto-perfil {
     height: 100px;

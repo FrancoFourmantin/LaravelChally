@@ -50,8 +50,8 @@ Route::group(['middleware' => 'auth'], function () {
     /* Rutas de Bookmarks */
 
     Route::get('/usuario/{username}/bookmarks' , 'BookmarkController@show');
-    Route::post('/usuario/{username}/bookmarks/{desafio_id}' , 'BookmarkController@destroy');
-    Route::post('/usuario/{username}/bookmarks/{desafio_id}' , 'BookmarkController@store');
+    Route::get('/bookmarks/eliminar/{id}' , 'BookmarkController@destroy');
+    Route::post('/bookmarks/agregar/' , 'BookmarkController@store');
 
 
 

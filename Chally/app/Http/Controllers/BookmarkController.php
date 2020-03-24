@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Bookmark;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\URL;
 
 class BookmarkController extends Controller
 {
@@ -36,7 +39,12 @@ class BookmarkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $bookmark = new Bookmark;
+        $bookmark->id_usuario = $request->input('usuario');
+        $bookmark->id_desafio = $request->input('desafio');
+
+        $bookmark->save();
+        return Redirect::to(URL::previous() . "#desafio-" . $bookmark->id_desafio);
     }
 
     /**
@@ -46,12 +54,20 @@ class BookmarkController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($username)
-    {
-        $username = Auth::user()->username;
-        $userid = Auth::user()->id_usuario;
-        $bookmarks = Bookmark::all()->where('id_usuario',$userid);
-        $vac = compact('username','bookmarks');
-        return view('bookmarks',$vac);
+    {   
+
+        if($username == Auth::user()->username) 
+        {
+            $username = Auth::user()->username;
+            $userid = Auth::user()->id_usuario;
+            $bookmarks = Bookmark::all()->where('id_usuario',$userid);
+            $vac = compact('username','bookmarks');
+            return view('bookmarks',$vac);
+        }
+        else{
+            return redirect('feed');
+        }
+
     }
 
     /**
@@ -85,6 +101,9 @@ class BookmarkController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $bookmark = Bookmark::find($id);
+        $bookmark->delete();
+        return Redirect::to(URL::previous() . "#desafio-" . $bookmark->id_desafio);
+
     }
 }

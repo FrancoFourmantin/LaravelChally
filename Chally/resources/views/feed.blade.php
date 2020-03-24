@@ -84,7 +84,7 @@
 
                 @foreach ($desafios as $desafio)
 
-                <div class="row">
+                <div class="row" id="desafio-{{$desafio->id}}">
                     <div class="col-12">
 
 
@@ -188,10 +188,41 @@
                             <div class="card-footer d-flex justify-content-around">
                                 <span class="likes"><i class="fas fa-heart"></i>&nbsp;18</span>
 
-                                <span class="comments"><i class="fas fa-comment"></i>&nbsp;13</span>
+                                <span class="comments"><i class="fas fa-comment"></i>&nbsp;{{$desafio->getRespuestas->count()}}</span>
+                                
+                                <?php $tiene = "";?>
+                                @foreach (Auth::user()->getBookmarks as $bookmark)
+                                    @if($bookmark->id_desafio == $desafio->id)
+                                    <?php $tiene = $bookmark->id;?>
+                                    @endif
+                                @endforeach
 
-                                <span class="compartidos"><i class="fas fa-share"></i>&nbsp;26</span>
-                                <span class="guardar"><i class="fas fa-bookmark"></i> </span>
+                                    @if($tiene)
+                                    
+                                    <form action="/bookmarks/eliminar/{{$bookmark->id}}" method="GET">
+                                        @csrf
+                                        <button id="bookmark-action" type="submit btn">
+                                            <span class="borrar"><i class="color-verde fas fa-bookmark"></i>&nbsp; Eliminar de favoritos </span></button>
+                                    </form>
+                                        
+                                    @else
+
+                                    <form action="/bookmarks/agregar" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="desafio" value="{{$desafio->id}}">
+                                        <input type="hidden"  name="usuario" value="{{Auth::user()->id_usuario}}">
+                                        <button id="bookmark-action" type="submit btn"><span class="guardar"><i class="fas fa-bookmark"></i>&nbsp; Guardar en favoritos </span></button>
+                                    </form>                                    
+
+                                    @endif
+                                
+
+
+
+
+
+
+
                             </div>
                         </div> <!-- CIERRE CARD -->
                         <?//php }?>

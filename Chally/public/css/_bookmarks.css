@@ -1,0 +1,43 @@
+.bookmark-item{
+    transition:all 0.25s ease;
+    border:0;
+}
+
+.bookmark-item img{
+    filter:brightness(0.7);
+}
+
+.bookmark-item img.expirado{
+    filter:grayscale(100%) brightness(0.5) !important;
+}
+
+.bookmark-item .position-absolute{
+    bottom:0;
+    text-shadow: 1px 2px 1px rgba(0,0,0,0.7);
+}
+
+.bookmark-item:hover{
+    transform:scale(1.05);
+}
+
+#bookmark-action{
+    border: 0;
+    background: 0;
+}
+
+
+.guardar:hover{
+    color:#1bb76e;
+}
+
+.guardar:hover i{
+    color:#1bb76e;
+}
+
+.borrar:hover{
+    color:#dc3545;
+}
+
+.borrar:hover i{
+    color:#dc3545;
+}

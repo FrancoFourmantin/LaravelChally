@@ -47,28 +47,37 @@
                 </li>
 
                 <li class="nav-item">
+                    <a class="nav-link" href="/usuario/{{Auth::user()->username}}/bookmarks"><i class="fas fa-bookmark"></i> &nbsp; Guardados</a>
+                </li>
+
+
+
+                <li class="nav-item">
                     <a class="nav-link" href="/usuario/{{ Auth::user()->username}}"><i class="fas fa-user"></i> &nbsp;
                         {{ Auth::user()->nombre }}
                         {{ Auth::user()->apellido }}</a>
                 </li>
 
+                <!--
                 <li class="nav-item">
                     <a class="nav-link" href="#"><i class="fas fa-bell"></i>&nbsp; Notificaciones</a>
                 </li>
+                -->
 
+                <!--
                 <li class="nav-item">
                     <a class="nav-link" href="#"><i class="fas fa-comments"></i>&nbsp; Chat</a>
-                </li>
+                </li>-->
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                    <a class="nav-link " href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
+                        <i class="fas fa-cog"></i>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/editar-perfil"
                             onclick="event.preventDefault();document.getElementById('edit-form').submit();"><i
-                                class="fas fa-cog"></i> Modificar perfil</a>
+                                class="fas fa-pen"></i> Modificar perfil</a>
                         <form id="edit-form" action="/editar-perfil" method="get" style="display:none">
                             
                             @csrf

@@ -32,7 +32,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/editar-perfil/modificar', 'UsuarioController@update'); //Ruta para verificar y guardar actualizacion de perfil
     Route::get('/usuario/agregar/{username}', 'AmistadController@store'); //Ruta para enviar solicitud de amistad
     Route::get('/usuario/{username}/solicitudes' , 'AmistadController@edit'); //Ruta para mostrar solicitudes de amistadd
-    Route::get('/usuario/{estado}/{username}' , 'AmistadController@update'); //Ruta para aceptar o rechazar amistad
+    // Route::get('/usuario/{estado}/{username}' , 'AmistadController@update'); //Ruta para aceptar o rechazar amistad
 
 
     /**
@@ -45,6 +45,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/desafio/editar/{id}', 'DesafioController@edit');
     Route::post('/desafio/editar/{id}', 'DesafioController@update');
     Route::get('/desafio/borrar/{id}', 'DesafioController@destroy');
+
+
+    /* Rutas de Bookmarks */
+
+    Route::get('/usuario/{username}/bookmarks' , 'BookmarkController@show');
+    Route::post('/usuario/{username}/bookmarks/{desafio_id}' , 'BookmarkController@destroy');
+    Route::post('/usuario/{username}/bookmarks/{desafio_id}' , 'BookmarkController@store');
+
 
 
 

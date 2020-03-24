@@ -8,6 +8,7 @@ use Illuminate\Notifications\Notifiable;
 use App\Desafio;
 use App\Respuesta;
 use App\Amistad;
+use App\Bookmark;
 use Auth;
 
 class Usuario extends Authenticatable
@@ -23,6 +24,10 @@ class Usuario extends Authenticatable
     
     public function getRespuestas(){
         return $this->hasMany('App\Respuesta','id_usuario','id_autor');
+    }
+
+    public function getBookmarks(){
+        return $this->hasMany('App\Bookmark','id_usuario','id_usuario');
     }
     
     static function getSolicitudesDeAmistad() 

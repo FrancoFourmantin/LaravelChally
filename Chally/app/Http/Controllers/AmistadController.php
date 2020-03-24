@@ -84,9 +84,23 @@ class AmistadController extends Controller
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
-    public function show($id)
+    public function show()
     {
-        //
+        $id_usuario = Auth::user()->id_usuario;
+        $usuario = Usuario::find($id_usuario);
+        $amistades = Amistad::where('id_usuario_1' , $id_usuario)->get();
+        $amigos = [];
+
+        foreach($amistades as $amistad) {
+            if($amistad->id_usuario_1 == $id_usuario) {
+                if(Amistad::where('id_usuario_1', $amistad->id_usuario_2)->get()->count() > 0)
+                    $amigos[] = Usuario::find($amistad->id_usuario_2);
+            }
+        }
+
+        $vac = compact('usuario', 'amigos');
+
+        return view('amigos', $vac);
     }
     
     /**

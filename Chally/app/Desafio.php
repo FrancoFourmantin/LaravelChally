@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Usuario;
 use App\Categoria;
 use App\Respuesta;
+use Carbon\Carbon;
 
 class Desafio extends Model
 {

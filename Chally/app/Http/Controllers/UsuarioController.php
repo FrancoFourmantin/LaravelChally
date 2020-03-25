@@ -198,7 +198,7 @@ class UsuarioController extends Controller
 
         $mensajeExito = "Perfil actualizado con exito";
 
-        return redirect('/editar-perfil')->with("mensajeExito", $mensajeExito);
+        return redirect('/usuario/' . $usuario->username);
     }
 
     protected function updateValidator(Request $request)

@@ -3,6 +3,9 @@
 @section('clases-body' , 'animated fadeIn')
 
 @section('main')
+<?php
+use Carbon\Carbon;
+?>
 
 
 
@@ -19,31 +22,70 @@
 
             <aside class="d-none d-md-block sticky-top">
 
-                <p class="color-verde font-weight-bold mb-1 ml-3"><i class="fas fa-bell"></i>&nbsp;Alertas de Desafíos
-                </p>
-                <div class="card shadow  p-3 mt-1 mb-4 alert alert-danger">
-                    <p><a href="#"><i class="fas fa-clock"></i> Creá una infografía sobre cascos de realidad virtual</a>
-                        <br> ¡Termina en 6 horas!</p>
 
-                    <p><a href="#"><i class="fas fa-clock"></i>Rediseñá la tapa de un juego actual con estilo Retro </a>
-                        <br> ¡Termina en 9 horas!</p>
-                </div>
+                @if(Auth::user()->getBookmarks->isNotEmpty() )  
+
+                <p class="color-verde font-weight-bold mb-1 ml-3"><i class="fas fa-bookmark"></i>&nbsp;Desafíos guardados
+                </p>
+
+
+                  
+                    <div class="card  p-3 mt-1 mb-4 alert alert-danger">
+                        @foreach(Auth::user()->getBookmarks as $bookmark)
+                            <p><a href="/desafio/ver/{{$bookmark->getDesafio->id}}">{{$bookmark->getDesafio->nombre}} </a><br>
+
+                                @if(Carbon::now() < $bookmark->getDesafio->fecha_limite)
+                                <i class="fas fa-clock"></i>&nbsp;Finaliza el {{$bookmark->getDesafio->fecha_limite}}</p>
+                                @else 
+                                <i class="fas fa-times"></i>&nbsp;El desafío expiró</p>
+                                @endif
+
+
+                        @endforeach
+                    </div>
+                    <hr>
+
+                @endif
+
+
 
                 <p class="color-verde font-weight-bold mb-1 ml-3"><i class="fas fa-user-friends"></i>&nbsp;Invitaciones
                 </p>
-                <div class="card shadow  p-3 mt-1 mb-4">
-                    <p>Tenés {{Auth::user()->getSolicitudesDeAmistad()}} invitaciones de amigos pendientes</p>
-                    <a href="/usuario/{{Auth::user()->username}}/solicitudes" class="btn btn-secondary">Ver invitaciones</a>
+                <div class="px-3 mt-1 mb-4">
+                    
+                    @if (Auth::user()->getSolicitudesDeAmistad()){
+                        <p>Tenés {{Auth::user()->getSolicitudesDeAmistad()}} invitaciones de amigos pendientes</p>
+                        <a href="/usuario/{{Auth::user()->username}}/solicitudes" class="btn btn-secondary">Ver invitaciones</a>
+                    }
+                    @else 
+                        <p>No tenés solicitudes de amistad pendientes</p>
+                    @endif
                 </div>
+
+                <hr>
 
                 <p class="color-verde font-weight-bold mb-1 ml-3 "><i class="fas fa-list"></i>&nbsp;Filtrar por
                     categoría</p>
-                <div class="card shadow  p-3 mt-1 mb-4">
+                <div class="px-3 mt-1 mb-4">
                     <ul class="categorias-feed mb-0">
                         @foreach ($categorias as $categoria)
                         <li>
-                            <a href="/feed/categoria-{{$categoria->id}}">{{$categoria->nombre}}</a>
+                        @if(Request::is('feed/categoria*'))
+                            @if($categoriaActual->nombre == $categoria->nombre)
+                                <a class="color-verde font-weight-bold" href="/feed/categoria-{{$categoria->id}}">{{$categoria->nombre}}</a>
+
+                            @else
+                                <a class="" href="/feed/categoria-{{$categoria->id}}">{{$categoria->nombre}}</a>
+                                <br>
+                            @endif
+
+                        @else
+                            <a class="" href="/feed/categoria-{{$categoria->id}}">{{$categoria->nombre}}</a>
                             <br>
+                        @endif
+
+                        
+
                         </li>
                         @endforeach
                     </ul>
@@ -51,20 +93,10 @@
                 </div>
 
 
-
-                <p class="color-verde font-weight-bold mb-1 ml-3"><i class="fas fa-trophy"></i>&nbsp;Chally destacado de
-                    la semana</p>
-                <div class="card shadow  p-3 mt-1 mb-4">
-                    <p>Creá un pixel-art de un momento épico de la TV Argentina</p>
-                    <img src="img/challys/pelea-samid-viale.jpg"
-                        alt="Desafío - Creá un pixel-art de un momento épico de la TV Argentina">
-                    <a href="#" class="btn btn-secondary">Participar</a>
-                </div>
-
             </aside>
         </div>
 
-        <div class="col-12 col-md-9">
+        <div class="col-12 col-md-8">
 
             <div class="seccion-derecha my-3">
                 <!--Menu para elegir vista de posteos-->
@@ -94,12 +126,17 @@
                                 <a href={{ "../usuario/" . $desafio->getUsuario->username}}> <img class="rounded-circle"
                                         src="{{asset('avatars/' . $desafio->getUsuario->avatar . '')}}"
                                         alt="Imagen de usuario">
-                                    <p class="mb-0 ml-3">{{$desafio->getUsuario->username}}
                                 </a>
-                                <span class="text-secondary texto-chico">Comenzó el {{$desafio->fecha_creacion}} / <span
-                                        class="text-danger">Finaliza el {{$desafio->fecha_limite}}</span></span>
-                                </p>
 
+                                <div class="d-flex flex-column ml-3">
+                                    
+
+                                    <p class="mb-0">{{$desafio->getUsuario->username}}</p>
+                                
+                                    <p class="mb-0"><span class="text-secondary texto-chico">Comenzó el {{$desafio->fecha_creacion}} / <span
+                                        class="text-danger">Finaliza el {{$desafio->fecha_limite}}</span></span>
+                                    </p>
+                                </div>
 
                                 <div class="ml-auto">
                                     <div class="ml-auto">
@@ -152,38 +189,44 @@
 
                             </div>
 
+                            <a href="/desafio/ver/{{$desafio->id}}">
                             <div class="card-contenido">
                                 <div class="row">
 
 
                                     <div class="row card-content-attached">
-                                        <div class="col-12 col-md-4">
-                                            <img src="{{asset('desafios/' . $desafio->imagen .'')}}" class="img-fluid"
-                                                alt="Imagen de Desafío">
+                                        <div class="col-12 imagen-feed">
+                                            <div style="background-image:url('{{asset('desafios/' . $desafio->imagen .'')}}');"></div>
+
                                         </div>
 
-                                        <div class="col-12 col-md-8">
+                                        <div class="col-12">
+                                            
                                             <h3 class="ml-0">{{$desafio->nombre}}</h3>
+
+                                            <hr>
 
                                             <div class="metadata d-flex ">
                                                 <span class="dificultad"> <b>Dificultad</b>: Nivel
                                                     {{$desafio->dificultad}} &nbsp;&nbsp;&nbsp;
                                                     <span class="participantes">&nbsp;<b>Participantes</b>:
-                                                        {{$desafio->getRespuestas->count()}}</span>
+                                                        {{$desafio->getRespuestas->count()}}</span>&nbsp;&nbsp;&nbsp;
+                                                        <span class="categoria">&nbsp;<b>Categoría</b>:
+                                                            {{$desafio->getCategoria->nombre}}</span>
+
 
                                             </div>
                                             <br>
                                             <p> <?php echo nl2br(substr($desafio->descripcion,0,255),false) . "..." ; ?>
                                             </p>
 
-                                            <a href="/desafio/ver/{{$desafio->id}}" class="btn btn-secondary">Ver
-                                                más</a>
                                         </div>
                                     </div>
 
                                 </div>
 
                             </div>
+                            </a>
 
                             <div class="card-footer d-flex justify-content-around">
                                 <span class="likes"><i class="fas fa-heart"></i>&nbsp;18</span>

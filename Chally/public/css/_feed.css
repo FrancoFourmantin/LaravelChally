@@ -46,3 +46,18 @@ span.compartidos:hover{
 .metadata.d-flex span:first-child{
     margin-right:30px;
 }
+
+.imagen-feed > div{
+    width: 100%;
+    height: 300px;
+    background-position: center;
+    background-size: cover;
+}
+
+.categorias-feed a{
+    transition:all 0.25s ease;
+}
+
+.categorias-feed a:hover{
+    color:#1bb76e;
+}

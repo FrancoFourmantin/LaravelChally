@@ -94,6 +94,11 @@
                       <img class="main-foto img-fluid mb-3 shadow position-absolute" src="{{ asset("avatars/$usuario->avatar")}}" alt="foto_usuario">
                       <h2>{{ $usuario->nombre }} {{$usuario->apellido}}</h2>
                       <p class="text-secondary">{{ $usuario->username}}</p>
+                      
+                      @if(Auth::user()->username == $usuario->username)
+                        <a href="/editar-perfil"><i class="fas fa-pen"></i>&nbsp; Editar perfil</a>
+                      @endif
+
                       {{-- Modal para agregar amigo --}}
                       @if($amistad  == 'not amigos')
                       <a class="btn bg-verde white" type="button" data-toggle="modal" data-target="#agregar-{{$usuario->username}}"><i class="fas fa-plus"></i> Agregar
@@ -224,7 +229,7 @@
                                           </div>
                                           
                                           
-                                          <div class="col-12 col-mb-8 col-lg-7 offset-md-2 pl-5 mt-3">
+                                          <div class="col-12 col-mb-8 col-lg-8 offset-md-2 pl-5 mt-3">
 
                                             <div class="row">
                                               <div class="col-12">

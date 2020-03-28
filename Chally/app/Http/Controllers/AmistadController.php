@@ -87,6 +87,8 @@ class AmistadController extends Controller
     public function show(string $username)
     {
         $usuario = Usuario::where('username', $username)->first();
+        if($usuario == null)
+            return redirect("usuario/" . Auth::user()->username);
         $id_usuario = $usuario->id_usuario;
         $amistades = Amistad::where('id_usuario_1' , $id_usuario)->get();
         $amigos = [];

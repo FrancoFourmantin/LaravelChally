@@ -81,13 +81,13 @@ class AmistadController extends Controller
     /**
     * Display the specified resource.
     *
-    * @param  int  $id
+    * @param  string $username
     * @return \Illuminate\Http\Response
     */
-    public function show()
+    public function show(string $username)
     {
-        $id_usuario = Auth::user()->id_usuario;
-        $usuario = Usuario::find($id_usuario);
+        $usuario = Usuario::where('username', $username)->first();
+        $id_usuario = $usuario->id_usuario;
         $amistades = Amistad::where('id_usuario_1' , $id_usuario)->get();
         $amigos = [];
 

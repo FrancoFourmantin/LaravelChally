@@ -9,20 +9,26 @@
             </div>
         </div>
         <div class="contenedor-amigos container">
-            @foreach($amigos as $amigo)
+            @forelse($amigos as $amigo)
                 <div class="tarjeta-amigo card-shadow">
                     <div class="info-amigo">
-                        <img class="foto-perfil" src="avatars/{{$amigo->avatar}}">
+                        <img class="foto-perfil" src="/avatars/{{$amigo->avatar}}">
                         <h6 class="nombre">{{$amigo->nombre}} {{$amigo->apellido}}</h6>
                         <h6 class="nombre-usuario">{{$amigo->username}}</h6>
+                        @if(Auth::user()->id_usuario == $usuario->id_usuario)
                         <div>
                             <a class="boton-mensaje" href="#">Mensaje</a>
                             <a class="estado-amigo" href="#">Amigos</a>
                         </div>
+                        @endif
                         <a class="ver-perfil" href="/usuario/{{$amigo->username}}">Ver Perfil</a>
                     </div>
                 </div>
-            @endforeach
+            @empty
+                <div class="alert">
+                    <h3>Este usuario todavía no tiene amigos</h3>
+                </div>
+            @endforelse
         </div>
     </div>
 @endsection

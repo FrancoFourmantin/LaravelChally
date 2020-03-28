@@ -32,8 +32,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/editar-perfil/modificar', 'UsuarioController@update'); //Ruta para verificar y guardar actualizacion de perfil
     Route::get('/usuario/agregar/{username}', 'AmistadController@store'); //Ruta para enviar solicitud de amistad
     Route::get('/usuario/{username}/solicitudes' , 'AmistadController@edit'); //Ruta para mostrar solicitudes de amistadd
-    // Route::get('/usuario/{estado}/{username}' , 'AmistadController@update'); //Ruta para aceptar o rechazar amistad
-
+    // Route::get('/usuario/{estado}/{username}' , 'AmistadController@update'); //Ruta para aceptar o rechazar 
+    Route::get("/usuario/{username}/amigos/", "AmistadController@show");
 
     /**
      * 
@@ -63,10 +63,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/respuesta/editar/{id}', 'RespuestaController@edit');
     Route::post('/respuesta/editar/{id}', 'RespuestaController@update');
     Route::get('/respuesta/borrar/{id}', 'RespuestaController@destroy');
-
-    /* Ruta especial para ver la lista de amigos */
     
-    Route::get("/amigos", "AmistadController@show");
 });
 
 /**

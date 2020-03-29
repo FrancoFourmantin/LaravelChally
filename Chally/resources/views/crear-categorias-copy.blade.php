@@ -4,6 +4,36 @@
 
 @section('main')
 
+               <!-- Modal -->
+               <div class="modal fade text-body" id="eliminar-categoria" tabindex="-1" role="dialog"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Eliminar categoria</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <strong>Cuidado!</strong> Va a eliminar una categoria que puede contener desafios asociada a ella. 
+                      Eliminar la cateogria sin deshabilitar los desafios implica que los mismos que se quedaran con categoria "Varios".
+                      ¿Desea deshabilitar todos los desafios que contenga la categoria?
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-success" data-dismiss="modal">
+                        &nbsp;Cancelar</button>
+                                                            
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {{-- Fin del modal --}}
+
+
+
+
+
 <div class="contenedor-categorias container-fluid">      
     <form class="form-categorias mt-3" action="agregarCategoria" method="POST">
         @csrf
@@ -54,6 +84,7 @@
                             <div>
                                 <div class="d-flex align-items-center">
                                     <label for="submit">Eliminar las categorias seleccionadas</label>
+                                    <a class="btn btn-secondary d-inline p-2" href="#" role="button"data-toggle="modal" data-target="#eliminar-categoria">Eliminar</a>
                                     <button name="submit" type="submit" value="eliminar" class="ml-auto btn btn-danger">Eliminar categorias</button>
                                 </div>
                                 

@@ -6,6 +6,7 @@ use App\Categoria;
 use App\Http\Requests\CategoriasRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use App\Desafio;
 
 class CategoriaController extends Controller
 {
@@ -73,6 +74,16 @@ class CategoriaController extends Controller
         }else{
             foreach ($request->categoriaSeleccionada as $categoria) {
                 $categoriaEliminar = Categoria::find($categoria);
+                if($categoriaEliminar->nombre == 'Varios'){
+                    return redirect()->back()->withErrors(['categoriaSeleccionada' => "Esta categoria no se puede eliminar"]);
+                }
+                $desafios = Desafio::all()->where("id_categoria" , $categoria);
+                foreach ($desafios as $desafio) {
+                    $idVarios = Categoria::where("nombre" , "Varios")->first();
+                    $desafio->id_categoria = $idVarios->id;
+                    $desafio->save();
+                }
+
                 $categoriaEliminar->delete();
             }
         }

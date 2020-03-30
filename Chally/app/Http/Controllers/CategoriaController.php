@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Categoria;
 use App\Http\Requests\CategoriasRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use App\Desafio;
 
 class CategoriaController extends Controller
 {
@@ -28,7 +30,7 @@ class CategoriaController extends Controller
         $categorias = Categoria::get()->toTree();
 
         // $categorias = Categoria::latest()->get();
-        return view('crear-categorias' , compact('categorias'));
+        return view('crear-categorias-copy' , compact('categorias'));
     }
 
     /**
@@ -39,16 +41,52 @@ class CategoriaController extends Controller
      */
     public function store(CategoriasRequest $request)
     {
-        $categoria = Categoria::create([
-            'nombre' => $request->nuevaCategoria
-        ]);
 
-        if($request->categoriaPadre && $request->categoriaPadre !== 'none'){
-            $categoriaPadre = Categoria::find($request->categoriaPadre);
-            $categoriaPadre->appendNode($categoria);
+        if($request->submit === "agregar"){
+            if(isset($request->categoriaSeleccionada)){
+                if(count($request->categoriaSeleccionada) > 1){
+                    return redirect()->back()->withErrors(['categoriaSeleccionada' => 'No se pueden seleccionar mas de una categoria para agregar']);
+                }else{
+                    $padres = Categoria::ancestorsOf($request->categoriaSeleccionada);
+                    if(count($padres) >= 1){
+                        return redirect()->back()->withErrors(['categoriaSeleccionada' => "No se pueden agregar mas subcategorias (max = 1)"]);
+                    }
+                }
+                if($request->nuevaCategoria == ""){
+                    return redirect()->back()->withErrors(['nuevaCategoria' => "Nombre no se puede encontrar vacio"]);
+                }
+
+                $categoria = new Categoria([
+                    'nombre' => $request->nuevaCategoria
+                ]);
+                $categoriaPadre = Categoria::find($request->categoriaSeleccionada[0]);
+                $categoria->appendToNode($categoriaPadre)->save();
+            }else{
+                //Ninguna categoria fue seleccionada por ende se agrega la categoria como raiz
+                if($request->nuevaCategoria == ""){
+                    return redirect()->back()->withErrors(['nuevaCategoria' => "Nombre no se puede encontrar vacio"]);
+                }
+
+                $categoria = Categoria::create([
+                    'nombre' => $request->nuevaCategoria
+                ]);
+            }
+        }else{
+            foreach ($request->categoriaSeleccionada as $categoria) {
+                $categoriaEliminar = Categoria::find($categoria);
+                if($categoriaEliminar->nombre == 'Varios'){
+                    return redirect()->back()->withErrors(['categoriaSeleccionada' => "Esta categoria no se puede eliminar"]);
+                }
+                $desafios = Desafio::all()->where("id_categoria" , $categoria);
+                foreach ($desafios as $desafio) {
+                    $idVarios = Categoria::where("nombre" , "Varios")->first();
+                    $desafio->id_categoria = $idVarios->id;
+                    $desafio->save();
+                }
+
+                $categoriaEliminar->delete();
+            }
         }
-
-
         return redirect()->back();
     }
 

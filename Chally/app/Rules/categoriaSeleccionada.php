@@ -2,10 +2,9 @@
 
 namespace App\Rules;
 
-use App\Categoria;
 use Illuminate\Contracts\Validation\Rule;
 
-class soloUnHijo implements Rule
+class categoriaSeleccionada implements Rule
 {
     /**
      * Create a new rule instance.
@@ -26,7 +25,7 @@ class soloUnHijo implements Rule
      */
     public function passes($attribute, $value)
     {
-        return count(Categoria::ancestorsOf($value)) < 1;
+        return count(isset($attribute) >= 1);
     }
 
     /**
@@ -36,6 +35,6 @@ class soloUnHijo implements Rule
      */
     public function message()
     {
-        return 'No se puede generar mas subcategorias ya alcanzo el maximo de 1';
+        return 'Debe haber al menos un campo seleccionado';
     }
 }

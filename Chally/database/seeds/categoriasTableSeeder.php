@@ -12,25 +12,33 @@ class categoriasTableSeeder extends Seeder
      */
     public function run()
     {
+
         DB::table('categorias')->insert([
-            'nombre' => "Diseño e Ilustración",
-            'imagen' => "img-diseno.jpg",
+            'nombre' => "Varios",
+            'imagen' => "",
             "_lft" => 1,
             '_rgt' => 2
         ]);
 
         DB::table('categorias')->insert([
+            'nombre' => "Diseño e Ilustración",
+            'imagen' => "img-diseno.jpg",
+            "_lft" => 3,
+            '_rgt' => 4
+        ]);
+
+        DB::table('categorias')->insert([
             'nombre' => "Fotografía",
             'imagen' => "img-diseno-ilustracion.jpg",
-            '_lft' => 3,
-            '_rgt' => 4
+            '_lft' => 5,
+            '_rgt' => 6
         ]);
 
         DB::table('categorias')->insert([
             'nombre' => "Programación y Lógica",
             'imagen' => "img-programacion.jpg",
-            '_lft' => 5,
-            '_rgt' => 6
+            '_lft' => 6,
+            '_rgt' => 7
         ]);
     }
 }

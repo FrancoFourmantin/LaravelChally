@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\categoriaSeleccionada;
+use App\Rules\nestLimite;
 use App\Rules\soloUnHijo;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -25,8 +27,16 @@ class CategoriasRequest extends FormRequest
     public function rules()
     {
         return [
-            'nuevaCategoria' => 'required|unique:categorias,nombre',
-            'categoriaPadre' => [new soloUnHijo]
+            'nuevaCategoria' => 'unique:categorias,nombre'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'unique' => "El campo categoria ya se encuentra repetido",
+            'required' => "Debe al menos seleccionar una categoria "
+        ];
+    }
+
 }

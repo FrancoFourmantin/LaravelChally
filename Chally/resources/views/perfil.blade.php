@@ -407,15 +407,21 @@
 
                                               <div class="row">
                                                 
-                                                @foreach($amigos as $amigo)       
-                                                <div class="col-4">
-                                                  <div class=" text-center  p-1 m-1">
-                                                  <a href="/usuario/{{$amigo->username}}" class="text-decoration-none "><img class=" rounded-circle"
-                                                  src="{{asset("avatars/$amigo->avatar")}}" alt="meme" max-width="50px" height="50px"></a>
-                                                      
+                                                @forelse($amigos as $amigo)       
+                                                <div class="col-sm-4 p-3">
+                                                  <div class="text-center  p-1 m-1">
+                                                    <p><a href="/usuario/{{$amigo->username}}" class="text-decoration-none "><img class=" rounded-circle"
+                                                    src="{{asset("avatars/$amigo->avatar")}}" alt="meme" max-width="50px" height="50px"></a></p>
+                                                      <p><a href="/usuario/{{$amigo->username}}" class="text-decoration-none">
+                                                        {{$amigo->username}}
+                                                      </a><p>
                                                     </div>
                                                   </div>
-                                                @endforeach
+                                                @empty
+                                                <div class="alert alert-success" role="alert">
+                                                  Este usuario todavia no tiene amigos!
+                                                </div>
+                                                @endforelse
                                               </div>
 
 

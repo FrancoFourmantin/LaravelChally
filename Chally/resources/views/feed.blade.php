@@ -5,6 +5,8 @@
 @section('main')
 <?php
 use Carbon\Carbon;
+use App\Categoria;
+
 ?>
 
 
@@ -80,8 +82,22 @@ use Carbon\Carbon;
                             @endif
 
                         @else
-                            <a class="" href="/feed/categoria-{{$categoria->id}}">{{$categoria->nombre}}</a>
-                            <br>
+                            @if($categoria->parent_id == NULL)
+                                <a class="font-weight-bold" href="/feed/categoria-{{$categoria->id}}">{{$categoria->nombre}}</a>
+                                <br>
+                                
+                                <?php $pepito = Categoria::getChilds($categoria->id);  
+                                ?>
+                                @foreach($pepito as $nombre)
+                                {{$nombre}} </br>
+                                @endforeach
+                                
+                                
+                                
+
+                                <br>
+                            @endif
+
                         @endif
 
                         

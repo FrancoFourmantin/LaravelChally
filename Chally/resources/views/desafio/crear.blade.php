@@ -40,31 +40,30 @@
                                 <div class="form-group mt-4">
                                     <label for="categoria" class="font-weight-bold">Categoría</label>
                                     <select class="form-control @error ('categoria') is-invalid @enderror" name="id_categoria" id="categoria">
-                                         <option value="0" {{ old('id_categoria') == "0" ? "selected" : ""}}>Seleccionar categoria</option>
-                                        <option value="1" {{ old('id_categoria') == "1" ? "selected" : ""}}>Diseño e Ilustración</option>
-                                        <option value="2" {{ old('id_categoria') == "2" ? "selected" : ""}}>Fotografia</option>   
-                                        <option value="3" {{ old('id_categoria') == "3" ? "selected" : ""}}>Programacion y Logica</option>
+                                        
+                                        @foreach($categorias as $categoria)
+                                            <option value="{{$categoria->id}}" {{ old('id_categoria') == "0" ? "selected" : ""}}>{{$categoria->nombre}}</option>
+                                        @endforeach
+
+
                                     </select>
                                     <small class="d-none invalid-feedback">¡Debés seleccionar una categoría válida!</small>
 
                                     <??>
                             </div>
                             
-                                <small class="text-danger"> @error ('id_categoria') {{$message}} @enderror </small>
+                                <small class="text-danger"> @error ('id_subcategoria') {{$message}} @enderror </small>
 
                             <div class="form-group mt-4">
                                     <label for="subcategoria" class="font-weight-bold">Subcategoría</label>
                                     <select class="form-control" name="id_subcategoria" id="subcategoria">
-                                        <option value="0">Seleccionar subcategoria</option>
-                                        <option value="1">Subcategoría de Diseño</option>
-                                        <option value="2">Subcategoría de Fotografía</option>   
-                                        <option value="3">Subcategoría de Programación</option>
+ 
                                     </select>
                                     <small class="d-none invalid-feedback">¡Debés seleccionar una subcategoría válida!</small>
 
                                     <??>
                             </div>
-                                <small class="text-danger"> @error ('id_categoria') {{$message}} @enderror </small>
+                                <small class="text-danger"> @error ('id_subcategoria') {{$message}} @enderror </small>
 
 
                                 <div class="custom-file form-group my-3">

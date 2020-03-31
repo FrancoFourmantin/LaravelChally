@@ -18,6 +18,7 @@ class desafiosTableSeeder extends Seeder
             'nombre' => "Sacá una foto con onda Vaporwave en Buenos Aires",
             'imagen' => "portada-desafio1.jpg",
             'id_categoria' => 2,
+            'id_subcategoria' => 6,
             'id_autor' => 2,
             'descripcion' => 'Sacá una foto con tu celu o cámara réflex de un punto de la Ciudad que tenga una onda Vaporwave/Aesthetics. </br></br>
 
@@ -34,6 +35,7 @@ class desafiosTableSeeder extends Seeder
             'nombre' => "Crea un póster alternativo para la película Joker",
             'imagen' => "portada-desafio2.jpg",
             'id_categoria' => 1,
+            'id_subcategoria' => 4,
             'id_autor' => 1,
             'descripcion' => 'Se invita a artistas, diseñadores e ilustradores  a crear material gráfico único para Joker inspirado en las últimas imágenes y avances de la película. ¡También se alienta a los artistas a grabar y enviar videos de time-lapse de su trabajo para que los fans puedan ver cómo el arte cobra vida! </br></br>
 

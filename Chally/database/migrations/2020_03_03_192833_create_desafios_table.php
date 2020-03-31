@@ -20,6 +20,7 @@ class CreateDesafiosTable extends Migration
             $table->integer('dificultad');
             $table->unsignedbigInteger('id_autor');
             $table->unsignedbigInteger('id_categoria');
+            $table->unsignedbigInteger('id_subcategoria')->nullable();
             $table->integer('id_respuesta_ganadora')->nullable();
             $table->string('descripcion',1000);
             $table->string('imagen');

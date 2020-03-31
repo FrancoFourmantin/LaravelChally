@@ -54,7 +54,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/bookmarks/agregar/' , 'BookmarkController@store');
 
 
-
+    Route::get('categoriasApi',function(){
+        $listadoCategorias= \App\Categoria::all();
+        return $listadoCategorias;
+    });
 
     /* Rutas de Respuestas */
 

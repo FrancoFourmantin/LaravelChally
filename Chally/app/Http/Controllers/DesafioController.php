@@ -42,9 +42,10 @@ class DesafioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('desafio.crear');
-        //
+    {   
+        $categorias = Categoria::where('parent_id','=',NULL)->get();
+        $vac = compact('categorias');
+        return view('desafio.crear',$vac); 
     }
 
     /**
@@ -72,6 +73,7 @@ class DesafioController extends Controller
             'nombre' => 'required|',
             'imagen' => 'required|file|image|max:1024',
             'id_categoria' => 'required|numeric|not_in:0',
+            'id_subcategoria' => 'required|numeric|not_in:0',
             'descripcion' => 'required|string|min:30',
             'requisitos' => 'required|string|min:5',
             'dificultad' => 'required|numeric|not_in:0',
@@ -88,6 +90,7 @@ class DesafioController extends Controller
         $request->file('imagen')->move(public_path('desafios') , $nombreImagenDesafio);
         $nuevoDesafio->imagen = $nombreImagenDesafio;
         $nuevoDesafio->id_categoria = $request->id_categoria;
+        $nuevoDesafio->id_subcategoria = $request->id_subcategoria;
         $nuevoDesafio->descripcion = $request->descripcion;
         $nuevoDesafio->requisitos = $request->requisitos;
         $nuevoDesafio->dificultad = $request->dificultad;
@@ -124,7 +127,8 @@ class DesafioController extends Controller
     public function edit($id)
     {
         $desafio=Desafio::find($id);
-        $vac=compact("desafio");
+        $categorias=Categoria::all();
+        $vac=compact("desafio","categorias");
         return view("desafio.editar",$vac);
     }
 
@@ -153,10 +157,10 @@ class DesafioController extends Controller
             'nombre' => 'required|',
             'imagen' => 'file|image|max:1024',
             'id_categoria' => 'required|numeric|not_in:0',
+            'id_subcategoria' => 'required|numeric|not_in:0',
             'descripcion' => 'required|string|min:10',
             'requisitos' => 'required|string|min:10',
             'dificultad' => 'required|numeric',
-            'fecha_limite' => 'required|numeric',
         ];
 
         $request->validate($reglas,$mensajes);
@@ -175,10 +179,10 @@ class DesafioController extends Controller
 
 
         $nuevoDesafio->id_categoria = $request->id_categoria;
+        $nuevoDesafio->id_subcategoria = $request->id_subcategoria;
         $nuevoDesafio->descripcion = $request->descripcion;
         $nuevoDesafio->requisitos = $request->requisitos;
         $nuevoDesafio->dificultad = $request->dificultad;
-        $nuevoDesafio->fecha_limite = Carbon::now()->add($request->fecha_limite,'day')->format('Y-m-d');
 
         $nuevoDesafio->save();
         return redirect('/desafio/ver/' . $nuevoDesafio->id)->with("mensaje","¡Editaste el desafío satisfactoriamente!");

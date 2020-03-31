@@ -18,4 +18,12 @@ class Categoria extends Model
     protected $fillable = [
         'nombre'
     ];
+
+
+
+
+    static function getChilds($id){
+        $categoriasChild = Categoria::where('parent_id',"=",$id)->pluck('nombre','id');
+        return $categoriasChild;
+    }
 }

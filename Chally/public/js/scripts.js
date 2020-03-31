@@ -550,7 +550,168 @@ function validarModificacionDePerfil(){
             campoPassword.nextElementSibling.classList.remove("is-invalid");                  
         } 
     })
+}
+
+
+function verificarRegistro(){
+    let form = document.querySelector("form");
+    let campos = form.elements;
+    let submit = document.querySelector("button[type=submit]");
+    
+    
+    function crearError(campo , texto){
+        //Utilizamos la funciones de booststrap para poner feo el campo
+        campo.classList.add("is-invalid");
+        //Creamos el campo small y se lo asignamos al lado del elemento en cuestion
+        let campoError = document.createElement("small");
+        campoError.classList.add("text-danger");
+        campoError.setAttribute("name" , campo.name);
+        campoError.innerText = texto;
+        
+        //Si ya existe el campo small no deberiamos volver a crearlo asi que le metemos su validacion
+        if(!document.querySelector(`small[name=${campo.name}]`)){
+            campo.insertAdjacentElement("afterend" , campoError);
+        }
+    }
+    
+    function removerError(campo){
+        //Removemos las funciones 
+        campo.classList.remove("is-invalid");
+        campo.classList.add("is-valid");
+        //Removemos el campo small
+        campo.nextElementSibling.remove();
+    }
+    
+
+    function validarMail (email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+    }
+    
+    
+    //Campo nombre
+    campos[1].addEventListener("change" , function(e){
+        if(this.value == "" || this.value.length < 2){
+            crearError(e.currentTarget, "Este campo debe contener al menos 2 caracteres");
+        }else{
+            removerError(e.currentTarget);
+        }
+    });
+    
+    //Campo apellido
+    campos[2].addEventListener("change" , function(e){
+        if(this.value == "" || this.value.length < 2){
+            crearError(e.currentTarget, "Este campo debe contener al menos 2 caracteres");
+        }else{
+            removerError(e.currentTarget);
+        }
+    });
+    
+    //Campo usuario
+    campos[3].addEventListener("change" , function(e){
+        if(this.value == ""){
+            crearError(e.currentTarget , "Este campo no se puede encontrar vacio");
+        }else{
+            removerError(e.currentTarget);
+        }
+    });
+    
+    //Campo email
+    campos[4].addEventListener("change" , function(e){
+        if(!validarMail(this.value)){
+            crearError(e.currentTarget , "Este campo debe ser un mail valido");
+        }else{
+            removerError(e.currentTarget);
+        }
+    });
+
+    //Campo confirmacion de email
+    campos[5].addEventListener("change" , function(e){
+        let email = document.querySelector("input[name=email]").value;
+        if(email != this.value){
+            crearError(e.currentTarget , "El campo debe coincidir");
+        }else{
+            removerError(e.currentTarget);
+        }
+    })
+
+    //Campo contraseña
+    campos[6].addEventListener("change" , function(e){
+        if(this.value.length < 8 || this.value == ""){
+            crearError(e.currentTarget , "Este campo no puede estar vacio y debe tener mas de 8 caracteres");
+        }else{
+            removerError(e.currentTarget);
+        }
+    })
+
+    //Campo confirmar contraseña
+    campos[7].addEventListener("change" , function(e){
+        let password = document.querySelector("input[name=password]").value;
+        if(password != this.value){
+            crearError(e.currentTarget , "El campo debe coincidir");
+        }else{
+            removerError(e.currentTarget);
+        }
+    })
+
+
+    campos[8].addEventListener("change" , function(e){
+        if(this.value == ""){
+            crearError(e.currentTarget , "El campo no puede estar vacio");
+        }else{
+            removerError(e.currentTarget);
+        }
+    })
+
+    campos[9].addEventListener("change" , function(e){
+        if(this.value == "0"){
+            crearError(e.currentTarget , "El campo no puede estar vacio");
+        }else{
+            removerError(e.currentTarget);
+        }
+    })
+
+    campos[10].addEventListener("change" , function(e){
+        if(!this.checked){
+            crearError(e.currentTarget , "El campo debe estar seleccionado");
+        }else{
+            removerError(e.currentTarget);
+        }
+    })
 
 
 
+    form.addEventListener('submit' , function(e){
+    let mensajeFecha = "";
+    let mensajeSexo = "";
+    let mensajeTyc = "";
+
+        //Campo fecha nacimiento
+        if(campos[8].value == ""){
+            mensajeFecha = 'El campo no puede estar vacio';
+        }
+
+        //Campo sexo
+        if(campos[9].value == "0"){
+            mensajeSexo  = 'El campo no puede estar vacio';
+        }
+
+        if(!campos[10].checked){
+            mensajeTyc ='El campo debe estar aceptado';
+        }
+
+        if(mensajeFecha != "" || mensajeSexo != "" || mensajeTyc != ""){
+            e.preventDefault()
+            if(mensajeFecha != ""){
+                crearError(campos[8], mensajeFecha);
+            }
+
+            if(mensajeSexo != ""){
+                crearError(campos[9] , mensajeSexo);
+            }
+
+            if(mensajeTyc != ""){
+                crearError(campos[10] , mensajeTyc);
+            }
+        }
+    })
 }

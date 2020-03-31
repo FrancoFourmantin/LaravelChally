@@ -19,7 +19,7 @@ class AddColumnsToUsers extends Migration
             $table->string('apellido' , 100);
             $table->string('username' , 100)->charset('utf8');
             $table->string('avatar' , 100);
-            $table->string('cover' , 100);
+            $table->string('cover' , 100)->nullable();
             $table->string('bio',999)->nullable();
             $table->string('link_linkedin')->nullable();
             $table->string('link_behance')->nullable();

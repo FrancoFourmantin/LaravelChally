@@ -163,10 +163,10 @@ class UsuarioController extends Controller
         } else {
             $coverName = Auth::user()->cover;
         }
-
-        if($request->input('password'){
-            $usuario->password = password_hash($request->input('password'), PASSWORD_DEFAULT)
-        })
+        
+        if($request->input('password')){
+            $usuario->password = password_hash($request->input('password'), PASSWORD_DEFAULT);
+        }
 
 
         $usuario->nombre = $request->input('nombre');

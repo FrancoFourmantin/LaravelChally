@@ -71,27 +71,76 @@
                 
                 <div class="col-6">
                     <div class="container">
-                        <div class="contenedor-form d-flex flex-column">
-                            <div>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                      <span class="input-group-text">Nombre</span>
-                                    </div>
-                                    <input type="text" class="form-control" placeholder="Nueva categoria" name="nuevaCategoria">
-                                    <button name="submit" type="submit" value="agregar" class="ml-3 btn btn-success">Agregar categoria</button>
-                                  </div>
-                            </div>
-                            <div>
-                                <div class="d-flex align-items-center">
-                                    <label for="submit">Eliminar las categorias seleccionadas</label>
-                                    <a class="btn btn-secondary d-inline p-2" href="#" role="button"data-toggle="modal" data-target="#eliminar-categoria">Eliminar</a>
-                                    <button name="submit" type="submit" value="eliminar" class="ml-auto btn btn-danger">Eliminar categorias</button>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="intrucciones-agregar">
+                                    <h4>Consideraciones para administrar las categorias</h4>
+
+                                    {{-- Vamos a mostrar los errores antes --}}
+                                    <small class="text-danger">@error('nuevaCategoria') {{$message}} @enderror</small>
+                                    <small class="text-danger">@error('categoriaSeleccionada') {{$message}} @enderror</small>
+
+                                    {{-- Componente colapsable de bootstrap --}}
+                                    <div class="accordion" id="accordionExample">
+                                        <div class="card">
+                                          <div class="card-header bg-success" id="headingOne">
+                                            <h2 class="mb-0">
+                                              <button class="btn btn-link text-white" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                Agregando Categorias / Subcategorias
+                                              </button>
+                                            </h2>
+                                          </div>
+                                      
+                                          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                            <div class="card-body">
+                                                <ul class="ml-5">
+                                                    <li>Solo se podra tener una categoria tanto padre como hija con el mismo nombre</li>
+                                                    <li>A la hora de agregar una <strong>subcategoria</strong> debera tener seleccionada solo <strong>una</strong> categoria Padre</li>
+                                                    <li>Para agregar una nueva categoria <strong>Padre</strong> debera no tener seleccionada ninguna categoria ni subcategoria</li>
+                                                </ul>
+
+                                                <div>
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                          <span class="input-group-text">Nombre</span>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="Nueva categoria" name="nuevaCategoria">
+                                                        <button name="submit" type="submit" value="agregar" class="ml-3 btn btn-success">Agregar categoria</button>
+                                                      </div>
+                                                </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="card">
+                                          <div class="card-header bg-danger" id="headingTwo">
+                                            <h2 class="mb-0">
+                                              <button class="btn btn-link collapsed text-white" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                Eliminando Categorias / Subcategorias
+                                              </button>
+                                            </h2>
+                                          </div>
+                                          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                            <div class="card-body">
+                                                <ul class="ml-5">
+                                                    <li>Podra seleccionar todas las categorias y subcategorias que necesite</li>
+                                                    <li class="text-danger">Al eliminar una categoria <strong>Padre</strong> todos los desafios involucrados a esa categoria pasaran a "Varios"</li>
+                                                    <li>La categoria <strong>Varios</strong> no puede ser eliminada</li>
+                                                </ul>
+
+                                                <button name="submit" type="submit" value="eliminar" class="mr- btn btn-danger">Eliminar categorias</button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div> 
+                                      {{-- Fin componente colapsable de bootstrap --}}
+
+                                      
+
                                 </div>
-                                
                             </div>
+
                         </div>
-                        <small class="text-danger">@error('nuevaCategoria') {{$message}} @enderror</small>
-                        <small class="text-danger">@error('categoriaSeleccionada') {{$message}} @enderror</small>
+
                     </div>
                 </div>
 

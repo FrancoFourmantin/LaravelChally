@@ -24,37 +24,22 @@ class categoriasTableSeeder extends Seeder
             'nombre' => "Diseño",
             'imagen' => "img-diseno.jpg",
             "_lft" => 3,
-            '_rgt' => 4
-        ]);
-
-        DB::table('categorias')->insert([
-            'nombre' => "Programación y Lógica",
-            'imagen' => "img-programacion.jpg",
-            '_lft' => 5,
-            '_rgt' => 6
-        ]);
-
-
-        DB::table('categorias')->insert([
-            'nombre' => "Fotografía",
-            'imagen' => "img-diseno-ilustracion.jpg",
-            '_lft' => 7,
-            '_rgt' => 8
+            '_rgt' => 10
         ]);
 
         DB::table('categorias')->insert([
             'nombre' => "Diseño Web",
             'imagen' => "img-diseno.jpg",
-            "_lft" => 9,
-            '_rgt' => 10,
+            "_lft" => 4,
+            '_rgt' => 5,
             'parent_id' => 2
         ]);
 
         DB::table('categorias')->insert([
             'nombre' => "Diseño Gráfico",
             'imagen' => "img-diseno.jpg",
-            "_lft" => 11,
-            '_rgt' => 12,
+            "_lft" => 6,
+            '_rgt' => 7,
             'parent_id' => 2
         ]);
 
@@ -62,10 +47,27 @@ class categoriasTableSeeder extends Seeder
         DB::table('categorias')->insert([
             'nombre' => "Ilustración",
             'imagen' => "img-diseno.jpg",
-            "_lft" => 13,
-            '_rgt' => 14,
+            "_lft" => 8,
+            '_rgt' => 9,
             'parent_id' => 2
         ]);
+
+        DB::table('categorias')->insert([
+            'nombre' => "Programación y Lógica",
+            'imagen' => "img-programacion.jpg",
+            '_lft' => 11,
+            '_rgt' => 12
+        ]);
+
+
+        DB::table('categorias')->insert([
+            'nombre' => "Fotografía",
+            'imagen' => "img-diseno-ilustracion.jpg",
+            '_lft' => 13,
+            '_rgt' => 14
+        ]);
+
+
 
 
 

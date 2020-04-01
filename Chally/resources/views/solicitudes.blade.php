@@ -8,7 +8,8 @@
   <!--Seccion Amigos -->
  
   <div class="contenedor-amigos container">
-    @foreach($usuarios as $usuario)
+      <div class="row">
+        @foreach($usuarios as $usuario)
         <div class="tarjeta-amigo">
             <div class="contenedor-foto-portada">
                 <img class="foto-portada" src="img/foto-ventana-barco.jpg" alt="">
@@ -25,12 +26,16 @@
             </div>
         </div>  
     @endforeach
+      </div>
+
     </div>
 
     
     @else
-       <div class="col-12 text-center bg-success text-white rounded py-3 mb-2 mt-2">
-        Parece que no tienes solicitudes de amistad pendientes :):)
+       <div class="col-12 vh-100">
+           <div class=" text-center bg-success text-white rounded py-3 mb-2 mt-2">
+               Parece que no tienes solicitudes de amistad pendientes :):)
+           </div>
        </div>
     
 @endif

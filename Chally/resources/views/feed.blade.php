@@ -156,6 +156,12 @@ use App\Categoria;
 
                                 <div class="ml-auto">
                                     <div class="ml-auto">
+                                        {{-- Si el usuario es administrador y no es el dueño del desafio puede borrarlo --}}
+                                        @if (Auth::user()->role == "admin" && $desafio->id_autor != Auth::user()->id_usuario )
+                                        <a type="button" data-toggle="modal" data-target="#borrar-{{$desafio->id}}"><i
+                                            class="fas fa-trash-alt"></i></a>
+                                        @endif
+
                                         @if ($desafio->id_autor == Auth::user()->id_usuario)
                                         <a class="" href="/desafio/editar/{{$desafio->id}}"><i
                                                 class="fas fa-pen"></i></a>
@@ -163,6 +169,8 @@ use App\Categoria;
 
                                         <a type="button" data-toggle="modal" data-target="#borrar-{{$desafio->id}}"><i
                                                 class="fas fa-trash-alt"></i></a>
+
+
 
 
                                         <!-- Modal -->

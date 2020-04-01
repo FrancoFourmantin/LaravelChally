@@ -78,6 +78,10 @@
                         <a class="dropdown-item" href="/editar-perfil"
                             onclick="event.preventDefault();document.getElementById('edit-form').submit();"><i
                                 class="fas fa-pen"></i> Modificar perfil</a>
+                        @if (Auth::user()->role == 'admin')
+                        <a href="/categorias" class="dropdown-item">
+                            <i class="fas fa-pen"></i> Modifcar categorias</a>
+                        @endif
                         <form id="edit-form" action="/editar-perfil" method="get" style="display:none">
                             
                             @csrf

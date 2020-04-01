@@ -210,6 +210,5 @@ class DesafioController extends Controller
             return redirect ('feed')->with("mensaje","¡Tu desafío " . $desafioBorrar->nombre . " fue eliminado satisfactoriamente");
         }
 
-
     }
 }

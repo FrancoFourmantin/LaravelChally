@@ -24,7 +24,7 @@
                     <div class="form-group">
                         <label for="inputName">Tu nombre</label>
                         <input type="text" class="form-control" name="nombre" required
-                        value="@if($nameHero ?? '') {{$nameHero ?? ''}} @else {{ old('nombre') }} @endif">
+                        value="@if($nameHero??''){{$nameHero??''}}@else{{old('nombre')}}@endif">
                         <small class="text-danger">@error('nombre') {{$message}} @enderror</small>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                     <div class="form-group">
                         <label for="inputName">Tu Apellido</label>
                         <input type="text" class="form-control" name="apellido"
-                        value="@if($lastnameHero ?? '') {{$lastnameHero ?? ''}} @else {{ old('apellido') }} @endif"
+                        value="@if($lastnameHero??''){{$lastnameHero??''}}@else{{old('apellido')}}@endif"
                         required>
                         <small class="text-danger">@error('apellido') {{$message}} @enderror</small>
                         
@@ -44,7 +44,7 @@
                     <div class="form-group">
                         <label for="inputName">Nombre de usuario</label>
                         <input type="text" class="form-control" name="username" value="{{old('username')}}"
-                        required>
+                        >
                         <small class="text-danger">@error('username') {{$message}} @enderror</small>
                         
                     </div>

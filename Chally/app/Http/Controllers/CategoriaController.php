@@ -70,24 +70,31 @@ class CategoriaController extends Controller
                 $categoria = Categoria::create([
                     'nombre' => $request->nuevaCategoria
                 ]);
+
+                return redirect()->back();
             }
         }else{
-            foreach ($request->categoriaSeleccionada as $categoria) {
-                $categoriaEliminar = Categoria::find($categoria);
-                if($categoriaEliminar->nombre == 'Varios'){
-                    return redirect()->back()->withErrors(['categoriaSeleccionada' => "Esta categoria no se puede eliminar"]);
+            if($request->categoriaSeleccionada){
+                foreach ($request->categoriaSeleccionada as $categoria) {
+                    $categoriaEliminar = Categoria::find($categoria);
+                    if($categoriaEliminar->nombre == 'Varios'){
+                        return redirect()->back()->withErrors(['categoriaSeleccionada' => "Esta categoria no se puede eliminar"]);
+                    }
+                    $desafios = Desafio::all()->where("id_categoria" , $categoria);
+                    foreach ($desafios as $desafio) {
+                        $idVarios = Categoria::where("nombre" , "Varios")->first();
+                        $desafio->id_categoria = $idVarios->id;
+                        $desafio->save();
+                    }
+    
+                    $categoriaEliminar->delete();
                 }
-                $desafios = Desafio::all()->where("id_categoria" , $categoria);
-                foreach ($desafios as $desafio) {
-                    $idVarios = Categoria::where("nombre" , "Varios")->first();
-                    $desafio->id_categoria = $idVarios->id;
-                    $desafio->save();
-                }
-
-                $categoriaEliminar->delete();
+                return redirect()->back();
+            }else{
+                return redirect()->back()->withErrors(['categoriaSeleccionada' => 'Debe almenos seleccionar una categoria']);
             }
+
         }
-        return redirect()->back();
     }
 
     /**

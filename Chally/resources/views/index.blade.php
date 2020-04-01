@@ -91,8 +91,9 @@
                                                         <div class="cont shadow">
                                                             <img class="img-fluid" src="img/{{$categorias[$i % count($categorias)]->imagen}}" alt="Categoria de {{$categorias[$i % count($categorias)]->nombre}} - Chally">
                                                             <h3 class="pt-3 font-weight-bold">{{$categorias[$i % count($categorias)]->nombre}}</h3>
-                                                            <p class="text-secondary">4258 Desafíos Abiertos</p>
-                                                            <a class="btn btn-secondary mb-4" href="#">Ver Desafíos Destacados</a>                                                    
+                                                            <p class="text-secondary">17 Desafíos Abiertos</p>
+                                                            <br>
+                                                            <!--<a class="btn btn-secondary mb-4" href="#">Ver Desafíos Destacados</a>        -->                                            
                                                         </div>
                                                     </div>
                                                 @endfor

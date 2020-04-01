@@ -16,7 +16,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $categorias = Categoria::all();
+        $categorias = Categoria::where('nombre','!=','Varios')->get();
         $usuarios = Usuario::all();
         $desafios = Desafio::all();
         return view('index', ['categorias' => $categorias, 'usuarios' => $usuarios,'desafios' => $desafios]);

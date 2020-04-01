@@ -79,7 +79,7 @@ class CreacionDeUsuariosDePrueba extends Seeder
             'sexo' => 'm',
             'apellido' => 'Andrada',
             'username' => 'JuanCruz',
-            'avatar' => 'foto-matias.jpg',
+            'avatar' => 'foto-juan-cruz.jpg',
             'cover' => 'cover.jpg',
             'bio' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit consectetur corporis, laudantium debitis ex suscipit expedita officia provident distinctio asperiores. Quidem nesciunt doloribus sed omnis itaque atque, ducimus beatae iste!',
         ]);

@@ -27,8 +27,7 @@
 
                     <a href={{ "../../usuario/" . $desafio->getUsuario->username}}> <img class="rounded-circle" style="max-width:70px" src="{{asset('avatars/' . $desafio->getUsuario->avatar . '')}}" alt="Imagen de usuario"></a>
                    
-                    <p class="font-weight-bold mb-0"> {{$desafio->getUsuario->nombre}}  {{$desafio->getUsuario->apellido}}</p>
-                    <p class="mb-0">44 Puntos</p>
+                    <p class="font-weight-bold mt-3 mb-0"> {{$desafio->getUsuario->nombre}}  {{$desafio->getUsuario->apellido}}</p>
                 </div>
 
                 <div class="card shadow  p-3 mt-1 mb-4">
@@ -155,14 +154,6 @@
 
                             </div>
 
-                            <div class="card-footer d-flex justify-content-around">
-                                <span class="likes"><i class="fas fa-heart"></i>&nbsp;18</span>
-
-                                <span class="comments"><i class="fas fa-comment"></i>&nbsp;13</span>
-
-                                <span class="compartidos"><i class="fas fa-share"></i>&nbsp;26</span>
-                                <span class="guardar"><i class="fas fa-bookmark"></i> </span>
-                            </div>
 
 
 
@@ -205,7 +196,6 @@
                                                     <a href={{ "../../usuario/" . $respuesta->getUsuario->username}}> <img class="rounded-circle mb-2" style="max-width:70px" src="{{asset('avatars/' . $respuesta->getUsuario->avatar . '')}}" alt="Imagen de usuario"></a>
                                                 
                                                     <p class="font-weight-bold mb-0"> {{$respuesta->getUsuario->nombre}}  {{$respuesta->getUsuario->apellido}}</p>
-                                                    <p class="mb-0">44 Puntos</p>
                                                     <br>
                                                     <small>Enviado el {{$respuesta->created_at}}</small>
 

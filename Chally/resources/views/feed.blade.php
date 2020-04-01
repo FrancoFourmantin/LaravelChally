@@ -72,33 +72,27 @@ use App\Categoria;
                     <ul class="categorias-feed mb-0">
                         @foreach ($categorias as $categoria)
                         <li>
-                        @if(Request::is('feed/categoria*'))
-                            @if($categoriaActual->nombre == $categoria->nombre)
-                                <a class="color-verde font-weight-bold" href="/feed/categoria-{{$categoria->id}}">{{$categoria->nombre}}</a>
 
-                            @else
-                                <a class="" href="/feed/categoria-{{$categoria->id}}">{{$categoria->nombre}}</a>
-                                <br>
-                            @endif
-
-                        @else
+                            
                             @if($categoria->parent_id == NULL)
                                 <a class="font-weight-bold" href="/feed/categoria-{{$categoria->id}}">{{$categoria->nombre}}</a>
                                 <br>
                                 
-                                <?php $pepito = Categoria::getChilds($categoria->id);  
+                                <?php $pepito = Categoria::getChilds($categoria->id); 
+
                                 ?>
+
                                 @foreach($pepito as $nombre)
-                                {{$nombre}} </br>
+                                <a class="" href="/feed/categoria-{{$nombre->id}}">{{$nombre->nombre}}</a><br>
+
                                 @endforeach
-                                
-                                
+
+
                                 
 
                                 <br>
                             @endif
 
-                        @endif
 
                         
 

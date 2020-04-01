@@ -23,7 +23,7 @@ class Categoria extends Model
 
 
     static function getChilds($id){
-        $categoriasChild = Categoria::where('parent_id',"=",$id)->pluck('nombre','id');
+        $categoriasChild = Categoria::where('parent_id',"=",$id)->get();
         return $categoriasChild;
     }
 }

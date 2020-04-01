@@ -229,7 +229,7 @@
                                           </div>
                                           
                                           
-                                          <div class="col-12 col-mb-8 col-lg-8 offset-md-2 pl-5 mt-3">
+                                          <div class="col-12 col-mb-8 col-lg-8 offset-lg-2 pl-5 mt-3">
 
                                             <div class="row">
                                               <div class="col-12">
@@ -411,7 +411,7 @@
                                                 <div class="col-sm-4 p-3">
                                                   <div class="text-center  p-1 m-1">
                                                     <p><a href="/usuario/{{$amigo->username}}" class="text-decoration-none "><img class=" rounded-circle"
-                                                    src="{{asset("avatars/$amigo->avatar")}}" alt="meme" max-width="50px" height="50px"></a></p>
+                                                    src="{{asset("avatars/$amigo->avatar")}}" alt="meme" max-width="100px" height="100px"></a></p>
                                                       <p><a href="/usuario/{{$amigo->username}}" class="text-decoration-none">
                                                         {{$amigo->username}}
                                                       </a><p>

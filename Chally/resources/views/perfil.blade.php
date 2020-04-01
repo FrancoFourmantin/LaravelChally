@@ -408,7 +408,7 @@
                                               <div class="row">
                                                 
                                                 @forelse($amigos as $amigo)       
-                                                <div class="col-sm-4 p-3">
+                                                <div class="col-sm-6 col-md-4 col-lg-3 p-3">
                                                   <div class="text-center  p-1 m-1">
                                                     <p><a href="/usuario/{{$amigo->username}}" class="text-decoration-none "><img class=" rounded-circle"
                                                     src="{{asset("avatars/$amigo->avatar")}}" alt="meme" max-width="100px" height="100px"></a></p>

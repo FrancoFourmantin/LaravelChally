@@ -83,7 +83,7 @@
             <!--Seccion Posteos -->
             
             <div class="container-fluid">
-              <div class="row">
+              <div class="row vh-100">
                 <div class="col-2 ml-5 d-none d-mb-flex d-lg-flex aside-perfil">
                   
                   <aside>

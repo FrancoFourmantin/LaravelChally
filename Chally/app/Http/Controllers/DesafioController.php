@@ -8,7 +8,8 @@ use App\Desafio;
 use App\Respuesta;
 use App\Categoria;
 use Carbon\Carbon;
-
+use Carbon\Traits\Timestamp;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class DesafioController extends Controller
 {
@@ -141,6 +142,7 @@ class DesafioController extends Controller
      */
     public function update(Request $request, $id)
     {
+       
         $mensajes = [
             'required' => "Este campo :attribute es obligatorio",
             'min' => "Necesitan haber minimo :min caracteres",
@@ -157,17 +159,20 @@ class DesafioController extends Controller
             'nombre' => 'required|',
             'imagen' => 'file|image|max:1024',
             'id_categoria' => 'required|numeric|not_in:0',
-            'id_subcategoria' => 'required|numeric|not_in:0',
+            'id_subcategoria' => 'numeric|not_in:0',
             'descripcion' => 'required|string|min:10',
-            'requisitos' => 'required|string|min:10',
+            // 'requisitos' => 'string|min:10',
             'dificultad' => 'required|numeric',
         ];
 
         $request->validate($reglas,$mensajes);
-        
+
         
         $nuevoDesafio = Desafio::find($id);
-        $nuevoDesafio->fecha_actualizacion=Carbon::now();
+
+
+        $nuevoDesafio->fecha_actualizacion = Carbon::now();
+
         $nuevoDesafio->nombre = $request->nombre;
 
         if($request->imagen){
@@ -197,11 +202,9 @@ class DesafioController extends Controller
      */
     public function destroy($id)
     {
-
-
         $desafioBorrar = Desafio::find($id);
 
-        if($desafioBorrar->id_autor != Auth::user()->id_usuario){
+        if($desafioBorrar->id_autor != Auth::user()->id_usuario && Auth::user()->role != 'admin'){
             return "Acceso denegado";
         }
         else{

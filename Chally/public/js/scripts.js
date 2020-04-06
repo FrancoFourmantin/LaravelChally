@@ -466,16 +466,35 @@ function validarModificacionDePerfil(){
         
     })
     
-    
+    /*
+    var restrict = function(tb) {
+        tb.value = tb.value.replace(/[^a-zA-Z0-9@]/g, '');
+      };
+      */
+
+    function rewriteURL(campo,regex){
+        campo.value= campo.value.replace(regex,'');
+    }
+
+
+
     
     campoLinkedin.addEventListener('change',function(){
+        rewriteURL(campoLinkedin,/[^a-zA-Z0-9@-]|(linkedin.com\/in\/)|(https:\/\/)|(http:\/\/)|(www)|(com)|(linkedin.com\/in\/)/g);
+    });
+
+    campoBehance.addEventListener('change',function(){
+        rewriteURL(campoBehance,/[^a-zA-Z0-9@-]|(behance.net)|(https:\/\/)|(http:\/\/)|(www)/g);
+    });
+    
+    campoGithub.addEventListener('change',function(){
+        rewriteURL(campoGithub,/[^a-zA-Z0-9@-]|(github.com)|(https:\/\/)|(http:\/\/)|(www)/g);
+    });
+    
+
         
-        if(this.value == "") {
-            this.classList.add("is-valid");
-            this.classList.remove("is-invalid");
-            this.nextElementSibling.classList.add("d-none");
-        }
-        
+
+        /*
         else if(this.value.indexOf("linkedin.com") == -1){
             this.nextElementSibling.classList.remove("d-none");
             this.nextElementSibling.innerText ="El enlace ingresado no es válido";
@@ -488,52 +507,8 @@ function validarModificacionDePerfil(){
             this.classList.remove("is-invalid");
             this.nextElementSibling.classList.add("d-none");
         }
-    })
+        */    
     
-    campoBehance.addEventListener('change',function(){
-        
-        if(this.value == "") {
-            this.classList.add("is-valid");
-            this.classList.remove("is-invalid");
-            this.nextElementSibling.classList.add("d-none");
-        }
-        
-        else if(this.value.indexOf("behance.net") == -1){
-            this.nextElementSibling.classList.remove("d-none");
-            this.nextElementSibling.innerText ="El enlace ingresado no es válido";
-            this.classList.remove("is-valid");
-            this.classList.add("is-invalid");
-        }
-        
-        else{
-            this.classList.add("is-valid");  
-            this.classList.remove("is-invalid");
-            this.nextElementSibling.classList.add("d-none");
-        }
-    })
-    
-    
-    campoGithub.addEventListener('change',function(){
-        
-        if(this.value == "") {
-            this.classList.add("is-valid");
-            this.classList.remove("is-invalid");
-            this.nextElementSibling.classList.add("d-none");
-        }
-        
-        else if(this.value.indexOf("github.com") == -1){
-            this.nextElementSibling.classList.remove("d-none");
-            this.nextElementSibling.innerText ="El enlace ingresado no es válido";
-            this.classList.remove("is-valid");
-            this.classList.add("is-invalid");
-        }
-        
-        else{
-            this.classList.add("is-valid");  
-            this.classList.remove("is-invalid");
-            this.nextElementSibling.classList.add("d-none");
-        }
-    })
     
     
     campoWebsite.addEventListener('change',function(){

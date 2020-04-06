@@ -144,15 +144,15 @@
                         <div class="d-flex flex-row justify-content-around redes">
 
                           @if ($usuario->link_linkedin)
-                          <a href="{{$usuario->link_linkedin}}" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                          <a href="https://linkedin.com/in/{{$usuario->link_linkedin}}" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                           @endif
 
                           @if ($usuario->link_behance)
-                          <a href="{{$usuario->link_behance}}" target="_blank"><i class="fab fa-behance"></i></a>
+                          <a href="https://behance.net/{{$usuario->link_behance}}" target="_blank"><i class="fab fa-behance"></i></a>
                           @endif
 
                           @if ($usuario->link_github)
-                          <a href="{{$usuario->link_github}}" target="_blank"><i class="fab fa-github"></i></a>
+                          <a href="https://github.com/{{$usuario->link_github}}" target="_blank"><i class="fab fa-github"></i></a>
                           @endif
 
                           @if ($usuario->link_website)

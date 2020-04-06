@@ -177,29 +177,49 @@
 
                         <div class="form-group mb-md-4">
                                 <label for="">Tu usuario de LinkedIn</label>
-                                <div class="d-flex flex-row align-items-center">
+                                <div class="input-group d-flex flex-row align-items-center">
                                     <i class="fab fa-linkedin-in mr-3 texto-grande"></i>
-                                    <input type="text" class="form-control is-valid" name="link_linkedin" id="campo-linkedin"  value="{{Auth::user()->link_linkedin}}">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text" id="inputGroupPrepend">linkedin.com/in/</span>
+                                    </div>
+                                    <input type="text" class="form-control is-valid" placeholder="Tu usuario de LinkedIn" name="link_linkedin" id="campo-linkedin"  value="{{Auth::user()->link_linkedin}}">
                                     <small class="invalid-feedback"></small>
                                 </div>
+
+
                         </div>
 
                         <div class="form-group mb-md-4">
+
                                 <label for="">Tu usuario de Behance</label>
-                                <div class="d-flex flex-row align-items-center">
+                                <div class="input-group d-flex flex-row align-items-center">
                                     <i class="fab fa-behance mr-3 texto-grande"></i>
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text" id="inputGroupPrepend">behance.net/</span>
+                                    </div>
                                     <input type="text" class="form-control is-valid" name="link_behance" id="campo-behance" value="{{Auth::user()->link_behance}}">
-                                    <small class="d-none invalid-feedback"></small>
+                                    <small class="invalid-feedback"></small>
                                 </div>
+
+
+
+
+
                         </div>
 
                         <div class="form-group mb-md-4">
                                 <label for="">Tu usuario de GitHub</label>
-                                <div class="d-flex flex-row align-items-center">
+                                <div class="input-group d-flex flex-row align-items-center">
                                     <i class="fab fa-github mr-3 texto-grande"></i>
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text" id="inputGroupPrepend">github.com/</span>
+                                    </div>
                                     <input type="text" class="form-control is-valid" name="link_github" id="campo-github"  value="{{Auth::user()->link_github}}">
                                     <small class="invalid-feedback"></small>
                                 </div>
+
+
+
                         </div>
 
                         <div class="form-group mb-md-4">

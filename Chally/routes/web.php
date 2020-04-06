@@ -80,6 +80,15 @@ Route::view('/faq', 'faq'); //Rua para faq
 Route::get('/index-register', 'Auth\RegisterController@mostrarRegistroConDatos'); //Ruta para enviar al usuariao a regiser despues de llenar el formulario de index
 Route::view('/contacto', 'contacto'); //Ruta para contacto
 
+
+/**
+ * 
+ * Rutas de like
+ */
+
+Route::post('/likes/new' , "likeController@store");
+Route::get('/likes/get/{id_desafio}' , 'likeController@show');
+
 Route::get("/categorias" , "CategoriaController@create")->middleware("role");
 Route::post("/agregarCategoria" , "CategoriaController@store");
 Auth::routes();

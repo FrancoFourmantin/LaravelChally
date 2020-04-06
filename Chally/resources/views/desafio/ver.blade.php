@@ -10,8 +10,7 @@
   <!--Seccion Posteos -->
   
 	<div class="container contenedor-feed mt-3 mb-5">
-            
-        
+
         @if (session()->has('mensaje'))
         <div class="col-12 text-center bg-success text-white rounded py-3 mb-2">
             {{session()->get('mensaje')}}

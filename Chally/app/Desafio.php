@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Usuario;
 use App\Categoria;
 use App\Respuesta;
+use App\Like;
 use Carbon\Carbon;
 
 class Desafio extends Model
@@ -29,5 +30,9 @@ class Desafio extends Model
 
     public function getRespuestas(){
         return $this->hasMany('App\Respuesta','id_desafio','id');
+    }
+
+    public function getLikes(){
+        return $this->hasMany('App\Like' , 'id_desafio' , 'id');
     }
 }

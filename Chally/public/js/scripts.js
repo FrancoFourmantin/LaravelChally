@@ -1,4 +1,36 @@
 
+    function checkEmpty(campo){
+        if (campo.value.trim() == "" || campo.value == "0"){
+            campo.nextElementSibling.innerHTML=`El campo ${campo.getAttribute("inputName")} no puede estar vacío`;
+            return "Error";
+        }
+    }
+
+    function checkLength(campo,numero){
+        if(campo.value.length < numero){
+            campo.nextElementSibling.innerHTML=`El campo ${campo.getAttribute("inputName")} debe tener mínimo ${numero} caracteres`;
+            return "Error";
+        }
+    }
+
+    function checkValid(campo){
+        return campo.classList.contains("is-valid");
+    }
+
+
+    function showError(campo){
+        campo.classList.add("is-invalid");
+        campo.nextElementSibling.classList.remove("d-none");
+    }
+
+    function hideError(campo){
+        campo.classList.add("is-valid");
+        campo.classList.remove("is-invalid");
+        campo.nextElementSibling.classList.add("d-none")
+    }
+
+
+
 function validarCreacionDesafio(){
     let form = document.querySelector("#nuevoDesafio");
     let campos = form.elements;
@@ -6,128 +38,107 @@ function validarCreacionDesafio(){
     let submitButton= document.querySelector("button[type='submit']");
     let errorCount = 0;
     
+    /* Si vuelvo por un post fallido, mostrar la sección 2 */
     for(campito of campos){
         if(campito.classList.contains("is-invalid")){
             step2.classList.remove("opacity-0");
             step2.classList.add("opacity-1");
         }
     }
-    
-    campos[1].addEventListener('change',function(e){
-        if(this.value == "" || this.value.length < 10){
-            this.classList.add("is-invalid");
-            this.classList.remove("is-valid");
-            this.nextElementSibling.classList.remove("d-none")
-            
-        }
-        else{
-            this.classList.add("is-valid");
-            this.classList.remove("is-invalid");
-            this.nextElementSibling.classList.add("d-none")
-            
-        }
-    })
-    
-    campos[2].addEventListener('change',function(e){
-        if(this.value == "0"){
-            this.classList.add("is-invalid");
-            this.classList.remove("is-valid");
-            this.nextElementSibling.classList.remove("d-none")
-            
-        }
-        else{
-            this.classList.add("is-valid");
-            this.classList.remove("is-invalid");
-            this.nextElementSibling.classList.add("d-none")
-            
-            campos[3].innerHTML = `<select class="form-control" name="id_subcategoria" id="subcategoria"> <option value="0">Seleccioná la subcategoría </option> </select>`;
-            fetch('/categoriasApi')
-            .then(function(response){
-                return response.json();
-            })
-            .then(function(data){
-                for(var n of data){
-                    if(campos[2].value == n.parent_id){
-                        campos[3].innerHTML = campos[3].innerHTML + `<option value="${n.id}">${n.nombre}</option>`
-                        
-                    }
+
+    /* Traigo por ajax las subcategorías cuando estamos en edición */
+    window.onload = function(){
+                                
+        fetch('/categoriasApi')
+        .then(function(response){
+            return response.json();
+        })
+        .then(function(data){
+            for(var n of data){
+                if(campos[2].value == n.parent_id){
+                    campos[3].innerHTML = campos[3].innerHTML + `<option value="${n.id}">${n.nombre}</option>`
+                    
                 }
-            })
-            .catch(function(error){
-                "Hubo un error";
-            })
-            
+            }
+        })
+        .catch(function(error){
+            "Hubo un error";
+        })
+        
+        
+    };  
+
+    function ajaxSubCat(){
+        campos[3].innerHTML = `<select class="form-control" name="id_subcategoria" id="subcategoria"> <option value="0">Seleccioná la subcategoría </option> </select>`;
+        fetch('/categoriasApi')
+        .then(function(response){
+            return response.json();
+        })
+        .then(function(data){
+            for(var n of data){
+                if(campos[2].value == n.parent_id){
+                    campos[3].innerHTML = campos[3].innerHTML + `<option value="${n.id}">${n.nombre}</option>`
+                    
+                }
+            }
+        })
+        .catch(function(error){
+            "Hubo un error";
+        })
+    }
+
+    /* TITULO DEL DESAFÍO */
+    campos["inputName"].addEventListener('change',function(e){
+
+        if (checkEmpty(this)){
+            showError(this);
+        }
+
+        else if(checkLength(this,10)){
+            showError(this);
+        }
+
+        else{
+            hideError(this);
         }
     })
     
-    
-    campos[3].addEventListener('change',function(e){
-        if(this.value == "0"){
-            this.classList.add("is-invalid");
-            this.classList.remove("is-valid");
-            this.nextElementSibling.classList.remove("d-none")
-            
+
+    /* CATEGORÍA */
+    campos["categoria"].addEventListener('change',function(e){
+        if(checkEmpty(this)){
+            showError(this);
         }
         else{
-            this.classList.add("is-valid");
-            this.classList.remove("is-invalid");
-            this.nextElementSibling.classList.add("d-none")
+            hideError(this);
+            ajaxSubCat();
         }
     })
     
     
-    campos[4].addEventListener('change',function(e){
+    /* SUBCATEGORÍA */
+    campos["subcategoria"].addEventListener('change',function(e){
+            if(checkEmpty(this)){
+                showError(this);
+            }
+
+            else{
+                hideError(this);
+            }
+    })
+    
+    
+
+    /* FOTO */
+    campos["inputGroupFile01"].addEventListener('change',function(e){
         var output = document.getElementById('output');
         output.src = URL.createObjectURL(e.target.files[0]);
         output.classList.add("opacity-1");
-        
     })
     
-    
-    
-    
-    document.addEventListener('change',function(e){
-        if(campos[1].classList.contains("is-invalid") || campos[2].classList.contains("is-invalid") || campos[3].classList.contains("is-invalid")) {
-            
-        }
-        else if (campos[1].classList.contains("is-valid") && campos[2].classList.contains("is-valid") && campos[3].classList.contains("is-valid") && output.src ){
-            step2.classList.remove("opacity-0");
-            step2.classList.add("opacity-1");
-        }
-        
-        errorCount = 0;
-        for(campito of campos){
-            if(campito.classList.contains("is-invalid") || (campito.value=="0")){
-                errorCount = errorCount+1;
-            }
-        }
-        
-        if(errorCount > 0){
-            submitButton.disabled=true;
-            submitButton.classList.add("btn-dark");
-            submitButton.classList.remove("btn-secondary");
-            
-        }
-        else{
-            submitButton.disabled=false;
-            submitButton.classList.remove("btn-dark");
-            submitButton.classList.add("btn-secondary");
-        }
-        
-    })
-    
-    campos[5].addEventListener('change',function(e){
-        if(this.value == "" || this.value.length < 30){
-            this.classList.add("is-invalid");
-            this.classList.remove("is-valid");
-            
-        }
-        else{
-            this.classList.add("is-valid");
-            this.classList.remove("is-invalid");
-        }
-    })
-    
+
+
+    /* REQUISITOS */
     let camposDeRequisitos = document.querySelectorAll(".requisitos > input");
     let agregarRequisito = document.querySelector("#addMore");
     let req;
@@ -147,177 +158,18 @@ function validarCreacionDesafio(){
         }
         
     })
-    
-    document.addEventListener('change',function(){
-        campos[14].value="";
-        camposDeRequisitos.forEach(function(requisito){
-            if(requisito.value != ""){
-                campos[14].value= campos[14].value + "<li>" + requisito.value + "</li>";
-            }
-            
-            console.log(campos[14].value);
-        })
-        
-    })
-    
-    campos[12].addEventListener('change',function(e){
-        if(this.value == "0"){
-            this.classList.add("is-invalid");
-            this.classList.remove("is-valid");
-            this.nextElementSibling.classList.remove("d-none")
-            
-            
-        }
-        else{
-            this.classList.add("is-valid");
-            this.classList.remove("is-invalid");
-            this.nextElementSibling.classList.add("d-none")
-            
-        }
-    })
-    
-    campos[13].addEventListener('change',function(e){
-        if(this.value == "0"){
-            this.classList.add("is-invalid");
-            this.classList.remove("is-valid");
-            this.nextElementSibling.classList.remove("d-none")
-            
-            
-        }
-        else{
-            this.classList.add("is-valid");
-            this.classList.remove("is-invalid");
-            this.nextElementSibling.classList.add("d-none")
-            
-        }
-    })
-    
-}
 
 
-
-
-
-function validarModificacionDesafio(){
-    let form = document.querySelector("#nuevoDesafio");
-    let campos = form.elements;
-    console.log(campos);
-    let step2 = document.querySelector("#step-2");
-    let submitButton= document.querySelector("button[type='submit']");
-    let errorCount = 0;
-    
-    
-    
-    window.onload = function(){
-        
-        fetch('/categoriasApi')
-        .then(function(response){
-            return response.json();
-        })
-        .then(function(data){
-            for(var n of data){
-                if(campos[2].value == n.parent_id){
-                    campos[3].innerHTML = campos[3].innerHTML + `<option value="${n.id}">${n.nombre}</option>`
-                    
-                }
-            }
-        })
-        .catch(function(error){
-            "Hubo un error";
-        })
-        
-        
-    };
-    
-    for(campito of campos){
-        if(campito.classList.contains("is-invalid")){
-            step2.classList.remove("opacity-0");
-            step2.classList.add("opacity-1");
-        }
-    }
-    
-    campos[1].addEventListener('change',function(e){
-        if(this.value == "" || this.value.length < 10){
-            this.classList.add("is-invalid");
-            this.classList.remove("is-valid");
-            this.nextElementSibling.classList.remove("d-none")
-            
-        }
-        else{
-            this.classList.add("is-valid");
-            this.classList.remove("is-invalid");
-            this.nextElementSibling.classList.add("d-none")
-            
-        }
-    })
-    
-    campos[2].addEventListener('change',function(e){
-        if(this.value == "0"){
-            this.classList.add("is-invalid");
-            this.classList.remove("is-valid");
-            this.nextElementSibling.classList.remove("d-none")
-            
-        }
-        else{
-            this.classList.add("is-valid");
-            this.classList.remove("is-invalid");
-            this.nextElementSibling.classList.add("d-none")
-            
-            campos[3].innerHTML = `<select class="form-control" name="id_subcategoria" id="subcategoria"> <option value="0">Seleccioná la subcategoría </option> </select>`;
-            fetch('/categoriasApi')
-            .then(function(response){
-                return response.json();
-            })
-            .then(function(data){
-                for(var n of data){
-                    if(campos[2].value == n.parent_id){
-                        campos[3].innerHTML = campos[3].innerHTML + `<option value="${n.id}">${n.nombre}</option>`
-                        
-                    }
-                }
-            })
-            .catch(function(error){
-                "Hubo un error";
-            })
-            
-        }
-    })
-    
-    
-    campos[3].addEventListener('change',function(e){
-        if(this.value == "0"){
-            this.classList.add("is-invalid");
-            this.classList.remove("is-valid");
-            this.nextElementSibling.classList.remove("d-none")
-            
-        }
-        else{
-            this.classList.add("is-valid");
-            this.classList.remove("is-invalid");
-            this.nextElementSibling.classList.add("d-none")
-        }
-    })
-    
-    
-    campos[4].addEventListener('change',function(e){
-        var output = document.getElementById('output');
-        output.src = URL.createObjectURL(e.target.files[0]);
-        output.classList.add("opacity-1");
-        
-    })
-    
-    
-    
-    
     document.addEventListener('change',function(e){
-        if(campos[1].classList.contains("is-invalid") || campos[2].classList.contains("is-invalid") || campos[3].classList.contains("is-invalid")) {
-            
-        }
-        else if (campos[1].classList.contains("is-valid") && campos[2].classList.contains("is-valid") && campos[3].classList.contains("is-valid") && output.src ){
+
+        /* ACTIVACION DE STEP 2 */
+        if ( checkValid(campos[1]) && checkValid(campos[2]) && checkValid(campos[3]) && output.src ){
             step2.classList.remove("opacity-0");
             step2.classList.add("opacity-1");
         }
+
         
+        /* CONTABILIZACIÓN DE ERRORES */
         errorCount = 0;
         for(campito of campos){
             if(campito.classList.contains("is-invalid") || (campito.value=="0")){
@@ -337,74 +189,61 @@ function validarModificacionDesafio(){
             submitButton.classList.add("btn-secondary");
         }
         
+        /* ARMADO DE REQUISITOS */
+        campos["requisitos"].value="";
+        camposDeRequisitos.forEach(function(requisito){
+            if(requisito.value != ""){
+                campos["requisitos"].value= campos["requisitos"].value + "<li>" + requisito.value + "</li>";
+            }
+            
+        })
+
     })
     
-    campos[5].addEventListener('change',function(e){
-        if(this.value == "" || this.value.length < 30){
-            this.classList.add("is-invalid");
-            this.classList.remove("is-valid");
-            
+
+    /* DESCRIPCION */
+    campos["descripcion"].addEventListener('change',function(e){
+
+        if(checkEmpty(this)){
+            showError(this);
         }
+
+        else if(checkLength(this,30)){
+            showError(this);
+        }
+
         else{
-            this.classList.add("is-valid");
-            this.classList.remove("is-invalid");
+            hideError(this);
         }
+            
     })
     
-    let camposDeRequisitos = document.querySelectorAll(".requisitos > input");
-    
-    
-    
-    
-    campos[12].addEventListener('change',function(e){
-        if(this.value == "0"){
-            this.classList.add("is-invalid");
-            this.classList.remove("is-valid");
-            this.nextElementSibling.classList.remove("d-none")
-            
-            
+    /* DIFICULTAD */
+    campos["dificultad"].addEventListener('change',function(e){
+        if(checkEmpty(this)){
+            showError(this);
         }
+
         else{
-            this.classList.add("is-valid");
-            this.classList.remove("is-invalid");
-            this.nextElementSibling.classList.add("d-none")
-            
+            hideError(this);
         }
     })
-    
-    campos[13].addEventListener('change',function(e){
-        if(this.value == "0"){
-            this.classList.add("is-invalid");
-            this.classList.remove("is-valid");
-            this.nextElementSibling.classList.remove("d-none")
-            
-            
+
+    /* FECHA LIMITE */
+    campos["fechaLimite"].addEventListener('change',function(e){
+        if(checkEmpty(this)){
+            showError(this);
         }
+
         else{
-            this.classList.add("is-valid");
-            this.classList.remove("is-invalid");
-            this.nextElementSibling.classList.add("d-none")
-            
+            hideError(this);
         }
     })
-    
+
+     
 }
 
-
-
-
-
-
-
-
-
-
-
 function validarModificacionDePerfil(){
-    
-    
-    
-    
     let modificadorPassword = document.querySelector(".modificar-datos-personales");
     let botonModificadorPassword = document.querySelector("#boton-modificar-password");
     

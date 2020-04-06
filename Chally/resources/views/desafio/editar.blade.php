@@ -118,6 +118,10 @@
                                                 
                                                 <input class="form-control mb-2" name="requisitos-05" id="requisitos-05" type="text" value="<?php if(array_key_exists(4,$listadoReq)) { echo str_replace("<li>","",$listadoReq[4]); } ?> " >
                                                     
+
+                                                    <button type="button" class="d-none" id="addMore"><i class="fas fa-plus"></i> Agregar más requisitos </button>
+                                                    <br>
+
                                                     <small>Mínimo:1 Requsito | Máximo: 5 Requisitos</small>
                                                 </div>
                                                 
@@ -189,7 +193,12 @@
                         
                         
                         <script>
-                            validarModificacionDesafio();
+ 
+                        </script>
+
+
+                        <script>
+                            validarCreacionDesafio();
                         </script>
                         
                         

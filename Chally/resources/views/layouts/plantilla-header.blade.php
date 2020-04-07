@@ -8,7 +8,7 @@
     <script src="https://kit.fontawesome.com/959125d25f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
     <link rel="shortcut icon" type="image/png" href="{{ asset('img/favicon.png')}}" />
-    <script src="{{ asset('js/scripts.js') }}"></script>
+    <script src="{{ asset('js/global_functions.js') }}"></script>
 
 
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,500,700,900&display=swap" rel="stylesheet">

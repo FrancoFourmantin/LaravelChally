@@ -31,7 +31,7 @@
 
                                 <div class="form-group">
                                     <label class="font-weight-bold" for="inputName">Título del Desafío</label>
-                                    <input type="text" class="form-control @error ('nombre') is-invalid @enderror" name="nombre" id="inputName" value="{{old('nombre')}}" placeholder="Diseñá un ícono de cultura pop con onda vaporwave" inputName = "Título del Desafío">
+                                    <input type="text" class="form-control @error ('nombre') is-invalid @enderror" name="nombre" id="inputName" value="{{old('nombre')}}" placeholder="Diseñá un ícono de cultura pop con onda vaporwave" inputname = "Título del Desafío">
                                     <small class="d-none invalid-feedback"></small>
                                     <small class="text-danger"> @error ('nombre') {{$message}} @enderror </small>
                                 </div>
@@ -39,7 +39,7 @@
 
                                 <div class="form-group mt-4">
                                     <label for="categoria" class="font-weight-bold">Categoría</label>
-                                    <select class="form-control @error ('categoria') is-invalid @enderror" name="id_categoria" id="categoria" inputName = "Categoría Principal">
+                                    <select class="form-control @error ('categoria') is-invalid @enderror" name="id_categoria" id="categoria" inputname = "Categoría Principal">
                                         
                                         @foreach($categorias as $categoria)
                                             <option value="{{$categoria->id}}" {{ old('id_categoria') == "0" ? "selected" : ""}}>{{$categoria->nombre}}</option>
@@ -56,7 +56,7 @@
 
                             <div class="form-group mt-4">
                                     <label for="subcategoria" class="font-weight-bold">Subcategoría</label>
-                                    <select class="form-control" name="id_subcategoria" id="subcategoria" inputName = "Subcategoría">
+                                    <select class="form-control" name="id_subcategoria" id="subcategoria" inputname = "Subcategoría">
  
                                     </select>
                                     <small class="d-none invalid-feedback">¡Debés seleccionar una subcategoría válida!</small>
@@ -92,7 +92,7 @@
 
                             <div class="form-group">
                                 <label for="descripcion" class="font-weight-bold ">Resumen del Desafío</label>
-                                <textarea placeholder="En este desafío vas a poner a prueba tu creatividad y tus habilidades en fotomontaje para componer una imagen de un ícono de la cultura pop nacional." class="form-control @error ('descripcion') is-invalid @enderror" name="descripcion" inputName = "Descripción" id="descripcion" rows="2" >{{old('descripcion')}}</textarea>
+                                <textarea placeholder="En este desafío vas a poner a prueba tu creatividad y tus habilidades en fotomontaje para componer una imagen de un ícono de la cultura pop nacional." class="form-control @error ('descripcion') is-invalid @enderror" name="descripcion" inputname = "Descripción" id="descripcion" rows="2" >{{old('descripcion')}}</textarea>
                                 <small class="d-none invalid-feedback">¡Ups, la descripción es muy corta! Debe tener un mínimo de 30 caracteres.</small>
                                 <small>Describí el desafío lo mejor posible en pocas palabras</small>
                                 <small class="text-danger"> @error ('descripcion') {{$message}} @enderror </small>
@@ -116,7 +116,7 @@
 
                             <div class="form-group mt-4">
                                 <label for="dificultad" class="font-weight-bold">Nivel de Dificultad</label>
-                                <select class="form-control @error ('dificultad') is-invalid @enderror" name="dificultad" id="dificultad" inputName ="Dificultad">
+                                <select class="form-control @error ('dificultad') is-invalid @enderror" name="dificultad" id="dificultad" inputname ="Dificultad">
                                     <option value="0" {{ old('dificultad') == "0" ? "selected" : ""}} >Selecciona una opción</option>
                                     <option value="1" {{ old('dificultad') == "1" ? "selected" : ""}} >Muy fácil</option>
                                     <option value="2" {{ old('dificultad') == "2" ? "selected" : ""}}>Fácil</option>
@@ -132,7 +132,7 @@
 
                             <div class="form-group mt-4">
                                 <label class="font-weight-bold" for="fechaLimite">Fecha Límite de envío de respuestas</label>
-                                <select class="form-control @error ('fecha_limite') is-invalid @enderror" name="fecha_limite" id="fechaLimite" inputName="Fecha Límite">
+                                <select class="form-control @error ('fecha_limite') is-invalid @enderror" name="fecha_limite" id="fechaLimite" inputname="Fecha Límite">
                                     <option value="0" {{ old('fecha_limite') == "0" ? "selected" : ""}}  >Selecciona una opción</option>
                                     <option value="7" {{ old('fecha_limite') == "7" ? "selected" : ""}}  >Una semana</option>
                                     <option value="14" {{ old('fecha_limite') == "14" ? "selected" : ""}}>Dos semanas</option>
@@ -166,7 +166,7 @@
                             -->
                             <div class="col-12 d-flex justify-content-between m-0 p-0">
 
-                                <button type="submit" class="btn btn-dark" disabled>
+                                <button id="submit-desafio" type="submit" class="btn btn-dark" disabled>
                                     Publicar Desafío
                                 </button>
                             </div>
@@ -190,7 +190,10 @@
     </div>
 </form>
 
+<script src="{{ asset('js/frontend_validations.js') }}"></script>
+
+
 <script>
-    validarCreacionDesafio();
+    validarDesafio();
 </script>
 @endsection

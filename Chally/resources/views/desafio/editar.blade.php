@@ -197,8 +197,10 @@
                         </script>
 
 
+<script src="{{ asset('js/frontend_validations.js') }}"></script>
+
                         <script>
-                            validarCreacionDesafio();
+                            validarDesafio();
                         </script>
                         
                         

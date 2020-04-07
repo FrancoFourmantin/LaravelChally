@@ -27,7 +27,7 @@
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-0 mb-md-2 ">
                                 <div class="form-group">
                                     <label for="inputName">Tu nombre</label>
-                                    <input type="text" class="form-control is-valid" name="nombre" id="nombre" value='{{Auth::user()->nombre}}' required>
+                                    <input type="text" class="form-control is-valid" name="nombre" id="nombre" inputname="Nombre" value='{{Auth::user()->nombre}}' required>
                                     <small class="invalid-feedback">Debés colocar tu nombre</small>
 
                                     <small class="error">@error('nombre') {{$message}} @enderror</small>
@@ -37,7 +37,7 @@
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6  mb-0 mb-md-2 ">
                                 <div class="form-group">
                                     <label for="inputName">Tu Apellido</label>
-                                    <input type="text" class="form-control is-valid" name="apellido" id="apellido" value="{{Auth::user()->apellido}}" required>
+                                    <input type="text" class="form-control is-valid" name="apellido" id="apellido" inputname="Apellido" value="{{Auth::user()->apellido}}" required>
                                     <small class="invalid-feedback">Debés colocar tu apellido</small>
 
                                     <small class="error">@error('apellido') {{$message}} @enderror</small>
@@ -166,7 +166,7 @@
 
                         <div class="form-group">
                             <label class="font-weight-bold" for="exampleFormControlTextarea1">Tu bio</label>
-                            <textarea name="bio" maxlength="1000" class="form-control is-valid" id="bio" rows="5">{{Auth::user()->bio}}</textarea>
+                            <textarea name="bio" maxlength="500" inputname="Biografía" class="form-control is-valid" id="bio" rows="5">{{Auth::user()->bio}}</textarea>
                             <small> </small>
                             <small class="error">@error('bio') {{$message}} @enderror</small>
                         </div>
@@ -243,7 +243,7 @@
                                 -->
                                 <div class="col-12 d-flex justify-content-between m-0 p-0">
 
-                                    <button type="submit" class="btn btn-secondary" >
+                                    <button type="submit" id="submit-perfil" class="btn btn-secondary" >
                                         Modificar datos
                                     </button>
                                 </div>
@@ -267,8 +267,10 @@
 
     </div>
 
+    <script src="{{ asset('js/frontend_validations.js') }}"></script>
+
     <script>
-    validarModificacionDePerfil();
+    validarPerfil();
     </script>
 
     @endsection

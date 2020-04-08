@@ -258,6 +258,7 @@
 
 
                             </div>
+                            
                         </div>
                     </div>
                 @endforeach
@@ -269,6 +270,6 @@
 
 </div>
   
-  
+<script src="{{asset('js/likes_functions.js')}}"></script>
   <!--Fin seccion Posteos-->
 @endsection

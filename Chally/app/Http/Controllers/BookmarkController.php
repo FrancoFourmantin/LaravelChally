@@ -42,21 +42,20 @@ class BookmarkController extends Controller
 
     public function procesar(Request $request){
 
-        $desafio = Desafio::find($request->input("bookmark-desafio"));
+        $desafio = Desafio::find($request->input("bookmarkDesafio"));
 
         foreach (Auth::user()->getBookmarks as $bookmark ){
             if($bookmark->id_desafio == $desafio->id) {
             $selectedBookmark = Bookmark::find($bookmark->id);
             $selectedBookmark->delete();
-            return redirect('feed');
+            return true;
             }
         }
 
         $bookmark = new Bookmark;
         $bookmark->id_usuario= Auth::user()->id_usuario;
-        $bookmark->id_desafio=$request->input("bookmark-desafio");
+        $bookmark->id_desafio=$request->input("bookmarkDesafio");
         $bookmark->save();
-        return redirect('feed');
 
 
     }

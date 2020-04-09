@@ -52,7 +52,7 @@ function likes(){
     
     // Traigo los likes de cada objeto que cree en la función armarDatos
     function traerLikes(datos){
-        console.log(datos);
+        // console.log(datos);
         fetch(`/likes/get/${datos.id_desafio}`)
         .then(function(response){
             return response.json();

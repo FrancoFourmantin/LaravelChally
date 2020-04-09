@@ -297,9 +297,9 @@ use App\Categoria;
 
 
                                                                     <form action="/bookmarks/procesar/" method="POST" id="bookmark-form">
-                                                                        @csrf
+                                                                        <meta id="bookmark-token" name="csrf-tokenn" content="{{ csrf_token() }}">
                                                                         <input type="hidden" name="bookmark-action" value="">
-                                                                        <input type="hidden" id="bookmark-desafio" name="bookmark-desafio" value="{{$desafio->id}}">
+                                                                        <input type="hidden" id="bookmark-desafio" name="bookmarkDesafio" value="{{$desafio->id}}">
                                                                         <button id="bookmark-action" type="submit btn">
                                                                             <i class="fas fa-bookmark"></i> <span></span>
                                                                         </button>

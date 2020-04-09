@@ -26,9 +26,9 @@ Route::group(['middleware' => 'auth'], function () {
     /* Rutas de Bookmarks */
     
     Route::get('/usuario/{username}/bookmarks' , 'BookmarkController@show');
-    Route::get('/bookmarks/eliminar/{id}' , 'BookmarkController@destroy');
-    Route::post('/bookmarks/agregar/' , 'BookmarkController@store');
-    
+    Route::post('/bookmarks/procesar/' , 'BookmarkController@procesar');
+    Route::get('/bookmarks/get/{id_desafio}' , 'bookmarkController@fetch');
+
     /**
     * 
     * Rutas de usuarios

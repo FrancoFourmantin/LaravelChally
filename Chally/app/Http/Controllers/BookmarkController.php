@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Bookmark;
+use App\Desafio;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
@@ -37,15 +38,43 @@ class BookmarkController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $bookmark = new Bookmark;
-        $bookmark->id_usuario = $request->input('usuario');
-        $bookmark->id_desafio = $request->input('desafio');
 
-        $bookmark->save();
-        return Redirect::to(URL::previous() . "#desafio-" . $bookmark->id_desafio);
+
+    public function procesar(Request $request){
+        if( $request->input("bookmark-action") == "delete"){
+
+            $bookmark = Bookmark::find($request->input("bookmark-id"));
+            $bookmark->delete();
+            return redirect('feed');
+        }
+
+        elseif($request->input("bookmark-action") == "save"){
+            $bookmark = new Bookmark;
+            $bookmark->id_usuario= Auth::user()->id_usuario;
+            $bookmark->id_desafio=$request->input("bookmark-desafio");
+            $bookmark->save();
+            return redirect('feed');
+        }
+
     }
+
+
+    public function fetch($id_desafio){
+        $desafio = Desafio::find($id_desafio);
+        $user = Auth::user()->id_usuario;
+
+        foreach($desafio->getBookmarks as $bookmark){
+            if($bookmark->id_usuario == $user){
+
+                return json_encode(true);
+            }
+        }
+        return json_encode(false);
+
+    }
+
+    // Procedimiento: Si el fetch retorna TRUE, significa que el Bookmark ya existe para el user. En ese caso, correr la lógica de Delete.
+    // Si el fetch retorna FALSE, significa que no existe bookmark. En ese caso, correr la lógica de Save.
 
     /**
      * Display the specified resource.
@@ -53,6 +82,14 @@ class BookmarkController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
+    public function store(Request $request)
+    {
+
+    }
+
+
     public function show($username)
     {   
 
@@ -101,9 +138,6 @@ class BookmarkController extends Controller
      */
     public function destroy($id)
     {
-        $bookmark = Bookmark::find($id);
-        $bookmark->delete();
-        return Redirect::to(URL::previous() . "#desafio-" . $bookmark->id_desafio);
 
     }
 }

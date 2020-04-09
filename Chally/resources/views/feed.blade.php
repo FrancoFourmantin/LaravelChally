@@ -294,31 +294,51 @@ use App\Categoria;
                                                                     
                                                                     <span class="comments"><i class="fas fa-comment"></i>&nbsp;{{$desafio->getRespuestas->count()}}</span>
                                                                     
-                                                                    <?php $tiene = "";?>
-                                                                    @foreach (Auth::user()->getBookmarks as $bookmark)
-                                                                    @if($bookmark->id_desafio == $desafio->id)
-                                                                    <?php $tiene = $bookmark->id;?>
-                                                                    @endif
-                                                                    @endforeach
-                                                                    
-                                                                    @if($tiene)
-                                                                    
-                                                                    <form action="/bookmarks/eliminar/{{$bookmark->id}}" method="GET">
+
+
+                                                                    <form action="/bookmarks/procesar/" method="POST" id="bookmark-form">
                                                                         @csrf
+                                                                        <input type="hidden" name="bookmark-action" value="">
+                                                                        <input type="hidden" id="bookmark-desafio" name="bookmark-desafio" value="{{$desafio->id}}">
                                                                         <button id="bookmark-action" type="submit btn">
-                                                                            <span class="borrar"><i class="color-verde fas fa-bookmark"></i>&nbsp; Eliminar de favoritos </span></button>
-                                                                        </form>
-                                                                        
-                                                                        @else
-                                                                        
-                                                                        <form action="/bookmarks/agregar" method="POST">
-                                                                            @csrf
-                                                                            <input type="hidden" name="desafio" value="{{$desafio->id}}">
-                                                                            <input type="hidden"  name="usuario" value="{{Auth::user()->id_usuario}}">
-                                                                            <button id="bookmark-action" type="submit btn"><span class="guardar"><i class="fas fa-bookmark"></i>&nbsp; Guardar en favoritos </span></button>
-                                                                        </form>                                    
-                                                                        
+                                                                            <i class="fas fa-bookmark"></i> <span></span>
+                                                                        </button>
+                                                                    </form>
+
+                                                                 <!-- BOOKMARK FUNCIONAL SIN AJAX -->
+                                                                   {{--
+                                                                    @forelse ($desafio->getBookmarks as $bookmark)
+                                                                        @if($bookmark->id_usuario == Auth::user()->id_usuario)
+
+                                                                            <form action="/bookmarks/procesar/" method="POST">
+                                                                                @csrf
+                                                                                <input type="hidden" name="bookmark-action" value="delete">
+                                                                                <input type="hidden" name="bookmark-desafio" value="{{$desafio->id}}">
+                                                                                <input type="hidden" name="bookmark-id" value="{{$bookmark->id}}">
+                                                                                <button id="bookmark-action" type="submit btn">
+                                                                                    <i class="fas color-verde fa-bookmark"></i> Quitar
+                                                                                </button>
+                                                                            </form>
                                                                         @endif
+
+                                                                    @empty
+                                                                            <form action="/bookmarks/procesar/" method="POST">
+                                                                                @csrf
+                                                                                <input type="hidden" name="bookmark-action" value="save">
+                                                                                <input type="hidden" name="bookmark-desafio" value="{{$desafio->id}}">
+
+                                                                                <button id="bookmark-action" type="submit btn">
+                                                                                    <i class="fas fa-bookmark"></i> Guardar
+                                                                                </button>
+                                                                            </form>
+                                                                    @endforelse
+                                                                    
+                                                                    
+                                                                    --}} 
+
+                                                                        
+                                                                                                       
+                                                                        
                                                                         
                                                                         
                                                                         
@@ -353,6 +373,9 @@ use App\Categoria;
                                 
                                 
                             <script src="{{asset('js/likes_functions.js')}}"></script>
-                                
+                            <script src="{{asset('js/bookmarks_functions.js')}}"></script>
+
+                            <script>
+                            </script>
                                 
                                 @endsection

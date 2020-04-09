@@ -1,13 +1,21 @@
 function likes(){
+
+    // Selecciono todos los botones de los desafíos
     let likeForm = document.querySelectorAll("#form_like");
+
+    // Selecciono todos los botones (like y dislike) de cada form
     let submitButtons = document.querySelectorAll("button[name=like]");
+
+    // Accion almacena si le da like o dislike
     let accion = "";
     
     //A cada boton de like le ponemos un eventListener para saber que boton esta clickeando
     submitButtons.forEach(button => button.addEventListener("click" , function(e){
         accion = this.value;                                            
     }))
+
     
+    // Crea un objeto por cada form
     function armarDatos(form){
         let objetoDatos = {
             id_usuario: "",
@@ -17,26 +25,32 @@ function likes(){
             spanLike: "",
             spanDislike: ""
         }  
+
         objetoDatos.id_usuario = form.querySelector("input[name=usuario]").value;
+
+        // TENGO EL ID DE DESAFIO
         if(form.querySelector("input[name=desafio]")){
             objetoDatos.id_desafio = form.querySelector("input[name=desafio]").value;
         }else{
             objetoDatos.id_desafio = null;
         }
+
+        // TENGO EL ID RESPUESTA (NO ME SIRVE POR AHORA)
         if(form.querySelector("input[name=respuesta]")){
             objetoDatos.id_respuesta = form.querySelector("input[name=respuesta]").value;
         }else{
             objetoDatos.id_respuesta = null;
         }
+
         objetoDatos.spanPorcentaje = form.querySelector(".porcentaje");
         objetoDatos.spanLike = form.querySelector(".likes");   
         objetoDatos.spanDislike = form.querySelector(".dislikes");
         
         return objetoDatos;
-    }          
+    }   // CIERRE FUNCIÓN ARMARDATOS    
     
     
-    
+    // Traigo los likes de cada objeto que cree en la función armarDatos
     function traerLikes(datos){
         console.log(datos);
         fetch(`/likes/get/${datos.id_desafio}`)
@@ -45,20 +59,22 @@ function likes(){
         })
         .then(function(likes){
             likes.stringify;                                                                                  
-            //Si el usuario ya le dio like a ese desafio lo ponemos rojito
+            //Si el usuario ya le había dado like a ese desafio mostramos el corazon rojo
             if(likes.authUserLike == true){
                 datos.spanLike.style.color = "#dd0000";                                            
             }
-            
+
+            //Si el usuario ya le había dado dislike a ese desafio mostramos el pulgar abajo rojo
             if(likes.authUserDislike == true){
                 datos.spanDislike.style.color = "#dd0000";
             }
+
             datos.spanPorcentaje.innerHTML = likes.porcentajeDeLikes + '%';
         })
         .catch(function(error){
             console.log(error);
         })
-    }
+    } // CIERRE FUNCIÓN TRAER LIKES Y STATUS
     
     
     
@@ -112,9 +128,10 @@ function likes(){
         })) //Fin eventListener
         
     }
+    // CIERRE FUNCIÓN DE DAR LIKE   
+
 
     darLike();
-    }
-
+}
 
 likes();

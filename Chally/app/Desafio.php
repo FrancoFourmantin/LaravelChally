@@ -32,6 +32,10 @@ class Desafio extends Model
         return $this->hasMany('App\Respuesta','id_desafio','id');
     }
 
+    public function getBookmarks(){
+        return $this->hasMany('App\Bookmark','id_desafio','id');
+    }
+
     public function getLikes(){
         return $this->hasMany('App\Like' , 'id_desafio' , 'id');
     }

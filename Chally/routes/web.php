@@ -28,6 +28,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/usuario/{username}/bookmarks' , 'BookmarkController@show');
     Route::post('/bookmarks/procesar/' , 'BookmarkController@procesar');
     Route::get('/bookmarks/get/{id_desafio}' , 'bookmarkController@fetch');
+    Route::get('/getuserbookmarks/{id_usuario}','BookmarkController@getUserBookmarks');
 
     /**
     * 

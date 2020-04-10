@@ -134,7 +134,7 @@ class LikeController extends Controller
 
         //Aqui se calcula el porcentaje de likes
         if($total){
-            $porcentajeDeLikes = round((($likes*100) / $total), 2);
+            $porcentajeDeLikes = round((($likes*100) / $total), 0);
         }else{
             $porcentajeDeLikes = 0;
         }

@@ -61,7 +61,7 @@ function likes(){
             likes.stringify;                                                                                  
             //Si el usuario ya le había dado like a ese desafio mostramos el corazon rojo
             if(likes.authUserLike == true){
-                datos.spanLike.style.color = "#dd0000";                                            
+                datos.spanLike.style.color = "#1bb76e";                                            
             }
 
             //Si el usuario ya le había dado dislike a ese desafio mostramos el pulgar abajo rojo

@@ -75,6 +75,14 @@ class BookmarkController extends Controller
 
     }
 
+    public function getUserBookmarks($id_usuario){
+        $bookmarks= Bookmark::all()->where('id_usuario',$id_usuario);
+        foreach($bookmarks as $bookmark){
+            $bookmark->getDesafio->nombre;
+        }
+        return $bookmarks;
+    }
+
     // Procedimiento: Si el fetch retorna TRUE, significa que el Bookmark ya existe para el user. En ese caso, correr la lógica de Delete.
     // Si el fetch retorna FALSE, significa que no existe bookmark. En ese caso, correr la lógica de Save.
 

@@ -27,11 +27,15 @@ use App\Categoria;
                 
                 @if(Auth::user()->getBookmarks->isNotEmpty() )  
                 
-                <p class="color-verde font-weight-bold mb-1 ml-3"><i class="fas fa-bookmark"></i>&nbsp;Desafíos guardados
+                <p class="color-verde font-weight-bold mb-1 ml-3"><i class="fas fa-bookmark"></i>&nbsp;Tus recordatorios
                 </p>
                 
+                <div class="card  p-3 mt-1 mb-4 alert alert-danger bookmarkList">
+
+                </div>
+
                 
-                
+                {{-- 
                 <div class="card  p-3 mt-1 mb-4 alert alert-danger">
                     @foreach(Auth::user()->getBookmarks as $bookmark)
                     <p><a href="/desafio/ver/{{$bookmark->getDesafio->id}}">{{$bookmark->getDesafio->nombre}} </a><br>
@@ -44,9 +48,12 @@ use App\Categoria;
                         
                         
                         @endforeach
-                    </div>
-                    <hr>
-                    
+                </div>
+
+                --}}
+
+                <hr>
+
                     @endif
                     
                     
@@ -286,8 +293,10 @@ use App\Categoria;
                                                                         <meta id="like-token" name="csrf-token" content="{{ csrf_token() }}">
                                                                         <input type="hidden" name="desafio" value="{{$desafio->id}}">
                                                                         <input type="hidden"  name="usuario" value="{{Auth::user()->id_usuario}}">
-                                                                        <button id="like-action" name="like" value="like" type="submit"><span class="guardar"><span class="likes"><i class="fas fa-heart"></i><span class="porcentaje"></span></span></button>
-                                                                        <button id="like-action" name="like" value="dislike" type="submit"><span class="guardar"><span class="dislikes"><i class="fas fa-thumbs-down"></i></span></button>
+                                                                        <span class="porcentaje"></span>&nbsp;&nbsp;
+                                                                        <button id="like-action" class="defaultButton" name="like" value="like" type="submit"><span class="guardar "><span class="likes"><i class="fas fa-thumbs-up"></i></span></button>
+                                                                        &nbsp;&nbsp;
+                                                                        <button id="like-action" class="defaultButton" name="like" value="dislike" type="submit"><span class="guardar defaultButton"><span class="dislikes"><i class="fas fa-thumbs-down"></i></span></button>
                                                                     </form>     
                                                                     
                                                                     
@@ -295,15 +304,16 @@ use App\Categoria;
                                                                     <span class="comments"><i class="fas fa-comment"></i>&nbsp;{{$desafio->getRespuestas->count()}}</span>
                                                                     
 
-
+                                                                    <span>
                                                                     <form action="/bookmarks/procesar/" method="POST" id="bookmark-form">
                                                                         <meta id="bookmark-token" name="csrf-tokenn" content="{{ csrf_token() }}">
                                                                         <input type="hidden" name="bookmark-action" value="">
                                                                         <input type="hidden" id="bookmark-desafio" name="bookmarkDesafio" value="{{$desafio->id}}">
-                                                                        <button id="bookmark-action" type="submit btn">
-                                                                            <i class="fas fa-bookmark"></i> <span></span>
+                                                                        <button id="bookmark-action" class="animated fadeIn" type="submit btn">
+                                                                            <i class="fas fa-bookmark"></i> <span class="animated"></span>
                                                                         </button>
                                                                     </form>
+                                                                    </span>
 
                                                                  <!-- BOOKMARK FUNCIONAL SIN AJAX -->
                                                                    {{--

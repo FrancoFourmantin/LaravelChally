@@ -1,3 +1,33 @@
+function showBookmarkList(){
+    let bookmarkList = document.querySelector(".bookmarkList");
+    let id_usuario= document.querySelector("input[name='usuario']").value;
+    console.log(id_usuario);
+    fetch(`/getuserbookmarks/${id_usuario}`)
+    .then(function(response){
+        return response.json();
+    })
+
+    .then(function(data){
+        bookmarkList.innerHTML= "";
+
+        data.forEach(function(desafio){
+            bookmarkList.innerHTML += `<a class="animated fadeIn" href="/desafio/ver/${desafio.id_desafio}"><p>${desafio.get_desafio.nombre}</a> </br>
+            <span>Finaliza el ${desafio.get_desafio.fecha_limite}</span></p>`;
+            console.log(desafio.get_desafio.nombre);
+        })
+    })
+
+    .catch(function(error){
+          console.log(error);
+    })    
+}
+
+function hideNotif() {
+    let notificaciones = document.querySelectorAll(".notificacion");
+    notificaciones.forEach(function(notificacion){
+        notificacion.classList.add("fadeOut");
+    })
+  }
 
 function showBookmarked(desafio){
     fetch(`/bookmarks/get/${desafio.id_desafio}`)
@@ -50,11 +80,22 @@ function bookmarkAction(objetoParticular){
                 objetoParticular.icono.classList.toggle("color-verde");
                 if(objetoParticular.span.innerHTML == "Guardar"){
                     objetoParticular.span.innerHTML="Quitar";
+                    objetoParticular.boton.classList.toggle("tada");
+                    let body = document.querySelector('body');
+                    body.insertAdjacentHTML('beforeend', '<div class="notificacion animated fadeIn rounded alert-success position-fixed p-3" style="bottom:20px;right:20px;"><i class="fas fa-check"></i>  ¡Desafío Agregado a tus recordatorios!</div>');
+                    window.setTimeout(hideNotif, 2500);
                 }
                 else{
                     objetoParticular.span.innerHTML="Guardar";
+                    objetoParticular.boton.classList.toggle("tada");
+                    let body = document.querySelector('body');
+                    body.insertAdjacentHTML('beforeend', '<div class="notificacion animated fadeIn  rounded alert-danger position-fixed p-3" style="bottom:20px;right:20px;"><i class="fas fa-times"></i> ¡Quitaste el desafío de tus recordatorios!</div>');   
+                    window.setTimeout(hideNotif, 2500);
+                 
                 }
-                // console.log("toggleado");
+                showBookmarkList();
+
+
             })
             .catch(function(error){
                 console.log(error);
@@ -106,7 +147,7 @@ function bookmarkActions(){
 
 getDesafios();
 bookmarkActions();
-
+showBookmarkList();
 
 
 

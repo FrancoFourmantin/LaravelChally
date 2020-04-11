@@ -111,6 +111,7 @@ class LikeController extends Controller
      */
     public function show($id_solicitado , $es_desafio)
     {
+        
         if($es_desafio === 'true'){
             $posteo = Desafio::find($id_solicitado);
         }else{
@@ -125,14 +126,18 @@ class LikeController extends Controller
         $authUserDislike = false;
         $authUserLike = false;
         //Con este foreach vamos a verificar si el usuario logeado ya le dio LIKE al post en cuestion
-        foreach($posteo->getLikes as $like){
-            if($like->id_usuario == Auth::user()->id_usuario){
-                if($like->like_or_dislike == '1'){
-                    $authUserLike = true;            
-                }else{
-                    $authUserDislike = true;
+
+        if(Auth::user()){
+
+            foreach($posteo->getLikes as $like){
+                if($like->id_usuario == Auth::user()->id_usuario){
+                    if($like->like_or_dislike == '1'){
+                        $authUserLike = true;            
+                    }else{
+                        $authUserDislike = true;
+                    }
+                    break;  //Lo obligamos a salir del foreach por que me da paja hacer un while
                 }
-                break;  //Lo obligamos a salir del foreach por que me da paja hacer un while
             }
         }
 

@@ -94,9 +94,10 @@
                       <img class="main-foto img-fluid mb-3 shadow position-absolute" src="{{ asset("avatars/$usuario->avatar")}}" alt="foto_usuario">
                       <h2>{{ $usuario->nombre }} {{$usuario->apellido}}</h2>
                       <p class="text-secondary">{{ $usuario->username}}</p>
-                      
+                      @if(Auth::check())
                       @if(Auth::user()->username == $usuario->username)
                         <a href="/editar-perfil"><i class="fas fa-pen"></i>&nbsp; Editar perfil</a>
+                      @endif
                       @endif
 
                       {{-- Modal para agregar amigo --}}
@@ -322,6 +323,7 @@
                                                           
                                                           <div class="ml-auto">
                                                             <div class="ml-auto">
+                                                              @if(Auth::check())
                                                               @if ($desafio->id_autor == Auth::user()->id_usuario)
                                                               <a class="" href="/desafio/editar/{{$desafio->id}}"><i class="fas fa-pen"></i></a>
                                                               &nbsp;
@@ -357,6 +359,7 @@
                                                                   
                                                                   
                                                                   
+                                                                  @endif
                                                                   @endif
                                                                 </div>
                                                               </div>

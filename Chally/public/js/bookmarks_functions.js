@@ -1,7 +1,13 @@
 function showBookmarkList(){
     let bookmarkList = document.querySelector(".bookmarkList");
-    let id_usuario= document.querySelector("input[name='usuario']").value;
-    console.log(id_usuario);
+    let id_usuario ="";
+
+    if(document.querySelector("input[name='usuario']")){
+        id_usuario= document.querySelector("input[name='usuario']").value;
+    }else{
+        id_usuario = null;
+    }
+    // console.log(id_usuario);
     fetch(`/getuserbookmarks/${id_usuario}`)
     .then(function(response){
         return response.json();
@@ -13,7 +19,7 @@ function showBookmarkList(){
         data.forEach(function(desafio){
             bookmarkList.innerHTML += `<a class="animated fadeIn" href="/desafio/ver/${desafio.id_desafio}"><p>${desafio.get_desafio.nombre}</a> </br>
             <span>Finaliza el ${desafio.get_desafio.fecha_limite}</span></p>`;
-            console.log(desafio.get_desafio.nombre);
+            // console.log(desafio.get_desafio.nombre);
         })
     })
 
@@ -117,7 +123,7 @@ function armarDatos(form){
         span: form.querySelector("span"),
         token: form.querySelector('meta[name=csrf-tokenn]').getAttribute('content')
     }  
-    console.log(objetoDatos);
+    // console.log(objetoDatos);
     return objetoDatos;
 }
 
@@ -139,7 +145,7 @@ function bookmarkActions(){
 
     bookmarkForm.forEach(function(form){
         objetoDatos=armarDatos(form);
-        console.log(objetoDatos);
+        // console.log(objetoDatos);
         bookmarkAction(objetoDatos);
     })
 }

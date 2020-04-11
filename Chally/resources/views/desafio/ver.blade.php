@@ -42,11 +42,15 @@
                 </div>
 
                 <?php $resultado =0;?>
+                @if(Auth::check())
                 @foreach ($desafio->getRespuestas as $respuesta)
                     @if ($respuesta->id_autor == Auth::user()->id_usuario)
                         <?php $resultado = 1; ?>
                     @endif
                 @endforeach
+
+                
+                @endif
 
                 @if($resultado == 1) 
 
@@ -88,6 +92,7 @@
 
                                     <div class="row card-content-attached">
                                         <div class="col-12 text-right">
+                                            @if(Auth::check())
                                             @if ($desafio->id_autor == Auth::user()->id_usuario)
                                             <a class="" href="/desafio/editar/{{$desafio->id}}"><i class="fas fa-pen"></i>&nbsp;Editar desafío</a>
                                             &nbsp;
@@ -120,6 +125,7 @@
         
                                             <hr>
         
+                                            @endif
                                             @endif
                                         </div>
 
@@ -203,7 +209,7 @@
                                                     <small>Última actualización: {{$respuesta->updated_at}}</small>
                                                     @endif
 
-
+                                                    @if(Auth::check())
                                                     @if ($respuesta->id_autor == Auth::user()->id_usuario)
                                                     <small><a href="/respuesta/editar/{{$respuesta->id}}"> <i class="fas fa-pencil-alt"></i>&nbsp;Editar Respuesta</a> </small>
                                                     <small><a class="text-danger" type="button" data-toggle="modal" data-target="#borrar-{{$respuesta->id}}" href="/respuesta/borrar/{{$respuesta->id}}"> <i class="fas fa-trash"></i>&nbsp;Borrar respuesta</a> </small>
@@ -234,6 +240,7 @@
 
 
                                                     @endif
+                                                    @endif
 
 
                                             </div>
@@ -261,7 +268,9 @@
                                     <form id="form_like" action="/likes/new" method="POST">
                                         <meta id="like-token" name="csrf-token" content="{{ csrf_token() }}">
                                         <input type="hidden" name="respuesta" value="{{$respuesta->id}}">
+                                        @if(Auth::user())
                                         <input type="hidden"  name="usuario" value="{{Auth::user()->id_usuario}}">
+                                        @endif
                                         <span class="porcentaje"></span>&nbsp;&nbsp;
                                         <button id="like-action" class="defaultButton" name="like" value="like" type="submit"><span class="guardar "><span class="likes"><i class="fas fa-thumbs-up"></i></span></button>
                                         &nbsp;&nbsp;

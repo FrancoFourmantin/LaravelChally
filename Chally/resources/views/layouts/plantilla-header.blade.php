@@ -108,6 +108,9 @@
             <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item">
+                    <a class="nav-link" href="/feed"><i class="fas fa-newspaper"></i> &nbsp; Inicio</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/faq"><i class="fas fa-question"></i> &nbsp; Preguntas Frecuentes</a>
                 </li>
                 <li class="nav-item p-2">

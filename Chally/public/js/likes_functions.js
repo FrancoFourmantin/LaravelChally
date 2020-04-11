@@ -26,13 +26,19 @@ function likes(){
             spanDislike: ""
         }  
 
-        objetoDatos.id_usuario = form.querySelector("input[name=usuario]").value;
+        
 
         // TENGO EL ID DE DESAFIO
         if(form.querySelector("input[name=desafio]")){
             objetoDatos.id_desafio = form.querySelector("input[name=desafio]").value;
         }else{
             objetoDatos.id_desafio = null;
+        }
+
+        if(form.querySelector("input[name=usuario]")){
+            objetoDatos.id_usuario = form.querySelector("input[name=desafio]").value;
+        }else{
+            objetoDatos.id_usuario = null;
         }
 
         // TENGO EL ID RESPUESTA (NO ME SIRVE POR AHORA)

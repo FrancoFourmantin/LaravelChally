@@ -57,11 +57,11 @@ class UsuarioController extends Controller
      */
     public function show($username)
     {
-
-        if ($username == Auth::user()->username) {
-            $puede_editar = true;
-        } else {
-            $puede_editar = false;
+        $puede_editar = false;
+        if(Auth::user()){
+            if ($username == Auth::user()->username) {
+                $puede_editar = true;
+            }
         }
 
 
@@ -72,7 +72,11 @@ class UsuarioController extends Controller
         $respuestas = Respuesta::all()->where('id_autor',$id_usuario);
         $countRespuestas = count($respuestas);
         $countDesafios = count($desafios);
-        $amistad = AmistadController::verificarAmistad(Auth::user()->id_usuario, $id_usuario);
+        if(Auth::user()){
+            $amistad = AmistadController::verificarAmistad(Auth::user()->id_usuario, $id_usuario);
+        }else{
+            $amistad = "not amigos";
+        }
         
         $amistades = Amistad::where('id_usuario_1' , $id_usuario)->get();
         $amigos = [];

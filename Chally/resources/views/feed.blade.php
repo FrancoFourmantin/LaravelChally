@@ -24,8 +24,8 @@ use App\Categoria;
             
             <aside class="d-none d-md-block sticky-top">
                 
-                
-                @if(Auth::user()->getBookmarks->isNotEmpty() )  
+                @if (Auth::check())
+                @if( Auth::user()->getBookmarks->isNotEmpty() )  
                 
                 <p class="color-verde font-weight-bold mb-1 ml-3"><i class="fas fa-bookmark"></i>&nbsp;Tus recordatorios
                 </p>
@@ -33,8 +33,6 @@ use App\Categoria;
                 <div class="card  p-3 mt-1 mb-4 alert alert-danger bookmarkList">
 
                 </div>
-
-                
                 {{-- 
                 <div class="card  p-3 mt-1 mb-4 alert alert-danger">
                     @foreach(Auth::user()->getBookmarks as $bookmark)
@@ -55,19 +53,20 @@ use App\Categoria;
                 <hr>
 
                     @endif
-                    
+                    @endif
                     
                     
                     <p class="color-verde font-weight-bold mb-1 ml-3"><i class="fas fa-user-friends"></i>&nbsp;Invitaciones
                     </p>
                     <div class="px-3 mt-1 mb-4">
-                        
+                        @if(Auth::check())
                         @if (Auth::user()->getSolicitudesDeAmistad())
                         <p>Tenés {{Auth::user()->getSolicitudesDeAmistad()}} invitaciones de amigos pendientes</p>
                         <a href="/usuario/{{Auth::user()->username}}/solicitudes" class="btn btn-secondary">Ver invitaciones</a>
                         
                         @else 
                         <p>No tenés solicitudes de amistad pendientes</p>
+                        @endif
                         @endif
                     </div>
                     
@@ -159,6 +158,7 @@ use App\Categoria;
                                             <div class="ml-auto">
                                                 <div class="ml-auto">
                                                     {{-- Si el usuario es administrador y no es el dueño del desafio puede borrarlo --}}
+                                                    @if(Auth::check())
                                                     @if (Auth::user()->role == "admin" && $desafio->id_autor != Auth::user()->id_usuario )
                                                     <a type="button" data-toggle="modal" data-target="#borrar-{{$desafio->id}}"><i
                                                         class="fas fa-trash-alt"></i></a>
@@ -196,6 +196,8 @@ use App\Categoria;
                                                         
                                                         @endif
                                                         
+                                                        
+
                                                         @if ($desafio->id_autor == Auth::user()->id_usuario)
                                                         <a class="" href="/desafio/editar/{{$desafio->id}}"><i
                                                             class="fas fa-pen"></i></a>
@@ -240,6 +242,7 @@ use App\Categoria;
                                                                 
                                                                 
                                                                 
+                                                                @endif
                                                                 @endif
                                                             </div>
                                                         </div>
@@ -292,7 +295,9 @@ use App\Categoria;
                                                                     <form id="form_like" action="/likes/new" method="POST">
                                                                         <meta id="like-token" name="csrf-token" content="{{ csrf_token() }}">
                                                                         <input type="hidden" name="desafio" value="{{$desafio->id}}">
+                                                                        @if(Auth::check())
                                                                         <input type="hidden"  name="usuario" value="{{Auth::user()->id_usuario}}">
+                                                                        @endif
                                                                         <span class="porcentaje"></span>&nbsp;&nbsp;
                                                                         <button id="like-action" class="defaultButton" name="like" value="like" type="submit"><span class="guardar "><span class="likes"><i class="fas fa-thumbs-up"></i></span></button>
                                                                         &nbsp;&nbsp;

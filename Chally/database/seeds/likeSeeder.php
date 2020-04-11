@@ -49,5 +49,32 @@ class likeSeeder extends Seeder
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
+
+        DB::table('likes')->insert([
+            'id_desafio' => null,
+            'id_usuario' => 1,
+            'id_respuesta' => 1,
+            'like_or_dislike' => true,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        DB::table('likes')->insert([
+            'id_desafio' => null,
+            'id_usuario' => 2,
+            'id_respuesta' => 1,
+            'like_or_dislike' => true,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        DB::table('likes')->insert([
+            'id_desafio' => null,
+            'id_usuario' => 3,
+            'id_respuesta' => 1,
+            'like_or_dislike' => false,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
     }
 }

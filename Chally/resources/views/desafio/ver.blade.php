@@ -251,8 +251,25 @@
                                             </div>
                                         </div>
 
+
+
                                     </div>
 
+                                </div>
+
+                                <div class="card-footer d-flex justify-content-around">
+                                    <form id="form_like" action="/likes/new" method="POST">
+                                        <meta id="like-token" name="csrf-token" content="{{ csrf_token() }}">
+                                        <input type="hidden" name="respuesta" value="{{$respuesta->id}}">
+                                        <input type="hidden"  name="usuario" value="{{Auth::user()->id_usuario}}">
+                                        <span class="porcentaje"></span>&nbsp;&nbsp;
+                                        <button id="like-action" class="defaultButton" name="like" value="like" type="submit"><span class="guardar "><span class="likes"><i class="fas fa-thumbs-up"></i></span></button>
+                                        &nbsp;&nbsp;
+                                        <button id="like-action" class="defaultButton" name="like" value="dislike" type="submit"><span class="guardar defaultButton"><span class="dislikes"><i class="fas fa-thumbs-down"></i></span></button>
+                                    </form>     
+                                    
+                                    
+                                    
                                 </div>
 
 

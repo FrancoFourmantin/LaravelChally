@@ -52,12 +52,24 @@ function likes(){
     
     // Traigo los likes de cada objeto que cree en la función armarDatos
     function traerLikes(datos){
+        let id_solicitado = "";
+        let esDesafio = true;
+
+        if(datos.id_respuesta == null){
+            id_solicitado = datos.id_desafio;
+        }
+
+        if(datos.id_desafio == null){
+            id_solicitado = datos.id_respuesta;
+            esDesafio = false;
+        }
         // console.log(datos);
-        fetch(`/likes/get/${datos.id_desafio}`)
+        fetch(`/likes/get/${id_solicitado}/${esDesafio}`)
         .then(function(response){
             return response.json();
         })
         .then(function(likes){
+            console.log(likes);
             likes.stringify;                                                                                  
             //Si el usuario ya le había dado like a ese desafio mostramos el corazon rojo
             if(likes.authUserLike == true){
@@ -107,6 +119,7 @@ function likes(){
                 body: JSON.stringify({
                     id_usuario: objetoDatos.id_usuario,
                     id_desafio: objetoDatos.id_desafio,
+                    id_respuesta: objetoDatos.id_respuesta,
                     accion: accion                                                
                 })
             })
@@ -114,6 +127,7 @@ function likes(){
                 return response.text();
             })
             .then(function(data){ 
+                console.log(data);
                 //Vamos a remover las propiedades
                 objetoDatos.spanLike.style.color = "#000000";
                 objetoDatos.spanDislike.style.color = "#000000";

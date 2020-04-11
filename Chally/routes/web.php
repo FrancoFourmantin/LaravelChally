@@ -88,7 +88,7 @@ Route::view('/contacto', 'contacto'); //Ruta para contacto
  */
 
 Route::post('/likes/new' , "likeController@store");
-Route::get('/likes/get/{id_desafio}' , 'likeController@show');
+Route::get('/likes/get/{id_desafio}/{es_desafio}' , 'likeController@show');
 
 Route::get("/categorias" , "CategoriaController@create")->middleware("role");
 Route::post("/agregarCategoria" , "CategoriaController@store");

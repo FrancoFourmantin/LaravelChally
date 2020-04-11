@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Desafio;
 use App\Usuario;
+use App\Like;
 
 class Respuesta extends Model
 {
@@ -18,6 +19,10 @@ class Respuesta extends Model
 
     public function getUsuario(){
         return $this->belongsTo('App\Usuario','id_autor','id_usuario');
+    }
+
+    public function getLikes(){
+        return $this->hasMany('App\Like' , 'id_respuesta' , 'id');
     }
 
     //

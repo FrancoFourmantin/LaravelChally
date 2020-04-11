@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Desafio;
 use App\Like;
+use App\Respuesta;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
@@ -40,14 +41,19 @@ class LikeController extends Controller
         //Si el usuario ya le dio like, y toca el boton de like significa que lo quiere eliminar
         //Si el usuario ya le dio dislike, y toca el boton significa que lo quiere eliminar
         //Si el usuario toco el boton de like y ahora toca el de dislike, se deberan cambiar la columna like_or_dislike  y viceversa
-
         $id_usuario = $request->id_usuario;
         $id_desafio = $request->id_desafio;
+        $id_respuesta = $request->id_respuesta;
         $accion = $request->accion;
+
+        if($id_desafio){
+            $posteo = Desafio::find($id_desafio);
+        }elseif ($id_respuesta) {
+            $posteo = Respuesta::find($id_respuesta);
+        }
        
         //Aqui tenemos dos opciones, podemos traer todos los likes del usuario, o podemos traer todos los likes del desafio
-        $desafio = Desafio::find($id_desafio);
-        $likes = $desafio->getLikes;
+        $likes = $posteo->getLikes;
 
         //Una vez tengamos los likes vamos a verificar que no tenga ninguna fila creada el usuario para ese desafio si la tiene vamos a verifcar en que estado esta la columna like_or_dislike
      
@@ -78,18 +84,13 @@ class LikeController extends Controller
                     $like->save();
                     return "Guardado dsp de verificar";
                 }
-
-
-
-                
             }
-
-
         }
 
         //Si llegamos a este punto significa que el usuario todavia no le doy like ni dislike
         $newLike = new Like();
         $newLike->id_desafio = $id_desafio;
+        $newLike->id_respuesta = $id_respuesta;
         $newLike->id_usuario = $id_usuario;
         if($accion == 'like'){
             $newLike->like_or_dislike = true;
@@ -108,20 +109,23 @@ class LikeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id_desafio)
+    public function show($id_solicitado , $es_desafio)
     {
-        $desafio = Desafio::find($id_desafio);
-        //Vamos a chequear si el usuario logeado le dio like al post en cuestion
+        if($es_desafio === 'true'){
+            $posteo = Desafio::find($id_solicitado);
+        }else{
+            $posteo = Respuesta::find($id_solicitado);
+        }
 
         // Con esta funcion podemos retornar los likes por desafio
-        $likes = $desafio->getLikes->where('like_or_dislike' , '=' , '1')->count();
-        $dislikes = $desafio->getLikes->where('like_or_dislike' , '=' , '0')->count();    
-        $total = $desafio->getLikes->count();
+        $likes = $posteo->getLikes->where('like_or_dislike' , '=' , '1')->count();
+        $dislikes = $posteo->getLikes->where('like_or_dislike' , '=' , '0')->count();    
+        $total = $posteo->getLikes->count();
         
         $authUserDislike = false;
         $authUserLike = false;
         //Con este foreach vamos a verificar si el usuario logeado ya le dio LIKE al post en cuestion
-        foreach($desafio->getLikes as $like){
+        foreach($posteo->getLikes as $like){
             if($like->id_usuario == Auth::user()->id_usuario){
                 if($like->like_or_dislike == '1'){
                     $authUserLike = true;            
@@ -139,12 +143,9 @@ class LikeController extends Controller
             $porcentajeDeLikes = 0;
         }
 
-        
-
         $datosLikes = [
             'porcentajeDeLikes' => $porcentajeDeLikes,
             'total' => $total,
-            'idDesafio' => $desafio->id,
             'authUserLike' => $authUserLike,
             'authUserDislike' => $authUserDislike
         ];

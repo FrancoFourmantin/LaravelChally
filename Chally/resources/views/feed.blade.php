@@ -200,7 +200,15 @@ use App\Categoria;
                                         
                                         <div class="card-header posteo d-flex align-items-center">
                                             <a href={{ "../usuario/" . $desafio->getUsuario->username}}> <img class="rounded-circle"
-                                                src="{{asset('avatars/' . $desafio->getUsuario->avatar . '')}}"
+                                                
+                                                @if(strpos($desafio->getUsuario->avatar , "https://source.unsplash.com/") !== false)
+                                                src="{{$desafio->getUsuario->avatar}}"
+                          
+                                                @else
+                                                src="{{ asset("avatars/" . $desafio->getUsuario->avatar)}}"
+                                                @endif
+
+
                                                 alt="Imagen de usuario">
                                             </a>
                                             
@@ -316,7 +324,15 @@ use App\Categoria;
                                                                 
                                                                 <div class="row card-content-attached">
                                                                     <div class="col-12 imagen-feed">
+
+                                                                        @if(strpos($desafio->imagen , "https://source.unsplash.com/") !== false)
+                                                                        <div style="background-image:url('{{$desafio->imagen }}');"></div>
+                                                  
+                                                                        @else
                                                                         <div style="background-image:url('{{asset('desafios/' . $desafio->imagen .'')}}');"></div>
+                                                                        @endif
+
+
                                                                         
                                                                     </div>
                                                                     

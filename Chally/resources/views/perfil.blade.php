@@ -91,7 +91,17 @@
                     <section class="informacion_usuario position-relative shadow px-4 mt-3 mb-3 pb-5 rounded">
 
                       <div class="d-flex flex-column align-items-center">
-                      <img class="main-foto img-fluid mb-3 shadow position-absolute" src="{{ asset("avatars/$usuario->avatar")}}" alt="foto_usuario">
+                      <img class="main-foto img-fluid mb-3 shadow position-absolute"
+
+                      @if(strpos($usuario->avatar , "https://source.unsplash.com/random/") !== false)
+                      src="{{$usuario->avatar}}"
+
+                      @else
+                      src="{{ asset("avatars/$usuario->avatar")}}"
+                      @endif
+                      
+                      
+                      alt="foto_usuario">
                       <h2>{{ $usuario->nombre }} {{$usuario->apellido}}</h2>
                       <p class="text-secondary">{{ $usuario->username}}</p>
                       @if(Auth::check())
@@ -372,7 +382,16 @@
                                                                 
                                                                 <div class="row card-content-attached">
                                                                   <div class="col-12 col-md-4">
-                                                                    <img src="{{asset('desafios/' . $desafio->imagen .'')}}" class="img-fluid" alt="Imagen de Desafío">
+                                                                    <img 
+                                                                    
+                                                                    @if(strpos($desafio->imagen , "https://source.unsplash.com/") !== false)
+                                                                    src="{{$desafio->imagen}}"
+                                              
+                                                                    @else
+                                                                    src="{{ asset("desafios/" . $desafio->imagen)}}"
+                                                                    @endif                                                                              
+                                                                    
+                                                                    class="img-fluid" alt="Imagen de Desafío">
                                                                   </div>
                                                                   
                                                                   <div class="col-12 col-md-8">

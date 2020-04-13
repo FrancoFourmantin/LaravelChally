@@ -74,3 +74,21 @@ button:focus {
     border: 0;
     background: none;
 }
+
+.modal-register .left img{
+    height:calc(100% + 40px);
+    bottom:40px;
+    left:-50px;
+}
+
+.modal-register li{
+    margin-bottom:5px;
+}
+
+.modal-register ul{
+    list-style-type: none;
+}
+
+.modal-register i{
+    margin-right:10px;
+}

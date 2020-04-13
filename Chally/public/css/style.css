@@ -42,6 +42,10 @@
     border-right: 1px solid #eee;
 }
 
+.light{
+    font-weight:300;
+}
+
 .categorias-feed {
     list-style-type: none;
 }

@@ -18,8 +18,10 @@
     <title>@yield('title')</title>
 </head>
 
-<body class='@yield(' clases-body')'>
 
+
+
+<body class='@yield(' clases-body')'>
     @if (Auth::user() != null)
 
 
@@ -183,6 +185,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
 
+    @include('sweetalert::alert')
 </body>
 
 </html>

@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Carbon\Traits\Timestamp;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 
+
 class DesafioController extends Controller
 {
     /**
@@ -18,7 +19,7 @@ class DesafioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $desafios = Desafio::orderBy('fecha_creacion','desc')->get();
         $categorias = Categoria::all();

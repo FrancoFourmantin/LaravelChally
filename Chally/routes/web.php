@@ -38,6 +38,9 @@ Route::view('/contacto', 'contacto'); //Ruta para contacto
 Route::get('/likes/get/{id_desafio}/{es_desafio}' , 'likeController@show');
 
 
+Route::post('/intereses/modificar' , 'UsuarioCategoriaController@update');
+
+
 
 /**
 * 
@@ -60,6 +63,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/usuario/{username}/solicitudes' , 'AmistadController@edit'); //Ruta para mostrar solicitudes de amistadd
     Route::get('/usuario/{estado}/{username}' , 'AmistadController@update'); //Ruta para aceptar o rechazar 
     Route::get("/usuario/{username}/amigos/", "AmistadController@show");
+    Route::get("/api/usuario/intereses" , "UsuarioCategoriaController@cookieApi");//Ruta para devolver cookie
+
     /**
     * 
     * Rutas de Posteos */

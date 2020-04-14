@@ -234,3 +234,37 @@ ul.requisitos li::before {
 #step-2 {
     transition: all 0.5s ease;
 }
+
+
+.switch-checkbox{
+    position: relative;
+    width: 30px;
+    height: 15px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #c6c6c6;
+    border-radius: 20px;
+    /* box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3); */
+    transition: .5s;
+}
+
+.switch-checkbox:checked{
+    background-color: #1bb76e;
+}
+
+.switch-checkbox:before{
+    content: '';
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    border-radius: 50%;
+    background-color: #d5dee6;
+    transform: scale(1.1);
+    transition: .2s;
+    top: 0;
+    left: 0;
+}
+
+.switch-checkbox:checked::before{
+    left: 50%;
+}

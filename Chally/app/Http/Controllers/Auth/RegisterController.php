@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Cookie;
 
 class RegisterController extends Controller
 {
@@ -96,6 +97,7 @@ class RegisterController extends Controller
             $nombreImagen = 'primera-imagen-mujer.png';
         }
 
+        Cookie::queue('respondio_intereses' , 'false'  , 21600);
 
         return Usuario::create([
             'nombre' => $data['nombre'],

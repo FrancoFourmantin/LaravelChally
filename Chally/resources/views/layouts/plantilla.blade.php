@@ -29,5 +29,5 @@
     
     
     
-
+    @include('sweetalert::alert')
 </body>

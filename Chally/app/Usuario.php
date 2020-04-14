@@ -10,6 +10,7 @@ use App\Respuesta;
 use App\Amistad;
 use App\Bookmark;
 use Auth;
+use App\Categoria;
 
 class Usuario extends Authenticatable
 {
@@ -26,6 +27,7 @@ class Usuario extends Authenticatable
         return $this->hasMany('App\Respuesta','id_usuario','id_autor');
     }
 
+
     public function getBookmarks(){
         return $this->hasMany('App\Bookmark','id_usuario','id_usuario');
     }
@@ -34,6 +36,21 @@ class Usuario extends Authenticatable
     {
         $solicitudes = Amistad::where('id_usuario_2' , Auth::user()->id_usuario)->where('updated_at' , null)->count();
         return $solicitudes;
+    }
+
+    public function getCategorias(){
+        return $this->belongsToMany(Categoria::class , 'usuarios-categorias' , 'id_usuario' , 'id_categoria');
+    }
+
+    public function getCategoriaStatus($id_usuario , $id_categoria){
+
+        foreach(Usuario::find($id_usuario)->getCategorias as $categoria){
+
+            if($categoria->id == $id_categoria){
+                return 'checked';
+            }
+        }
+        return "";
     }
     
     /**

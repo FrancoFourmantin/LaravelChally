@@ -24,7 +24,16 @@
 
                 <div class="card shadow  p-3 mt-1 mb-4 text-center">
 
-                    <a href={{ "../../usuario/" . $desafio->getUsuario->username}}> <img class="rounded-circle" style="max-width:70px" src="{{asset('avatars/' . $desafio->getUsuario->avatar . '')}}" alt="Imagen de usuario"></a>
+                    <a href={{ "../../usuario/" . $desafio->getUsuario->username}}> <img class="rounded-circle" style="max-width:70px" 
+                        
+                        @if(strpos($desafio->getUsuario->avatar , "https://source.unsplash.com/") !== false)
+                        src="{{$desafio->getUsuario->avatar}}"
+  
+                        @else
+                        src="{{ asset("avatars/" . $desafio->getUsuario->avatar)}}"
+                        @endif             
+                        
+                        alt="Imagen de usuario"></a>
                    
                     <p class="font-weight-bold mt-3 mb-0"> {{$desafio->getUsuario->nombre}}  {{$desafio->getUsuario->apellido}}</p>
                 </div>
@@ -130,7 +139,17 @@
                                         </div>
 
                                         <div class="col-12">
-                                            <img src="{{asset('desafios/' . $desafio->imagen)}}" class="img-fluid mb-3" alt="Imagen de desafío">
+                                            <img
+                                            
+                                            @if(strpos($desafio->imagen , "https://source.unsplash.com/") !== false)
+                                            src="{{$desafio->imagen}}"
+                      
+                                            @else
+                                            src="{{ asset("desafios/" . $desafio->imagen)}}"
+                                            @endif                                            
+                                            
+                                            
+                                            class="img-fluid mb-3" alt="Imagen de desafío">
                                         </div>
 
                                         <div class="col-12">

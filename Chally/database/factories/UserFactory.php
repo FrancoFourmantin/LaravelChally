@@ -2,7 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\User;
+use App\Usuario;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
@@ -17,12 +17,17 @@ use Illuminate\Support\Str;
 |
 */
 
-$factory->define(User::class, function (Faker $faker) {
+$factory->define(Usuario::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
+        'nombre' => $faker->name,
+        'apellido' => $faker->lastName,
+        'sexo' => $faker->randomElement($array = array ('h','m')),
+        'username' => $faker->unique()->userName,
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
-        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        'remember_token' => Str::random(10),
+        'password' => $faker->password, 
+        'fecha_nacimiento' => $faker->date($format = 'Y-m-d', $max = '-20 years'),
+        'bio' =>$faker->text($maxNbChars = 200), 
+        'avatar' => 'https://source.unsplash.com/random/500x500?sig='.$faker->numberBetween($min = 100, $max = 199),  
     ];
 });

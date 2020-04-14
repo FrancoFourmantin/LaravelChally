@@ -116,6 +116,13 @@ aria-hidden="true">
                         
                         <p class="color-verde font-weight-bold mb-1 ml-3"><i class="fas fa-user-friends"></i>&nbsp;Invitaciones
                         </p>
+                    </div>
+                    
+                    
+                    <hr>
+                    
+                    <p class="color-verde font-weight-bold mb-1 ml-3 "><i class="fas fa-list"></i>&nbsp;Filtrar por
+                        categoría</p>
                         <div class="px-3 mt-1 mb-4">
                             @if(Auth::check())
                             @if (Auth::user()->getSolicitudesDeAmistad())
@@ -127,6 +134,9 @@ aria-hidden="true">
                             @endif
                             @endif
                         </div>
+
+
+         
                         
                         <hr>
                         
@@ -176,6 +186,63 @@ aria-hidden="true">
                         <div class="seccion-derecha my-3">
                             <!--Menu para elegir vista de posteos-->
                             <!--Fin menu para elegir vista de posteos-->
+                            <!-- Large modal -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Modal Registro</button>
+
+                            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content modal-register">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-6 d-none d-lg-block left" >
+                                                <img class="position-relative" src="img/pencil-guy.png" alt="">
+                                            </div>
+
+                                            <div class="col-12 col-lg-5 px-5 px-lg-3 py-5 d-flex flex-column justify-content-between">
+                                                <div>
+                                                    <img src="img/logo_c.svg" style="width:60px" alt="" class="text-center d-block m-auto pb-3">
+                                                    <h4 class="color-verde mb-4 text-center">¡Registrate y armá tu portfolio creativo ahora!</h4>
+
+                                                    <form action="register" method="GET">
+
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" id="inputName" name="nameHero" placeholder="Tu nombre" required>
+                                                        </div>
+                                        
+                                                        <div class="form-group">
+                                                            <input type="email" class="form-control" id="inputMail" name="mailHero" placeholder="Tu mail" required >
+                                                        </div>    
+                                                        
+                                                        <button class="btn btn-secondary w-100" type="submit">Registrarme</button>
+
+
+                                                    </form>
+
+                                                    <ul class="mt-4">
+                                                        <li class="text-muted texto-chico"><i class="fas fa-check color-verde"></i>Armá tu portfolio profesional</li>
+                                                        <li class="text-muted texto-chico"><i class="fas fa-check color-verde"></i>Participá en cientos de desafíos online</li>
+                                                        <li class="text-muted texto-chico"><i class="fas fa-check color-verde"></i>Creá tus propios desafíos</li>
+                                                        <li class="text-muted texto-chico"><i class="fas fa-check color-verde"></i>Poné en práctica tus habilidades y hobbies</li>
+                                                        <li class="text-muted texto-chico"><i class="fas fa-check color-verde"></i>Inspirate viendo trabajo de otras personas</li>
+                                                    </ul>
+                                                </div>    
+
+
+                                                <div class="text-center w-100">
+                                                    <hr>
+                                                    <p class="color-verde light">¿Ya tenés cuenta?</p>
+                                                    <a class="btn btn-outline-dark" href="/login" role="button"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</a>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>                                 
+
+                            @foreach ($desafios as $desafio)
                             
                             @if( Request::is('feed/categoria*') )
                             <h3 class="color-verde ml-0">Últimos desafíos de la categoría {{$categoriaActual->nombre}}</h3>
@@ -196,6 +263,19 @@ aria-hidden="true">
                                         
                                         
                                         <div class="card mb-5">
+                                        <div class="card-header posteo d-flex align-items-center">
+                                            <a href={{ "../usuario/" . $desafio->getUsuario->username}}> <img class="rounded-circle"
+                                                
+                                                @if(strpos($desafio->getUsuario->avatar , "https://source.unsplash.com/") !== false)
+                                                src="{{$desafio->getUsuario->avatar}}"
+                          
+                                                @else
+                                                src="{{ asset("avatars/" . $desafio->getUsuario->avatar)}}"
+                                                @endif
+
+
+                                                alt="Imagen de usuario">
+                                            </a>
                                             
                                             <div class="card-header posteo d-flex align-items-center">
                                                 <a href={{ "../usuario/" . $desafio->getUsuario->username}}> <img class="rounded-circle"
@@ -311,6 +391,26 @@ aria-hidden="true">
                                                         <a href="/desafio/ver/{{$desafio->id}}">
                                                             <div class="card-contenido">
                                                                 <div class="row">
+                                                    </div>
+                                                    
+                                                    <a href="/desafio/ver/{{$desafio->id}}">
+                                                        <div class="card-contenido">
+                                                            <div class="row">
+                                                                
+                                                                
+                                                                <div class="row card-content-attached">
+                                                                    <div class="col-12 imagen-feed">
+
+                                                                        @if(strpos($desafio->imagen , "https://source.unsplash.com/") !== false)
+                                                                        <div style="background-image:url('{{$desafio->imagen }}');"></div>
+                                                  
+                                                                        @else
+                                                                        <div style="background-image:url('{{asset('desafios/' . $desafio->imagen .'')}}');"></div>
+                                                                        @endif
+
+
+                                                                        
+                                                                    </div>
                                                                     
                                                                     
                                                                     <div class="row card-content-attached">

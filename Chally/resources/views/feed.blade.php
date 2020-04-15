@@ -91,7 +91,7 @@ aria-hidden="true">
                 <div class="card  p-3 mt-1 mb-4 alert alert-danger bookmarkList">
                     
                 </div>
-                {{-- 
+                
                     <div class="card  p-3 mt-1 mb-4 alert alert-danger">
                         @foreach(Auth::user()->getBookmarks as $bookmark)
                         <p><a href="/desafio/ver/{{$bookmark->getDesafio->id}}">{{$bookmark->getDesafio->nombre}} </a><br>
@@ -106,7 +106,7 @@ aria-hidden="true">
                             @endforeach
                         </div>
                         
-                        --}}
+                       
                         
                         <hr>
                         
@@ -116,13 +116,7 @@ aria-hidden="true">
                         
                         <p class="color-verde font-weight-bold mb-1 ml-3"><i class="fas fa-user-friends"></i>&nbsp;Invitaciones
                         </p>
-                    </div>
-                    
-                    
-                    <hr>
-                    
-                    <p class="color-verde font-weight-bold mb-1 ml-3 "><i class="fas fa-list"></i>&nbsp;Filtrar por
-                        categoría</p>
+
                         <div class="px-3 mt-1 mb-4">
                             @if(Auth::check())
                             @if (Auth::user()->getSolicitudesDeAmistad())
@@ -186,6 +180,17 @@ aria-hidden="true">
                         <div class="seccion-derecha my-3">
                             <!--Menu para elegir vista de posteos-->
                             <!--Fin menu para elegir vista de posteos-->
+                            @if( Request::is('feed/categoria*') )
+                            <h3 class="color-verde ml-0">Últimos desafíos de la categoría {{$categoriaActual->nombre}}</h3>
+                            <p>Encontramos {{$desafios->count()}}
+                                @if ($desafios->count() == 1)
+                                desafío disponible
+                                @else
+                                desafíos disponibles
+                                @endif en esta categoría </p>
+                                <br>
+                                @endif
+                                
                             <!-- Large modal -->
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Modal Registro</button>
 
@@ -244,19 +249,7 @@ aria-hidden="true">
 
                             @foreach ($desafios as $desafio)
                             
-                            @if( Request::is('feed/categoria*') )
-                            <h3 class="color-verde ml-0">Últimos desafíos de la categoría {{$categoriaActual->nombre}}</h3>
-                            <p>Encontramos {{$desafios->count()}}
-                                @if ($desafios->count() == 1)
-                                desafío disponible
-                                @else
-                                desafíos disponibles
-                                @endif en esta categoría </p>
-                                <br>
-                                @endif
-                                
-                                
-                                @foreach ($desafios as $desafio)
+
                                 
                                 <div class="row" id="desafio-{{$desafio->id}}">
                                     <div class="col-12">
@@ -277,12 +270,7 @@ aria-hidden="true">
                                                 alt="Imagen de usuario">
                                             </a>
                                             
-                                            <div class="card-header posteo d-flex align-items-center">
-                                                <a href={{ "../usuario/" . $desafio->getUsuario->username}}> <img class="rounded-circle"
-                                                    src="{{asset('avatars/' . $desafio->getUsuario->avatar . '')}}"
-                                                    alt="Imagen de usuario">
-                                                </a>
-                                                
+
                                                 <div class="d-flex flex-column ml-3">
                                                     
                                                     
@@ -391,11 +379,9 @@ aria-hidden="true">
                                                         <a href="/desafio/ver/{{$desafio->id}}">
                                                             <div class="card-contenido">
                                                                 <div class="row">
-                                                    </div>
+                                           
                                                     
-                                                    <a href="/desafio/ver/{{$desafio->id}}">
-                                                        <div class="card-contenido">
-                                                            <div class="row">
+                                               
                                                                 
                                                                 
                                                                 <div class="row card-content-attached">
@@ -413,12 +399,7 @@ aria-hidden="true">
                                                                     </div>
                                                                     
                                                                     
-                                                                    <div class="row card-content-attached">
-                                                                        <div class="col-12 imagen-feed">
-                                                                            <div style="background-image:url('{{asset('desafios/' . $desafio->imagen .'')}}');"></div>
-                                                                            
-                                                                        </div>
-                                                                        
+     
                                                                         <div class="col-12">
                                                                             
                                                                             <h3 class="ml-0">{{$desafio->nombre}}</h3>
@@ -548,7 +529,6 @@ aria-hidden="true">
                                     <script src="{{asset('js/likes_functions.js')}}"></script>
                                     <script src="{{asset('js/bookmarks_functions.js')}}"></script>
                                     <script src="{{asset('js/intereses_functions.js')}}"></script>
-                                    <script>
-                                    </script>
+            
                                     
                                     @endsection

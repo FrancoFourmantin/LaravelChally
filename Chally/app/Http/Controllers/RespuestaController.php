@@ -7,6 +7,8 @@ use App\Desafio;
 use App\Respuesta;
 use Carbon\Carbon;
 use Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RespuestaEnviada;
 
 class RespuestaController extends Controller
 {
@@ -64,6 +66,7 @@ class RespuestaController extends Controller
         $nuevaRespuesta->id_autor = Auth::user()->id_usuario;
         $nuevaRespuesta->id_desafio = $id_desafio;
         $nuevaRespuesta->save();
+        Mail::to(Auth::user()->email)->send(new RespuestaEnviada($nuevaRespuesta));
 
         return redirect('/desafio/ver/' . $nuevaRespuesta->id_desafio)->with("mensaje","¡Tu respuesta fue publicada satisfactoriamente!");
     }

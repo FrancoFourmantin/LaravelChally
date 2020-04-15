@@ -12,6 +12,8 @@ use Carbon\Traits\Timestamp;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 
+
+
 class DesafioController extends Controller
 {
     /**

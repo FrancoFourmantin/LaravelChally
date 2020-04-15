@@ -23,6 +23,7 @@ Route::get('/feed', 'DesafioController@index');  //Ruta para enviar al usuario a
 Route::get('/feed/categoria-{id}', 'DesafioController@indexCategoria');  //Ruta para enviar al usuario al feed despues del login
 Route::get('/usuario/{username}', 'UsuarioController@show'); //Ruta para mostrar usuario;
 Route::get('/desafio/ver/{id}', 'DesafioController@show');
+
 /**
 * 
 * Rutas de index

@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Cookie;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\Test;
+use App\Mail\Confirm;
+use App\Mail\Confirmed;
 
 class RegisterController extends Controller
 {
@@ -100,7 +101,8 @@ class RegisterController extends Controller
         }
 
         Cookie::queue('respondio_intereses' , 'false'  , 21600);
-        Mail::to($data['email'])->send(new Test($data));
+        Mail::to($data['email'])->send(new Confirm($data));
+        Mail::to($data['email'])->send(new Confirmed($data));
 
         return Usuario::create([
             'nombre' => $data['nombre'],

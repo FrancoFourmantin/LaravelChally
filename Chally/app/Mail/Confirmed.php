@@ -7,11 +7,10 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class Test extends Mailable
+class Confirmed extends Mailable
 {
     use Queueable, SerializesModels;
     public $data;
-
     /**
      * Create a new message instance.
      *
@@ -19,7 +18,9 @@ class Test extends Mailable
      */
     public function __construct($data)
     {
-        $this->data = $data;
+        $this->subject('¡Bienvenido a Chally ' . $data['nombre'] . '!');
+        return $this->data=$data;
+        
     }
 
     /**
@@ -28,7 +29,7 @@ class Test extends Mailable
      * @return $this
      */
     public function build()
-    {
-        return $this->view('emails.test');
+    {   
+        return $this->view('emails.confirmed_account');
     }
 }

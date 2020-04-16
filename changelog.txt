@@ -1,0 +1,16 @@
+16.04.2020 16-00 (emi) 
+
+Diseño y Maquetado de Layouts de Mail:
+- Confirmar cuenta
+- Cuenta confirmada
+- Respuesta enviada
+- Respuesta recibida
+
+- Se subieron los .MJML editables de los mails a MJML/
+- Se crearon los 4 mails en App/Mail
+- Se crearon las views en HTML para los 4 mails
+- Mails ya funcionales y responsive vía Mailtrap con todos los parámetros requeridos
+- Se subieron imágenes varias para ilustrar los mails
+- Se editó la vista de Respuestas para que cada respuesta tenga un ID único para los HREF del mail
+
+=========================

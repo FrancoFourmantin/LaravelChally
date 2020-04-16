@@ -1,0 +1,57 @@
+<mjml>
+  <mj-body background-color="#eeeeee">
+    <mj-section background-color="#ffffff">
+      <mj-column>
+
+        <mj-image width="170px" src="http://localhost:8000/img/emails/logo_chally.png"></mj-image>
+
+        <mj-divider border-color="#e1e2e3" border-width="1px"></mj-divider>
+
+      </mj-column>
+
+    </mj-section>
+
+    <mj-section padding="0px" background-color="#ffffff">
+      <mj-column>
+
+        <mj-text padding-top="0" color="#1bb76e" font-weight="bold" font-size="24px" align="center" line-height="32px">¡Emiliano, tu cuenta fue activada!</mj-text>
+
+        <mj-text padding-top="0" color="#1bb76e" font-weight="" font-size="20px" align="center" line-height="30px">¿Listo para usar tu tiempo en desafíos creativos?</mj-text>
+
+        <mj-image padding-top="0px" padding-bottom="15px"  width="500px" src="http://localhost:8000/img/emails/confirmed-image.png"></mj-image>
+
+
+
+
+        <mj-button border-radius="5px" background-color="#1bb76e" color="white" font-weight="bold" font-size="18px" href="#">
+          Buscar desafíos
+        </mj-button>
+
+        <mj-text padding-bottom="20px" color="#ccc" align="center" text-decoration="underline" font-size="14px" >
+          <a href="#">Personalizá tu perfil</a>
+        </mj-text>
+
+      </mj-column>
+
+    </mj-section>
+
+
+
+    <mj-section>
+      <mj-column>
+        <mj-image padding="0px" width="100px" src="http://localhost:8000/img/emails/logo_chally_footer.png"></mj-image>
+        <mj-text align="center" color="#aaaaaa" line-height="18px">
+          Este email fue enviado a pepito@mail.com desde Chally.com <br></br>
+
+          Equipo de Chally<br> hola@chally.com
+          </br>
+          Av. Pepito 450 (3351), Buenos Aires, Argentina
+        </mj-text>
+
+
+      </mj-column>
+    </mj-section>
+
+
+  </mj-body>
+</mjml>

@@ -1,0 +1,52 @@
+<mjml>
+  <mj-body background-color="#eeeeee">
+    <mj-section background-color="#ffffff">
+      <mj-column>
+
+        <mj-image width="170px" src="http://localhost:8000/img/emails/logo_chally.png"></mj-image>
+
+        <mj-divider border-color="#e1e2e3" border-width="1px"></mj-divider>
+
+      </mj-column>
+
+    </mj-section>
+
+    <mj-section padding="0px" background-color="#ffffff">
+      <mj-column>
+
+        <mj-text padding-top="0" color="#1bb76e" font-weight="bold" font-size="18px" align="center" line-height="28px">Tu desafio {{$desafio->nombre}} recibió una respuesta</mj-text>
+
+        <mj-image padding="0px"  src="http://localhost:8000/desafios/{{$desafio->imagen}}"></mj-image>
+
+
+
+
+        <mj-button border-radius="5px" background-color="#1bb76e" color="white" font-weight="bold" font-size="18px" href="localhost:8000/desafio/ver/{{$desafio->id}}#respuesta-{{$nuevaRespuesta->id_autor}}">
+          Ver respuesta
+        </mj-button>
+
+
+      </mj-column>
+
+    </mj-section>
+
+
+
+    <mj-section>
+      <mj-column>
+        <mj-image padding="0px" width="100px" src="http://localhost:8000/img/emails/logo_chally_footer.png"></mj-image>
+        <mj-text align="center" color="#aaaaaa" line-height="18px">
+          Este email fue enviado a pepito@mail.com desde Chally.com <br></br>
+
+          Equipo de Chally<br> hola@chally.com
+          </br>
+          Av. Pepito 450 (3351), Buenos Aires, Argentina
+        </mj-text>
+
+
+      </mj-column>
+    </mj-section>
+
+
+  </mj-body>
+</mjml>

@@ -7,23 +7,20 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class RespuestaEnviada extends Mailable
+class Confirm extends Mailable
 {
     use Queueable, SerializesModels;
-
-    public $nuevaRespuesta;
-    public $desafio;
+    public $data;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($nuevaRespuesta,$desafio)
-    {
-        $this->subject('¡Ya estás participando en el desafío!');
-        $this->nuevaRespuesta=$nuevaRespuesta;
-        $this->desafio=$desafio;
+    public function __construct($data)
+    {   
+        $this->subject($data['nombre'] . ', confirmá tu cuenta en Chally');
+        $this->data = $data;
     }
 
     /**
@@ -33,6 +30,6 @@ class RespuestaEnviada extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.respuesta_enviada');
+        return $this->view('emails.confirm_account');
     }
 }

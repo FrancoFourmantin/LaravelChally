@@ -204,7 +204,7 @@
                 
                 @foreach ($desafio->getRespuestas as $respuesta)
                         
-                    <div class="row mb-5">
+                    <div class="row mb-5" id="respuesta-{{$respuesta->id_autor}}">
                         <div class="col-12">
 
                             <div class="card">

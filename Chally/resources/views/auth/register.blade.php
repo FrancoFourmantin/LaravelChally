@@ -9,7 +9,7 @@
     <section class="container-fluid px-5">
         <div class="row d-flex align-items-center justify-content-center vh-100 flex-wrap">
             
-            
+
             
             <div
             class="col-12 col-sm-12 col-md-8 col-lg-5 shadow contacto-form px-5 py-3 d-flex flex-column align-items-center my-5">
@@ -19,9 +19,12 @@
             enctype="multipart/form-data">
             @csrf
             <div class="form-row">
-                
+                <a href="auth/facebook"><img class="mb-5 text-center d-block mx-auto" style="width:50%" src="img/facebook-button.png" alt=""></a>
+
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-0 mb-md-4 ">
+
                     <div class="form-group">
+
                         <label >Tu nombre</label>
                         <input type="text" inputname="Nombre" class="form-control" name="nombre" id="nombre"  required
                         value="@if($nameHero??''){{$nameHero??''}}@else{{old('nombre')}}@endif">

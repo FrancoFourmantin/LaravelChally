@@ -14,3 +14,16 @@ Diseño y Maquetado de Layouts de Mail:
 - Se editó la vista de Respuestas para que cada respuesta tenga un ID único para los HREF del mail
 
 =========================
+
+18.04.2020 21-00 (emi) 
+
+- Se integró Chally con Socialite (Requiere hacer un composer update)
+- Se creó la App en facebook para el inicio de sesión
+- Se realizó el proceso de registración e inicio de sesión de un usuario vía Facebook
+- Faltan pulir los campos
+- Se modificó la migration de la creación de la tabla de usuarios para que los campos que facebook no provee sean nullables
+- Se crearon las rutas de login y callback 
+- Login funcional
+- Se añadieron los botones de inicio de sesión a los formularios de registro y login
+
+=========================

@@ -8,6 +8,9 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Socialite;
 use App\Usuario;
 use Auth;
+use File;
+use Cookie;
+
 
 
 class LoginController extends Controller
@@ -62,15 +65,21 @@ class LoginController extends Controller
         if ($user = Usuario::where('email', $social_user->email)->first()) { 
             return $this->authAndRedirect($user); // Login y redirección
         } else {  
+
+            $avatarContents = file_get_contents($social_user->avatar);
+            File::put(public_path('avatars') . '/avatars' . time() . ".jpg", $avatarContents);
+
             // En caso de que no exista creamos un nuevo usuario con sus datos.
             $user = Usuario::create([
                 'nombre' => $social_user->name,
-                'apellido' => $social_user->name,
+                //'apellido' => $social_user->name,
                 'email' => $social_user->email,
-                'avatar' => $social_user->avatar,
-                'username' => $social_user->name,
+                'avatar' => "avatars" . time() . ".jpg",
+                'username' => strtolower(str_replace(' ', '', $social_user->name)),
             ]);
- 
+            
+            Cookie::queue('respondio_intereses' , 'false'  , 21600);
+
             return $this->authAndRedirect($user); // Login y redirección
         }        
         

@@ -34,7 +34,9 @@
             <p id="registrarse" class="fuente-chica"><a href="/register" class="font-weight-bold d-inline-block"
                     alt="Enlace a la página de registro">¿No tienes cuenta? Regístrate aquí.</a></p>
 
-                    <a href="auth/facebook"><img class="img-fluid" src="img/facebook-button.png" alt=""></a>
+                    {{-- <a href="auth/facebook"><img class="img-fluid" src="img/facebook-button.png" alt=""></a> --}}
+                    <a href="auth/facebook"><img class="mb-2 text-center d-block mx-auto" style="width:50%" src="img/facebook-button.png" alt=""></a>
+                    <a href="auth/google"><img class="text-center d-block mx-auto shadow" style="width:50%" src="img/google-button.png" alt=""></a>
                     <!--<div class="fb-login-button" data-size="large" data-button-type="continue_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="true" data-width=""></div> -->       </form>
     </div>
 </div>

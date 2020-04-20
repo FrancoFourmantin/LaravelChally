@@ -18,6 +18,7 @@
 </head>
 
 <body class='@yield(' clases-body')'>
+    @include('layouts/modal-registro')
 
     @if (Auth::user() != null)
 
@@ -123,6 +124,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+<script src="{{asset('js/handle_functions.js')}}"></script>
     @include('sweetalert::alert')
 </body>
 

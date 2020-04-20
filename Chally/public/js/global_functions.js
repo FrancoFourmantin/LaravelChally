@@ -70,3 +70,14 @@ function hideError(campo){
     campo.classList.remove("is-invalid");
     campo.nextElementSibling.classList.add("d-none")
 }
+
+
+function mostrarModal(){
+    
+    window.addEventListener('click', function(e){
+        let element = e.currentTarget;
+        if(element.href){
+            console.log(element.href);
+        }
+    })
+}

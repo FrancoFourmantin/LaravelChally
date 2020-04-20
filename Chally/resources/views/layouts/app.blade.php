@@ -76,5 +76,7 @@
             @yield('content')
         </main>
     </div>
+
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 </body>
 </html>

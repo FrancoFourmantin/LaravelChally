@@ -3,6 +3,7 @@ let form = document.querySelector('#form-intereses');
 let checkboxs = form.querySelectorAll('.switch-checkbox');
 let smallError = document.createElement('small');
 let modal = document.getElementById('seleccionar-intereses');
+let botonModal = document.getElementById('boton-modificar-intereses');
 smallError.classList.add('text-danger' , 'mr-auto');
 
 
@@ -11,9 +12,28 @@ checkboxs.forEach(function(checkbox){
 })
 //Simple listener que me sirve para contar cuantos checkbox estan "chequeados"
 checkboxs.forEach(checkbox => checkbox.addEventListener('change' , function(e){
-    e.currentTarget.checked ? contador += 1 : contador -= 1;
-    console.log(contador);
+    e.currentTarget.checked ? contador += 1 : contador += 0;
 }))
+
+botonModal.addEventListener('click' , function(e){
+
+    $('#seleccionar-intereses').modal('show');
+
+    form.addEventListener('submit' , function(e){
+        if(contador < 3){
+            smallError.innerText = "* Debe seleccionar al menos 3 categorias";
+            modal.querySelector('.modal-footer').insertAdjacentElement('afterbegin' , smallError);
+            e.preventDefault();
+        }else{
+            $('#seleccionar-intereses').modal({
+                backdrop: 'true',
+                keyboard: true
+            })
+        }
+        
+    })
+
+})
 
 
 //Con este fetch es que vamos a mostrar el modal con la respuesta de una API que nos dice si respondio o no a los intereses
@@ -30,7 +50,7 @@ fetch('/api/usuario/intereses')
             keyboard: false
         })
         $('#seleccionar-intereses').modal('show');
-
+        
         form.addEventListener('submit' , function(e){
             if(contador < 3){
                 smallError.innerText = "* Debe seleccionar al menos 3 categorias";
@@ -42,10 +62,10 @@ fetch('/api/usuario/intereses')
                     keyboard: true
                 })
             }
-
+            
         })
-
-
+        
+        
     }
 })
 .catch(function(error){

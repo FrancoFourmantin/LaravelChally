@@ -18,9 +18,10 @@
             <form class="w-100 needs-validation" method="POST" action="{{ route('register')}}"
             enctype="multipart/form-data">
             @csrf
+            
             <div class="form-row">
-                <a href="auth/facebook"><img class="mb-5 text-center d-block mx-auto" style="width:50%" src="img/facebook-button.png" alt=""></a>
-
+                <a href="auth/facebook"><img class="mb-2 text-center d-block mx-auto" style="width:50%" src="img/facebook-button.png" alt=""></a>
+                <a href="auth/google"><img class="mb-5 text-center d-block mx-auto shadow" style="width:50%" src="img/google-button.png" alt=""></a>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-0 mb-md-4 ">
 
                     <div class="form-group">
@@ -134,6 +135,7 @@
                             <button type="submit" id="submit-register" class="btn btn-dark" disabled>
                                 Registrarme
                             </button>
+          
                             
                         </div>
                     </form>

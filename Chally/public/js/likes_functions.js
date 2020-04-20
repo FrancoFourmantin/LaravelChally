@@ -75,7 +75,7 @@ function likes(){
             return response.json();
         })
         .then(function(likes){
-            console.log(likes);
+
             likes.stringify;                                                                                  
             //Si el usuario ya le había dado like a ese desafio mostramos el corazon rojo
             if(likes.authUserLike == true){
@@ -133,7 +133,7 @@ function likes(){
                 return response.text();
             })
             .then(function(data){ 
-                console.log(data);
+
                 //Vamos a remover las propiedades
                 objetoDatos.spanLike.style.color = "#000000";
                 objetoDatos.spanDislike.style.color = "#000000";

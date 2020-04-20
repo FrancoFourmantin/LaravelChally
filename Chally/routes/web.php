@@ -24,8 +24,8 @@ Route::get('/feed/categoria-{id}', 'DesafioController@indexCategoria');  //Ruta 
 Route::get('/usuario/{username}', 'UsuarioController@show'); //Ruta para mostrar usuario;
 Route::get('/desafio/ver/{id}', 'DesafioController@show');
 
-Route::get('auth/facebook', 'Auth\LoginController@redirectToProvider');
-Route::get('auth/facebook/callback', 'Auth\LoginController@handleProviderCallback');
+Route::get('auth/{provider}', 'Auth\LoginController@redirectToProvider');
+Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
 /**
 * 

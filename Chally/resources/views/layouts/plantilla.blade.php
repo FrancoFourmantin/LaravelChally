@@ -22,7 +22,7 @@
 </head>
 
 <body class='@yield('clases-body')'>
-    
+    @include('layouts/modal-registro')
     
     
     @yield('main')
@@ -30,4 +30,6 @@
     
     
     @include('sweetalert::alert')
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="{{asset('js/handle_functions.js')}}"></script>
 </body>

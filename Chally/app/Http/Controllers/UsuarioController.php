@@ -9,6 +9,7 @@ use App\Usuario;
 use App\Desafio;
 use App\Amistad;
 use App\Respuesta;
+use App\Categoria;
 use App\Http\Controllers\AmistadController;
 use Illuminate\Support\Facades\Validator;
 
@@ -103,7 +104,8 @@ class UsuarioController extends Controller
     {
         $id =  $request->input('id_usuario');
         $usuario = Usuario::find($id);
-        $vac = compact('usuario');
+        $categorias = Categoria::all();
+        $vac = compact('usuario' , 'categorias');
         return view('/editar-perfil', $vac);
     }
 

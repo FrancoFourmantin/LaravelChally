@@ -119,7 +119,10 @@ class RegisterController extends Controller
     public function mostrarRegistroConDatos(Request $data)
     {
         $nameHero = $data->input('nameHero');
-        $lastnameHero = $data->input('lastnameHero');
+        $lastnameHero = "";
+        if($data->input('lastnameHero')){
+            $lastnameHero = $data->input('lastnameHero');
+        }
         $mailHero = $data->input('mailHero');
         $vac = compact('nameHero', 'lastnameHero', 'mailHero');
         return view('auth/register', $vac);

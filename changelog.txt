@@ -27,6 +27,14 @@ Diseño y Maquetado de Layouts de Mail:
 - Se añadieron los botones de inicio de sesión a los formularios de registro y login
 
 =========================
+19.04.2020 21-30 (emi)
+
+- Fix generales de todo el proceso de login vía Facebook
+- Campo apellido va vacío
+- Los username de Facebook ya no tienen whitespace
+- Ahora los avatars de Facebook se almacenan en /avatars para poder renderizarse bien en las views. 
+
+=========================
 
 20.04.2020 13-00 (Fran)
 
@@ -34,3 +42,6 @@ Diseño y Maquetado de Layouts de Mail:
 -Se añadieron los botones de inicio de sesión a los formularios de registro y login (Google)
 -Se integro pop-up para cuando un usuario no-logeado quiere interactuar con acciones para usuarios logeados
 -Se creo boton en menu de editar perfil para modificar intereses
+
+
+

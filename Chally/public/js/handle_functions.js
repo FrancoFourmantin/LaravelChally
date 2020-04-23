@@ -1,13 +1,15 @@
 let allLinks = document.querySelectorAll('a');
 allLinks.forEach(a => a.addEventListener('click' , function(e){
-    if(!linkActual.search('google') || !linkActual.search('facebook')){
-    e.preventDefault();
-    let linkActual = a.href;
+    const linkActual = a.href;
+    if(linkActual.search('([facebook])\w+') || linkActual.search('([google])\w+')){
+        e.preventDefault();
         fetch(linkActual)
         .then(function(response){
             return response.text();
+            
         })
         .then(function(data){
+   
             if(data === '"desautorizado"'){
                 $('#modal-registro').modal('show');
             }else{
@@ -19,3 +21,15 @@ allLinks.forEach(a => a.addEventListener('click' , function(e){
         })
     }
 }));
+
+
+
+let scroll = 0;
+document.addEventListener('scroll' , function(e){
+    scroll += 1;
+    console.log(scroll);
+    if(scroll > 100 ){
+        $('#modal-registro').modal('show');
+        scroll = 0;
+    }
+})

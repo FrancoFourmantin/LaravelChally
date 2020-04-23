@@ -126,7 +126,9 @@
     </script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
 
+    @if(!Auth::check())
 <script src="{{asset('js/handle_functions.js')}}"></script>
+@endif
     @include('sweetalert::alert')
 </body>
 

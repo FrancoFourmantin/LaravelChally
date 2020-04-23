@@ -187,7 +187,9 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script src="{{asset('js/handle_functions.js')}}"></script>
+    @if(!Auth::check())
+<script src="{{asset('js/handle_functions.js')}}"></script>
+@endif
 
     @include('sweetalert::alert')
 </body>

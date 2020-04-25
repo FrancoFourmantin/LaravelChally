@@ -4,102 +4,6 @@
 
 @section('main')
 
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-3 create-menu">
-
-            <div class="paso paso-activo card my-5 mx-5 pl-4 py-4 shadow position-relative">
-                <span class="position-absolute color-verde texto-muygrande opacity-50" style="top:8px;right:22px">01</span>
-                <h2 class="mb-4">Armado del desafío</h2>
-                <ul class="mb-0">
-                    <li><i class="fas fa-check color-gris">&nbsp;&nbsp;</i><span class="font-weight-medium">Categoría: </span></li>
-                    <li><i class="fas fa-check color-gris">&nbsp;&nbsp;</i><span class="font-weight-medium">Subcategoría: </span></li> 
-                    <li><i class="fas fa-check color-gris">&nbsp;&nbsp;</i><span class="font-weight-medium">Título: </span></li>                       
-                </ul>
-            </div>
-
-            <div class="paso my-5 mx-5 pl-4 py-4 position-relative">
-                <span class="position-absolute color-gris texto-muygrande opacity-25" style="top:8px;right:22px">02</span>
-                <h2 class="mb-4 color-gris">Datos del desafío</h2>
-            </div>            
-
-            <div class="paso my-5 mx-5 pl-4 py-4 position-relative">
-                <span class="position-absolute color-gris texto-muygrande opacity-25" style="top:8px;right:22px">03</span>
-                <h2 class="mb-4 color-gris">Configuración Final</h2>
-            </div>       
-
-        </div>
-
-        <div class="col-md-4 ml-5 mt-5 my-5">
-            <h1 class="font-weight-bold">1. Armado del Desafío</h1>
-            <p>¡Empecemos!</p>
-            <hr class="mb-5">
-
-            <form action="">
-                <div class="form-group">
-                    <label class="font-weight-bold" for="">Seleccioná la categoría de tu desafío</label>
-
-                    <div class="col-12">
-                        <div class="row option-list-squares d-flex justify-content-between">
-                            
-                            <div class="col-md-3 rounded mx-0 px-0">
-                                <div class="d-flex flex-column justify-content-center align-items-center content">
-                                    <object data="{{asset('categories/icons/002-art-and-design.svg')}}" id="iconito" style="height:75%;width:100%"> </object> 
-                                    <p class="mb-0 color-gris">Diseño</p>
-                                </div>
-                            </div>
-
-                            <div class="col-md-3 rounded mx-0 px-0">
-                                <div class="d-flex flex-column justify-content-center align-items-center content">
-                                    <object data="{{asset('categories/icons/002-art-and-design.svg')}}" id="iconito" style="height:75%;width:100%"> </object> 
-                                    <p class="mb-0 color-gris">Arte / Ilustración</p>
-                                </div>
-                            </div>
-
-                            <div class="col-md-3 rounded mx-0 px-0">
-                                <div class="d-flex flex-column justify-content-center align-items-center content">
-                                    <object data="{{asset('categories/icons/002-art-and-design.svg')}}" id="iconito" style="height:75%;width:100%"> </object> 
-                                    <p class="mb-0 color-gris">Programación</p>
-                                </div>
-                            </div>
-
-
-                            <!-- ico.getSVGDocument().querySelector("path").classList.add("xd");-->
-
-
-
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group mt-5">
-                    <label class="font-weight-bold" for="">Seleccioná la subcategoría</label>
-                    <select class="form-control" name="id_subcategoria" id="subcategoria" inputname = "Subcategoría">
-                    </select>
-                </div>
-
-                <div class="form-group mt-5">
-                    <label class="font-weight-bold" for="">Ponele un buen título</label>
-                    <input type="text" class="form-control" name="nombre" id="inputName" placeholder="Título del Desafío" inputname = "Título del Desafío">
-                </select>
-                </div>
-
-                <div class="text-right">
-                    <button id="submit-desafio" type="submit" class="btn btn-lg btn-outline-success font-weight-light mt-4">
-                        SIGUIENTE <i class="fas fa-angle-right"></i>
-                    </button>
-                </div>
-
-
-            </form>
-        </div>
-
-    </div>
-
-</div>
-
 <!--
 <form class="w-100 needs-validation" method="POST" action="crear" id="nuevoDesafio" enctype="multipart/form-data">
     @csrf
@@ -285,14 +189,11 @@
 
     </div>
 </form>
-
-
-
+-->
 <script src="{{ asset('js/frontend_validations.js') }}"></script>
 
 
 <script>
     validarDesafio();
 </script>
--->
 @endsection

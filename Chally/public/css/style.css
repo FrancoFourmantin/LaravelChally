@@ -22,6 +22,8 @@
 
 @import '_bookmarks.css';
 
+@import '_crear.css';
+
 @import '_recuperar-contrasena.css';
 
 
@@ -42,7 +44,7 @@
     border-right: 1px solid #eee;
 }
 
-.light{
+.light,.font-weight-light{
     font-weight:300;
 }
 
@@ -104,7 +106,9 @@ footer a:hover {
     background-color: #6c757d !important;
 }
 
-
+.font-weight-medium{
+    font-weight:500;
+}
 
 .btn-secondary:hover {
     background-color: #54c992 !important;
@@ -112,6 +116,10 @@ footer a:hover {
 
 .color-verde {
     color: #1bb76e;
+}
+
+.color-gris{
+    color:#7f7f7f;
 }
 
 a.color-verde:hover {
@@ -182,6 +190,10 @@ a.color-verde:hover {
     font-size: 1.5em;
 }
 
+.texto-muygrande{
+    font-size:3.5em;
+}
+
 section.destacados h2 {
     border-bottom: 1px solid #1bb76e;
 }
@@ -232,6 +244,14 @@ ul.requisitos li::before {
 
 .opacity-1 {
     opacity: 1;
+}
+
+.opacity-25{
+    opacity:0.25;
+}
+
+.opacity-50{
+    opacity:0.5;
 }
 
 #output,

@@ -41,6 +41,12 @@ Route::view('/contacto', 'contacto'); //Ruta para contacto
  */
 Route::get('/likes/get/{id_desafio}/{es_desafio}' , 'likeController@show');
 
+/**
+ * 
+ * Rutas de api
+ */
+Route::get('/api/resultados/{busqueda}' , 'BuscadorController@apiResultados');
+
 
 Route::post('/intereses/modificar' , 'UsuarioCategoriaController@update');
 

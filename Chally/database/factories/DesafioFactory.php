@@ -1,6 +1,8 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+/** 
+ * 
+ * @var \Illuminate\Database\Eloquent\Factory $factory 
 
 use App\Desafio;
 use App\Usuario;
@@ -22,3 +24,5 @@ $factory->define(Desafio::class, function (Faker $faker) {
         'fecha_creacion' => $faker->dateTimeBetween($startDate = '-2 years', $endDate = 'now', $timezone = null),
     ];
 });
+
+*/

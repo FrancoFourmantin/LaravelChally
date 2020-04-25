@@ -43,5 +43,18 @@ Diseño y Maquetado de Layouts de Mail:
 -Se integro pop-up para cuando un usuario no-logeado quiere interactuar con acciones para usuarios logeados
 -Se creo boton en menu de editar perfil para modificar intereses
 
+==========================
+
+25.04.2020 14-30(Fran)
+
+###--General---###
+- Se comento factorie de desafios para mas fluidez en la pagina
+
+###--Nueva implementacion (BUSCADOR) (v1.0.0) --###
+- Se modifico archivo principal de css para agregar estilo del search input
+- Se modifico unicamente la vista de layouts/plantilla-header (se agregi input buscador)
+- Se creo controller para trabajar con el buscador (BuscadorController)
+- Se crearon archivo de funciones js para buscador
+
 
 

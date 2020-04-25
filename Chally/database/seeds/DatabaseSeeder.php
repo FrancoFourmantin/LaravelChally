@@ -19,6 +19,6 @@ class DatabaseSeeder extends Seeder
         $this->call(likeSeeder::class);
         $this->call(interesesSeeder::class);
         factory(Usuario::class)->times(30)->create();
-        factory(Desafio::class)->times(30)->create();
+        // factory(Desafio::class)->times(30)->create();
     }
 }

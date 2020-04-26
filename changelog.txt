@@ -56,5 +56,15 @@ Diseño y Maquetado de Layouts de Mail:
 - Se creo controller para trabajar con el buscador (BuscadorController)
 - Se crearon archivo de funciones js para buscador
 
+==========================
+
+26.04.2020 19.30 (Emi)
+
+- Se empezó a crear la nueva UI para la carga de desafíos (HTML,CSS y JS)
+- Funciona el traspaso entre steps y steps con las respectivas animaciones
+- Le falta la acción para retroceder un step y para publicar
+- Le falta conectar los campos cuadrados con los select hidden 
+- Le falta rehacer las validaciones con código aún más eficiente
+
 
 

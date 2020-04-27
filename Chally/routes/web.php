@@ -50,6 +50,7 @@ Route::get('/api/resultados/{busqueda}' , 'BuscadorController@apiResultados');
 
 Route::post('/intereses/modificar' , 'UsuarioCategoriaController@update');
 
+Route::view('/resultados-busqueda' , 'resultados-busqueda');
 
 
 /**

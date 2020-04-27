@@ -3,8 +3,6 @@ let tableSearch = document.querySelector('.table-search');
 let formSearch = document.querySelector('.search-contenedor');
 
 
-console.log('works');
-
 
 /*########Funciones para UI################*/
 console.log(formSearch);
@@ -22,6 +20,8 @@ formSearch.onmouseout = function(){
 inputSearch.addEventListener('focus' , function(e){
     formSearch.onmouseout = function () {};
     tableSearch.style.display = "flex";
+    tableSearch.style.opacity = "1";
+
     inputSearch.style.width = '100%';
     inputSearch.style.opacity = '1';
 });
@@ -33,7 +33,7 @@ inputSearch.addEventListener('blur', function(e){
         inputSearch.style.width = '0%';
     }
     
-    tableSearch.style.display = 'none';
+    tableSearch.style.opacity = '0';
     inputSearch.style.width = '0%';
     inputSearch.style.opacity = '0';
 })

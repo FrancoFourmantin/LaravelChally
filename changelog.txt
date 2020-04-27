@@ -56,5 +56,12 @@ Diseño y Maquetado de Layouts de Mail:
 - Se creo controller para trabajar con el buscador (BuscadorController)
 - Se crearon archivo de funciones js para buscador
 
+==========================
+
+27.04.2020 00-30(Fran)
+
+-Se agrego vista resultados busqueda
+-Se fixeo buscador que no redirigia a href
+
 
 

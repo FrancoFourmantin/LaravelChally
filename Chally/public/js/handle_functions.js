@@ -27,7 +27,7 @@ allLinks.forEach(a => a.addEventListener('click' , function(e){
 let scroll = 0;
 document.addEventListener('scroll' , function(e){
     scroll += 1;
-    console.log(scroll);
+    // console.log(scroll);
     if(scroll > 100 ){
         $('#modal-registro').modal('show');
         scroll = 0;

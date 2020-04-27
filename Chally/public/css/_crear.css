@@ -8,10 +8,16 @@
 }
 
 
-.create-menu li{
+.create-menu li, .create-menu p{
     font-size:0.85em;
     color:#7f7f7f;
     margin-bottom:5px;
+}
+
+.paso{
+    transition:all 1s ease;
+    border:0;
+    background-color:rgba(0,0,0,0);
 }
 
 .paso li{

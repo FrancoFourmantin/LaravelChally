@@ -95,5 +95,21 @@
     color: #1bb76e;
 }
 
+@media(max-width: 1200px){
+    .link-escondido, .link-visible {
+        left: 0%;
+    }
+
+    .link-util-title{
+        justify-content: center;
+        left: 0%;
+    }
+
+    .link-util-title:hover{
+        box-shadow: 0px 0px 10px #1bb76e;
+        left: 0%;
+    }
+}
+
 
 

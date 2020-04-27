@@ -7,7 +7,7 @@
     
     <main class="container vh-100">
         <div class="row">
-            <section class="col-9 busqueda-contenedor pt-5">
+            <section class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-9 busqueda-contenedor pt-5">
                 <div class="row d-flex justify-content-center">
                     <div class="col-10 buscador-contenedor">
                         <div class="input-group mb-3">
@@ -17,10 +17,6 @@
                             <input type="text" class="form-control input-busqueda" placeholder="" aria-label="busqueda" aria-describedby="basic-addon1">
                         </div>  
                         <h1 class="mt-5">Resultados de tu busqueda: <span class="color-verde d-block mt-3">qwe123</span></h1>         
-                        <div>
-                            <h2 class="m-0 p-0">Hello </h2>
-
-                        </div>
                         
                         {{-- Seccion respuestas --}}
                         <div class="row mt-5">
@@ -90,7 +86,7 @@
                 
             </section>
             
-            <section class="links-utiles-contenedor col-3 ">
+            <section class="links-utiles-contenedor col-12 col-sm-12 col-md-12 col-lg-12 col-xl-3">
                 <div class="link-util link-util-title">
                     <div class="link-util-item">
                         <span class="font-weight-bolder">Links utiles</span>

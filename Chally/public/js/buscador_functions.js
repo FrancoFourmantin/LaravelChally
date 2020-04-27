@@ -1,7 +1,7 @@
 let inputSearch = document.querySelector('.input-search');
 let tableSearch = document.querySelector('.table-search');
 let formSearch = document.querySelector('.search-contenedor');
-
+let inputBusqueda  = document.querySelector('.input-busqueda');
 
 
 /*########Funciones para UI################*/

@@ -1,6 +1,7 @@
 .create-menu{
     background-color:#fcfbfc;
     border-right:1px solid #cccccc;
+
 }
 
 .create-menu h2{
@@ -18,6 +19,13 @@
     transition:all 1s ease;
     border:0;
     background-color:rgba(0,0,0,0);
+    overflow:hidden;
+    word-wrap:break-word;
+}
+
+.paso div{
+    overflow:hidden;
+    word-wrap:break-word;
 }
 
 .paso li{
@@ -35,6 +43,19 @@
 object,svg{
     cursor:pointer;
 }
+
+.opcionseleccionada{
+    transition:all 0.5s ease;
+}
+
+.opcionseleccionada > div{
+    border:5px solid #1bb76e;
+}
+
+.opcionseleccionada > div p{
+    color:#1bb76e;
+}
+
 
 .option-list-squares >div:hover{
     border:5px solid #1bb76e;

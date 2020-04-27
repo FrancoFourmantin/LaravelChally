@@ -9,23 +9,18 @@
     <div class="row">
         <div class="col-md-3 create-menu">
 
-            <div class="paso paso-activo card stepStatusCard my-5 mx-5 px-4 py-3 shadow position-relative">
+            <div class="paso paso-activo  stepStatusCard my-5 mx-5 px-4 py-3 position-relative card shadow ">
                 <span class="position-absolute color-verde texto-muygrande opacity-25" style="top:0px;right:22px">01</span>
                 <h2 class="">Armado del desafío</h2>
                 <p class="text-dark">En esta etapa vas a iniciar tu desafío en la categoría que quieras</p>
-                <!--
-                <ul class="mb-0">
-                    <li><i class="fas fa-check color-gris animated">&nbsp;&nbsp;</i><span class="font-weight-medium">Categoría:</span></li>
-                    <li><i class="fas fa-check color-gris animated">&nbsp;&nbsp;</i><span class="font-weight-medium">Subcategoría: </span></li> 
-                    <li><i class="fas fa-check color-gris animated">&nbsp;&nbsp;</i><span class="font-weight-medium">Título: </span></li>                       
-                </ul>
-                -->
+                <ul></ul>
             </div>
 
             <div class="paso my-5 mx-5 px-4 py-3 position-relative stepStatusCard">
                 <span class="position-absolute color-gris texto-muygrande opacity-25" style="top:0px;right:22px">02</span>
                 <h2 class="color-gris">Datos del desafío</h2>
                 <p>En esta etapa colocarás los datos para que tu desafío se vea genial</p>
+                <ul></ul>
 
             </div>            
 
@@ -33,6 +28,8 @@
                 <span class="position-absolute color-gris texto-muygrande opacity-25" style="top:0px;right:22px">03</span>
                 <h2 class="color-gris">Configuración Final</h2>
                 <p>En esta etapa harás ajustes finales antes de publicar tu desafío</p>
+                <ul></ul>
+
             </div>       
 
         </div>
@@ -49,34 +46,34 @@
                     <div class="col-12">
                         <div class="row option-list-squares d-flex justify-content-between">
                             
-                            <div class="col-md-3 rounded mx-0 px-0">
+                            <div class="col-md-3 rounded mx-0 px-0" data-value="1">
                                 <div class="d-flex flex-column justify-content-center align-items-center content">
-                                    <object data="{{asset('categories/icons/002-art-and-design.svg')}}" id="iconito" style="height:75%;width:100%"> </object> 
+                                    <img id="iconito" style="height:75%;width:100%" src="{{asset('categories/icons/002-art-and-design.svg')}}"> 
                                     <p class="mb-0 color-gris">Diseño</p>
                                 </div>
                             </div>
 
-                            <div class="col-md-3 rounded mx-0 px-0">
+                            <div class="col-md-3 rounded mx-0 px-0" data-value="2">
                                 <div class="d-flex flex-column justify-content-center align-items-center content">
-                                    <object data="{{asset('categories/icons/002-art-and-design.svg')}}" id="iconito" style="height:75%;width:100%"> </object> 
+                                    <img id="iconito" style="height:75%;width:100%" src="{{asset('categories/icons/002-art-and-design.svg')}}"> 
                                     <p class="mb-0 color-gris">Arte / Ilustración</p>
                                 </div>
                             </div>
 
-                            <div class="col-md-3 rounded mx-0 px-0">
+                            <div class="col-md-3 rounded mx-0 px-0" data-value="3"> 
                                 <div class="d-flex flex-column justify-content-center align-items-center content">
-                                    <object data="{{asset('categories/icons/002-art-and-design.svg')}}" id="iconito" style="height:75%;width:100%"> </object> 
+                                    <img id="iconito" style="height:75%;width:100%" src="{{asset('categories/icons/002-art-and-design.svg')}}"> 
                                     <p class="mb-0 color-gris">Programación</p>
                                 </div>
                             </div>
 
-                            <div class="form-group d-none">
-                                <select class="card-field" name="id_categoria" data-name="Categoría"  id="">
-                                    <option value="1" selected>Diseño</option>
+                                <select class="card-field d-none" name="id_categoria" data-name="Categoría"  id="id_categoria" required>
+                                    <option value="0">Elegí una opción</option>
+                                    <option value="1">Diseño</option>
                                     <option value="2">Arte / Ilustración</option>
                                     <option value="3">Programación</option>
+
                                 </select>
-                            </div>
 
                         </div>
                     </div>
@@ -84,7 +81,8 @@
 
                 <div class="form-group mt-5">
                     <label class="font-weight-bold" for="">Seleccioná la subcategoría</label>
-                    <select class="form-control card-field" name="id_subcategoria" id="subcategoria" data-name="Subcategoría" inputname = "Subcategoría">
+                    <select class="form-control card-field" name="id_subcategoria" id="subcategoria" data-name="Subcategoría" inputname = "Subcategoría" required>
+                        <option value="0">Selecciona una opción</option>
                         <option value="4">Subcategoría Prueba 1</option>
                         <option value="5">Subcategoría Prueba 2</option>
 
@@ -93,7 +91,7 @@
 
                 <div class="form-group mt-5">
                     <label class="font-weight-bold" for="">Ponele un buen título</label>
-                    <input type="text" class="form-control card-field" name="nombre" id="inputName" placeholder="Título del Desafío" inputname = "Título del Desafío" data-name="Título">
+                    <input type="text" class="form-control card-field" name="nombre" id="inputName" placeholder="Título del Desafío" inputname = "Título del Desafío" data-min="10" data-max="70" data-type="string" data-name="Título">
                 </select>
                 </div>
 
@@ -122,35 +120,27 @@
 
             <div class="form-group mt-5">
                 <label for="descripcion" class="font-weight-bold ">Descripción</label>
-                <textarea data-name="Descripción" placeholder="En este desafío vas a poner a prueba tu creatividad y tus habilidades en fotomontaje para componer una imagen de un ícono de la cultura pop nacional." class="form-control card-field @error ('descripcion') is-invalid @enderror" name="descripcion" inputname = "Descripción" id="descripcion" rows="4" >{{old('descripcion')}}</textarea>
-                <small class="d-none invalid-feedback">¡Ups, la descripción es muy corta! Debe tener un mínimo de 30 caracteres.</small>
-                <small>Describí el desafío lo mejor posible en pocas palabras</small>
-                <small class="text-danger"> @error ('descripcion') {{$message}} @enderror </small>
+                <textarea data-name="Descripción" data-min="30" data-max="600" placeholder="En este desafío vas a poner a prueba tu creatividad y tus habilidades en fotomontaje para componer una imagen de un ícono de la cultura pop nacional." class="form-control card-field @error ('descripcion') is-invalid @enderror" name="descripcion" inputname = "Descripción" id="descripcion" rows="4" >{{old('descripcion')}}</textarea>
             </div>
 
 
             <div class="form-group requisitos mt-5">
                 <label for="requisitos" class="font-weight-bold">Reglas y Requisitos</label>
-                <input class="form-control mb-2 requirementField" name="requisitos-01" id="requisitos-01" type="text" placeholder="Ejemplo: La imagen debe ser en formato cuadrado" value="XDXD Numero 2">
-                <input class="form-control mb-2 d-none requirementField" name="requisitos-02" id="requisitos-02" type="text" value="XDXD Numero 1" >
-                <input class="form-control mb-2 d-none requirementField" name="requisitos-03" id="requisitos-03" type="text" value="XDXD Numero 2" >
-                <input class="form-control mb-2 d-none requirementField" name="requisitos-04" id="requisitos-04" type="text"  value="XDXD Numero 2">
-                <input class="form-control mb-2 d-none requirementField" name="requisitos-05" id="requisitos-05" type="text" value="XDXD Numero 2" >
-
-                <input class="card-field" type="hidden" class="form-control mb-2 d-none" name="final-req" type="text" data-name="Reglas" >
-
-
-                <button type="button" class="btn btn-sm btn-outline-success" id="addMore"><i class="fas fa-plus"></i> Agregar más requisitos </button>
+                <small>Añadí hasta 5 reglas de forma opcional</small>
+                <input class="form-control mb-2 requirementField" name="requisitos-01" id="requisitos-01" type="text" placeholder="Ejemplo: La imagen debe ser en formato cuadrado">
+                <input class="form-control mb-2 requirementField" name="requisitos-02" id="requisitos-02" type="text" >
+                <input class="form-control mb-2 requirementField" name="requisitos-03" id="requisitos-03" type="text" >
+                <input class="form-control mb-2 requirementField" name="requisitos-04" id="requisitos-04" type="text" >
+                <input class="form-control mb-2 requirementField" name="requisitos-05" id="requisitos-05" type="text" >
                 <br>
+                <input class="card-field" type="hidden" class="form-control mb-2 d-none" name="final-req" type="text" data-name="Reglas">
             </div>
 
 
-            <div class="custom-file form-group my-3 mt-5">
+            <div class="custom-file form-group my-3">
                     <label class="font-weight-bold" for="inputGroupFile01">Foto de portada</label>
-                    <input type="file" id="inputGroupFile01" class="card-field form-control-file" name="imagen" value="{{old('imagen')}}" data-name="Portada">
                     <img class="img-fluid" id="output">
-                    <p>&nbsp;</p>
-                    <small class="text-danger"> @error ('imagen') {{$message}} @enderror </small>
+                    <input type="file" id="inputGroupFile01" class="card-field form-control-file" name="imagen" value="{{old('imagen')}}" data-name="Portada">
             </div>
 
 
@@ -516,6 +506,28 @@
 
     // Creo la funcion para correr toda la lógica
     steps.forEach(step => getSubmitButton(step).addEventListener("click", processStep ));
+    steps.forEach(step => getPreviousButton(step).addEventListener("click", returnStep ));
+
+    // Obtengo si es que hay fields de seleccion de opción con icono
+    function processOptionLists(step,field){
+        if(!step.querySelectorAll(".option-list-squares > div")){
+            return;
+        }
+        let options = step.querySelectorAll(".option-list-squares > div");
+        let fieldToFill = step.querySelector(`#${field}`)
+        console.log(fieldToFill);
+        options.forEach(option => option.addEventListener("click", e => {
+            
+            // Borro todas las marcas previamente
+            options.forEach(optionRemover => optionRemover.classList.remove("opcionseleccionada"));
+
+            // Marco la elegida
+            option.classList.add("opcionseleccionada");
+            fieldToFill.selectedIndex = option.dataset.value;
+        }))
+    }
+
+    processOptionLists(steps[currentStep],"id_categoria");
 
     // Obtengo el botón de cada Step
     function getSubmitButton(step){
@@ -534,26 +546,25 @@
     // Creo el HTML de cada respuesta al field
     function createHTMLCorrectFields(fields){
         return fields.map(field => {
-            console.log(field.tagName);
             // HTML Para Inputs Estándar
             if(field.tagName === "INPUT" && field.type != "file"){
-                return `<li class="d-flex"><i class="fas fa-check color-verde animated rubberBand">&nbsp;&nbsp;</i><div><span class="font-weight-medium">${field.dataset.name}:</span>&nbsp;&nbsp;${field.value}</div></li>`;
+                return `<li class="d-flex"><i class="fas fa-check  animated rubberBand">&nbsp;&nbsp;</i><div><span class="font-weight-medium">${field.dataset.name}:</span>&nbsp;&nbsp;${field.value}</div></li>`;
             }
 
             // HTML Para Inputs de Imágenes
             else if(field.tagName === "INPUT" && field.type === "file"){
-                return `<li class="d-flex"><i class="fas fa-check color-verde animated rubberBand">&nbsp;&nbsp;</i><div><span class="font-weight-medium">${field.dataset.name}:</span>&nbsp;&nbsp; <a target="_blank" href="${output.src}"> <i class="far fa-image"></i> </a></div> </li>`;
+                return `<li class="d-flex"><i class="fas fa-check  animated rubberBand">&nbsp;&nbsp;</i><div><span class="font-weight-medium">${field.dataset.name}:</span>&nbsp;&nbsp; <a target="_blank" href="${output.src}"> <i class="far fa-image"></i> </a></div> </li>`;
             }
 
             // HTML Para Select
             else if(field.tagName === "SELECT"){
                 let value = field.options[field.selectedIndex].innerText;
-                return `<li class="d-flex"><i class="fas fa-check color-verde animated rubberBand">&nbsp;&nbsp;</i><div><span class="font-weight-medium">${field.dataset.name}:</span>&nbsp;&nbsp;${value}</div></li>`;
+                return `<li class="d-flex"><i class="fas fa-check  animated rubberBand">&nbsp;&nbsp;</i><div><span class="font-weight-medium">${field.dataset.name}:</span>&nbsp;&nbsp;${value}</div></li>`;
             }
 
             // HTML Para Textareas
             else if(field.tagName === "TEXTAREA"){
-                return `<li class="d-flex"><i class="fas fa-check color-verde animated rubberBand">&nbsp;&nbsp;</i><div><span class="font-weight-medium">${field.dataset.name}:</span>&nbsp;&nbsp;${field.value}</div></li>`;
+                return `<li class="d-flex"><i class="fas fa-check  animated rubberBand">&nbsp;&nbsp;</i><div><span class="font-weight-medium">${field.dataset.name}:</span>&nbsp;&nbsp;${field.value}</div></li>`;
             }
         });
         
@@ -561,79 +572,156 @@
 
     // Muestro el HTML en la card correspondiente
     function showCorrectFields(fields){
+        // Convierto el Array de Fields en un texto de corrido
         let text = fields.join("");
+
+        // Escondo el Parrafo Descriptivo del Step
         stepStatusCards[currentCard].querySelector("p").classList.add("d-none");
-        stepStatusCards[currentCard].insertAdjacentHTML('beforeend',text);
+
+        // Verifico si estoy volviendo para atrás. Si estoy volviendo, entonces borro el HTML creado previamente
+        if(stepStatusCards[currentCard].querySelector("li")){
+            let previousElements = stepStatusCards[currentCard].querySelectorAll("li");
+            previousElements.forEach(element => element.remove());
+            stepStatusCards[currentCard].insertAdjacentHTML('beforeend',text);
+        }
+
+        // Si no estoy volviendo, los creo sin borrar nada
+        else{
+            stepStatusCards[currentCard].insertAdjacentHTML('beforeend',text);
+        }
+
     }
 
 
-    // Acá proceso el Step 
+    // Acá proceso el evento de Step Siguiente
     function processStep(e){
         e.preventDefault();
-        steps[currentStep].classList.add("fadeOutDown");
 
         // Obtengo todos los campos del Step Actual
         let fields = getStepFields(steps[currentStep]);
 
-        // Verifico si hay algún Step de tipo Lista y lo proceso
+        // Verifico si hay algún campo con opciones en formato icono
+
+        // Verifico si hay algún campo de tipo Lista y lo proceso de forma manual
         fields.forEach( field => {
             if(field.name === "final-req"){
                 processRequirementFields(steps[currentStep],field);
             }
         } )
 
-        // Creo el HTML para la card correspondiente al field
-        let fieldsText = createHTMLCorrectFields(fields);
+        let errorTest = fields.map(field => errorCheck(field));
 
-        // Muestro el HTML previamente creado
-        showCorrectFields(fieldsText);
+        function errorCheck(field){
+            if(field.dataset.type == "string" || field.tagName == "TEXTAREA"){
+                return field.value.length < field.dataset.min || field.value.length > field.dataset.max ? `El campo debe tener entre ${field.dataset.min} y ${field.dataset.max} caracteres` : "";
+            }
+
+            else if (field.tagName == "SELECT"){
+                let selectedValues = Array.from(field.querySelectorAll("option"));
+                selectedValues = selectedValues.map(fieldValue => fieldValue.value);
+                selectedValues = selectedValues.filter(value => value != 0);
+                return !selectedValues.includes(field.value) ?  `La opción seleccionada no es válida` : "";
+            }
+        }
+
+        console.log(errorTest);
+
+        if(errorTest.every(error => !error)){
+            steps[currentStep].classList.toggle("fadeOutDown");
+
+            // Creo el HTML para la card correspondiente al field
+            let fieldsText = createHTMLCorrectFields(fields);
+
+            // Muestro el HTML previamente creado
+            showCorrectFields(fieldsText);
+
+            // Tiro un setTimeout para que las animaciones funcionen bien
+            setTimeout(function() { 
+                // Todos los cambios visuales
+                setStyles(currentStep);
+                setIconColors(currentStep);
+                // Paso al Step y la Card siguientes
+                currentStep++;
+                currentCard++;
+            }, 
+            500);
+        }
+        else{
+            fields.forEach((field,index) => {
+
+                if(field.nextElementSibling){
+                    field.nextElementSibling.remove();
+                }
+
+                if (errorTest[index]) {
+                    field.insertAdjacentHTML("afterend",`<small class="text-danger animated fadeIn">${errorTest[index]}</small>`);
+                }
+            });
+        }
+    }
+
+
+    // Acá proceso el evento de Step Anterior
+    function returnStep(e){
+        e.preventDefault();
+        steps[currentStep-1].classList.toggle("fadeOutDown");
+
+        // Obtengo todos los campos del Step
+        let fields = getStepFields(steps[currentStep - 1]);
+
+        // Verifico si hay algún Step de tipo Lista y lo proceso de forma manual
+        fields.forEach( field => {
+            if(field.name === "final-req"){
+                processRequirementFields(steps[currentStep-1],field);
+            }
+        })
 
         // Tiro un setTimeout para que las animaciones funcionen bien
         setTimeout(function() { 
-
             // Todos los cambios visuales
-            setCardStyles(currentStep);
-            setIconColors(currentStep);
-
-            // Paso al Step y la Card siguientes
-            currentStep++;
-            currentCard++;
+            setStyles(currentStep-1);
+            setIconColors(currentStep-1);
+            // Paso al Step y la Card anteriores
+            currentStep--;
+            currentCard--;
         }, 
         500);
     }
 
 
+
     function setIconColors(numeroActual){
             let icons = stepStatusCards[numeroActual].querySelectorAll("i");
             icons.forEach(icon => {
-                icon.classList.remove("color-gris");
-                icon.classList.add("color-verde");
-                icon.classList.add("rubberBand");
+                icon.classList.toggle("color-verde");
+                icon.classList.toggle("rubberBand");
             });
     }
 
-    function setCardStyles(numeroActual){
+    function setStyles(numeroActual){
             // STATUS CARDS
-            stepStatusCards[numeroActual].classList.remove("card","shadow");
-            stepStatusCards[numeroActual].querySelector("h2").classList.remove("text-dark");
-            stepStatusCards[numeroActual].querySelector("h2").classList.add("color-gris");
-            stepStatusCards[numeroActual].querySelector("span").classList.remove("color-verde");
-            stepStatusCards[numeroActual].querySelector("span").classList.add("color-gris");
-
-            stepStatusCards[numeroActual+1].querySelector("h2").classList.add("text-dark");
-            stepStatusCards[numeroActual+1].querySelector("span").classList.remove("color-gris");
-            stepStatusCards[numeroActual+1].querySelector("span").classList.add("color-verde");
-            stepStatusCards[numeroActual+1].classList.add("card","shadow");
-
+            stepStatusCards[numeroActual].classList.toggle("card");
+            stepStatusCards[numeroActual].classList.toggle("shadow");
+            stepStatusCards[numeroActual].querySelector("h2").classList.toggle("text-dark");
+            stepStatusCards[numeroActual].querySelector("h2").classList.toggle("color-gris");
+            stepStatusCards[numeroActual].querySelector("span").classList.toggle("color-verde");
+            stepStatusCards[numeroActual].querySelector("span").classList.toggle("color-gris");
+            stepStatusCards[numeroActual+1].querySelector("h2").classList.toggle("text-dark");
+            stepStatusCards[numeroActual+1].querySelector("span").classList.toggle("color-gris");
+            stepStatusCards[numeroActual+1].querySelector("span").classList.toggle("color-verde");
+            stepStatusCards[numeroActual+1].classList.toggle("card");
+            stepStatusCards[numeroActual+1].classList.toggle("shadow");
             // STEPS
-            steps[numeroActual].classList.add("d-none");
-            steps[numeroActual+1].classList.add("fadeInDown");
-            steps[numeroActual+1].classList.remove("d-none");
+            steps[numeroActual].classList.toggle("d-none");
+            steps[numeroActual+1].classList.toggle("fadeInDown");
+            steps[numeroActual].classList.toggle("fadeInDown");
+            steps[numeroActual+1].classList.toggle("d-none");
     }
 
 
     function processRequirementFields(step,field){
             requirementFields = Array.from(step.querySelectorAll(".requirementField"));
+            requirementFields = requirementFields.filter(field => field.value);
             let values = requirementFields.reduce(reducer,"");
             function reducer(contador,item){
                 contador =contador + "<br>" + item.value ;
@@ -641,7 +729,6 @@
             }
             field.value=values;
     }
-
 
 
     function showImageBeforeUpload(imagen,e){

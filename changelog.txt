@@ -58,10 +58,6 @@ Diseño y Maquetado de Layouts de Mail:
 
 ==========================
 
-27.04.2020 00-30(Fran)
-
--Se agrego vista resultados busqueda
--Se fixeo buscador que no redirigia a href
 26.04.2020 19.30 (Emi)
 
 - Se empezó a crear la nueva UI para la carga de desafíos (HTML,CSS y JS)
@@ -69,6 +65,24 @@ Diseño y Maquetado de Layouts de Mail:
 - Le falta la acción para retroceder un step y para publicar
 - Le falta conectar los campos cuadrados con los select hidden 
 - Le falta rehacer las validaciones con código aún más eficiente
+
+==========================
+
+27.04.2020 00-30(Fran)
+
+-Se agrego vista resultados busqueda
+-Se fixeo buscador que no redirigia a href
+
+==========================
+
+
+27.04.2020 18-00(Emi)
+
+- Se creó la acción para retroceder steps dentro de la carga de desafíos
+- Se realizó la validación frontend de todos los campos 
+- Se conectaron los campos cuadrados con los select hidden (salvo Step3)
+- Para próximo push: conectar campos cuadrados del Step 3, y traer categorías y subcategorías por AJAX.
+
 
 
 

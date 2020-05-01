@@ -84,5 +84,15 @@ Diseño y Maquetado de Layouts de Mail:
 - Para próximo push: conectar campos cuadrados del Step 3, y traer categorías y subcategorías por AJAX.
 
 
+---------------------------
+
+01.05.2020 15-00(Fran)
+
+- Se agrego funcionalidad a vista resultado busqueda
+- Se hizo vista responsive
+- Para el proximo push
+    - Mejorar el diseño de la muestra de resultados
+    - Optimizar las funciones de javascript
+
 
 

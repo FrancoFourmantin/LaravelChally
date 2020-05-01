@@ -16,15 +16,15 @@
                             </div>
                             <input type="text" class="form-control input-busqueda" placeholder="" aria-label="busqueda" aria-describedby="basic-addon1">
                         </div>  
-                        <h1 class="mt-5">Resultados de tu busqueda: <span class="color-verde d-block mt-3">qwe123</span></h1>         
+                        <h1 class="mt-5">Resultados de tu busqueda: <span id="prev-search" class="color-verde d-block mt-3"></span></h1>         
                         
                         {{-- Seccion respuestas --}}
                         <div class="row mt-5">
                             <div class= "col-4">
                                 <div class="list-group d-flex flex-row" id="list-tab" role="tablist">
-                                    <a class="nav-item-busqueda list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-categorias" role="tab" aria-controls="categorias">categorias</a>
-                                    <a class="nav-item-busqueda list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-usuarios" role="tab" aria-controls="usuarios">usuarios</a>
-                                    <a class="nav-item-busqueda list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-todo" role="tab" aria-controls="todo">todo</a>
+                                    <a class="nav-item-busqueda list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" data-ref ='categorias' href="#list-categorias" role="tab" aria-controls="categorias">categorias</a>
+                                    <a class="nav-item-busqueda list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" data-ref ='usuarios' href="#list-usuarios" role="tab" aria-controls="usuarios">usuarios</a>
+                                    <a class="nav-item-busqueda list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" data-ref ='todo' href="#list-todo" role="tab" aria-controls="todo">todo</a>
                                     
                                 </div>
                             </div>
@@ -34,44 +34,14 @@
                             <div class="col-12">
                                 <div class="tab-content" id="nav-tabContent">
                                     <div class="tab-pane fade show active" id="list-categorias" role="tabpanel" aria-labelledby="list-categorias-list">
-                                        <div class="resultado-categorias d-flex flex-row align-items-center w-100">
-                                            <div class="resultado-item mr-3">
-                                                <img class="" src="https://picsum.photos/50" alt="avatar">
-                                            </div>
-                                            <div class="resultado-item">
-                                                <a href=""><strong>Franco Fourmantin</strong><span> (Franklins)</span></a>
-                                            </div>
-                                            <div class="resultado-item ml-auto mr-3">
-                                                <i class="fas fa-user-plus"></i>
-                                            </div>
-                                        </div>
+
                                     </div>
                                     <div class="tab-pane fade" id="list-usuarios" role="tabpanel" aria-labelledby="list-usuarios-list">
-                                        <div class="resultado-categorias d-flex flex-row align-items-center w-100">
-                                            <div class="resultado-item mr-3">
-                                                <img class="" src="https://picsum.photos/50" alt="avatar">
-                                            </div>
-                                            <div class="resultado-item">
-                                                <a href=""><strong>Franco Fourmantin</strong><span> (Franklins)</span></a>
-                                            </div>
-                                            <div class="resultado-item ml-auto mr-3">
-                                                <i class="fas fa-user-plus"></i>
-                                            </div>
-                                        </div>
+
                                     </div>
 
                                     <div class="tab-pane fade" id="list-todo" role="tabpanel" aria-labelledby="list-todo-list">
-                                        <div class="resultado-categorias d-flex flex-row align-items-center w-100">
-                                            <div class="resultado-item mr-3">
-                                                <img class="" src="https://picsum.photos/50" alt="avatar">
-                                            </div>
-                                            <div class="resultado-item">
-                                                <a href=""><strong>Franco Fourmantin</strong><span> (Franklins)</span></a>
-                                            </div>
-                                            <div class="resultado-item ml-auto mr-3">
-                                                <i class="fas fa-user-plus"></i>
-                                            </div>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>

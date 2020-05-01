@@ -59,17 +59,21 @@ class BuscadorController extends Controller
                 $arrayRespuestas['usuarios'][$contador]['nombre'] = $usuario->nombre;
                 $arrayRespuestas['usuarios'][$contador]['apellido'] = $usuario->apellido;
                 $arrayRespuestas['usuarios'][$contador]['username'] = $usuario->username;
+                $arrayRespuestas['usuarios'][$contador]['avatar'] = $usuario->avatar;
                 $contador += 1;
             }
         }
 
-        if(!empty($usernames)){
-            $contador = 0;
-            foreach ($usernames as $username) {
-                $arrayRespuestas['usernames'][$contador]['username'] = $username->username;
-                $contador += 1;
-            }
-        }
+        // if(!empty($usernames)){
+        //     $contador = 0;
+        //     foreach ($usernames as $username) {
+        //         $arrayRespuestas['usernames'][$contador]['nombre'] = $username->nombre;
+        //         $arrayRespuestas['usernames'][$contador]['apellido'] = $username->apellido;
+        //         $arrayRespuestas['usernames'][$contador]['username'] = $username->username;
+        //         $arrayRespuestas['usernames'][$contador]['avatar'] = $username->avatar;
+        //         $contador += 1;
+        //     }
+        // }
 
 
         return json_encode($arrayRespuestas);

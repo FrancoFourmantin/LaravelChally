@@ -1,8 +1,6 @@
 let inputSearch = document.querySelector('.input-search');
 let tableSearch = document.querySelector('.table-search');
 let formSearch = document.querySelector('.search-contenedor');
-let inputBusqueda  = document.querySelector('.input-busqueda');
-
 
 /*########Funciones para UI################*/
 console.log(formSearch);
@@ -21,7 +19,7 @@ inputSearch.addEventListener('focus' , function(e){
     formSearch.onmouseout = function () {};
     tableSearch.style.display = "flex";
     tableSearch.style.opacity = "1";
-
+    
     inputSearch.style.width = '100%';
     inputSearch.style.opacity = '1';
 });
@@ -47,16 +45,19 @@ tableSearch.addEventListener('click' , function(e){
 })
 
 
-/*FUNCIONES PARA RESULTADOS*/
+
+
+/*FUNCIONES PARA RESULTADOS EN TABLA*/
 inputSearch.addEventListener('keypress' , (e) => {
-    let busqueda = inputSearch.value;
-    let nombreCategoriasResultado = document.querySelectorAll(".resultado-title");
-    let tdResultados = document.querySelectorAll(".resultado-content");
-    let objetoOpciones = {
-        clase: '',
-        link: ``,
-        contenido: ``
-    }
+    var busqueda = inputSearch.value;
+    var nombreCategoriasResultado = document.querySelectorAll(".resultado-title");
+    var tdResultados = document.querySelectorAll(".resultado-content");
+    function objetoOpciones (clase,link,contenido) {
+        this.clase = clase;
+        this.link = link;
+        this.contenido = contenido;
+    };
+    
     
     function armarFila(opciones){
         let fila = `
@@ -78,19 +79,23 @@ inputSearch.addEventListener('keypress' , (e) => {
             return response.json();
         })
         .then(function(data){
-            
+            tdResultados.forEach(td => {
+                td.remove();
+            });
             if(data.categorias){
                 if(data.categorias.length > 0){
                     data.categorias.forEach(categoria => {
                         
-                        objetoOpciones.clase = `resultado-content`;
-                        objetoOpciones.link = `/feed/categoria-${categoria.id}`;
-                        objetoOpciones.contenido = `${categoria.nombre}`;  
+                        var opcionesCategorias = new objetoOpciones();
+                        
+                        opcionesCategorias.clase = `resultado-content`;
+                        opcionesCategorias.link = `/feed/categoria-${categoria.id}`;
+                        opcionesCategorias.contenido = `${categoria.nombre}`;  
                         
                         
                         nombreCategoriasResultado.forEach(nombreCategoriaResultado => {
                             if(nombreCategoriaResultado.dataset.referencia === 'categorias'){
-                                nombreCategoriaResultado.insertAdjacentHTML('afterend' , armarFila(objetoOpciones)); 
+                                nombreCategoriaResultado.insertAdjacentHTML('afterend' , armarFila(opcionesCategorias)); 
                             }
                         });
                     });
@@ -103,14 +108,16 @@ inputSearch.addEventListener('keypress' , (e) => {
                 if(data.usuarios.length > 0){
                     data.usuarios.forEach(usuario => {
                         
-                        objetoOpciones.clase = `resultado-content`;
-                        objetoOpciones.link = `/usuario/${usuario.username}`;
-                        objetoOpciones.contenido = `${usuario.nombre} ${usuario.apellido}`;
+                        var opcionesUsuarios = new objetoOpciones();
+                        
+                        opcionesUsuarios.clase = `resultado-content`;
+                        opcionesUsuarios.link = `/usuario/${usuario.username}`;
+                        opcionesUsuarios.contenido = `${usuario.nombre} ${usuario.apellido}`;
                         
                         
                         nombreCategoriasResultado.forEach(nombreCategoriaResultado => {
                             if(nombreCategoriaResultado.dataset.referencia === 'usuarios'){
-                                nombreCategoriaResultado.insertAdjacentHTML('afterend' , armarFila(objetoOpciones)); 
+                                nombreCategoriaResultado.insertAdjacentHTML('afterend' , armarFila(opcionesUsuarios)); 
                             }
                         });
                     });
@@ -119,19 +126,20 @@ inputSearch.addEventListener('keypress' , (e) => {
             }
             
             
-            if(data.usernames){
-                
+            if(data.usernames){                
                 if(data.usernames.length > 0){
                     data.usernames.forEach(username => {
                         
-                        objetoOpciones.clase = `resultado-content`;
-                        objetoOpciones.link = `/usuario/${username.username}`;
-                        objetoOpciones.contenido = `${username.username}`;
+                        var opcionesUsername = new objetoOpciones();
+                        
+                        opcionesUsername.clase = `resultado-content`;
+                        opcionesUsername.link = `/usuario/${username.username}`;
+                        opcionesUsername.contenido = `${username.username}`;
                         
                         
                         nombreCategoriasResultado.forEach(nombreCategoriaResultado => {
                             if(nombreCategoriaResultado.dataset.referencia === 'usuarios'){
-                                nombreCategoriaResultado.insertAdjacentHTML('afterend' , armarFila(objetoOpciones)); 
+                                nombreCategoriaResultado.insertAdjacentHTML('afterend' , armarFila(opcionesUsername)); 
                             }
                         });
                     });
@@ -143,4 +151,142 @@ inputSearch.addEventListener('keypress' , (e) => {
             console.log(error);
         })
     }
-})
+});
+
+
+
+/**FUNCIONES PARA RESULTADOS EN PAGINA DE RESULTADOS */
+
+console.log('it works');
+// input de la pagina de resultados
+let inputBusqueda  = document.querySelector('.input-busqueda');
+
+
+function armarFilaResultados(opciones,tipo) {
+    
+    if(tipo == 'usuarios'){
+        return `
+        <div class="resultado-categorias d-flex flex-row align-items-center w-100">
+        <div class="resultado-item mr-3">
+        <img class="" src="../public/avatars/${opciones.avatar}" alt="avatar">
+        </div>
+        <div class="resultado-item">
+        <a href=""><strong>${opciones.nombre}</strong><span class="pl-3">(${opciones.username})</span></a>
+        </div>
+        <div class="resultado-item ml-auto mr-3">
+        <a href="${opciones.link}"><i class="fas fa-user-plus"></i></a>
+        </div>
+        </div>
+        `;
+        
+    }else if(tipo == 'categorias'){
+        return `
+        <div class="resultado-categorias d-flex flex-row align-items-center w-100">
+        
+        <div class="resultado-item">
+        <a href="${opciones.link}"><strong>${opciones.nombre}</strong></a>
+        </div>
+        <div class="resultado-item ml-auto mr-3">
+        <a href="${opciones.link}"><i class="fas fa-eye"></i></a>
+        </div>
+        </div>
+        `;
+    }
+}
+
+
+inputBusqueda.addEventListener('keyup' , (e) => {
+    tdResultados = document.querySelectorAll(".resultado-categorias");
+
+    busqueda = inputBusqueda.value;
+    nombreCategoriasResultado = document.querySelectorAll(".nav-item-busqueda");
+
+    spanPre = document.querySelector('#prev-search');
+    resultadosUsuarios = document.querySelector('#list-usuarios');
+    resultadosCategorias = document.querySelector('#list-categorias');
+    resultadosTodo = document.querySelector('#list-todo');
+
+
+    
+    spanPre.innerText = busqueda;
+    
+    
+    nombreCategoriasResultado.forEach(categoria => {
+        tdResultados.forEach(resultado => {
+            resultado.remove();
+        });
+        if(categoria.classList.contains('active')){
+            if(busqueda != ""){
+                fetch( `/api/resultados/${busqueda}`)
+                .then(function(response){
+                    tdResultados.forEach(resultado => {
+                        resultado.remove();
+                    });
+                    return response.json();
+                })
+                .then(function (data){
+                    if(data == []){
+                        console.log('No hay nada');
+                    }else{
+                        tdResultados.forEach(resultado => {
+                            resultado.remove();
+                        });
+                        let seleccion = categoria.dataset.ref;
+                        if(seleccion == 'usuarios' || seleccion == 'todo'){
+                            if(data.usuarios){
+                                data.usuarios.forEach(usuario => {
+                                    let resultado = armarFilaResultados({
+                                        avatar: usuario.avatar,
+                                        nombre: usuario.nombre,
+                                        username: usuario.username,
+                                        link: `/usuario/agregar/${usuario.username}`
+                                    }, 'usuarios');
+
+                                    resultadosUsuarios.insertAdjacentHTML('afterBegin' , resultado);
+                                    resultadosTodo.insertAdjacentHTML('afterBegin' , resultado);
+                                    
+                                });
+                            }
+
+                            if(data.usernames){
+                                data.usernames.forEach(usuario => {
+                                    let resultado = armarFilaResultados({
+                                        avatar: usuario.avatar,
+                                        nombre: usuario.nombre,
+                                        username: usuario.username,
+                                        link: `/usuario/agregar/${usuario.username}`
+                                    }, 'usuarios');
+
+                                    resultadosUsuarios.insertAdjacentHTML('afterBegin' , resultado);
+                                    resultadosTodo.insertAdjacentHTML('afterBegin' , resultado);
+                                });
+                            }
+                        }
+
+                        if(seleccion == 'categorias' || seleccion == 'todo'){
+                            if(data.categorias){
+                                data.categorias.forEach(categoria => {
+                                    let resultado = armarFilaResultados({
+                                        nombre: categoria.nombre,
+                                        link: `/feed/categoria-${categoria.id}`
+                                    }, 'categorias');
+
+                                    
+                                    resultadosCategorias.insertAdjacentHTML('afterBegin' , resultado);
+                                    resultadosTodo.insertAdjacentHTML('afterBegin' , resultado);
+                                });
+                            }
+                        }
+
+                        
+                    }
+                })
+                .catch(function(error) {
+                    console.log(error);
+                })
+                
+            }
+        }
+    });
+    
+});

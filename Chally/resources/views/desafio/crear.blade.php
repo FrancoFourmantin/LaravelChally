@@ -34,7 +34,7 @@
 
         </div>
 
-        <div class="step col-md-4 ml-5 mt-5 my-5 animated d-none" id="step1">
+        <div class="step col-md-4 ml-5 mt-5 my-5 animated" id="step1">
             <h1 class="font-weight-bold">1. Armado del Desafío</h1>
             <p>¡Empecemos!</p>
             <hr class="mb-5">
@@ -163,7 +163,7 @@
         </div> <!-- CIERRE STEP 2-->
 
 
-        <div class="step col-md-4 ml-5 mt-5 my-5 d-block animated" id="step3">
+        <div class="step col-md-4 ml-5 mt-5 my-5 d-none animated" id="step3">
             <h1 class="font-weight-bold">3. Configuración Final</h1>
             <p>¡Ya casi estás listo para publicar tu desafío!</p>
             <hr class="mb-5">

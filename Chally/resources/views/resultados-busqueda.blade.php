@@ -44,7 +44,7 @@
                             <div class="col-12">
                                 <div class="tab-content" id="nav-tabContent">
                                     <div class="tab-pane fade show active" id="list-categorias" role="tabpanel" aria-labelledby="list-categorias-list">
-
+                                        
                                     </div>
                                     <div class="tab-pane fade" id="list-usuarios" role="tabpanel" aria-labelledby="list-usuarios-list">
 

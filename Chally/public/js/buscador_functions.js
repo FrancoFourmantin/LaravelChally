@@ -202,9 +202,9 @@ function armarFilaResultados(opciones,tipo) {
         console.log(opciones.avatar);
         // return '<img class="" src="'+asset_global+"avatars/"+opciones.avatar+'" alt="avatar">' 
         return `
-        <div class="resultado-categorias d-flex flex-row align-items-center w-100 mb-3">
-        <div class="resultado-item mr-3 p-3 ">
-        <img class="" src="${asset_user_global+opciones.avatar}" alt="avatar">
+        <div class="resultado-categorias d-flex flex-row align-items-center w-100 mb-3 rounded">
+        <div class="resultado-item mr-3 ">
+        <img class="rounded-left" width="50px" height="50px" src="avatars/${opciones.avatar}" alt="avatar">
         </div>
         <div class="resultado-item">
         <a href=""><strong>${opciones.nombre}</strong><span class="pl-3">(${opciones.username})</span></a>
@@ -217,9 +217,9 @@ function armarFilaResultados(opciones,tipo) {
         
     }else if(tipo == 'categorias'){
         return `
-        <div class="resultado-categorias d-flex flex-row align-items-center w-100 mb-3">
+        <div class="resultado-categorias d-flex flex-row align-items-center w-100 mb-3 rounded">
         
-        <div class="resultado-item p-3 ">
+        <div class="resultado-item">
         <a href="${opciones.link}"><strong>${opciones.nombre}</strong></a>
         </div>
         <div class="resultado-item ml-auto mr-3">

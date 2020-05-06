@@ -40,6 +40,9 @@
 .resultado-categorias{
     background-color: #f4f4f4;
 }
+.resultado-categorias:hover{
+    background-color: #fafafa;
+}
 
 .link-util{
     display:flex;

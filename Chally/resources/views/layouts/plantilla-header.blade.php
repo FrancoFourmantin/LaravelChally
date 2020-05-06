@@ -53,16 +53,13 @@
                                 <td>Categorias</td>
                             </tr>
                             
-                            <tr class="resultado-content">
-                                <td>Resulado</td>
-                            </tr>
                             <tr class="resultado-title" data-referencia="usuarios">
                                 <td>Usuarios</td>
                             </tr>
-                            <tr class="resultado-content">
-                                <td>Resultado</td>
+
+                            <tr class="resultado-title" data-referencia="link">
+                                <td ><a class="link-search-navbar" href="/resultados-busqueda">Ver más <i class="fas fa-plus"></i></a></td>
                             </tr>
-                            
                         </tbody>
                         
                     </table>

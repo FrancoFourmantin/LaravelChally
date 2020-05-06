@@ -3,6 +3,12 @@
     @section('clases-body' , 'resultados-buscador animated fadeIn')
     
     @section('main')
+
+    <script>
+        var url_global='{{url("/")}}';
+        var asset_global='{!! asset("") !!}';
+        var asset_user_global='{{asset("/avatars/")}}';//solo es un ejemplo en caso de que tengas un mapeo organizado de carpetas. 
+    </script>
     
     
     <main class="container vh-100">
@@ -17,15 +23,19 @@
                             <input type="text" class="form-control input-busqueda" placeholder="" aria-label="busqueda" aria-describedby="basic-addon1">
                         </div>  
                         <h1 class="mt-5">Resultados de tu busqueda: <span id="prev-search" class="color-verde d-block mt-3"></span></h1>         
+
+                        
                         
                         {{-- Seccion respuestas --}}
                         <div class="row mt-5">
+                            <div class="col-12">
+                                <small>Aqui podes filtrar por categoria o resultados!</small>
+                            </div>
                             <div class= "col-4">
                                 <div class="list-group d-flex flex-row" id="list-tab" role="tablist">
                                     <a class="nav-item-busqueda list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" data-ref ='categorias' href="#list-categorias" role="tab" aria-controls="categorias">categorias</a>
                                     <a class="nav-item-busqueda list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" data-ref ='usuarios' href="#list-usuarios" role="tab" aria-controls="usuarios">usuarios</a>
                                     <a class="nav-item-busqueda list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" data-ref ='todo' href="#list-todo" role="tab" aria-controls="todo">todo</a>
-                                    
                                 </div>
                             </div>
                         </div>

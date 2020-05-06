@@ -95,4 +95,15 @@ Diseño y Maquetado de Layouts de Mail:
     - Optimizar las funciones de javascript
 
 
+---------------------------
+
+05.05.2020 02-21(Fran)
+
+- Se agrego link a ver mas resultados 
+- Se agrego timeout para no sobrecargar de request ajax la pagina
+- Se mejoraron un poquito visualmente
+- Falta resolver un tema de src de imagenes en resultados busqueda
+
+
+
 

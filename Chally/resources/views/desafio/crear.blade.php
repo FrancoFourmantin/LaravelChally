@@ -4,7 +4,8 @@
 
 @section('main')
 
-
+<form class="" method="POST" action="crear" enctype="multipart/form-data">
+    @csrf
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-3 create-menu">
@@ -39,40 +40,27 @@
             <p>¡Empecemos!</p>
             <hr class="mb-5">
 
-            <form method="POST" action="" id="">
                 <div class="form-group">
                     <label class="font-weight-bold" for="">Seleccioná la categoría de tu desafío</label>
 
                     <div class="col-12">
                         <div class="row option-list-squares d-flex justify-content-between">
                             
-                            <div class="col-md-3 rounded mx-0 px-0" data-value="1">
-                                <div class="d-flex flex-column justify-content-center align-items-center content">
-                                    <img id="iconito" style="height:75%;width:100%" src="{{asset('categories/icons/002-art-and-design.svg')}}"> 
-                                    <p class="mb-0 color-gris">Diseño</p>
+                            @foreach ($categorias as $categoria)
+                                <div class="col-md-3 rounded mx-0 px-0" data-value="{{$categoria->id}}">
+                                    <div class="d-flex flex-column justify-content-center align-items-center content">
+                                        <img id="iconito" style="height:75%;width:100%" src="{{asset('categories/icons/002-art-and-design.svg')}}"> 
+                                        <p class="mb-0 color-gris">{{$categoria->nombre}}</p>
+                                    </div>
                                 </div>
-                            </div>
+                            @endforeach
 
-                            <div class="col-md-3 rounded mx-0 px-0" data-value="2">
-                                <div class="d-flex flex-column justify-content-center align-items-center content">
-                                    <img id="iconito" style="height:75%;width:100%" src="{{asset('categories/icons/002-art-and-design.svg')}}"> 
-                                    <p class="mb-0 color-gris">Arte / Ilustración</p>
-                                </div>
-                            </div>
 
-                            <div class="col-md-3 rounded mx-0 px-0" data-value="3"> 
-                                <div class="d-flex flex-column justify-content-center align-items-center content">
-                                    <img id="iconito" style="height:75%;width:100%" src="{{asset('categories/icons/002-art-and-design.svg')}}"> 
-                                    <p class="mb-0 color-gris">Programación</p>
-                                </div>
-                            </div>
-
-                                <select class="card-field d-none" name="id_categoria" data-name="Categoría"  id="id_categoria" required>
-                                    <option value="0">Elegí una opción</option>
-                                    <option value="1">Diseño</option>
-                                    <option value="2">Arte / Ilustración</option>
-                                    <option value="3">Programación</option>
-
+                                <select class="card-field d-none" name="id_categoria" data-icon="true" data-name="Categoría"  id="id_categoria" required>
+                                    <option value="0">Seleccioná una opción</option>
+                                    @foreach($categorias as $categoria)
+                                        <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
+                                    @endforeach
                                 </select>
 
                         </div>
@@ -83,8 +71,7 @@
                     <label class="font-weight-bold" for="">Seleccioná la subcategoría</label>
                     <select class="form-control card-field" name="id_subcategoria" id="subcategoria" data-name="Subcategoría" inputname = "Subcategoría" required>
                         <option value="0">Selecciona una opción</option>
-                        <option value="4">Subcategoría Prueba 1</option>
-                        <option value="5">Subcategoría Prueba 2</option>
+
 
                     </select>
                 </div>
@@ -99,13 +86,12 @@
                     <button id="submitStep1" type="return" class="d-none btn btn-lg btn-outline-secondary font-weight-light mt-4">
                         VOLVER
                     </button>
-                    <button id="submitStep1" type="submit" class="btn btn-lg btn-outline-success font-weight-light mt-4">
+                    <button id="submitStep1" type="submit" class="btn btn-lg btn-outline-success font-weight-light mt-4 next">
                         SIGUIENTE <i class="fas fa-angle-right"></i>
                     </button>
                 </div>
 
 
-            </form>
         </div> <!-- CIERRE STEP 1-->
 
 
@@ -115,7 +101,6 @@
             <p>¡Hagamos que tu desafío se vea interesante!</p>
             <hr class="mb-5">
 
-            <form method="POST" action="" id="">
 
 
             <div class="form-group mt-5">
@@ -133,7 +118,7 @@
                 <input class="form-control mb-2 requirementField" name="requisitos-04" id="requisitos-04" type="text" >
                 <input class="form-control mb-2 requirementField" name="requisitos-05" id="requisitos-05" type="text" >
                 <br>
-                <input class="card-field" type="hidden" class="form-control mb-2 d-none" name="final-req" type="text" data-name="Reglas">
+                <input class="card-field" type="hidden" class="form-control mb-2 d-none" name="finalreq" type="text" data-name="Reglas">
             </div>
 
 
@@ -153,13 +138,12 @@
                     <button id="submitStep2" type="return" class="btn btn-lg btn-outline-secondary font-weight-light mt-4">
                         VOLVER
                     </button>
-                    <button id="submitStep2" type="submit" class="btn btn-lg btn-outline-success font-weight-light mt-4">
+                    <button id="submitStep2" type="submit" class="btn btn-lg btn-outline-success font-weight-light mt-4 next">
                         SIGUIENTE <i class="fas fa-angle-right"></i>
                     </button>
                 </div>
 
 
-            </form>
         </div> <!-- CIERRE STEP 2-->
 
 
@@ -167,48 +151,46 @@
             <h1 class="font-weight-bold">3. Configuración Final</h1>
             <p>¡Ya casi estás listo para publicar tu desafío!</p>
             <hr class="mb-5">
-
-            <form method="POST" action="" id="">
-
+            
+                <!--
                 <div class="form-group">
-                    <label class="font-weight-bold" for="">Seleccioná la categoría de tu desafío</label>
+                    <label class="font-weight-bold" for="">Seleccioná la dificultad de tu desafío</label>
 
                     <div class="col-12">
                         <div class="row option-list-squares d-flex justify-content-between">
                             
-                            <div class="col-md-3 rounded mx-0 px-0">
-                                <div class="d-flex flex-column justify-content-center align-items-center content">
-                                    <object data="{{asset('categories/icons/002-art-and-design.svg')}}" id="iconito" style="height:75%;width:100%"> </object> 
+                            <div class="col-md-3 rounded mx-0 px-0" data-value="1">
+                                <div class="d-flex flex-column justify-content-center align-items-center content" >
+                                    <img id="iconito" style="height:75%;width:100%" src="{{asset('categories/icons/002-art-and-design.svg')}}"> 
                                     <p class="mb-0 color-gris">Principiante</p>
                                 </div>
                             </div>
 
-                            <div class="col-md-3 rounded mx-0 px-0">
+                            <div class="col-md-3 rounded mx-0 px-0" data-value="2">
                                 <div class="d-flex flex-column justify-content-center align-items-center content">
-                                    <object data="{{asset('categories/icons/002-art-and-design.svg')}}" id="iconito" style="height:75%;width:100%"> </object> 
+                                    <img id="iconito" style="height:75%;width:100%" src="{{asset('categories/icons/002-art-and-design.svg')}}"> 
                                     <p class="mb-0 color-gris">Intermedio</p>
                                 </div>
                             </div>
 
-                            <div class="col-md-3 rounded mx-0 px-0">
+                            <div class="col-md-3 rounded mx-0 px-0" data-value="3">
                                 <div class="d-flex flex-column justify-content-center align-items-center content">
-                                    <object data="{{asset('categories/icons/002-art-and-design.svg')}}" id="iconito" style="height:75%;width:100%"> </object> 
+                                    <img id="iconito" style="height:75%;width:100%" src="{{asset('categories/icons/002-art-and-design.svg')}}"> 
                                     <p class="mb-0 color-gris">Experto</p>
                                 </div>
                             </div>
 
-                            <div class="form-group d-none">
-                                <select class="card-field" name="dificultad" data-name="Categoría"  id="">
-                                    <option value="1" selected>Principiante</option>
+                                <select class="card-field d-none" name="dificultad"  id="dificultad" data-name="Dificultad" data-icon="true" required>
+                                    <option value="0">Selecciona una opción</option>
+                                    <option value="1">Principiante</option>
                                     <option value="2">Intermedio</option>
                                     <option value="3">Experto</option>
                                 </select>
-                            </div>
 
                         </div>
                     </div>
                 </div>
-
+                -->
 
 
                 <div class="form-group mt-5">
@@ -217,34 +199,33 @@
                     <div class="col-12">
                         <div class="row option-list-squares d-flex justify-content-between">
                             
-                            <div class="col-md-3 rounded mx-0 px-0">
+                            <div class="col-md-3 rounded mx-0 px-0" data-value="1">
                                 <div class="d-flex flex-column justify-content-center align-items-center content">
                                     <h1>1</h1>
                                     <p class="mb-0 color-gris">Semana</p>
                                 </div>
                             </div>
 
-                            <div class="col-md-3 rounded mx-0 px-0">
+                            <div class="col-md-3 rounded mx-0 px-0" data-value="2">
                                 <div class="d-flex flex-column justify-content-center align-items-center content">
                                     <h1>2</h1>
                                     <p class="mb-0 color-gris">Semanas</p>
                                 </div>
                             </div>
 
-                            <div class="col-md-3 rounded mx-0 px-0">
+                            <div class="col-md-3 rounded mx-0 px-0" data-value="3">
                                 <div class="d-flex flex-column justify-content-center align-items-center content">
                                     <h1>3</h1>
                                     <p class="mb-0 color-gris">Semanas</p>
                                 </div>
                             </div>
 
-                            <div class="form-group d-none">
-                                <select class="card-field" name="dificultad" data-name="Categoría"  id="">
-                                    <option value="1" selected>1 Semana</option>
+                            <select class="card-field d-none" name="duracion" data-name="Duración"  id="duracion" data-icon="true" required>
+                                    <option value="0">Selecciona una opción</option>
+                                    <option value="1">1 Semana</option>
                                     <option value="2">2 Semanas</option>
                                     <option value="3">3 Semanas</option>
-                                </select>
-                            </div>
+                             </select>
 
                         </div>
                     </div>
@@ -253,18 +234,18 @@
 
 
 
-
                 <div class="d-flex justify-content-between">
                     <button id="submitStep2" type="return" class="btn btn-lg btn-outline-secondary font-weight-light mt-4">
                         VOLVER
                     </button>
-                    <button id="submitStep2" type="submit" class="btn btn-lg btn-outline-success font-weight-light mt-4">
+                    <button id="submitStep2" type="submit" class="d-none btn btn-lg btn-outline-success font-weight-light mt-4 next">
+
+                    <button id="submitStep2" type="submit" class="btn btn-lg btn-outline-success font-weight-light mt-4 end">
                         PUBLICAR <i class="fas fa-angle-right"></i>
                     </button>
                 </div>
 
 
-            </form>
         </div> <!-- CIERRE STEP 3-->
 
 
@@ -272,6 +253,7 @@
     </div>
 
 </div>
+</form>
 
 <!--
 <form class="w-100 needs-validation" method="POST" action="crear" id="nuevoDesafio" enctype="multipart/form-data">
@@ -484,12 +466,7 @@
 
 
 
-<script src="{{ asset('js/frontend_validations.js') }}"></script>
 
-
-<script>
-    validarDesafio();
-</script>
 -->
 
 
@@ -505,33 +482,23 @@
     let currentCard = 0;
 
     // Creo la funcion para correr toda la lógica
+    getEndButton().addEventListener("click",function(){console.log("FIN")});
     steps.forEach(step => getSubmitButton(step).addEventListener("click", processStep ));
     steps.forEach(step => getPreviousButton(step).addEventListener("click", returnStep ));
 
-    // Obtengo si es que hay fields de seleccion de opción con icono
-    function processOptionLists(step,field){
-        if(!step.querySelectorAll(".option-list-squares > div")){
-            return;
-        }
-        let options = step.querySelectorAll(".option-list-squares > div");
-        let fieldToFill = step.querySelector(`#${field}`)
-        console.log(fieldToFill);
-        options.forEach(option => option.addEventListener("click", e => {
-            
-            // Borro todas las marcas previamente
-            options.forEach(optionRemover => optionRemover.classList.remove("opcionseleccionada"));
+    processOptionLists(steps[currentStep],steps[currentStep].querySelector("#id_categoria"));
 
-            // Marco la elegida
-            option.classList.add("opcionseleccionada");
-            fieldToFill.selectedIndex = option.dataset.value;
-        }))
-    }
-
-    processOptionLists(steps[currentStep],"id_categoria");
 
     // Obtengo el botón de cada Step
     function getSubmitButton(step){
-        return step.querySelector("button[type=submit]");
+
+        if(step.querySelector("button.next")){
+            return step.querySelector("button.next");
+        }
+    }
+
+    function getEndButton(){
+        return document.querySelector("button.end");
     }
 
     function getPreviousButton(step){
@@ -600,11 +567,9 @@
         // Obtengo todos los campos del Step Actual
         let fields = getStepFields(steps[currentStep]);
 
-        // Verifico si hay algún campo con opciones en formato icono
-
         // Verifico si hay algún campo de tipo Lista y lo proceso de forma manual
         fields.forEach( field => {
-            if(field.name === "final-req"){
+            if(field.name === "finalreq"){
                 processRequirementFields(steps[currentStep],field);
             }
         } )
@@ -626,6 +591,9 @@
 
         console.log(errorTest);
 
+
+
+        
         if(errorTest.every(error => !error)){
             steps[currentStep].classList.toggle("fadeOutDown");
 
@@ -643,6 +611,19 @@
                 // Paso al Step y la Card siguientes
                 currentStep++;
                 currentCard++;
+                
+
+
+                // Verifico si hay algún campo con opciones en formato icono
+                let nextFields = getStepFields(steps[currentStep]);
+                nextFields.forEach(field => {
+                    if(field.dataset.icon === "true"){
+                        console.log("hay en")
+                        console.log(field);
+                        processOptionLists(steps[currentStep],field);
+                    }
+                } )
+                
             }, 
             500);
         }
@@ -671,7 +652,7 @@
 
         // Verifico si hay algún Step de tipo Lista y lo proceso de forma manual
         fields.forEach( field => {
-            if(field.name === "final-req"){
+            if(field.name === "finalreq"){
                 processRequirementFields(steps[currentStep-1],field);
             }
         })
@@ -719,6 +700,33 @@
     }
 
 
+    // Obtengo si es que hay fields de seleccion de opción con icono
+    function processOptionLists(step,field){
+        if(!step.querySelector(".option-list-squares > div")){
+            return;
+        }
+        let options = step.querySelectorAll(".option-list-squares > div");
+        let fieldToFill = step.querySelector(`#${field.name}`);
+        console.log(fieldToFill);
+        options.forEach(option => option.addEventListener("click", e => {
+            console.log("clickee");
+
+            // Borro todas las marcas previamente
+            options.forEach(optionRemover => optionRemover.classList.remove("opcionseleccionada"));
+
+            // Marco la elegida
+            option.classList.add("opcionseleccionada");
+            fieldToFill.value = option.dataset.value;
+
+            if(fieldToFill.id == "id_categoria"){
+                let fieldSubcategoria = document.querySelector("#subcategoria");
+                ajaxSubcategory(fieldSubcategoria,fieldToFill);
+            }
+        }))
+    }
+
+
+    // Obtengo si es que hay fields multi-item como los requisitos por ejemplo
     function processRequirementFields(step,field){
             requirementFields = Array.from(step.querySelectorAll(".requirementField"));
             requirementFields = requirementFields.filter(field => field.value);
@@ -744,7 +752,24 @@
     })
 
 
-
+    function ajaxSubcategory(fieldSubcategory,fieldMain){
+        fieldSubcategory.innerHTML = `<select class="form-control" name="id_subcategoria" id="subcategoria"> <option value="0">Seleccioná una opción </option> </select>`;
+        fetch('/categoriasApi')
+        .then(function(response){
+            return response.json();
+        })
+        .then(function(data){
+            for(var n of data){
+                if(fieldMain.value == n.parent_id){
+                    fieldSubcategory.innerHTML = fieldSubcategory.innerHTML + `<option value="${n.id}">${n.nombre}</option>`
+                    
+                }
+            }
+        })
+        .catch(function(error){
+            "Hubo un error";
+        })
+    }
 
 
 </script>

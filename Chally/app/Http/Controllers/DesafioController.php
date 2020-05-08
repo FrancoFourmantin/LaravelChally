@@ -47,7 +47,7 @@ class DesafioController extends Controller
      */
     public function create()
     {   
-        $categorias = Categoria::where('parent_id','=',NULL)->get();
+        $categorias = Categoria::where('parent_id','=',NULL)->where('nombre','!=','Varios')->get();
         $vac = compact('categorias');
         return view('desafio.crear',$vac); 
     }
@@ -79,9 +79,8 @@ class DesafioController extends Controller
             'id_categoria' => 'required|numeric|not_in:0',
             'id_subcategoria' => 'required|numeric|not_in:0',
             'descripcion' => 'required|string|min:30',
-            'requisitos' => 'required|string|min:5',
-            'dificultad' => 'required|numeric|not_in:0',
-            'fecha_limite' => 'required|numeric|not_in:0',
+            'finalreq' => 'required|string|min:5',
+            'duracion' => 'required|numeric|not_in:0',
         ];
 
         $request->validate($reglas,$mensajes);
@@ -96,9 +95,9 @@ class DesafioController extends Controller
         $nuevoDesafio->id_categoria = $request->id_categoria;
         $nuevoDesafio->id_subcategoria = $request->id_subcategoria;
         $nuevoDesafio->descripcion = $request->descripcion;
-        $nuevoDesafio->requisitos = $request->requisitos;
-        $nuevoDesafio->dificultad = $request->dificultad;
-        $nuevoDesafio->fecha_limite = Carbon::now()->add($request->fecha_limite,'day')->format('Y-m-d');
+        $nuevoDesafio->requisitos = $request->finalreq;
+        $nuevoDesafio->dificultad = 1;
+        $nuevoDesafio->fecha_limite = Carbon::now()->add($request->duracion,'day')->format('Y-m-d');
 
         $nuevoDesafio->id_autor = Auth::user()->id_usuario;
         $nuevoDesafio->fecha_creacion = date('Y-m-d H:i:s');

@@ -222,9 +222,9 @@
 
                             <select class="card-field d-none" name="duracion" data-name="Duración"  id="duracion" data-icon="true" required>
                                     <option value="0">Selecciona una opción</option>
-                                    <option value="1">1 Semana</option>
-                                    <option value="2">2 Semanas</option>
-                                    <option value="3">3 Semanas</option>
+                                    <option value="7">1 Semana</option>
+                                    <option value="14">2 Semanas</option>
+                                    <option value="21">3 Semanas</option>
                              </select>
 
                         </div>

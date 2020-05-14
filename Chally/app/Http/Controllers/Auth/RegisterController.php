@@ -73,6 +73,20 @@ class RegisterController extends Controller
         $before = $date->subYears(13)->format('Y-m-d');
 
 
+        // Si es de redes sociales, no se valida la password
+        if($data['registration_type'] =="social"){
+            return Validator::make($data, [
+                'nombre' => ['required', 'string', 'min:3', 'max:255'],
+                'username' => ['required', 'string', 'min:3', 'max:255'],
+                'apellido' => ['required', 'string', 'min:5', 'max:255'],
+                'fecha_nacimiento' => ["required", "date", "before:$before"],
+                'sexo' => ['required', 'not_in:0'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:usuarios', 'confirmed'],
+                'tyc_check' => ['accepted'],
+            ], $messages);            
+        }
+
+        // Si no viene por redes sociales, entonces sí se valida la password
         return Validator::make($data, [
             'nombre' => ['required', 'string', 'min:3', 'max:255'],
             'username' => ['required', 'string', 'min:3', 'max:255'],
@@ -82,7 +96,6 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:usuarios', 'confirmed'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'tyc_check' => ['accepted'],
-            /** 'intereses' => ['required', 'array', 'min:1'] */
         ], $messages);
     }
 
@@ -94,12 +107,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        if ($data['sexo'] == 'h') {
-            $nombreImagen = 'primera-imagen-hombre.png';
-        } else {
-            $nombreImagen = 'primera-imagen-mujer.png';
-        }
-
         Cookie::queue('respondio_intereses' , 'false'  , 21600);
         Mail::to($data['email'])->send(new Confirm($data));
         Mail::to($data['email'])->send(new Confirmed($data));
@@ -107,10 +114,10 @@ class RegisterController extends Controller
         return Usuario::create([
             'nombre' => $data['nombre'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'password' =>  $data['registration_type'] == "social" ? NULL : Hash::make($data['password']),
             'fecha_nacimiento' => $data['fecha_nacimiento'],
             'sexo' => $data['sexo'],
-            'avatar' => $nombreImagen,
+            'avatar' => $data['registration_type'] == "social" ? $data['avatar'] : 'primera-imagen-hombre.png',
             'apellido' => $data['apellido'],
             'username' => $data['username']
         ]);

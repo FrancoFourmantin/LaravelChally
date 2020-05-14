@@ -14,10 +14,10 @@ class AddColumnsToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->date('fecha_nacimiento')->nullable();
-            $table->char('sexo')->nullable();
+            $table->date('fecha_nacimiento');
+            $table->char('sexo');
             $table->string('apellido' , 100)->nullable();
-            $table->string('username' , 100)->charset('utf8')->nullable();
+            $table->string('username' , 100)->charset('utf8')->unique();
             $table->string('avatar' , 100);
             $table->string('cover' , 100)->nullable();
             $table->string('bio',999)->nullable();

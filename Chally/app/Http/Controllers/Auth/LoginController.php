@@ -44,7 +44,7 @@ class LoginController extends Controller
 
 
     /**
-     * Redirect the user to the Facebook authentication page.
+     * Redirect the user to the authentication page.
      *
      * @return \Illuminate\Http\Response
      */
@@ -53,36 +53,44 @@ class LoginController extends Controller
         return Socialite::driver($provider)->redirect();
     }
 
+
     /**
-     * Obtain the user information from Facebook.
+     * Obtain the user information from provider.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function handleProviderCallback($provider)
     {
         $social_user = Socialite::driver($provider)->user();
-        
-        if ($user = Usuario::where('email', $social_user->email)->first()) { 
-            return $this->authAndRedirect($user); // Login y redirección
+        $avatarContents = file_get_contents($social_user->avatar);
+        File::put(public_path('avatars') . '/avatars' . time() . ".jpg", $avatarContents);
+        $avatarURL="avatars" . time() . ".jpg";
+
+        // Esto está comentado para probar rápido el registro para pruebas.
+        if ($user = Usuario::where('email', $social_user->email)->first()  /* 0>1 */ ) { 
+            return $this->authAndRedirect($user); 
         } else {  
+        
+        $vac=compact("social_user","avatarURL");
+        return view('auth.register_social',$vac);
 
-            $avatarContents = file_get_contents($social_user->avatar);
-            File::put(public_path('avatars') . '/avatars' . time() . ".jpg", $avatarContents);
-
+            /*
             // En caso de que no exista creamos un nuevo usuario con sus datos.
             $user = Usuario::create([
                 'nombre' => $social_user->name,
-                //'apellido' => $social_user->name,
+                'apellido' => $social_user->name,
                 'email' => $social_user->email,
                 'avatar' => "avatars" . time() . ".jpg",
                 'username' => strtolower(str_replace(' ', '', $social_user->name)),
             ]);
-            
             Cookie::queue('respondio_intereses' , 'false'  , 21600);
 
-            return $this->authAndRedirect($user); // Login y redirección
-        }        
+            return $this->authAndRedirect($user); 
+
+        }   */   
         
+        }
     }
 
     // Login y redirección

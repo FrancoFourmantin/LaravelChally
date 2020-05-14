@@ -105,5 +105,19 @@ Diseño y Maquetado de Layouts de Mail:
 - Falta resolver un tema de src de imagenes en resultados busqueda
 
 
+---------------------------
+
+14.05.2020 04-00 (Emi)
+
+- Se creó una nueva vista para el registro a través de redes sociales.
+- Se cambiaron las migrations: ahora poner fecha de nacimiento y el sexo es obligatorio
+- La nueva vista de registro trae los datos de la red social y a su vez solicita los datos complementarios de forma obligatoria. 
+- Para el próximo push, se va a hacer validación con javascript, ya que si la persona coloca mal algún dato durante el paso de registro, el token de la URL (que es único), expira y por ende la redirección del Validator tira un error.
+
+Próximo push: validación en vivo con JS
+
+
+
+
 
 

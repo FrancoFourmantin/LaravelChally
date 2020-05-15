@@ -116,6 +116,15 @@ Diseño y Maquetado de Layouts de Mail:
 
 Próximo push: validación en vivo con JS
 
+---------------------------
+
+14.05.2020 18-00 (Emi)
+
+- Se crearon las API para validar existencia de mails y usernames vía AJAX durante el registro
+- Se creó el script de JS para validar todos los registros
+- Validación onChange durante todo el proceso de registro vía JS y AJAX
+- Validación onChange durante todo el proceso de registro vía JS y AJAX en el registro vía red social
+- Se modificó el archivo routes para crear las rutas de las validaciones
 
 
 

@@ -49,6 +49,22 @@ Route::get('/likes/get/{id_desafio}/{es_desafio}' , 'likeController@show');
  */
 Route::get('/api/resultados/{busqueda}' , 'BuscadorController@apiResultados');
 
+Route::get('usernamesApi/{username}',function($username){
+    $resultado = \App\Usuario::where('username',$username)->get();
+    if($resultado->isEmpty()){
+        return "true";
+    }
+    return "false";
+});
+
+Route::get('emailsApi/{email}',function($email){
+    $resultado = \App\Usuario::where('email',$email)->get();
+    if($resultado->isEmpty()){
+        return "true";
+    }
+    return "false";
+});
+
 
 Route::post('/intereses/modificar' , 'UsuarioCategoriaController@update');
 

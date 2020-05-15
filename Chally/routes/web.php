@@ -13,6 +13,8 @@
 */
 
 
+route::view('/votar-respuesta' , 'desafio.votar-desafio'); 
+
 /***
 * Rutas publicas
 * 

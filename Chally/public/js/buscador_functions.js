@@ -17,6 +17,13 @@ let arrayIconosCategorias = {
 };
 
 
+function handleClickTableSearch() {
+    if(e.currentTarget.href){
+        window.location.href = e.currentTarget.href;
+    }
+}
+
+
 
 var timerID;
 
@@ -38,9 +45,13 @@ inputSearch.addEventListener('focus' , function(e){
     
     inputSearch.style.width = '100%';
     inputSearch.style.opacity = '1';
+
+    tableSearch.addEventListener('click' , handleClickTableSearch);
 });
 
 inputSearch.addEventListener('blur', function(e){   
+    
+    tableSearch.removeEventListener('click' , handleClickTableSearch);
     
     formSearch.onmouseout = function(){
         inputSearch.style.opacity = '0';
@@ -52,13 +63,7 @@ inputSearch.addEventListener('blur', function(e){
     inputSearch.style.opacity = '0';
 })
 
-tableSearch.addEventListener('click' , function(e){
-    
-    console.log(e);
-    if(e.currentTarget.href){
-        window.location.href = e.currentTarget.href;
-    }
-})
+
 
 
 

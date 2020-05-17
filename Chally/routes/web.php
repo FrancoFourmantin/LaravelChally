@@ -13,7 +13,7 @@
 */
 
 
-route::view('/votar-respuesta' , 'desafio.votar-desafio'); 
+
 
 /***
 * Rutas publicas
@@ -119,6 +119,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/respuesta/editar/{id}', 'RespuestaController@edit');
     Route::post('/respuesta/editar/{id}', 'RespuestaController@update');
     Route::get('/respuesta/borrar/{id}', 'RespuestaController@destroy');
+
+    Route::get('/votar-respuesta/{id_desafio}' , 'VotosRespuestasController@create'); 
     
     /**
     * 

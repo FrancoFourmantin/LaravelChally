@@ -1,6 +1,20 @@
 .contenedor-main-votar-respuesta{
     height: 100vh;
+    position: relative;
 }
+
+
+
+.seleccionado{
+    box-shadow: 0px 0px 25px rgba(27,183,110,0.8);
+}
+.no-seleccionado{
+    opacity: 0.3;
+}
+
+
+
+
 .contenedor-votar-respuesta{
     max-width: 900px;
     /* border-radius: 5px;
@@ -17,7 +31,14 @@
     align-items: center;
     justify-items: center;
     padding: 2em;
+    transition: all .5s ease;
 }
+
+.contenedor-votar-respuesta.no-mostar{
+    transform: translateX(100%);
+}
+
+
 
 .contenedor-title-votar-respuesta{
     grid-area: title;
@@ -86,7 +107,7 @@
 
 .contenedor-menu-elegir{
     display: grid;
-    padding: 1em;
+ 
     overflow: scroll;
     overflow-x: hidden;
     justify-content: center;
@@ -94,23 +115,28 @@
     background-color: #ffffff;
     max-width: 900px;
     border-radius: 5px;
+    position: relative; 
+    z-index: 1;
 }
+
 
 
 .contenedor-menu-elegir .title{
     text-align: center;
 }
 
-.contenedor-menu-elegir::-webkit-scrollbar{
+/* .contenedor-menu-elegir::-webkit-scrollbar{
     width: 10px;
-}
+} */
 
-.contenedor-menu-elegir::-webkit-scrollbar-track{
+/* .contenedor-menu-elegir::-webkit-scrollbar-track{
     border-radius: 5px;
-}
+} */
 
 .contenedor-lista-respuesta {
     display: grid;
+    padding: 1em;
+
     grid-template-rows: 1fr;
 }
 
@@ -124,12 +150,14 @@
     grid-template-areas: 
     "contenido contenido"
     ;
+    transition: all 0.4s ease;
 }
 
 .contenedor-user-info{
     grid-area: contenido;
     padding: 1.5em;
     display: flex;
+    transition: all 0.4s ease;
     flex-direction: column;
 }
 
@@ -164,8 +192,37 @@
     
 }
 
+.flecha-atras-votar{
+    position: absolute;
+    top: 0.5em;
+    left: 0.5em;
+    font-size: 2em;
+    
+}
+.flecha-atras-votar:hover{
+    cursor: pointer;
+}
+
+
+.footer-respuesta{
+    position: fixed;   
+    bottom: 0;
+    width: 100vw;
+    background-color: #212529;
+}
+
+.close-footer:hover{
+    cursor: pointer;
+}
+
 @media(min-width: 700px){
     
+    .footer-respuesta{
+        position: sticky;   
+        bottom: 0 ;
+
+    }
+
     .contenedor-main-votar-respuesta{
         background-color: #1bb76e;
         display: grid;
@@ -206,5 +263,9 @@
         grid-template-columns: repeat(2,1fr);
         grid-column-gap: 1em;
     }
+    
+    
 }
+
+
 

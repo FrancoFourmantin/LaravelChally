@@ -27,9 +27,10 @@ class CreateDesafiosTable extends Migration
             $table->date('fecha_limite');
             $table->timestamp('fecha_actualizacion')->nullable();
             $table->timestamp('fecha_creacion')->nullable();
+            $table->boolean('estado_votaciones')->nullable();
             $table->foreign('id_autor')->references('id_usuario')->on('usuarios');
             $table->foreign('id_categoria')->references('id')->on('categorias');
-
+            
 
         });
     }

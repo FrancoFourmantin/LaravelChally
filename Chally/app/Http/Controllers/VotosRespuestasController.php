@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Respuesta;
+use App\VotoRespuesta;
+use App\Desafio;
+use Auth;
+Use Alert;
 class VotosRespuestasController extends Controller
 {
     /**
@@ -21,9 +25,12 @@ class VotosRespuestasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id_desafio)
     {
-        return view('desafio.votar-desafio');
+        //Vamos a mostrar todas las respuestas para votar
+        $desafio = Desafio::find($id_desafio);
+        
+        return view('desafio.votar-desafio' , compact('desafio'));
     }
 
     /**
@@ -32,9 +39,22 @@ class VotosRespuestasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request , $id_desafio)
     {
-        //
+       //vamos a chequear que exista el desafio por las dudas
+        if(Desafio::find($id_desafio))
+        {
+            $nuevoVoto = new VotoRespuesta;
+            $nuevoVoto->id_desafio = $id_desafio;
+            $nuevoVoto->id_respuesta_votada = $request->input('respuesta-votada');
+            $nuevoVoto->id_votante = Auth::user()->id_usuario;
+            $nuevoVoto->save();
+    
+            Alert::success('Tu voto se registro correctamente', 'Yas has votado en este desafio');
+        }
+        
+        return redirect('/feed');
+
     }
 
     /**

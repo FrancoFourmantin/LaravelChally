@@ -39,4 +39,9 @@ class Desafio extends Model
     public function getLikes(){
         return $this->hasMany('App\Like' , 'id_desafio' , 'id');
     }
+
+
+    public function getRespuestaGanadora(){
+        return  $this->hasOne('App\Respuesta' , 'id_respuesta_ganadora' , 'id');
+    }
 }

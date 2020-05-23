@@ -30,7 +30,7 @@ class BuscadorController extends Controller
          
          
          if(strlen($busqueda) >= 3){
-             $categorias = Categoria::where('nombre' , 'like' , "%$busqueda%")->limit(5)->get();
+             $categorias = Categoria::where('nombre' , 'like' , "$busqueda%")->limit(5)->get();
      
              $usuarios = Usuario::where('nombre' , 'like' , "%$busqueda%")->limit(5)->get();
      

@@ -9,9 +9,17 @@ use App\Respuesta;
 use App\Categoria;
 use Carbon\Carbon;
 use Carbon\Traits\Timestamp;
+use App\Events\DesafioCreado;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 
+/*
+Se manda un mail cuando finaliza el desafio
 
+--> ¿Como se cuando finaliza? --> base de datos  fecha limite()
+--> ¿Como hago para saber que termino? 
+
+
+*/ 
 
 
 class DesafioController extends Controller
@@ -84,9 +92,27 @@ class DesafioController extends Controller
         ];
 
         $request->validate($reglas,$mensajes);
-        
-        
+
+
         $nuevoDesafio = new Desafio();
+
+
+
+
+        /*For testing*/
+        // $nuevoDesafio->fecha_actualizacion=NULL;
+        // $nuevoDesafio->nombre = "Sacá una foto con onda Vaporwave en Buenos Aires";
+        // $nuevoDesafio->imagen = "portada-desafio1.jpg";
+        // $nuevoDesafio->id_categoria = 2;
+        // $nuevoDesafio->id_subcategoria = 6;
+        // $nuevoDesafio->descripcion = 'Sacá una foto con tu celu o cámara réflex de un punto de la Ciudad que tenga una onda Vaporwave/Aesthetics.';
+        // $nuevoDesafio->requisitos = '<li> Subir una foto </li> <li> Indicá en qué dirección sacaste la foto </li> <li> Si usaste un programa de edición, indicá cual fue </li>';
+        // $nuevoDesafio->dificultad = 1;
+        // $nuevoDesafio->fecha_limite = "2020-05-23";
+        // $nuevoDesafio->id_autor = 2;
+        // $nuevoDesafio->fecha_creacion = date('Y-m-d H:i:s');
+
+        /**The original */
         $nuevoDesafio->fecha_actualizacion=NULL;
         $nuevoDesafio->nombre = $request->nombre;
         $nombreImagenDesafio = time() . '.' . request()->imagen->getClientOriginalExtension();
@@ -103,6 +129,9 @@ class DesafioController extends Controller
         $nuevoDesafio->fecha_creacion = date('Y-m-d H:i:s');
 
         $nuevoDesafio->save();
+
+        
+        // event(new DesafioCreado($nuevoDesafio));
 
         return redirect('/desafio/ver/' . $nuevoDesafio->id)->with("mensaje","¡Listo " . Auth::user()->nombre . "! creaste satisfactoriamente tu desafío");
 

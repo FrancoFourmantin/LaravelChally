@@ -27,13 +27,20 @@ function votarRespuesta(respuesta){
         e.preventDefault();
         toggleContenedores();
     }
+
     
-    function handleOpenConfirmFooter() {
+    function handleOpenConfirmFooter(e) {
         if(footer.matches('d-flex')){
             return;
         }
         footer.classList.remove('d-none');
         footer.classList.add('d-flex');
+
+        const botonRespuesta = e.target;
+        //Mientras el footer este abierto le ponemos un link al boton sacado del link que este seleccionado
+        document.querySelector('.confirmar-seleccion').addEventListener('click' , (e) => {
+            botonRespuesta.closest('form').submit();
+        })  
     }
     
     function handleCloseConfirmFooter(e){
@@ -76,7 +83,7 @@ function votarRespuesta(respuesta){
         const contenedoresNoSeleccionados = [...respuesta.querySelectorAll(".contenedor-respuesta:not(.seleccionado)")];
         contenedoresNoSeleccionados.forEach(contenedor => {contenedor.classList.add('no-seleccionado')})
         
-        handleOpenConfirmFooter();
+        handleOpenConfirmFooter(e);
     }
     
     

@@ -28,7 +28,7 @@ class CreacionDeUsuariosDePrueba extends Seeder
             'cover' => 'cover.jpg',
             'bio' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit consectetur corporis, laudantium debitis ex suscipit expedita officia provident distinctio asperiores. Quidem nesciunt doloribus sed omnis itaque atque, ducimus beatae iste!',
             'role' => 'admin'
-            
+
         ]);
 
         DB::table('usuarios')->insert([

@@ -126,7 +126,28 @@ Próximo push: validación en vivo con JS
 - Validación onChange durante todo el proceso de registro vía JS y AJAX en el registro vía red social
 - Se modificó el archivo routes para crear las rutas de las validaciones
 
+---------------------------
 
+23.5.2020 13:40 (Fran)
+
+-- Se integro sistema de votaciones (desarrollo)
+   (Listado de cosas hechas)
+   --> Se agregaron columnas "estado_votaciones" a la tabla desafios
+   --> Se crearon comandos App/Commands para chequear desafios
+       finalizados y votaciones finalizadas
+   --> Se creo schedule(daily) de los comandos anteriores
+       para chequear por eventos finzalidos
+   --> Se creo mail para avisar a todos los votantes que el desafio
+       habia finalizado y deben votar
+   --> Se creo mail para avisar al ganador que gano 
+
+   --> Se creo middleware para que verifica que no hayas votado
+       y que hayas participado del desafio para votar
+   
+   (Listado de falta por hacer)
+   --> Determinar que pasa si existen mas de 1 ganador(actualmente random si hay empate)
+   --> Avisar al usuario cuando loguee si tiene algun desafio pendiente en el que votar
+   --> Crear historial de Desafios Ganados y Desafios Participados en perfil
 
 
 

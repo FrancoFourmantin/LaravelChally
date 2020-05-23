@@ -120,7 +120,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/respuesta/editar/{id}', 'RespuestaController@update');
     Route::get('/respuesta/borrar/{id}', 'RespuestaController@destroy');
 
-    Route::get('/votar-respuesta/{id_desafio}' , 'VotosRespuestasController@create'); 
+    Route::get('/votar-desafio/{id_desafio}' , 'VotosRespuestasController@create')->middleware('votaciones'); 
+    Route::post('/votar-desafio/{id_desafio}' , 'VotosRespuestasController@store');
     
     /**
     * 

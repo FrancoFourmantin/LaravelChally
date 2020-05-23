@@ -8,7 +8,7 @@
     </mj-section>
     <mj-section padding="0px" background-color="#ffffff">
       <mj-column>
-        <mj-text padding-top="0" color="#1bb76e" font-weight="bold" font-size="24px" align="center" line-height="30px">{{usuario->nombre}}, el desafio {{desafio-titulo}} ya finalizo! Es hora de saber quien sera el ganador</mj-text>
+        <mj-text padding-top="0" color="#1bb76e" font-weight="bold" font-size="24px" align="center" line-height="30px"><strong>{{usuario->nombre}}</strong>, el desafio <strong>{{desafio-titulo}}</strong> ya finalizo! Es hora de saber quien sera el ganador</mj-text>
         <mj-image padding="0px" width="500px" src="http://localhost:8000/img/emails/cup-woman.png"></mj-image>
       </mj-column>
     </mj-section>

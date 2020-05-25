@@ -139,7 +139,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav ml-auto align-items-center">
                     
                     <li class="nav-item">
                         <a class="nav-link" href="/feed"><i class="fas fa-newspaper"></i> &nbsp; Inicio</a>
@@ -148,12 +148,84 @@
                         <a class="nav-link" href="/faq"><i class="fas fa-question"></i> &nbsp; Preguntas Frecuentes</a>
                     </li>
                     <li class="nav-item p-2">
-                        <i class="fas fa-user color-verde"></i><a style="display: inline" class="nav-link"
-                        href="/register">Registrarse </a><a style="display: inline" class="nav-link"
-                        href="/login">Iniciar Sesion</a>
-                        {{-- <a class="nav-link" href="/register"> &nbsp; Registrarse / Iniciar Sesión</a> --}}
+                        <button class="btn btn-secondary" data-toggle="modal" data-target="#enter">                        
+                            <i class="fas fa-user"></i> Iniciar Sesión
+                        </button>
                     </li>
                     
+              
+  <!-- Modal para iniciar sesión/registrarse -->
+  <div class="modal fade" id="enter" tabindex="-1" role="dialog" aria-labelledby="enter" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h5 class="modal-title w-100" id="exampleModalLongTitle">Iniciá Sesión</h5>
+          <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>-->
+        </div>
+        <div class="modal-body">
+
+            <div class="container social-login">
+                <div class="row text-center mb-4">
+                    
+                    <div class="col-5 py-2 rounded facebook">
+                        <a href="{{url("auth/facebook")}}"><i class="fab fa-facebook-f text-white w-100"></i></a>
+                    </div>
+
+                    <div class="offset-md-2"></div>
+
+                    <div class="col-5 py-2 bg-danger rounded google">
+                        <a href="{{url("auth/google")}}"><i class="fab fa-google text-white w-100"></a></i>                
+                    </div>
+                </div>
+            </div>
+
+          <form action="processlogin" method="POST">
+            <meta name="csrf-token" content="{{ csrf_token() }}">
+
+              @csrf
+              
+              
+              <div class="form-group mb-3">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                      <input class="form-control" type="text" name="email" id="email_modal" placeholder="Tu email">
+                  </div>
+              </div>
+
+              <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <i class="fas fa-lock"></i>                       
+                        </div>
+                    </div>
+                <input class="form-control" type="password" name="password" id="password_modal" placeholder="Tu contraseña">
+                </div>
+                <button class="btn btn-secondary w-100 mt-4" type="submit" id="submit_modal">Iniciar Sesión</button>
+            </div>
+
+          </form>
+          <p id="olvido-password" class="fuente-chica text-center"><a href="{{url("password/reset")}}" class="text-secondary">¿Olvidaste tu
+            contraseña?</a></p>
+
+          <hr>
+
+          <p id="registrarse" class="fuente-chica text-center"><a href="{{url("register")}}" class="font-weight-bold d-inline-block"
+            alt="Enlace a la página de registro">¿No tenés cuenta? Registrate ahora.</a></p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
                 </ul>
             </div>
         </nav>
@@ -217,6 +289,8 @@
 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
 </script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="{{asset('js/login_functions.js')}}"></script>
+
 @if(!Auth::check())
 <script src="{{asset('js/handle_functions.js')}}"></script>
 @endif

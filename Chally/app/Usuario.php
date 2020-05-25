@@ -11,6 +11,8 @@ use App\Amistad;
 use App\Bookmark;
 use Auth;
 use App\Categoria;
+use App\Notifications\PasswordReset; 
+use DB;
 
 class Usuario extends Authenticatable
 {
@@ -22,7 +24,7 @@ class Usuario extends Authenticatable
     public function getDesafios(){
         return $this->hasMany('App\Desafio','id_usuario','id_autor');
     }
-    
+
     public function getRespuestas(){
         return $this->hasMany('App\Respuesta','id_usuario','id_autor');
     }
@@ -51,6 +53,13 @@ class Usuario extends Authenticatable
             }
         }
         return "";
+    }
+
+
+    public function sendPasswordResetNotification($token)
+    {   
+
+        $this->notify(new PasswordReset($token));
     }
     
     /**

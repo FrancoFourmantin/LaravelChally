@@ -73,6 +73,15 @@ Route::view('/resultados-busqueda' , 'resultados-busqueda');
 
 /**
 * 
+* Rutas de AUtenticación
+*/
+
+Route::post('processlogin','LoginController@authenticate');
+
+
+
+/**
+* 
 * Rutas para usuarios logeados
 */
 Route::group(['middleware' => 'auth'], function () {

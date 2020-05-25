@@ -150,4 +150,25 @@ Próximo push: validación en vivo con JS
    --> Crear historial de Desafios Ganados y Desafios Participados en perfil
 
 
+---------------------------
+
+   25.05.2020 04-00 (Emi)
+
+- Se hizo un artisan publish 
+- Se armó toda la funcionalidad para recuperar contraseñas vía mail con token
+- Se creó una nueva Notification, encargada de enviar el token vía mail
+- Se diseñó y maquetó via MJML la plantilla de la solicitud de cambio de contraseña
+- Se rediseñó todo el sistema de inicio sesión
+- Ahora todo el inicio de sesión es vía Modal y funciona vía AJAX.
+- Se crearon rutas para la verificación AJAX de las credenciales. 
+- Se arreglaron los enlaces a los botones sociales que antes no andaban.
+
+ (Lo que faltaría por hacer)
+ --> Pequeños ajustes de maquetado a la vista de recuperar contraseña
+ --> Ver cómo hacer un throttle cuando hay varios intentos de inicio de sesión fallidos desde una misma IP
+ --> Probar en responsive para ver si es necesario hacer algún ajuste.
+
+---------------------------
+
+
 

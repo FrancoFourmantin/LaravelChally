@@ -89,6 +89,38 @@ h3,
     color: red;
 }
 
+.social-login .rounded{
+
+}
+
+.social-login .rounded{
+    transition:all 0.25s ease;
+}
+
+.social-login .facebook{
+    background-color:#4267b2;
+}
+
+.social-login .google{
+    background-color:#dd4b39;
+}
+
+.social-login .facebook:hover{
+    background-color:#2b4f99;
+}
+
+.social-login .google:hover{
+    background-color:#ce3a28;
+}
+
+.social-login .rounded a i{
+    transition:all 0.25s ease;
+}
+
+.social-login .rounded:hover a i{
+    transform:scale(1.2);
+}
+
 @media screen and (min-width: 768px) {
     .contenedor-principal-login {
         background-image: url("../img/login-background.jpg");

@@ -16,6 +16,7 @@ class CreateDesafiosTable extends Migration
         Schema::create('desafios', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre');
+            $table->string('slug');
             $table->string('requisitos',1000)->nullable();
             $table->integer('dificultad');
             $table->unsignedbigInteger('id_autor');

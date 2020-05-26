@@ -152,46 +152,6 @@
             <p>¡Ya casi estás listo para publicar tu desafío!</p>
             <hr class="mb-5">
             
-                <!--
-                <div class="form-group">
-                    <label class="font-weight-bold" for="">Seleccioná la dificultad de tu desafío</label>
-
-                    <div class="col-12">
-                        <div class="row option-list-squares d-flex justify-content-between">
-                            
-                            <div class="col-md-3 rounded mx-0 px-0" data-value="1">
-                                <div class="d-flex flex-column justify-content-center align-items-center content" >
-                                    <img id="iconito" style="height:75%;width:100%" src="{{asset('categories/icons/002-art-and-design.svg')}}"> 
-                                    <p class="mb-0 color-gris">Principiante</p>
-                                </div>
-                            </div>
-
-                            <div class="col-md-3 rounded mx-0 px-0" data-value="2">
-                                <div class="d-flex flex-column justify-content-center align-items-center content">
-                                    <img id="iconito" style="height:75%;width:100%" src="{{asset('categories/icons/002-art-and-design.svg')}}"> 
-                                    <p class="mb-0 color-gris">Intermedio</p>
-                                </div>
-                            </div>
-
-                            <div class="col-md-3 rounded mx-0 px-0" data-value="3">
-                                <div class="d-flex flex-column justify-content-center align-items-center content">
-                                    <img id="iconito" style="height:75%;width:100%" src="{{asset('categories/icons/002-art-and-design.svg')}}"> 
-                                    <p class="mb-0 color-gris">Experto</p>
-                                </div>
-                            </div>
-
-                                <select class="card-field d-none" name="dificultad"  id="dificultad" data-name="Dificultad" data-icon="true" required>
-                                    <option value="0">Selecciona una opción</option>
-                                    <option value="1">Principiante</option>
-                                    <option value="2">Intermedio</option>
-                                    <option value="3">Experto</option>
-                                </select>
-
-                        </div>
-                    </div>
-                </div>
-                -->
-
 
                 <div class="form-group mt-5">
                     <label class="font-weight-bold" for="">¿Cuál es el tiempo límite de respuesta?</label>
@@ -199,21 +159,21 @@
                     <div class="col-12">
                         <div class="row option-list-squares d-flex justify-content-between">
                             
-                            <div class="col-md-3 rounded mx-0 px-0" data-value="1">
+                            <div class="col-md-3 rounded mx-0 px-0" data-value="7">
                                 <div class="d-flex flex-column justify-content-center align-items-center content">
                                     <h1>1</h1>
                                     <p class="mb-0 color-gris">Semana</p>
                                 </div>
                             </div>
 
-                            <div class="col-md-3 rounded mx-0 px-0" data-value="2">
+                            <div class="col-md-3 rounded mx-0 px-0" data-value="14">
                                 <div class="d-flex flex-column justify-content-center align-items-center content">
                                     <h1>2</h1>
                                     <p class="mb-0 color-gris">Semanas</p>
                                 </div>
                             </div>
 
-                            <div class="col-md-3 rounded mx-0 px-0" data-value="3">
+                            <div class="col-md-3 rounded mx-0 px-0" data-value="21">
                                 <div class="d-flex flex-column justify-content-center align-items-center content">
                                     <h1>3</h1>
                                     <p class="mb-0 color-gris">Semanas</p>
@@ -709,7 +669,7 @@
         let fieldToFill = step.querySelector(`#${field.name}`);
         console.log(fieldToFill);
         options.forEach(option => option.addEventListener("click", e => {
-            console.log("clickee");
+            console.log(`Clickee en una opción`);
 
             // Borro todas las marcas previamente
             options.forEach(optionRemover => optionRemover.classList.remove("opcionseleccionada"));
@@ -717,6 +677,7 @@
             // Marco la elegida
             option.classList.add("opcionseleccionada");
             fieldToFill.value = option.dataset.value;
+            console.log(fieldToFill.value);
 
             if(fieldToFill.id == "id_categoria"){
                 let fieldSubcategoria = document.querySelector("#subcategoria");

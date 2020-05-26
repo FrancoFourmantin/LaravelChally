@@ -24,7 +24,7 @@ Route::get('/', 'HomeController@index')->middleware("guest");
 Route::get('/feed', 'DesafioController@index');  //Ruta para enviar al usuario al feed despues del login
 Route::get('/feed/categoria-{id}', 'DesafioController@indexCategoria');  //Ruta para enviar al usuario al feed despues del login
 Route::get('/usuario/{username}', 'UsuarioController@show'); //Ruta para mostrar usuario;
-Route::get('/desafio/ver/{id}', 'DesafioController@show');
+Route::get('/desafio/ver/{slug}', 'DesafioController@show');
 
 Route::get('auth/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
@@ -123,8 +123,8 @@ Route::group(['middleware' => 'auth'], function () {
     
     /* Rutas de Respuestas */
     
-    Route::get('desafio/ver/{idDesafio}/respuesta/crear', 'RespuestaController@create');
-    Route::post('desafio/ver/{idDesafio}/respuesta/crear', 'RespuestaController@store');
+    Route::get('desafio/ver/{slug}/respuesta/crear', 'RespuestaController@create');
+    Route::post('desafio/ver/{slug}/respuesta/crear', 'RespuestaController@store');
     Route::get('/respuesta/editar/{id}', 'RespuestaController@edit');
     Route::post('/respuesta/editar/{id}', 'RespuestaController@update');
     Route::get('/respuesta/borrar/{id}', 'RespuestaController@destroy');

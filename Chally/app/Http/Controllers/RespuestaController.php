@@ -10,6 +10,8 @@ use Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\RespuestaRecibida;
 use App\Mail\RespuestaEnviada;
+use Illuminate\Support\Str;
+
 
 class RespuestaController extends Controller
 {
@@ -28,9 +30,9 @@ class RespuestaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($idDesafio)
+    public function create($slug)
     {
-        $desafio = Desafio::find($idDesafio);
+        $desafio = Desafio::where('slug',$slug)->first();
         $vac=compact("desafio");
         return view('respuesta.crear',$vac);
     }
@@ -41,7 +43,7 @@ class RespuestaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id_desafio)
+    public function store(Request $request)
     {
         $mensajes = [
             'required' => "Este campo :attribute es obligatorio",
@@ -65,13 +67,13 @@ class RespuestaController extends Controller
         $request->file('archivo')->move(public_path('respuestas') , $nombreArchivoRespuesta);
         $nuevaRespuesta->archivo = $nombreArchivoRespuesta;
         $nuevaRespuesta->id_autor = Auth::user()->id_usuario;
-        $nuevaRespuesta->id_desafio = $id_desafio;
+        $nuevaRespuesta->id_desafio = $request->id_desafio;
         $nuevaRespuesta->save();
         $desafio = Desafio::find($nuevaRespuesta->id_desafio);
         Mail::to($desafio->getUsuario->email)->send(new RespuestaRecibida($nuevaRespuesta,$desafio));
         Mail::to(Auth::user()->email)->send(new RespuestaEnviada($nuevaRespuesta,$desafio));
 
-        return redirect('/desafio/ver/' . $nuevaRespuesta->id_desafio)->with("mensaje","¡Tu respuesta fue publicada satisfactoriamente!");
+        return redirect('/desafio/ver/' . $desafio->slug)->with("mensaje","¡Tu respuesta fue publicada satisfactoriamente!");
     }
 
     /**
@@ -135,10 +137,12 @@ class RespuestaController extends Controller
 
         $nuevaRespuesta->descripcion = $request->descripcion;
 
+        $desafio=Desafio::find($nuevaRespuesta->id_desafio);
+
 
         $nuevaRespuesta->save();
 
-        return redirect('/desafio/ver/' . $nuevaRespuesta->id_desafio)->with("mensaje","¡Editaste tu respuesta satisfactoriamente!");
+        return redirect('/desafio/ver/' . $desafio->slug)->with("mensaje","¡Editaste tu respuesta satisfactoriamente!");
     }
 
     /**

@@ -321,7 +321,7 @@ aria-hidden="true">
                                                         
                                                     </div>
                                                     
-                                                    <a href="/desafio/ver/{{$desafio->id}}">
+                                                    <a href="/desafio/ver/{{$desafio->slug}}">
                                                         <div class="card-contenido">
                                                             <div class="row">
                                                                 

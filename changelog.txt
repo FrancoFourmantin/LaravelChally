@@ -171,4 +171,15 @@ Próximo push: validación en vivo con JS
 ---------------------------
 
 
+   26.05.2020 04-00 (Emi)
+
+- Se fixeó el error del último step al momento de crear un desafío: ahora los desafíos se crean bien
+- Se añadió el campo Slug a la tabla de Desafios de la base de datos
+- Ahora todas las URL de acceso a desafío son semánticas y únicas. Toman el nombre del desafío y un timestamp en formato UNIX
+- Se trabajó sobre las vistas de desafío, respuesta y feed para que se vean reflejados los cambios en el front.
+
+---------------------------
+
+
+
 

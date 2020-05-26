@@ -82,7 +82,7 @@
                     <div class="col-12 col-sm-12 col-md-8 col-lg-7 shadow contacto-form px-5 py-3 d-flex flex-column my-3">
                         <h3 class="color-verde text-left mb-3 mx-0"><a href="../feed"></a>Enviar solución</h3>
 
-                        <form class="w-100 needs-validation" method="POST" action="crear" enctype="multipart/form-data">
+                        <form class="w-100 needs-validation" method="POST" action="" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-row">

@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Carbon\Traits\Timestamp;
 use App\Events\DesafioCreado;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
+use Illuminate\Support\Str;
 
 /*
 Se manda un mail cuando finaliza el desafio
@@ -95,26 +96,11 @@ class DesafioController extends Controller
 
 
         $nuevoDesafio = new Desafio();
-
-
-
-
-        /*For testing*/
-        // $nuevoDesafio->fecha_actualizacion=NULL;
-        // $nuevoDesafio->nombre = "Sacá una foto con onda Vaporwave en Buenos Aires";
-        // $nuevoDesafio->imagen = "portada-desafio1.jpg";
-        // $nuevoDesafio->id_categoria = 2;
-        // $nuevoDesafio->id_subcategoria = 6;
-        // $nuevoDesafio->descripcion = 'Sacá una foto con tu celu o cámara réflex de un punto de la Ciudad que tenga una onda Vaporwave/Aesthetics.';
-        // $nuevoDesafio->requisitos = '<li> Subir una foto </li> <li> Indicá en qué dirección sacaste la foto </li> <li> Si usaste un programa de edición, indicá cual fue </li>';
-        // $nuevoDesafio->dificultad = 1;
-        // $nuevoDesafio->fecha_limite = "2020-05-23";
-        // $nuevoDesafio->id_autor = 2;
-        // $nuevoDesafio->fecha_creacion = date('Y-m-d H:i:s');
-
-        /**The original */
+        $slug = Str::slug(($request->nombre) . "-" . Carbon::now()->timestamp,'-');
+        
         $nuevoDesafio->fecha_actualizacion=NULL;
         $nuevoDesafio->nombre = $request->nombre;
+        $nuevoDesafio->slug=$slug;
         $nombreImagenDesafio = time() . '.' . request()->imagen->getClientOriginalExtension();
         $request->file('imagen')->move(public_path('desafios') , $nombreImagenDesafio);
         $nuevoDesafio->imagen = $nombreImagenDesafio;
@@ -133,7 +119,7 @@ class DesafioController extends Controller
         
         // event(new DesafioCreado($nuevoDesafio));
 
-        return redirect('/desafio/ver/' . $nuevoDesafio->id)->with("mensaje","¡Listo " . Auth::user()->nombre . "! creaste satisfactoriamente tu desafío");
+        return redirect('/desafio/ver/' . $slug)->with("mensaje","¡Listo " . Auth::user()->nombre . "! creaste satisfactoriamente tu desafío");
 
     }
 
@@ -143,9 +129,9 @@ class DesafioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        $desafio=Desafio::find($id);
+        $desafio=Desafio::where('slug',$slug)->first();
         $vac=compact("desafio");
         return view("desafio.ver",$vac);
     }

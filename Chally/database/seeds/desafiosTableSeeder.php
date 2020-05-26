@@ -16,6 +16,7 @@ class desafiosTableSeeder extends Seeder
     {
         DB::table('desafios')->insert([
             'nombre' => "Sacá una foto con onda Vaporwave en Buenos Aires",
+            'slug' => 'saca-una-foto-con-onda-vaporwave-en-buenos-aires-1590532785',
             'imagen' => "portada-desafio1.jpg",
             'id_categoria' => 2,
             'id_subcategoria' => 6,
@@ -32,6 +33,7 @@ class desafiosTableSeeder extends Seeder
 
         DB::table('desafios')->insert([
             'nombre' => "Crea un póster alternativo para la película Joker",
+            'slug' => "crea-un-poster-alternativo-para-la-pelicula-joker-1590532807",
             'imagen' => "portada-desafio2.jpg",
             'id_categoria' => 1,
             'id_subcategoria' => 4,

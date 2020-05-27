@@ -1,0 +1,400 @@
+/* IMPORTS DE PAGINAS ESPECIFICAS */
+
+@import 'variables';
+
+@import '_index';
+
+@import '_login';
+
+@import '_registro';
+
+@import '_perfil';
+
+@import '_amigos';
+
+@import '_contacto';
+
+@import '_faq';
+
+@import '_feed';
+
+@import '_post';
+
+@import '_categorias';
+
+@import '_bookmarks';
+
+@import '_crear';
+
+@import '_recuperar-contrasena';
+
+@import '_resultados-busqueda';
+
+@import '_votar-respuesta';
+/* ESTILOS GLOBALES */
+
+* {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+}
+
+::placeholder {
+    color: rgba(0, 0, 0, 0.3) !important;
+}
+
+.respuesta-datausuario {
+    border-right: 1px solid #eee;
+}
+
+.light,.font-weight-light{
+    font-weight:300;
+}
+
+.categorias-feed {
+    list-style-type: none;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.vh-100 {
+    height: auto !important;
+    min-height: 100vh !important;
+}
+
+.h-100 {
+    height: 100%;
+}
+
+footer {
+    background-color: #2e3035;
+    position: relative;
+    bottom: 0px;
+}
+
+footer h4 {
+    color: #1bb76e;
+}
+
+footer p,
+footer a {
+    color: #fff;
+    transition: all 0.25s ease;
+}
+
+footer a:hover {
+    color: #1bb76e;
+    text-decoration: none;
+}
+
+.navbar-brand img {
+    width: 120px;
+}
+
+/* FIX DE FLECHA DE DESPLEGADO NO CENTRADA */
+.nav-item.dropdown {
+    display: flex;
+    align-items: center;
+}
+
+.btn-secondary {
+    border: 0 !important;
+    background-color: #1bb76e !important;
+}
+
+.btn-dark {
+    border: 0 !important;
+    background-color: #6c757d !important;
+}
+
+.font-weight-medium{
+    font-weight:500;
+}
+
+.btn-secondary:hover {
+    background-color: #54c992 !important;
+}
+
+.color-verde {
+    color: #1bb76e;
+}
+
+.color-gris{
+    color:#7f7f7f;
+}
+
+a.color-verde:hover {
+    color: #1bb76e;
+    text-decoration: underline;
+}
+
+.bg-verde {
+    background-color: #1bb76e;
+}
+
+.bg-gris {
+    background-color: #2e3035;
+}
+
+.bg-gris-claro {
+    background-color: rgba(0, 0, 0, .03);
+}
+
+.bg-white {
+    background-color: #fefefe;
+}
+
+.white {
+    color: #fff !important;
+}
+
+.nav-item#post-cta {
+    border: 2px solid #51c790;
+    border-radius: 5px;
+    background-color: #1bb76e;
+}
+
+.nav-item#post-cta a {
+    color: #fff !important;
+}
+
+.nav-item {
+    margin-left: 10px;
+}
+
+.navbar-brand img {
+    width: 160px;
+}
+
+.nav-item .nav-link {
+    color: #1bb76e !important;
+    transition: all 0.25s ease;
+}
+
+.nav-item .nav-link:hover {
+    color: #54c992 !important;
+}
+
+.card .btn-link {
+    color: #2e3035;
+}
+
+.subrayado {
+    text-decoration: underline
+}
+
+.texto-chico {
+    font-size: 0.8em;
+}
+
+.texto-grande {
+    font-size: 1.5em;
+}
+
+.texto-muygrande{
+    font-size:2.7em;
+}
+
+section.destacados h2 {
+    border-bottom: 1px solid #1bb76e;
+}
+
+/* FIX DROPDOWN MENU */
+.dropdown-menu {
+    right: 0 !important;
+    left: auto !important;
+}
+
+.dropdown-item {
+    font-size: 0.85em;
+}
+
+/* ESTILOS PARA LA FOTO DE PERFIL */
+
+/* Un contenedor más chico para la parte de configuracion */
+.mini-contenedor-foto {
+    margin: 0 auto;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+}
+
+/* Foto de perfil */
+.main-foto {
+    display: block;
+    position: relative;
+    border-radius: 50%;
+    width: 50%;
+    top: -80px;
+}
+
+ul.requisitos li::before {
+    font-family: "FontAwesome";
+    content: "\f00c";
+    display: inline-block;
+    padding-right: 3px;
+    vertical-align: middle;
+    font-weight: 900;
+    color: #1bb76e;
+}
+
+.opacity-0 {
+    opacity: 0;
+}
+
+.opacity-1 {
+    opacity: 1;
+}
+
+.opacity-25{
+    opacity:0.25;
+}
+
+.opacity-50{
+    opacity:0.5;
+}
+
+#output,
+#step-2 {
+    transition: all 0.5s ease;
+}
+
+
+.switch-checkbox{
+    position: relative;
+    width: 30px;
+    height: 15px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #c6c6c6;
+    border-radius: 20px;
+    /* box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3); */
+    transition: .5s;
+}
+
+.switch-checkbox:checked{
+    background-color: #1bb76e;
+}
+
+.switch-checkbox:before{
+    content: '';
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    border-radius: 50%;
+    background-color: #d5dee6;
+    transform: scale(1.1);
+    transition: .2s;
+    top: 0;
+    left: 0;
+}
+
+.switch-checkbox:checked::before{
+    left: 50%;
+}
+
+
+/* ### Estilos buscador de navbar ### */
+
+.form-search{
+    display: block;
+    position: relative;
+    transition: all 0.5s step-end;
+}
+.form-search input , .form-search table{
+    width: 300px;
+} 
+
+.form-search input{
+    display:inline-block;
+    opacity: 0;
+    width: 0%;
+    padding: 0.6rem;
+    margin-right: 4px;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    transition: width .5s ease-out;
+    /* border-top-right-radius: 4px;
+    border-top-left-radius: 4px; */
+}
+
+
+.resultado-title{
+    padding: 0;
+    text-align: right;
+    font-style: italic;
+    color: #1bb76e;
+    padding: 0.5rem;
+    background-color: #f4f4f4;
+}
+
+
+.form-search input::placeholder{
+    font-style: italic;
+}
+
+/* .form-search:hover input{
+    width: 100%;
+    opacity: 1;
+} */
+
+.form-search button{
+    position: absolute;
+    transform: translate(50% , 50%);
+    right: 10%;
+    background-color: transparent;
+    color:#1bb76e;
+    text-decoration: none;
+    outline: none;
+    border: none;
+}
+
+.table-search{
+    display: none;
+    z-index: 1000000;
+    background-color: white;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.table-search tbody tr{
+    display: block;
+    width: 100%;
+}
+
+
+.table-search tbody td{
+    display: block;
+    width: 100%;
+}
+
+
+
+.table-search tbody td a{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+
+}
+
+.link-search-navbar{
+    color: #1bb76e;
+    font-style: italic;
+}
+    
+
+.resultado-content:hover{
+    cursor: pointer;
+    background-color: #f4f4f4;
+}
+
+.resultado-title:hover{
+    cursor: inherit;
+}
+

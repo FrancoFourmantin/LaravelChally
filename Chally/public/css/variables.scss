@@ -1,0 +1,29 @@
+/* COLORES */
+
+$verde:#1bb76e;
+$blanco:#FFF;
+$negro:#2e3035;
+$grisClaro:rgba(0,0,0,.03);
+
+
+/* FONTS */
+
+$regular:400;
+$semibold:500;
+$bold:700;
+$extrabold:900;
+
+
+/* EFECTOS VISUALES */
+
+@mixin transition{
+    transition:all 0.25s ease;
+}
+
+@mixin agrandar($valor){
+    transform:scale($valor);
+}
+
+@mixin asadsa{
+    
+}

@@ -180,6 +180,15 @@ Próximo push: validación en vivo con JS
 
 ---------------------------
 
+   27.05.2020 04-00 (Emi)
 
+- Se instaló Laravel Mix para empezar a utilizar el webpack de compilación de recursos SCSS
+- Se creó un SCSS con todas las variables
+- Se modificó el style base para importar todos los SCSS
+- Se descomentaron unos scripts de JS que había desactivado en el push anterior
+
+(Para usar Mix, se requiere hacer un npm install en el directorio raíz, y después un npm run watch o un npm run dev para compilar)
+
+---------------------------
 
 

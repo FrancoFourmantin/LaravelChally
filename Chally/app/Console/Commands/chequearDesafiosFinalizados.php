@@ -72,7 +72,7 @@ class chequearDesafiosFinalizados extends Command
                 if($participantes){
                     foreach ($participantes as $partcipante) {
                         Mail::to($partcipante->email)->send(new DesafioFinalizado($desafio, $partcipante));
-                        $this->info('mensaje enviado a ' . $partcipante->email);
+                        $this->error('mensaje enviado a ' . $partcipante->email);
                     }
                     
                 }

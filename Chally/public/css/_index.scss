@@ -1,0 +1,92 @@
+
+/* INICIO INDEX */
+
+@import 'variables';
+
+.hero{
+    background-image:url('../img/hero-background.jpg');
+    background-size:cover;
+    background-repeat:no-repeat;
+
+    &__row .row__col:first-child .col__title{
+        text-shadow: 0px 0px 12px rgba(0,0,0,0.34);
+        font-weight:700;
+    }
+    
+    &__row .row__col:nth-child(2){
+        background-color:#fff;
+        border-radius:10px;
+    }
+}
+
+
+.pasos{
+    .col__img{
+        width:30%;
+        @include transition;
+        
+        &:hover{
+            @include agrandar(1.10);
+        }
+    }
+}
+
+.categorias{
+    background-image:url('../img/misc-background.jpg');
+    background-size:cover;
+    background-repeat:no-repeat; 
+    background-color:$negro;
+}
+
+.carousel__inner{
+    overflow:visible;
+    top:50px;
+    
+    .col__item{
+        border-radius:30px;
+        background-color:#fff;
+        cursor:pointer;
+        @include transition;
+
+        &:hover{
+            @include agrandar(1.05);
+        }
+
+        .item__img{
+            border-top-left-radius:30px;
+            border-top-right-radius:30px;
+        }
+    }
+}
+
+
+.destacados{
+
+    .col__a{
+            @include transition;
+
+            &:hover{
+                @include agrandar(1.05);
+            }
+    }
+
+    .row__usuarios{
+        .col__img{
+            max-width:100px;
+        }
+    }
+}
+
+.carousel-control-prev.desktop{
+    left:-150px;
+}
+
+.carousel-control-next.desktop{
+    right:-150px;
+}
+
+@media screen and (max-width:768px){
+    .categorias{
+        background-image:none;
+    }
+}

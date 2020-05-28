@@ -6,6 +6,7 @@ $negro:#2e3035;
 $grisClaro:rgba(0,0,0,.03);
 
 
+
 /* FONTS */
 
 $regular:400;
@@ -22,8 +23,4 @@ $extrabold:900;
 
 @mixin agrandar($valor){
     transform:scale($valor);
-}
-
-@mixin asadsa{
-    
 }

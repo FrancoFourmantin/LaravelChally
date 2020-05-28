@@ -10,45 +10,75 @@
 
 /* INICIO INDEX */
 
-section.hero {
+/* COLORES */
+
+/* FONTS */
+
+/* EFECTOS VISUALES */
+
+.hero {
   background-image: url(/images/hero-background.jpg?35ce1715b84b02ca51fd3f4ffb5c9879);
   background-size: cover;
   background-repeat: no-repeat;
 }
 
-section.pasos img:hover {
-  transform: scale(1.05);
+.hero__row .row__col:first-child .col__title {
+  text-shadow: 0px 0px 12px rgba(0, 0, 0, 0.34);
+  font-weight: 700;
 }
 
-section.pasos img {
+.hero__row .row__col:nth-child(2) {
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.pasos .col__img {
   width: 30%;
   transition: all 0.25s ease;
 }
 
-section.categorias {
-  background-image: none;
-  background-color: #2e3035;
-  background-size: cover;
-  background-repeat: no-repeat;
+.pasos .col__img:hover {
+  transform: scale(1.1);
 }
 
-section.categorias .item .cont {
+.categorias {
+  background-image: url(/images/misc-background.jpg?5d2757a8b7a6d8abc10bc58d26ffb05a);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #2e3035;
+}
+
+.carousel__inner {
+  overflow: visible;
+  top: 50px;
+}
+
+.carousel__inner .col__item {
   border-radius: 30px;
   background-color: #fff;
   cursor: pointer;
   transition: all 0.25s ease;
 }
 
-.cont:hover {
+.carousel__inner .col__item:hover {
   transform: scale(1.05);
 }
 
-.carousel-inner {
-  overflow: visible;
+.carousel__inner .col__item .item__img {
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
 }
 
-.carousel {
-  top: 50px;
+.destacados .col__a {
+  transition: all 0.25s ease;
+}
+
+.destacados .col__a:hover {
+  transform: scale(1.05);
+}
+
+.destacados .row__usuarios .col__img {
+  max-width: 100px;
 }
 
 .carousel-control-prev.desktop {
@@ -59,40 +89,9 @@ section.categorias .item .cont {
   right: -150px;
 }
 
-.item img {
-  border-top-left-radius: 30px;
-  border-top-right-radius: 30px;
-}
-
-.hero-form {
-  background-color: #fff;
-  border-radius: 10px;
-}
-
-.hero-form img {
-  width: 60px;
-}
-
-.hero h1 {
-  text-shadow: 0px 0px 12px rgba(0, 0, 0, 0.34);
-  font-weight: 700;
-}
-
-.destacados a {
-  transition: all 0.25s ease;
-}
-
-.destacados img.challenger {
-  max-width: 100px;
-}
-
-.destacados a:hover {
-  transform: scale(1.05);
-}
-
-@media screen and (min-width: 768px) {
-  section.categorias {
-    background-image: url(/images/misc-background.jpg?5d2757a8b7a6d8abc10bc58d26ffb05a);
+@media screen and (max-width: 768px) {
+  .categorias {
+    background-image: none;
   }
 }
 

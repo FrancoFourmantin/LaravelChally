@@ -191,4 +191,10 @@ Próximo push: validación en vivo con JS
 
 ---------------------------
 
+   28.05.2020 04-00 (Emi)
+
+- HOME: Se convirtió el HTML/CSS a SASS/BEM
+- Se modificó el webpack.js para indicar el orden de los archivos a procesar
+
+---------------------------
 

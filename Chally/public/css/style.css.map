@@ -4,7 +4,8 @@
     "sources": [
         "style.scss",
         "variables.scss",
-        "_votar-respuesta-test.scss"
+        "_votar-respuesta-test.scss",
+        "_index.scss"
     ],
     "names": [],
     "file": "style.css"

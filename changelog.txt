@@ -189,6 +189,12 @@ Próximo push: validación en vivo con JS
 
 (Para usar Mix, se requiere hacer un npm install en el directorio raíz, y después un npm run watch o un npm run dev para compilar)
 
+-----------------------------
+
+   28.05.2020 04-00 (Emi)
+
+- HOME: Se convirtió el HTML/CSS a SASS/BEM
+- Se modificó el webpack.js para indicar el orden de los archivos a procesar
 ---------------------------
 
 29/05/2020 15-15(Fran)
@@ -206,4 +212,5 @@ General
   --Se implemento SEO friendly URLS para Categorias
   --Se implemento BEM a vista votar-desafio
 
+---------------------------
 

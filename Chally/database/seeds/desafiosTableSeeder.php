@@ -26,9 +26,10 @@ class desafiosTableSeeder extends Seeder
             Se permite realizar retoque digital para realzar los colores',
             'requisitos' => '<li> Subir una foto </li> <li> Indicá en qué dirección sacaste la foto </li> <li> Si usaste un programa de edición, indicá cual fue </li>',
             'dificultad' => 1,
-            'fecha_limite' => '2020-05-21',
+            'fecha_limite' => Carbon::now()->subDay(1)->format('Y-m-d'),
             'fecha_creacion' => Carbon::now()->format('Y-m-d H:i:s'),
             'fecha_actualizacion' => Carbon::now()->format('Y-m-d H:i:s'),
+            'estado_votaciones' => 1,
         ]);
 
         DB::table('desafios')->insert([

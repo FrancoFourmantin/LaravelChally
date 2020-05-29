@@ -38,11 +38,11 @@ class DesafioController extends Controller
         return view('feed',$vac);
     }
 
-    public function indexCategoria($id)
+    public function indexCategoria($slug)
     {
-        $desafios = Desafio::where("id_categoria",$id)->get();
+        $desafios = Desafio::where("slug", $slug)->get();
         $categorias = Categoria::all();
-        $categoriaActual= Categoria::find($id);
+        $categoriaActual= Categoria::find($slug);
 
         $vac = compact('desafios','categorias','categoriaActual');
         return view('feed',$vac);
@@ -97,7 +97,6 @@ class DesafioController extends Controller
 
         $nuevoDesafio = new Desafio();
         $slug = Str::slug(($request->nombre) . "-" . Carbon::now()->timestamp,'-');
-        
         $nuevoDesafio->fecha_actualizacion=NULL;
         $nuevoDesafio->nombre = $request->nombre;
         $nuevoDesafio->slug=$slug;

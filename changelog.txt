@@ -191,4 +191,19 @@ Próximo push: validación en vivo con JS
 
 ---------------------------
 
+29/05/2020 15-15(Fran)
+
+Sistema votaciones
+  --Se implemento funcion enviar mail un dia antes de que cierren las votaciones
+  --Se creo mail "faltaUnDia"
+  --Se creo recordatorio en seccion FEED
+  --Se implemento vista "votaciones pendientes"
+  
+  
+General
+  --Se corrijieron relaciones en [Usuario , Desafio, VotoRespuesta , Respuesta ]
+  --Se agrego columna (slug) a categorias
+  --Se implemento SEO friendly URLS para Categorias
+  --Se implemento BEM a vista votar-desafio
+
 

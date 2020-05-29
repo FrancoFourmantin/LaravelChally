@@ -84,15 +84,16 @@ aria-hidden="true">
             <aside class="d-none d-md-block sticky-top">
                 
                 @if (Auth::check())
+                <p class="color-verde font-weight-bold mb-1 ml-3"><i class="fas fa-bookmark"></i>&nbsp;Tus recordatorios
+                </p>    
+
                 @if( Auth::user()->getBookmarks->isNotEmpty() )  
                 
-                <p class="color-verde font-weight-bold mb-1 ml-3"><i class="fas fa-bookmark"></i>&nbsp;Tus recordatorios
-                </p>
                 
-                <div class="card  p-3 mt-1 mb-4 alert alert-danger bookmarkList">
+                {{-- <div class="card  p-3 mt-1 mb-4 alert alert-danger bookmarkList">
                     
-                </div>
-                
+                </div> --}}
+
                 <div class="card  p-3 mt-1 mb-4 alert alert-danger">
                     @foreach(Auth::user()->getBookmarks as $bookmark)
                     <p><a href="/desafio/ver/{{$bookmark->getDesafio->id}}">{{$bookmark->getDesafio->nombre}} </a><br>
@@ -104,15 +105,51 @@ aria-hidden="true">
                         @endif
                         
                         
-                        @endforeach
+                        @endforeach 
                     </div>
-                    
-                    
-                    
                     <hr>
+                @endif
+                @endif
+                
+                
+                <p class="color-verde border-top font-weight-bold mb-1 mt-3 pt-3 pl-3"><a class="color-verde" href="/votaciones/pendientes"><i class="fas fa-user-friends"></i>&nbsp;Votaciones abiertas</a>
+                </p>
+                
+                
+                {{-- <div class="card p-3 mt-1 alert alert-warning">
+                    <h6 class="">Votaciones pendientes</h6>
+                </div> --}}
+                
+                @if(count(Auth::user()->getVotacionesPendientes()))
+                    @php $contador = 0; @endphp
+                     @foreach(Auth::user()->getVotacionesPendientes() as $desafio)
+                        @php $contador++;@endphp
+                        <div class="card pt-3 px-3 ">
+                            <h6 class="bolder">{{$desafio['nombreDesafio']}}</h6>
                     
+                            <p class="text-danger"> <i class="fas fa-clock"></i>&nbsp;Finaliza el {{$desafio['fechaLimite']}}</p>
+                    
+                            <p><a class="d-block text-center bg-verde text-white p-2 rounded" href="/votar-desafio/{{$desafio['idDesafio']}}">Votar ahora</a></p>
+                        </div>
+                    @if ($contador == 3)
+                        @php break;@endphp
                     @endif
-                    @endif
+                
+                    @endforeach
+                @else
+                        <div class="pl-3">
+                            <p>No tiene desafios pendientes</p>
+                        </div>
+                @endif
+                
+                
+                
+                
+                
+                        <hr>
+                    
+                    
+              
                     
                     
                     <p class="color-verde font-weight-bold mb-1 ml-3"><i class="fas fa-user-friends"></i>&nbsp;Invitaciones
@@ -144,7 +181,7 @@ aria-hidden="true">
                                     
                                     
                                     @if($categoria->parent_id == NULL)
-                                    <a class="font-weight-bold" href="/feed/categoria-{{$categoria->id}}">{{$categoria->nombre}}</a>
+                                    <a class="font-weight-bold" href="/feed/categoria-{{$categoria->slug}}">{{$categoria->nombre}}</a>
                                     <br>
                                     
                                     <?php $pepito = Categoria::getChilds($categoria->id); 
@@ -153,7 +190,7 @@ aria-hidden="true">
                                     
                                     @foreach($pepito as $nombre)
                                     
-                                    <a class="" href="/feed/categoria-{{$nombre->id}}">{{$nombre->nombre}}</a><br>
+                                    <a class="" href="/feed/categoria-{{$nombre->slug}}">{{$nombre->nombre}}</a><br>
                                     
                                     @endforeach
                                     
@@ -182,7 +219,7 @@ aria-hidden="true">
                         <!--Menu para elegir vista de posteos-->
                         <!--Fin menu para elegir vista de posteos-->
                         @if( Request::is('feed/categoria*') )
-                        <h3 class="color-verde ml-0">Últimos desafíos de la categoría {{$categoriaActual->nombre}}</h3>
+                        {{-- <h3 class="color-verde ml-0">Últimos desafíos de la categoría {{$categoriaActual->nombre}}</h3> --}}
                         <p>Encontramos {{$desafios->count()}}
                             @if ($desafios->count() == 1)
                             desafío disponible
@@ -191,7 +228,7 @@ aria-hidden="true">
                             @endif en esta categoría </p>
                             <br>
                             @endif
-                                                        
+                            
                             @foreach ($desafios as $desafio)
                             
                             
@@ -474,6 +511,6 @@ aria-hidden="true">
                                 <script src="{{asset('js/likes_functions.js')}}"></script>
                                 <script src="{{asset('js/bookmarks_functions.js')}}"></script>
                                 <script src="{{asset('js/intereses_functions.js')}}"></script>
-
+                                
                                 
                                 @endsection

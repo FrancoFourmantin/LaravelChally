@@ -17,7 +17,7 @@ class VotosRespuestasController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**

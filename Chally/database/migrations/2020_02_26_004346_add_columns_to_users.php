@@ -25,7 +25,7 @@ class AddColumnsToUsers extends Migration
             $table->string('link_behance')->nullable();
             $table->string('link_github')->nullable();
             $table->string('link_website')->nullable();   
-            $table->string('role')->default('user');       
+            $table->string('role')->default('user');
         });
     }
 

@@ -22,7 +22,7 @@
 */
 Route::get('/', 'HomeController@index')->middleware("guest");
 Route::get('/feed', 'DesafioController@index');  //Ruta para enviar al usuario al feed despues del login
-Route::get('/feed/categoria-{id}', 'DesafioController@indexCategoria');  //Ruta para enviar al usuario al feed despues del login
+Route::get('/feed/categoria-{slug}', 'DesafioController@indexCategoria');  //Ruta para enviar al usuario al feed despues del login
 Route::get('/usuario/{username}', 'UsuarioController@show'); //Ruta para mostrar usuario;
 Route::get('/desafio/ver/{slug}', 'DesafioController@show');
 
@@ -70,6 +70,12 @@ Route::post('/intereses/modificar' , 'UsuarioCategoriaController@update');
 
 Route::view('/resultados-busqueda' , 'resultados-busqueda');
 
+
+
+
+Route::get('/votaciones/pendientes' , 'UsuarioController@mostrarDesafiosPendientes');
+
+Route::get('/votaciones/api' , 'UsuarioController@votacionesAPI');
 
 /**
 * 

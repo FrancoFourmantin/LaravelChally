@@ -1,0 +1,288 @@
+
+
+
+.contenedor-votar-respuesta.no-mostar{
+    transform: translateX(100%);
+}
+
+.main-votaciones{
+    height: 100vh;
+    position: relative;
+    
+    .primerTarjeta{
+        max-width: 900px;
+        height: 100vh;
+        background-color: #ffffff;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas: 
+        "title imagen imagen"
+        "title imagen imagen"
+        "info  info   info"
+        ;
+        // align-items: center;
+        justify-items: center;
+        padding: 2em;
+        transition: all .5s ease;
+        
+        
+        &__header{
+            grid-area: title;
+            z-index: 2;
+        }
+        
+        &__title{
+            font-size: 2em;
+            margin: 0;
+            
+            &--small{
+                font-size: 1.6em; 
+            }
+        }
+        
+        &__subtitle{
+            
+            
+            &--gray{
+                color: $textoGris;
+            }
+        }
+        
+        &__contenedorImagen{
+            grid-area: imagen;
+            overflow: hidden;
+            z-index: 1;    
+        }
+        
+        &__imagen{
+            height: 100%;
+        }
+        
+        &__footer{
+            grid-area: info;
+            justify-self: left;
+
+            &>*{
+                margin-bottom: 1rem;
+            }
+        }
+        
+        
+        &__buttons{
+            display: flex;
+            flex-direction: row;
+        }
+        
+        &__link{
+            display: block;
+            padding: .5em 0;
+            width: 8em;
+            text-align: center;
+            border-radius: 5px;
+            margin-right: 1em;
+            background-color: #F4F4F4;
+            color: #1bb76e;
+            
+            
+            &--active{
+                background-color: #1bb76e;
+                color: white;
+            }
+        }
+    }//Fin primer tarjeta
+    
+    
+    .vote-menu{
+        display: grid;
+        overflow-y: hidden;
+        overflow-x: hidden;
+        justify-content: center;
+        align-items: center;
+        background-color: #ffffff;
+        max-width: 900px;
+        border-radius: 5px;
+        position: relative; 
+        z-index: 1;
+        
+        
+        &__arrowback{
+            position: absolute;
+            top: 0.5em;
+            left: 0.5em;
+            font-size: 2em;
+            color: $verde;
+            &:hover{
+                cursor: pointer;
+            }
+        }
+        
+        &__header{
+            text-align: center;
+        }
+        
+        &__title{
+            font-size: 2rem;
+        }
+        
+        &__subtitle{
+            
+            &--gray{
+                color: $textoGris;
+            }
+        }
+        
+        .respuestas{
+            display: grid;
+            padding: 1em;
+            grid-template-rows: 1fr;
+
+
+            .respuesta{
+                display: grid;
+                max-width: 900px;
+                height: 15em;
+                border-radius: 5px;
+                border-left: 5px solid #1bb76e;
+                background-color: #f4f4f4;
+                grid-template-areas: 
+                "contenido contenido"
+                ;
+                transition: all 0.4s ease;
+                
+                &--seleccionado{
+                    box-shadow: 0px 0px 25px rgba(27,183,110,0.8);
+                }
+    
+                &--noSeleccionado{
+                    opacity: 0.3;
+                }
+                
+                
+                &__contenedor{
+                    grid-area: contenido;
+                    padding: 1.5em;
+                    display: flex;
+                    transition: all 0.4s ease;
+                    flex-direction: column;
+                }
+                
+                
+                &__img{
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 100%;
+                }
+                
+                &__name{
+                    font-weight: $bold;
+                    margin-left: 5px;
+                }
+                
+                &__desc-container{
+                    max-height: 5em;
+                    overflow: auto;
+                }
+                
+                &__descripcion{
+                    color: $textoGris;
+                }
+                
+                &__button{
+                    display: inline-block;
+                    width: 7em;
+                    text-align: center;
+                    font-weight: $regular;
+                    /* padding: .3em 0.8em; */
+                    border-radius: 4px;
+                    color: $textoGris;
+                    
+                    &--active{
+                        border: 1px solid $verde;
+                        color: $negro;
+                        font-weight: $semibold;
+                    }
+                }
+            }
+        }
+        .confirm-footer{
+            position: fixed;   
+            bottom: 0;
+            width: 100vw;
+            background-color: #212529;
+            
+            &__close{
+                color: $blanco;
+                &:hover{
+                    cursor: pointer;
+                }
+            }
+
+            &__text{
+                color: $blanco;
+            }
+
+            &__name{
+                color: $verde;
+                font-weight: $bolder;
+            }
+        }
+    }
+}
+
+
+@media(min-width: 700px){
+    
+    .main-votaciones{
+        background-color: $verde;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        
+        .primerTarjeta{
+            border-radius: 5px;
+            box-shadow: 0px 5px 10px #8E8E8E80;
+            height: 80%;
+            grid-template-areas: 
+            "title imagen imagen"
+            "title imagen imagen"
+            "info  imagen  imagen"
+            ;
+            align-items: stretch;
+            justify-items: stretch;
+            
+            
+            &__header{
+                align-self: end;
+                margin-bottom: 6em;
+            }
+            
+            &__contenedorImagen{
+                padding: 2em;
+            }
+        }
+        
+        .vote-menu{
+            height: 80%;
+            max-width: 900px;
+            
+            .respuestas{
+                /* height: 100vh; */
+                display: grid;
+                /* background-color: #ffffff; */
+                grid-template-columns: repeat(2,1fr);
+                grid-column-gap: 1em;
+            }
+
+            .confirm-footer{
+                position: sticky;   
+                bottom: 0 ;
+            }
+        }
+        
+        
+        
+    }
+}
+
+
+

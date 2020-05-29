@@ -7,6 +7,7 @@ use App\Categoria;
 use App\Respuesta;
 use App\Like;
 use Carbon\Carbon;
+use App\VotoRespuesta;
 
 class Desafio extends Model
 {
@@ -38,6 +39,10 @@ class Desafio extends Model
 
     public function getLikes(){
         return $this->hasMany('App\Like' , 'id_desafio' , 'id');
+    }
+
+    public function getVotos(){
+        return $this->hasMany('App\VotoRespuesta', 'id_desafio' , 'id');
     }
 
 

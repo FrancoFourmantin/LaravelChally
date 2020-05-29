@@ -8,13 +8,14 @@ function votarRespuesta(respuesta){
         throw new Error('no existe elemento respuesta')
     }
     
-    const botonVotar = respuesta.querySelector('.boton-votar');
-    const contenedorPrimerStep = respuesta.querySelector('.contenedor-votar-respuesta')
-    const contenedorSegundoStep = respuesta.querySelector('.contenedor-menu-elegir');
-    const flechaAtras = respuesta.querySelector('.flecha-atras-votar');
-    const botonesVotame = respuesta.querySelectorAll('.votame');
-    const footer = respuesta.querySelector('.footer-respuesta');
-    const closeFooter = respuesta.querySelector('.close-footer');
+    const botonVotar = respuesta.querySelector('.primerTarjeta__link--active');
+    const contenedorPrimerStep = respuesta.querySelector('.primerTarjeta')
+    const contenedorSegundoStep = respuesta.querySelector('.vote-menu');
+    const flechaAtras = respuesta.querySelector('.vote-menu__arrowback');
+    const botonesVotame = respuesta.querySelectorAll('.respuesta__button--active');
+    const footer = respuesta.querySelector('.confirm-footer');
+    const closeFooter = respuesta.querySelector('.confirm-footer__close');
+    const footerName = respuesta.querySelector('.confirm-footer__name');
     
     
     //Funciones
@@ -36,10 +37,12 @@ function votarRespuesta(respuesta){
         footer.classList.remove('d-none');
         footer.classList.add('d-flex');
 
+        footerName.innerText = e.target.previousSibling.value;
+    
         const botonRespuesta = e.target;
         //Mientras el footer este abierto le ponemos un link al boton sacado del link que este seleccionado
-        document.querySelector('.confirmar-seleccion').addEventListener('click' , (e) => {
-            botonRespuesta.closest('form').submit();
+        document.querySelector('.confirm-footer__button').addEventListener('click' , (e) => {
+            botonRespuesta.closest('.respuesta__form').submit();
         })  
     }
     
@@ -49,7 +52,6 @@ function votarRespuesta(respuesta){
             return;
         }
         if(e.currentTarget === e.target){
-            console.log('entre al if');
             footer.classList.remove('d-flex');
             footer.classList.add('d-none');
             limpiarContenedores();
@@ -60,11 +62,11 @@ function votarRespuesta(respuesta){
     
     function limpiarContenedores(){
         //Vamos a agarrar todos los contenedores
-        const contenedores = [...respuesta.querySelectorAll('.contenedor-respuesta')];
+        const contenedores = [...respuesta.querySelectorAll('.respuesta')];
         
         //Vamos a limpiar todos los contenedores primero
-        contenedores.forEach(contenedor => { contenedor.classList.remove('seleccionado')});
-        contenedores.forEach(contenedor => { contenedor.classList.remove('no-seleccionado')});
+        contenedores.forEach(contenedor => { contenedor.classList.remove('respuesta--seleccionado')});
+        contenedores.forEach(contenedor => { contenedor.classList.remove('respuesta--noSeleccionado')});
     }
     
     function handleBotonVotameClick(e){
@@ -74,14 +76,15 @@ function votarRespuesta(respuesta){
         limpiarContenedores();
         
         //Vamos a agarrar el contenedor selecionado
-        const contenedorSeleccionado = e.currentTarget.closest('.contenedor-respuesta');
-        if(contenedorSeleccionado.matches('.no-seleccionado')) contenedorSeleccionado.classList.remove('no-seleccionado');
-        contenedorSeleccionado.classList.add('seleccionado');
+        const contenedorSeleccionado = e.currentTarget.closest('.respuesta');
+        if(contenedorSeleccionado.matches('.respuesta--noSeleccionado')) contenedorSeleccionado.classList.remove('respuesta--noSeleccionado');
+        contenedorSeleccionado.classList.add('respuesta--seleccionado');
         
         
-        // Vamos a seleccionar todos los demas elementos que no son el seleccionado   
-        const contenedoresNoSeleccionados = [...respuesta.querySelectorAll(".contenedor-respuesta:not(.seleccionado)")];
-        contenedoresNoSeleccionados.forEach(contenedor => {contenedor.classList.add('no-seleccionado')})
+        // Vamos a seleccionar todos los demas elementos que no son el seleccionado 
+          
+        const contenedoresNoSeleccionados = [...respuesta.querySelectorAll(".respuesta:not(.respuesta--seleccionado)")];
+        contenedoresNoSeleccionados.forEach(contenedor => { contenedor.classList.add('respuesta--noSeleccionado')});
         
         handleOpenConfirmFooter(e);
     }
@@ -95,4 +98,4 @@ function votarRespuesta(respuesta){
     
 }
 
-const respuesta = votarRespuesta(document.querySelector('.contenedor-main-votar-respuesta'));
+const respuesta = votarRespuesta(document.querySelector('.main-votaciones'));

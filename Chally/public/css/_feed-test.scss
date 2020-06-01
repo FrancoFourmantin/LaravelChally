@@ -1,0 +1,117 @@
+
+.feedBody { 
+    
+    .aside{
+
+
+        &__link{
+
+            &--danger{
+                color: #721c24;
+                font-weight: bold;
+            }
+        }
+
+    
+        .categoriasFeed{
+
+            &__link{
+                transition: all 0.25s ease;
+
+                &:hover{
+                    color: #1bb76e;
+                }
+            }
+        }
+    }
+
+    
+
+    .desafio{
+        &__contenido{
+            padding: .75rem 1.25rem
+        }
+        
+        &__imagenContenedor{
+            
+            padding: .75rem 1.25rem
+        }
+    
+        &__footer{
+            padding: .75rem 1.25rem
+        }
+
+
+        &__img{
+            width: 100%;
+            height: 300px;
+            background-position: center;
+            background-size: cover;
+            &--small{
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        &__link{
+            cursor: pointer;
+            transition: all 0.25s ease;
+
+            &--scale{
+                transform: scale(1.15);
+            }
+        }
+
+
+        &__metadata{
+            margin-right: 30px;
+        }
+
+        &__btnLike{
+            border: 0;
+            background: none;
+        }
+    }
+
+
+}
+
+
+span.likes:hover {
+    color: #dd0000;
+}
+
+span.comments:hover {
+    color: #1bb76e;
+}
+
+span.compartidos:hover {
+    color: #0366d6;
+}
+
+button:focus {
+    outline: none !important;
+}
+
+.modal-register .left img{
+    height:calc(100% + 40px);
+    bottom:40px;
+    left:-50px;
+}
+
+.modal-register li{
+    margin-bottom:5px;
+}
+
+.modal-register ul{
+    list-style-type: none;
+}
+
+.modal-register i{
+    margin-right:10px;
+}
+
+
+
+
+

@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\UsuarioCategoria;
 
 class Kernel extends ConsoleKernel
 {
@@ -23,12 +24,16 @@ class Kernel extends ConsoleKernel
      * @return void
      */
     protected function schedule(Schedule $schedule)
-    {
+    {   
         $schedule->command('chequear:desafios')
                  ->daily();
 
         $schedule->command('chequear:votaciones')
                  ->daily();
+
+        $schedule->command('newsletter:send')
+                 ->weekly();
+
     }
 
     /**

@@ -14,27 +14,32 @@
     <mj-section padding="0px" background-color="#ffffff">
       <mj-column>
 
-        <mj-text padding-top="0" color="#1bb76e" font-weight="bold" font-size="24px" align="center" line-height="30px">X, te damos la bienvenida a la primera red social de desafíos creativos</mj-text>
+        <mj-text padding-top="0" color="#1bb76e" font-weight="bold" font-size="24px" align="center" line-height="30px">{{$usuario['nombre'}}, estos desafíos te podrían interesar</mj-text>
 
-        <mj-image padding="0px" width="500px" src="http://localhost:8000/img/emails/welcome-image.png"></mj-image>
-
+        <mj-text padding-top="0" color="#777" font-size="16px" align="center" line-height="20px">Te acercamos un resumen semanal con los mejores desafíos de tus categorías favoritas</mj-text>        
+        
 
       </mj-column>
 
     </mj-section>
-
-    <mj-section background-color="#343a40">
+    
+    <mj-section padding="0px" background-color="#ffffff">
       <mj-column>
 
-        <mj-text padding-top="0" color="#ffffff" font-size="16px" align="center">Para poder comenzar es necesario que actives tu cuenta</mj-text>
+        <mj-text padding-top="30" color="#1bb76e" font-weight="bold" font-size="18px" align="center" line-height="30px">{{$desafiosDestacados['nombre'}}</mj-text>
+                
 
-        <mj-button border-radius="5px" background-color="#1bb76e" color="white" font-weight="bold" font-size="18px" href="#">
-          ACTIVAR CUENTA
-        </mj-button>
+        <mj-image padding-bottom="30" width="500px" src="http://localhost:8000/img/desafios/{{$desafiosDestacados['imagen']}}"></mj-image>
+
 
       </mj-column>
 
-    </mj-section>
+      
+    </mj-section>    
+    
+    
+
+
 
     <mj-section>
       <mj-column>

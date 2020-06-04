@@ -13,12 +13,15 @@ use App\Categoria;
 use App\Http\Controllers\AmistadController;
 use Illuminate\Support\Facades\Validator;
 use App\VotoRespuesta;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\WeeklyNewsletter;
+use App\UsuarioCategoria;
+
 
 class UsuarioController extends Controller
 {
-    
-    
-    
+
     /**
     * Display a listing of the resource.
     *

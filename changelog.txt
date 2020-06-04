@@ -214,3 +214,12 @@ General
 
 ---------------------------
 
+04/06/2020 20-00 (Emi)
+
+Sistema de Newsletters Semanales
+ -- Se armó el mail WeeklyNewsletter que incluye una selección de desafíos de acuerdo a los intereses del usuario
+ -- Se maquetó la plantilla del newsletter con MJML (WeeklyNewsletter.mjml)
+ -- Se reactivaron las factories para poder testear los mails de forma correcta
+ -- Se creó el command newsletter:send para enviar los mails a los usuarios
+ -- Se creó el schedule en el Kernel.php para correr el evento una vez a la semana
+

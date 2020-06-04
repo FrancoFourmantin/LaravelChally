@@ -2,7 +2,7 @@
 
 /** 
  * 
- * @var \Illuminate\Database\Eloquent\Factory $factory 
+ * @var \Illuminate\Database\Eloquent\Factory $factory  */
 
 use App\Desafio;
 use App\Usuario;
@@ -14,6 +14,7 @@ $factory->define(Desafio::class, function (Faker $faker) {
         'nombre' => $faker->sentence($nbWords = 6, $variableNbWords = true),
         'requisitos'=>"<li>" . $faker->sentence($nbWords = 6, $variableNbWords = true) . "</li>",
         'dificultad'=>$faker->numberBetween($min = 1, $max = 3),
+        'slug'=> now()->timestamp,
         'id_autor' => Usuario::all(['id_usuario'])->random(),
         'id_categoria' => Categoria::all(['id'])->where('parent_id','=',null)->random(),
         'id_subcategoria' => "1",
@@ -25,4 +26,3 @@ $factory->define(Desafio::class, function (Faker $faker) {
     ];
 });
 
-*/

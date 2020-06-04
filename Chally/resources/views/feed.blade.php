@@ -1,6 +1,6 @@
 @extends('layouts/plantilla-header')
 @section('title' , 'Feed - Chally')
-@section('clases-body' , 'animated fadeIn')
+@section('clases-body' , 'feedBody animated fadeIn')
 
 @section('main')
 <?php
@@ -70,21 +70,21 @@ aria-hidden="true">
 @endif
 
 {{-- Main --}}
-<div class="container contenedor-feed mt-3 mb-5">
-    <div class="row">
+<div class="container feed contenedor-feed mt-3 mb-5">
+    <div class="feed__row row">
         
         @if (session()->has('mensaje'))
-        <div class="col-12 text-center bg-success text-white rounded py-3 mb-2">
+        <div class="feed__flashMensaje col-12 text-center bg-success text-white rounded py-3 mb-2">
             {{session()->get('mensaje')}}
         </div>
         @endif
         
         <div class="col-3">
             
-            <aside class="d-none d-md-block sticky-top">
+            <aside class="aside d-none d-md-block sticky-top">
                 
                 @if (Auth::check())
-                <p class="color-verde font-weight-bold mb-1 ml-3"><i class="fas fa-bookmark"></i>&nbsp;Tus recordatorios
+                <p class="aside__title color-verde font-weight-bold mb-1 ml-3"><i class="fas fa-bookmark"></i>&nbsp;Tus recordatorios
                 </p>    
 
                 @if( Auth::user()->getBookmarks->isNotEmpty() )  
@@ -94,14 +94,14 @@ aria-hidden="true">
                     
                 </div> --}}
 
-                <div class="card  p-3 mt-1 mb-4 alert alert-danger">
+                <div class="aside__cardBookmarks card  p-3 mt-1 mb-4 alert alert-danger">
                     @foreach(Auth::user()->getBookmarks as $bookmark)
-                    <p><a href="/desafio/ver/{{$bookmark->getDesafio->id}}">{{$bookmark->getDesafio->nombre}} </a><br>
+                    <p><a class="aside__link aside__link--danger" href="/desafio/ver/{{$bookmark->getDesafio->id}}">{{$bookmark->getDesafio->nombre}} </a><br>
                         
                         @if(Carbon::now() < $bookmark->getDesafio->fecha_limite)
-                        <i class="fas fa-clock"></i>&nbsp;Finaliza el {{$bookmark->getDesafio->fecha_limite}}</p>
+                        <i class="aside__icon fas fa-clock"></i>&nbsp;Finaliza el {{$bookmark->getDesafio->fecha_limite}}</p>
                         @else 
-                        <i class="fas fa-times"></i>&nbsp;El desafío expiró</p>
+                        <i class="aside__icon fas fa-times"></i>&nbsp;El desafío expiró</p>
                         @endif
                         
                         
@@ -112,24 +112,24 @@ aria-hidden="true">
                 @endif
                 
                 
-                <p class="color-verde border-top font-weight-bold mb-1 mt-3 pt-3 pl-3"><a class="color-verde" href="/votaciones/pendientes"><i class="fas fa-user-friends"></i>&nbsp;Votaciones abiertas</a>
+                <p class="aside__link color-verde border-top font-weight-bold mb-1 mt-3 pt-3 pl-3"><a class="color-verde" href="/votaciones/pendientes"><i class="fas fa-user-friends"></i>&nbsp;Votaciones abiertas</a>
                 </p>
                 
                 
                 {{-- <div class="card p-3 mt-1 alert alert-warning">
                     <h6 class="">Votaciones pendientes</h6>
                 </div> --}}
-                
+                @if(Auth::user())
                 @if(count(Auth::user()->getVotacionesPendientes()))
                     @php $contador = 0; @endphp
                      @foreach(Auth::user()->getVotacionesPendientes() as $desafio)
                         @php $contador++;@endphp
-                        <div class="card pt-3 px-3 ">
-                            <h6 class="bolder">{{$desafio['nombreDesafio']}}</h6>
+                        <div class="aside__cardVotaciones card pt-3 px-3 ">
+                            <h6 class="aside__link bolder">{{$desafio['nombreDesafio']}}</h6>
                     
-                            <p class="text-danger"> <i class="fas fa-clock"></i>&nbsp;Finaliza el {{$desafio['fechaLimite']}}</p>
+                            <p class="aside__text aside_text--danger text-danger"> <i class="fas fa-clock"></i>&nbsp;Finaliza el {{$desafio['fechaLimite']}}</p>
                     
-                            <p><a class="d-block text-center bg-verde text-white p-2 rounded" href="/votar-desafio/{{$desafio['idDesafio']}}">Votar ahora</a></p>
+                            <p><a class="aside__btn aside__btn--active d-block text-center bg-verde text-white p-2 rounded" href="/votar-desafio/{{$desafio['idDesafio']}}">Votar ahora</a></p>
                         </div>
                     @if ($contador == 3)
                         @php break;@endphp
@@ -138,8 +138,9 @@ aria-hidden="true">
                     @endforeach
                 @else
                         <div class="pl-3">
-                            <p>No tiene desafios pendientes</p>
+                            <p class="aside__text">No tiene desafios pendientes</p>
                         </div>
+                @endif
                 @endif
                 
                 
@@ -152,17 +153,17 @@ aria-hidden="true">
               
                     
                     
-                    <p class="color-verde font-weight-bold mb-1 ml-3"><i class="fas fa-user-friends"></i>&nbsp;Invitaciones
+                    <p class="aside__title color-verde font-weight-bold mb-1 ml-3"><i class="fas fa-user-friends"></i>&nbsp;Invitaciones
                     </p>
                     
-                    <div class="px-3 mt-1 mb-4">
+                    <div class="aside__cardSolicitudes px-3 mt-1 mb-4">
                         @if(Auth::check())
                         @if (Auth::user()->getSolicitudesDeAmistad())
-                        <p>Tenés {{Auth::user()->getSolicitudesDeAmistad()}} invitaciones de amigos pendientes</p>
-                        <a href="/usuario/{{Auth::user()->username}}/solicitudes" class="btn btn-secondary">Ver invitaciones</a>
+                        <p class="aside__text aside__text--success">Tenés {{Auth::user()->getSolicitudesDeAmistad()}} invitaciones de amigos pendientes</p>
+                        <a href="/usuario/{{Auth::user()->username}}/solicitudes" class="btn btn-secondary aside__btn aside__btn--active">Ver invitaciones</a>
                         
                         @else 
-                        <p>No tenés solicitudes de amistad pendientes</p>
+                        <p class="aside__text">No tenés solicitudes de amistad pendientes</p>
                         @endif
                         @endif
                     </div>
@@ -172,16 +173,16 @@ aria-hidden="true">
                     
                     <hr>
                     
-                    <p class="color-verde font-weight-bold mb-1 ml-3 "><i class="fas fa-list"></i>&nbsp;Filtrar por
+                    <p class="aside__title color-verde font-weight-bold mb-1 ml-3 "><i class="fas fa-list"></i>&nbsp;Filtrar por
                         categoría</p>
-                        <div class="px-3 mt-1 mb-4">
-                            <ul class="categorias-feed mb-0">
+                        <div class="categoriasFeed px-3 mt-1 mb-4">
+                            <ul class="categoriasFeed__list categorias-feed mb-0">
                                 @foreach ($categorias as $categoria)
                                 <li>
                                     
                                     
                                     @if($categoria->parent_id == NULL)
-                                    <a class="font-weight-bold" href="/feed/categoria-{{$categoria->slug}}">{{$categoria->nombre}}</a>
+                                    <a class="categoriasFeed__link font-weight-bold" href="/feed/categoria-{{$categoria->slug}}">{{$categoria->nombre}}</a>
                                     <br>
                                     
                                     <?php $pepito = Categoria::getChilds($categoria->id); 
@@ -190,7 +191,7 @@ aria-hidden="true">
                                     
                                     @foreach($pepito as $nombre)
                                     
-                                    <a class="" href="/feed/categoria-{{$nombre->slug}}">{{$nombre->nombre}}</a><br>
+                                    <a class="categoriasFeed__link" href="/feed/categoria-{{$nombre->slug}}">{{$nombre->nombre}}</a><br>
                                     
                                     @endforeach
                                     
@@ -215,12 +216,12 @@ aria-hidden="true">
                 
                 <div class="col-12 col-md-8">
                     
-                    <div class="seccion-derecha my-3">
+                    <div class="feed seccion-derecha my-3">
                         <!--Menu para elegir vista de posteos-->
                         <!--Fin menu para elegir vista de posteos-->
                         @if( Request::is('feed/categoria*') )
                         {{-- <h3 class="color-verde ml-0">Últimos desafíos de la categoría {{$categoriaActual->nombre}}</h3> --}}
-                        <p>Encontramos {{$desafios->count()}}
+                        <p class="feed__title feed__title--small">Encontramos {{$desafios->count()}}
                             @if ($desafios->count() == 1)
                             desafío disponible
                             @else
@@ -233,13 +234,11 @@ aria-hidden="true">
                             
                             
                             
-                            <div class="row" id="desafio-{{$desafio->id}}">
-                                <div class="col-12">
-                                    
-                                    
-                                    <div class="card mb-5">
-                                        <div class="card-header posteo d-flex align-items-center">
-                                            <a href={{ "../usuario/" . $desafio->getUsuario->username}}> <img class="rounded-circle"
+                            <div class="feed__desafioContainer row" id="desafio-{{$desafio->id}}">
+                                <div class="desafio col-12">    
+                                    <div class="desafio__card card mb-5">
+                                        <div class="desafio__header card-header posteo d-flex align-items-center">
+                                            <a class="desafio__link desafio__link--img" href={{ "../usuario/" . $desafio->getUsuario->username}}> <img class="desafio__img desafio__img--small rounded-circle"
                                                 
                                                 @if(strpos($desafio->getUsuario->avatar , "https://source.unsplash.com/") !== false)
                                                 src="{{$desafio->getUsuario->avatar}}"
@@ -253,13 +252,13 @@ aria-hidden="true">
                                             </a>
                                             
                                             
-                                            <div class="d-flex flex-column ml-3">
+                                            <div class="desafio__userInfoContainer d-flex flex-column ml-3">
                                                 
                                                 
-                                                <p class="mb-0">{{$desafio->getUsuario->username}}</p>
+                                                <p class="desafio__username mb-0">{{$desafio->getUsuario->username}}</p>
                                                 
-                                                <p class="mb-0"><span class="text-secondary texto-chico">Comenzó el {{$desafio->fecha_creacion}} / <span
-                                                    class="text-danger">Finaliza el {{$desafio->fecha_limite}}</span></span>
+                                                <p class="desafio__date mb-0"><span class="text-secondary texto-chico">Comenzó el {{$desafio->fecha_creacion}} / <span
+                                                    class="desafio__date desafio__date--danger text-danger">Finaliza el {{$desafio->fecha_limite}}</span></span>
                                                 </p>
                                             </div>
                                             
@@ -358,22 +357,17 @@ aria-hidden="true">
                                                         
                                                     </div>
                                                     
-                                                    <a href="/desafio/ver/{{$desafio->slug}}">
-                                                        <div class="card-contenido">
+                                                    <a class="desafio__link desafio__link--img" href="/desafio/ver/{{$desafio->slug}}">
+                                                        <div class="desafio__contenido card-contenido">
                                                             <div class="row">
-                                                                
-                                                                
-                                                                
-                                                                
-                                                                
-                                                                <div class="row card-content-attached">
+                                                                <div class="row desafio__imagenContenedor card-content-attached">
                                                                     <div class="col-12 imagen-feed">
                                                                         
                                                                         @if(strpos($desafio->imagen , "https://source.unsplash.com/") !== false)
-                                                                        <div style="background-image:url('{{$desafio->imagen }}');"></div>
+                                                                        <div class="desafio__img" style="background-image:url('{{$desafio->imagen }}');"></div>
                                                                         
                                                                         @else
-                                                                        <div style="background-image:url('{{asset('desafios/' . $desafio->imagen .'')}}');"></div>
+                                                                        <div class="desafio__img" style="background-image:url('{{asset('desafios/' . $desafio->imagen .'')}}');"></div>
                                                                         @endif
                                                                         
                                                                         
@@ -384,16 +378,16 @@ aria-hidden="true">
                                                                     
                                                                     <div class="col-12">
                                                                         
-                                                                        <h3 class="ml-0">{{$desafio->nombre}}</h3>
+                                                                        <h3 class="desafio__title ml-0">{{$desafio->nombre}}</h3>
                                                                         
                                                                         <hr>
                                                                         
-                                                                        <div class="metadata d-flex ">
-                                                                            <span class="dificultad"> <b>Dificultad</b>: Nivel
+                                                                        <div class="desafio__metadata metadata d-flex ">
+                                                                            <span class="desafio__item dificultad"> <b>Dificultad</b>: Nivel
                                                                                 {{$desafio->dificultad}} &nbsp;&nbsp;&nbsp;
-                                                                                <span class="participantes">&nbsp;<b>Participantes</b>:
+                                                                                <span class="desafio__item participantes">&nbsp;<b>Participantes</b>:
                                                                                     {{$desafio->getRespuestas->count()}}</span>&nbsp;&nbsp;&nbsp;
-                                                                                    <span class="categoria">&nbsp;<b>Categoría</b>:
+                                                                                    <span class="desafio__item categoria">&nbsp;<b>Categoría</b>:
                                                                                         {{$desafio->getCategoria->nombre}}</span>
                                                                                         
                                                                                         
@@ -410,33 +404,33 @@ aria-hidden="true">
                                                                     </div>
                                                                 </a>
                                                                 
-                                                                <div class="card-footer d-flex justify-content-around">
+                                                                <div class="desafio__footer card-footer d-flex justify-content-around">
                                                                     
                                                                     
-                                                                    <form id="form_like" action="/likes/new" method="POST">
+                                                                    <form class="desafio__formLike" id="form_like" action="/likes/new" method="POST">
                                                                         <meta id="like-token" name="csrf-token" content="{{ csrf_token() }}">
-                                                                        <input type="hidden" name="desafio" value="{{$desafio->id}}">
+                                                                        <input class="desafio__input desafio__input--hidden" type="hidden" name="desafio" value="{{$desafio->id}}">
                                                                         @if(Auth::check())
-                                                                        <input type="hidden"  name="usuario" value="{{Auth::user()->id_usuario}}">
+                                                                        <input class="desafio__input desafio__input--hidden" type="hidden"  name="usuario" value="{{Auth::user()->id_usuario}}">
                                                                         @endif
-                                                                        <span class="porcentaje"></span>&nbsp;&nbsp;
-                                                                        <button id="like-action" class="defaultButton" name="like" value="like" type="submit"><span class="guardar "><span class="likes"><i class="fas fa-thumbs-up"></i></span></button>
+                                                                        <span class="desafio__porcentajeLike porcentaje"></span>&nbsp;&nbsp;
+                                                                        <button id="like-action" class="desafio__btnLike defaultButton" name="like" value="like" type="submit"><span class="guardar "><span class="likes"><i class="fas fa-thumbs-up"></i></span></button>
                                                                         &nbsp;&nbsp;
-                                                                        <button id="like-action" class="defaultButton" name="like" value="dislike" type="submit"><span class="guardar defaultButton"><span class="dislikes"><i class="fas fa-thumbs-down"></i></span></button>
+                                                                        <button id="like-action" class="desafio__btnLike defaultButton" name="like" value="dislike" type="submit"><span class="guardar defaultButton"><span class="dislikes"><i class="fas fa-thumbs-down"></i></span></button>
                                                                     </form>     
                                                                     
                                                                     
                                                                     
-                                                                    <span class="comments"><i class="fas fa-comment"></i>&nbsp;{{$desafio->getRespuestas->count()}}</span>
+                                                                    <span class="desafio__link desafio__link--scale comments"><i class="fas fa-comment"></i>&nbsp;{{$desafio->getRespuestas->count()}}</span>
                                                                     
                                                                     
-                                                                    <span>
-                                                                        <form action="/bookmarks/procesar/" method="POST" id="bookmark-form">
+                                                                    <span class="desafio__link desafio__link--scale">
+                                                                        <form class="desafio__formBookmark" action="/bookmarks/procesar/" method="POST" id="bookmark-form">
                                                                             <meta id="bookmark-token" name="csrf-tokenn" content="{{ csrf_token() }}">
-                                                                            <input type="hidden" name="bookmark-action" value="">
-                                                                            <input type="hidden" id="bookmark-desafio" name="bookmarkDesafio" value="{{$desafio->id}}">
-                                                                            <button id="bookmark-action" class="animated fadeIn" type="submit btn">
-                                                                                <i class="fas fa-bookmark"></i> <span class="animated"></span>
+                                                                            <input class="desafio__input desafio__input--hidden" type="hidden" name="bookmark-action" value="">
+                                                                            <input class="desafio__input desafio__input--hidden" type="hidden" id="bookmark-desafio" name="bookmarkDesafio" value="{{$desafio->id}}">
+                                                                            <button class="desafio__btnBookmark" id="bookmark-action" class="animated fadeIn" type="submit btn">
+                                                                                <i class="desafio__icon fas fa-bookmark"></i> <span class="animated"></span>
                                                                             </button>
                                                                         </form>
                                                                     </span>

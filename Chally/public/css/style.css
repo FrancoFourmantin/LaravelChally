@@ -637,35 +637,59 @@ section.faq {
   }
 }
 
-/* INICIO FEED */
-
-.card-contenido,
-.card-content-attached,
-.card-footer {
-  padding: 0.75rem 1.25rem;
-}
-
-.alert-danger a {
+.feedBody .aside__link--danger {
   color: #721c24;
   font-weight: bold;
 }
 
-.posteo img {
+.feedBody .aside .categoriasFeed__link {
+  transition: all 0.25s ease;
+}
+
+.feedBody .aside .categoriasFeed__link:hover {
+  color: #1bb76e;
+}
+
+.feedBody .desafio__contenido {
+  padding: 0.75rem 1.25rem;
+}
+
+.feedBody .desafio__imagenContenedor {
+  padding: 0.75rem 1.25rem;
+}
+
+.feedBody .desafio__footer {
+  padding: 0.75rem 1.25rem;
+}
+
+.feedBody .desafio__img {
+  width: 100%;
+  height: 300px;
+  background-position: center;
+  background-size: cover;
+}
+
+.feedBody .desafio__img--small {
   width: 50px;
+  height: 50px;
 }
 
-.dificultad img {
-  width: 20px;
-}
-
-.card-footer span,
-.card-footer form {
+.feedBody .desafio__link {
   cursor: pointer;
   transition: all 0.25s ease;
 }
 
-.card-footer span:hover {
+.feedBody .desafio__link--scale {
   transform: scale(1.15);
+}
+
+.feedBody .desafio__metadata {
+  margin-right: 30px;
+}
+
+.feedBody .desafio__btnLike {
+  border: 0;
+  background: none;
 }
 
 span.likes:hover {
@@ -680,32 +704,8 @@ span.compartidos:hover {
   color: #0366d6;
 }
 
-.metadata.d-flex span:first-child {
-  margin-right: 30px;
-}
-
-.imagen-feed > div {
-  width: 100%;
-  height: 300px;
-  background-position: center;
-  background-size: cover;
-}
-
-.categorias-feed a {
-  transition: all 0.25s ease;
-}
-
-.categorias-feed a:hover {
-  color: #1bb76e;
-}
-
 button:focus {
   outline: none !important;
-}
-
-.defaultButton {
-  border: 0;
-  background: none;
 }
 
 .modal-register .left img {
@@ -1146,7 +1146,7 @@ form.recuperar > label {
 
 .main-votaciones .vote-menu {
   display: grid;
-  overflow: scroll;
+  overflow-y: hidden;
   overflow-x: hidden;
   justify-content: center;
   align-items: center;
@@ -1162,6 +1162,7 @@ form.recuperar > label {
   top: 0.5em;
   left: 0.5em;
   font-size: 2em;
+  color: #1bb76e;
 }
 
 .main-votaciones .vote-menu__arrowback:hover {
@@ -1266,6 +1267,11 @@ form.recuperar > label {
 
 .main-votaciones .vote-menu .confirm-footer__text {
   color: #FFF;
+}
+
+.main-votaciones .vote-menu .confirm-footer__name {
+  color: #1bb76e;
+  font-weight: 900;
 }
 
 @media (min-width: 700px) {
@@ -1481,10 +1487,6 @@ a.color-verde:hover {
 
 .subrayado {
   text-decoration: underline;
-}
-
-.color-gris{
-  color: #7f7f7f;
 }
 
 .texto-chico {

@@ -28,18 +28,32 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+    // Si el usuario no está verificado, no loguearlo.
+    protected function authenticated(Request $request, $user)
+    {   
+        if($user->verified==false) {
+            \Auth::logout();
+            return redirect('/login');
+        } else{
+            return redirect('/hola');
+        }
+    }
+
+
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    protected $redirectTo = '/feed';
+    // protected $redirectTo = '/feed';
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
+
+
 
 
 
@@ -97,7 +111,6 @@ class LoginController extends Controller
     public function authAndRedirect($user)
     {
         Auth::login($user);
- 
         return redirect()->to('/feed');
     }
 

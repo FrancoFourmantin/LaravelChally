@@ -20,6 +20,8 @@
 * 
 * 
 */
+
+Auth::routes(['verify' => true]);
 Route::get('/', 'HomeController@index')->middleware("guest");
 Route::get('/feed', 'DesafioController@index');  //Ruta para enviar al usuario al feed despues del login
 Route::get('/feed/categoria-{slug}', 'DesafioController@indexCategoria');  //Ruta para enviar al usuario al feed despues del login
@@ -158,5 +160,3 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get("/categorias" , "CategoriaController@create")->middleware("role");
     Route::post("/agregarCategoria" , "CategoriaController@store")->middleware("role");
 });
-
-Auth::routes();

@@ -223,3 +223,29 @@ Sistema de Newsletters Semanales
  -- Se creó el command newsletter:send para enviar los mails a los usuarios
  -- Se creó el schedule en el Kernel.php para correr el evento una vez a la semana
 
+-------------------------
+
+09/06/2020 (Emi)
+
+Sistema de Desuscripción de Newsletters
+ -- Creación de Columnas subscription_token y subscribed en la tabla de Usuarios
+ -- Se crearon tokens de 40 caracteres para los usuarios y factories
+ -- Actualización de command de envío de newsletters para implementar nueva lógica condicional más eficiente con parámetro subscribed
+ -- Se creó una vista de desuscripción con dos resultados: failure y success
+ -- Se añadió el token de desuscripción al footer de los newsletters
+ -- Por default los usuarios registrados se suscriben al newsletter de forma automática
+ -- Método de unsubscribe en usuarioController
+
+ -- Falta implementar en el próximo push la posibilidad de gestionar el estado de tu suscripción desde la vista de Modificar Perfil
+
+ -------------------------
+
+10/06/2020 (Emi)
+
+Sistema de verificación de cuentas tras registro
+ -- A partir de ahora es necesario verificar el mail tras registrarse
+ -- El login vía AJAX va a tirar la alerta específica de que la cuenta no está verificada
+
+ Próximo push
+ -- Se va a implementar una vista indicando que la cuenta no está verificada
+ -- Se personalizará el mail de activación de cuenta (MJML)

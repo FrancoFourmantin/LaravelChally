@@ -18,6 +18,7 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
+        // Si el usuario está autenticado e intenta entrar a localhost:8000 (Home) Redireccionar a:
         if (Auth::guard($guard)->check()) {
             return redirect('/feed');
         }

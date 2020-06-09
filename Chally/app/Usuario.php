@@ -14,7 +14,7 @@ use App\Categoria;
 use App\Notifications\PasswordReset; 
 use DB;
 
-class Usuario extends Authenticatable
+class Usuario extends Authenticatable implements MustVerifyEmail
 {
     protected $table = 'usuarios';
     protected $primaryKey = 'id_usuario';

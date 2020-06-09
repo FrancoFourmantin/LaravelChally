@@ -263,4 +263,21 @@ class UsuarioController extends Controller
     {
         //
     }
+
+    public function unsubscribe($token)
+    {   
+
+        $usuario= Usuario::where('subscription_token',$token)->first();
+        if($usuario != null){
+            $usuario->subscribed = 0;
+            $usuario->subscription_token = "";
+            $usuario->update();
+            return view('desuscribirse')->with('result','success');
+        }
+        return view('desuscribirse')->with('result','failure');
+    }
+
+
+
+
 }

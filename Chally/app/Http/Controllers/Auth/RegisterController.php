@@ -14,6 +14,8 @@ use Cookie;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Confirm;
 use App\Mail\Confirmed;
+use Illuminate\Support\Str;
+
 
 class RegisterController extends Controller
 {
@@ -108,8 +110,6 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         Cookie::queue('respondio_intereses' , 'false'  , 21600);
-        Mail::to($data['email'])->send(new Confirm($data));
-        Mail::to($data['email'])->send(new Confirmed($data));
 
         return Usuario::create([
             'nombre' => $data['nombre'],
@@ -119,8 +119,14 @@ class RegisterController extends Controller
             'sexo' => $data['sexo'],
             'avatar' => $data['registration_type'] == "social" ? $data['avatar'] : 'primera-imagen-hombre.png',
             'apellido' => $data['apellido'],
-            'username' => $data['username']
+            'username' => $data['username'],
+            'subscribed' => 1,
+            'subscription_token' => Str::random(40),
         ]);
+
+        Mail::to($data['email'])->send(new Confirm($data));
+        Mail::to($data['email'])->send(new Confirmed($data));
+
     }
 
     public function mostrarRegistroConDatos(Request $data)

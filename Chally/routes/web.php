@@ -26,7 +26,7 @@ Route::get('/feed/categoria-{slug}', 'DesafioController@indexCategoria');  //Rut
 Route::get('/usuario/{username}', 'UsuarioController@show'); //Ruta para mostrar usuario;
 Route::get('/desafio/ver/{slug}', 'DesafioController@show');
 
-Route::get('/testito','UsuarioController@getNewsletterContent');
+Route::get('/desuscribirse/{token}','UsuarioController@unsubscribe');
 
 
 

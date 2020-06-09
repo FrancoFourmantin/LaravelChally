@@ -27,7 +27,9 @@ class CreacionDeUsuariosDePrueba extends Seeder
             'avatar' => 'foto-franco.jpg',
             'cover' => 'cover.jpg',
             'bio' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit consectetur corporis, laudantium debitis ex suscipit expedita officia provident distinctio asperiores. Quidem nesciunt doloribus sed omnis itaque atque, ducimus beatae iste!',
-            'role' => 'admin'
+            'role' => 'admin',
+            'subscribed' => '1',
+            'subscription_token' => Str::random(40),
 
         ]);
 
@@ -48,6 +50,9 @@ class CreacionDeUsuariosDePrueba extends Seeder
             'link_behance' => 'https://www.behance.net/emilianogioia',
             'link_website' => 'https://emilianogioia.com.ar',
             'link_github' => 'https://github.com/emilianog94',
+            'subscribed' => '1',
+            'subscription_token' => Str::random(40),
+
 
         ]);
 
@@ -65,6 +70,10 @@ class CreacionDeUsuariosDePrueba extends Seeder
             'avatar' => 'foto-matias.jpg',
             'cover' => 'cover.jpg',
             'bio' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit consectetur corporis, laudantium debitis ex suscipit expedita officia provident distinctio asperiores. Quidem nesciunt doloribus sed omnis itaque atque, ducimus beatae iste!',
+            'subscribed' => '1',
+            'subscription_token' => Str::random(40),
+
+
         ]);
 
 
@@ -82,6 +91,10 @@ class CreacionDeUsuariosDePrueba extends Seeder
             'avatar' => 'foto-juan-cruz.jpg',
             'cover' => 'cover.jpg',
             'bio' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit consectetur corporis, laudantium debitis ex suscipit expedita officia provident distinctio asperiores. Quidem nesciunt doloribus sed omnis itaque atque, ducimus beatae iste!',
+            'subscribed' => '1',
+            'subscription_token' => Str::random(40),
+
+
         ]);
     }
 }

@@ -47,6 +47,7 @@ class SendWeeklyNewsletter extends Command
             $categorias=Categoria::all();
     
             foreach($categorias as $categoria){
+
                 // Por cada categoría, obtengo todos los desafíos creados en los últimos 7 días
                 $desafios = Desafio::where('id_categoria',$categoria->id)->get()->toArray();
                 // $desafios = Desafio::where('id_categoria',$categoria->id)->whereDate('fecha_creacion','>',Carbon::now()->subDays(7))->get()->toArray();
@@ -58,11 +59,10 @@ class SendWeeklyNewsletter extends Command
             }
 
             // Obtengo todos los usuarios que tengan intereses activados (Es decir, usuarios que se registraron y no tienen intereses no se cargarán)
-            $usuariosConIntereses=UsuarioCategoria::query()->distinct()->pluck('id_usuario')->toArray();
+            $usuariosConIntereses=Usuario::where('subscribed',1)->get();
 
-            foreach($usuariosConIntereses as $idusuario){
+            foreach($usuariosConIntereses as $usuario){
                 // Accedo a un usuario particular
-                $usuario=Usuario::find($idusuario);
                 $intereses=[];
                 $desafiosSeleccionados=[];
 
@@ -80,8 +80,12 @@ class SendWeeklyNewsletter extends Command
                         $desafiosSeleccionados[] = $array[strval($interes)];
                     }
                 }
+
+                // Si hay desafíos seleccionados para ese usuario, entonces mandale el mail
+                if(!empty($desafiosSeleccionados)){
+                    Mail::to($usuario->email)->send(new WeeklyNewsletter($desafiosSeleccionados,$usuario));
+                }
         
-                Mail::to($usuario->email)->send(new WeeklyNewsletter($desafiosSeleccionados,$usuario));
 
             }
     }

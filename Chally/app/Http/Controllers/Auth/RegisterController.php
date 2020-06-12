@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use App\Usuario;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -140,4 +141,21 @@ class RegisterController extends Controller
         $vac = compact('nameHero', 'lastnameHero', 'mailHero');
         return view('auth/register', $vac);
     }
+
+
+    // Metodo público del trait RegisterUsers: deshabilito el auto-login tras registrarse
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+    
+        event(new Registered($user = $this->create($request->all())));
+    
+        // $this->guard()->login($user);
+    
+        return $this->registered($request, $user)
+                        ?: redirect($this->redirectPath());
+    }
+
+
 }
+

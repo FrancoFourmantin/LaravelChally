@@ -14,7 +14,7 @@ use App\Categoria;
 use App\Notifications\PasswordReset; 
 use DB;
 
-class Usuario extends Authenticatable implements MustVerifyEmail
+class Usuario extends Authenticatable
 {
     protected $table = 'usuarios';
     protected $primaryKey = 'id_usuario';
@@ -108,7 +108,7 @@ class Usuario extends Authenticatable implements MustVerifyEmail
     * @var array
     */
     protected $fillable = [
-        'nombre', 'email', 'password','fecha_nacimiento', 'sexo','apellido' , 'username' , 'avatar','subscribed','subscription_token',
+        'nombre', 'email', 'password','fecha_nacimiento', 'sexo','apellido' , 'username' , 'avatar','subscribed','subscription_token','verification_token',
     ];
     
     /**

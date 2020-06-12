@@ -17,12 +17,13 @@ class LoginController extends Controller
      */
     public function authenticate(Request $request)
     {
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password],'')) {
             $usuario = Usuario::where('email',$request->email)->first();
 
             if($usuario->email_verified_at != NULL){
                 return "true";
             }
+            Auth::logout();
             return "false-not-activated";
 
         }

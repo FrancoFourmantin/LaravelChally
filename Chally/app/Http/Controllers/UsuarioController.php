@@ -17,6 +17,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\WeeklyNewsletter;
 use App\UsuarioCategoria;
+use App\Mail\Confirmed;
 
 
 class UsuarioController extends Controller
@@ -266,7 +267,6 @@ class UsuarioController extends Controller
 
     public function unsubscribe($token)
     {   
-
         $usuario= Usuario::where('subscription_token',$token)->first();
         if($usuario != null){
             $usuario->subscribed = 0;
@@ -275,6 +275,22 @@ class UsuarioController extends Controller
             return view('desuscribirse')->with('result','success');
         }
         return view('desuscribirse')->with('result','failure');
+    }
+
+    public function redirectAfterRegistration(){
+        return view('auth.verify');
+    }
+
+    public function verifyMail($token){
+        $usuario= Usuario::where('verification_token',$token)->where('email_verified_at',NULL)->first();
+        if($usuario != null){
+            $usuario->email_verified_at = Carbon::now()->toDateTimeString();
+            $usuario->update();
+            Mail::to($usuario['email'])->send(new Confirmed($usuario));
+            return view('auth.verify')->with('result','success');
+
+        }
+        return view('auth.verify')->with('result','failure');
     }
 
 

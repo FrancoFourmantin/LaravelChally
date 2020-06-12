@@ -31,6 +31,8 @@ $factory->define(Usuario::class, function (Faker $faker) {
         'avatar' => 'https://source.unsplash.com/random/500x500?sig='.$faker->numberBetween($min = 100, $max = 199), 
         'subscribed' => "0",
         'subscription_token' => Str::random(40),
+        'verification_token' => Str::uuid(),
+
 
     ];
 });

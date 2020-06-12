@@ -14,7 +14,6 @@ use Illuminate\Http\Request;
 use Cookie;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Confirm;
-use App\Mail\Confirmed;
 use Illuminate\Support\Str;
 
 
@@ -38,7 +37,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/email/verify';
+    protected $redirectTo = '/verificar';
 
     /**
      * Create a new controller instance.
@@ -112,6 +111,11 @@ class RegisterController extends Controller
     {
         Cookie::queue('respondio_intereses' , 'false'  , 21600);
 
+
+        $data['verification_token'] = Str::uuid();
+        Mail::to($data['email'])->send(new Confirm($data));
+
+
         return Usuario::create([
             'nombre' => $data['nombre'],
             'email' => $data['email'],
@@ -123,10 +127,8 @@ class RegisterController extends Controller
             'username' => $data['username'],
             'subscribed' => 1,
             'subscription_token' => Str::random(40),
+            'verification_token' => $data['verification_token'],
         ]);
-
-        Mail::to($data['email'])->send(new Confirm($data));
-        Mail::to($data['email'])->send(new Confirmed($data));
 
     }
 

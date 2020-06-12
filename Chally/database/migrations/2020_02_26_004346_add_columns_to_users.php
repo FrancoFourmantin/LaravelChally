@@ -28,6 +28,7 @@ class AddColumnsToUsers extends Migration
             $table->string('role')->default('user');
             $table->string('subscribed');
             $table->string('subscription_token');
+            $table->uuid('verification_token');
 
         });
     }

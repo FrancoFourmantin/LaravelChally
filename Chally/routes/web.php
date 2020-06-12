@@ -35,6 +35,13 @@ Route::get('/desuscribirse/{token}','UsuarioController@unsubscribe');
 Route::get('auth/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
+
+
+// Verificación de Cuentas
+
+Route::get('verificar','UsuarioController@redirectAfterRegistration')->middleware("guest");
+Route::get('verificar/{token}','UsuarioController@verifyMail')->middleware("guest");
+
 /**
 * 
 * Rutas de index

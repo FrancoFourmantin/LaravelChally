@@ -1,6 +1,10 @@
 @extends('layouts/plantilla-mail')
 @section('email_usuario' , $usuario['email'])
 
+@section('motivo')
+porque estás suscrito a tus desafíos favoritos en Chally. <a href="{{url('/desuscribirse/' . $usuario['subscription_token'])}}">Clickeá acá para desuscribirte</a>;
+@endsection
+
 @section('main')
 
 <div style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:600px;">

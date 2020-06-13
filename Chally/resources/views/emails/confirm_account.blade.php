@@ -29,7 +29,7 @@
                       <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
                         <tbody>
                           <tr>
-                            <td style="width:500px;"> <img height="auto" src="http://localhost:8000/img/emails/welcome-image.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="500" /> </td>
+                            <td style="width:500px;"> <img height="auto" src="{{asset('img/emails/welcome-image.png')}}" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="500" /> </td>
                           </tr>
                         </tbody>
                       </table>
@@ -85,7 +85,8 @@
                     <td align="center" vertical-align="middle" style="font-size:0px;padding:10px 25px;word-break:break-word;">
                       <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;line-height:100%;">
                         <tr>
-                          <td align="center" bgcolor="#1bb76e" role="presentation" style="border:none;border-radius:5px;cursor:auto;mso-padding-alt:10px 25px;background:#1bb76e;" valign="middle"> <a href="#" style="display:inline-block;background:#1bb76e;color:white;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:18px;font-weight:bold;line-height:120%;margin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-padding-alt:0px;border-radius:5px;"
+                          <td align="center" bgcolor="#1bb76e" role="presentation" style="border:none;border-radius:5px;cursor:auto;mso-padding-alt:10px 25px;background:#1bb76e;" valign="middle"> 
+                            <a href="{{url('/verificar/' . $data['verification_token'])}}" style="display:inline-block;background:#1bb76e;color:white;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:18px;font-weight:bold;line-height:120%;margin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-padding-alt:0px;border-radius:5px;"
                               target="_blank">
               ACTIVAR CUENTA
             </a> </td>

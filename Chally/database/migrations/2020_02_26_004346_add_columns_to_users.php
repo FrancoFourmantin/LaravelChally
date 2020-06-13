@@ -26,6 +26,10 @@ class AddColumnsToUsers extends Migration
             $table->string('link_github')->nullable();
             $table->string('link_website')->nullable();   
             $table->string('role')->default('user');
+            $table->string('subscribed');
+            $table->string('subscription_token');
+            $table->uuid('verification_token');
+
         });
     }
 
@@ -48,6 +52,8 @@ class AddColumnsToUsers extends Migration
                 $table->dropColumn('link_behance');
                 $table->dropColumn('link_github');
                 $table->dropColumn('link_website');
+                $table->dropColumn('subscribed');
+                $table->dropColumn('subscription_token');
 
         });
     }

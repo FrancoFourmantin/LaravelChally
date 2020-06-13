@@ -33,6 +33,9 @@ function processLogin(e){
         if(data == "true"){
             window.location.href= "/feed";
         }
+        else if(data == "false-not-activated"){
+            button.insertAdjacentHTML('afterend','<div class="alert alert-danger text-center mt-3 font-weight-bold texto-chico">Cuenta sin verificar: revisa tu mail para activar la cuenta</div>');
+        }
         else{
             button.insertAdjacentHTML('afterend','<div class="alert alert-danger text-center mt-3 font-weight-bold texto-chico">¡Usuario o contraseña incorrectos!</div>');
         }

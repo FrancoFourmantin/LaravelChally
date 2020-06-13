@@ -177,7 +177,7 @@
           </tr>
           <tr>
             <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-              <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:18px;text-align:center;color:#aaaaaa;">Este email fue enviado a @yield('email_usuario') desde Chally.com <br></br> Equipo de Chally<br> hola@chally.com <br> Av. Pepito 450 (3351), Buenos Aires, Argentina</div>
+              <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:18px;text-align:center;color:#aaaaaa;">Este email fue enviado a @yield('email_usuario') desde Chally.com @yield('motivo') <br></br> Equipo de Chally<br> hola@chally.com <br> Av. Pepito 450 (3351), Buenos Aires, Argentina</div>
             </td>
           </tr>
         </table>

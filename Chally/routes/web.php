@@ -20,18 +20,27 @@
 * 
 * 
 */
+
+Auth::routes(['verify' => true]);
 Route::get('/', 'HomeController@index')->middleware("guest");
 Route::get('/feed', 'DesafioController@index');  //Ruta para enviar al usuario al feed despues del login
 Route::get('/feed/categoria-{slug}', 'DesafioController@indexCategoria');  //Ruta para enviar al usuario al feed despues del login
 Route::get('/usuario/{username}', 'UsuarioController@show'); //Ruta para mostrar usuario;
 Route::get('/desafio/ver/{slug}', 'DesafioController@show');
 
-Route::get('/testito','UsuarioController@getNewsletterContent');
+Route::get('/desuscribirse/{token}','UsuarioController@unsubscribe');
 
 
 
 Route::get('auth/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
+
+
+
+// Verificación de Cuentas
+
+Route::get('verificar','UsuarioController@redirectAfterRegistration')->middleware("guest");
+Route::get('verificar/{token}','UsuarioController@verifyMail')->middleware("guest");
 
 /**
 * 
@@ -158,5 +167,3 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get("/categorias" , "CategoriaController@create")->middleware("role");
     Route::post("/agregarCategoria" , "CategoriaController@store")->middleware("role");
 });
-
-Auth::routes();

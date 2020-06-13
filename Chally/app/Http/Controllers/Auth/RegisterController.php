@@ -7,13 +7,15 @@ use App\Providers\RouteServiceProvider;
 use App\Usuario;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Cookie;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Confirm;
-use App\Mail\Confirmed;
+use Illuminate\Support\Str;
+
 
 class RegisterController extends Controller
 {
@@ -35,7 +37,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/feed';
+    protected $redirectTo = '/verificar';
 
     /**
      * Create a new controller instance.
@@ -108,8 +110,11 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         Cookie::queue('respondio_intereses' , 'false'  , 21600);
+
+
+        $data['verification_token'] = Str::uuid();
         Mail::to($data['email'])->send(new Confirm($data));
-        Mail::to($data['email'])->send(new Confirmed($data));
+
 
         return Usuario::create([
             'nombre' => $data['nombre'],
@@ -119,8 +124,12 @@ class RegisterController extends Controller
             'sexo' => $data['sexo'],
             'avatar' => $data['registration_type'] == "social" ? $data['avatar'] : 'primera-imagen-hombre.png',
             'apellido' => $data['apellido'],
-            'username' => $data['username']
+            'username' => $data['username'],
+            'subscribed' => 1,
+            'subscription_token' => Str::random(40),
+            'verification_token' => $data['verification_token'],
         ]);
+
     }
 
     public function mostrarRegistroConDatos(Request $data)
@@ -134,4 +143,21 @@ class RegisterController extends Controller
         $vac = compact('nameHero', 'lastnameHero', 'mailHero');
         return view('auth/register', $vac);
     }
+
+
+    // Metodo público del trait RegisterUsers: deshabilito el auto-login tras registrarse
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+    
+        event(new Registered($user = $this->create($request->all())));
+    
+        // $this->guard()->login($user);
+    
+        return $this->registered($request, $user)
+                        ?: redirect($this->redirectPath());
+    }
+
+
 }
+

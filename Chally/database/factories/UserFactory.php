@@ -28,6 +28,11 @@ $factory->define(Usuario::class, function (Faker $faker) {
         'password' => $faker->password, 
         'fecha_nacimiento' => $faker->date($format = 'Y-m-d', $max = '-20 years'),
         'bio' =>$faker->text($maxNbChars = 200), 
-        'avatar' => 'https://source.unsplash.com/random/500x500?sig='.$faker->numberBetween($min = 100, $max = 199),  
+        'avatar' => 'https://source.unsplash.com/random/500x500?sig='.$faker->numberBetween($min = 100, $max = 199), 
+        'subscribed' => "0",
+        'subscription_token' => Str::random(40),
+        'verification_token' => Str::uuid(),
+
+
     ];
 });

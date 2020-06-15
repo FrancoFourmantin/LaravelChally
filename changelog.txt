@@ -269,3 +269,13 @@ Sistema verificación de cuentas tras registro
 Sistema de modal registro
  -- Se implemento libreria "js-cookie" para trabajar con cookies
  -- Se modifico handle_functions.js con ES6 
+
+ ---------------------------------
+
+15/06/2020  (Emi)
+
+Sistema de recuperación de contraseñas funcional
+-- Diseño y maquetado de vistas de olvidé contraseña, mail enviado, reiniciar contraseña y contraseña reiniciada
+-- Pequeños cambios en el mail de reinicio de contraseña
+
+---------------------------------

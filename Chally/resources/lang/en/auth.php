@@ -14,6 +14,6 @@ return [
     */
 
     'failed' => 'Las credenciales no coinciden con nuestra base de datos.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'throttle' => 'Realizaste muchos intentos, por favor intentá nuevamente en :seconds segundos.',
 
 ];

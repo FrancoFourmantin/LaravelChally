@@ -47,7 +47,7 @@ class PasswordReset extends Notification
     {   
         $token=$this->token;
         $vac= compact("notifiable","token");
-        return (new MailMessage)->view('emails.reset_password',$vac);
+        return (new MailMessage)->subject('Solicitud de reinicio de contraseña en Chally')->view('emails.reset_password',$vac);
     }
 
     /**

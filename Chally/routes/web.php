@@ -42,6 +42,12 @@ Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallb
 Route::get('verificar','UsuarioController@redirectAfterRegistration')->middleware("guest");
 Route::get('verificar/{token}','UsuarioController@verifyMail')->middleware("guest");
 
+// Verificación de Passwords
+
+Route::get('password/success',function(){
+    return view('auth.passwords.success');
+});
+
 /**
 * 
 * Rutas de index

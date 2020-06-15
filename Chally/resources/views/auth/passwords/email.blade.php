@@ -1,47 +1,55 @@
 @extends('layouts.plantilla-header')
 
 @section('main')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-6 my-5">
-            <div class="card">
-                <div class="card-header">{{ __('Cambiar Contraseña') }}</div>
+<div class="container py-5">
+    <div class="row justify-content-center text-center">
+        <div class="col-md-6 col-lg-5">
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
 
-                    <form method="POST" action="{{ route('password.email') }}">
-                        @csrf
+            @if (session('status'))
+                <img class="img-fluid" src="{{asset('img/emails/email_verification.jpg')}}" alt="">
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Tu mail') }}</label>
+                <h2 class="color-verde">Revisa tu casilla de mail</h2>
+                <p class="font-weight-bold">Acabamos de enviar el mail a tu casilla. Si no lo encontrás te recomendamos verificar la casilla de Spam</p>       
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+            @else 
+                <img class="img-fluid" src="{{asset('img/emails/unsub_failure.png')}}" alt="">
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+                <h2 class="color-verde">¿Olvidaste tu contraseña?</h2>
+                <p class="font-weight-bold">Ingresa tu mail, te reenviaremos las instrucciones de recuperación</p>         
+    
+    
+                <form method="POST" action="{{ route('password.email') }}">
+                    @csrf
+    
+                    <div class="form-group row text-center">
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{old('email')}}" required autofocus placehoder="Tu mail">
+    
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>¡Ups! No encontramos ninguna cuenta registrada con ese mail.</strong>
+                                </span>
+                            @enderror
+                    </div>
+    
+                    <div class="form-group row mb-0 justify-content-center">
+                            <button type="submit" class="btn btn-secondary">
+                                Recuperar contraseña
+                            </button>
+                    </div>
+                </form>     
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Resetear contraseña') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+            @endif
+
+
+       
+                    
+
+
+
         </div>
     </div>
 </div>
 @endsection
+
+

@@ -1,5 +1,6 @@
 /*################# Codigo para link invalido  ############################*/ 
 
+
 //Creamos una funcion findtag que nos va a servir para encontrar el link mas cercano,
 //ya que algunos elementos clickeables no son A por si mismos.
 const findTag = (el , att) => {
@@ -42,7 +43,11 @@ const showModal = () => {
 //Creamos el event listener para escuchar cualquier click
 document.addEventListener('click' , (e) => {
     const link = findTag(e.target , 'href');
-    e.preventDefault();
+    
+    // El preventDefault rompe los clicks globales
+     e.preventDefault();
+
+
     if(link){
          checkPermission(link.href)
         .then(data => {
@@ -61,6 +66,7 @@ document.addEventListener('click' , (e) => {
 
 
 /*Codigo para interval*/
+
 const setCookie = () => {
     const inFiveMinutes = new Date(new Date().getTime() + 5 * 60 * 1000);
     if(!Cookies.get('register')){
@@ -76,8 +82,8 @@ const checkCookie = () => {
     setTimeout(checkCookie , 30000);
 };
 
-setCookie();
-checkCookie();
+// setCookie();
+// checkCookie();
 
 
 

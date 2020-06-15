@@ -35,6 +35,7 @@ class LoginController extends Controller
             \Auth::logout();
             return redirect('/login');
         } else{
+            setcookie("register", "", time() - 3600);
             return redirect('/hola');
         }
     }

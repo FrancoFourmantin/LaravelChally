@@ -13,3 +13,5 @@ const mix = require('laravel-mix');
 
 mix.sass('public/css/_index.scss','public/css/_index.css')
     .sass('public/css/style.scss', 'public/css');
+
+mix.copy('node_modules/js-cookie' , 'public/js/js-cookie/');

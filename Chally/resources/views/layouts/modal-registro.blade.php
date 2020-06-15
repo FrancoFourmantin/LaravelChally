@@ -10,7 +10,7 @@
                     <div class="col-12 col-lg-5 px-5 px-lg-3 py-5 d-flex flex-column justify-content-between">
                         <div>
                             <img src="img/logo_c.svg" style="width:60px" alt="" class="text-center d-block m-auto pb-3">
-                            <h4 class="color-verde mb-4 text-center">¡Registrate y armá tu portfolio creativo ahora!</h4>
+                            <h4 id="modal__title" class="color-verde mb-4 text-center">¡Registrate y armá tu portfolio creativo ahora!</h4>
                             
                             <form action="/index-register" method="GET">
                                 

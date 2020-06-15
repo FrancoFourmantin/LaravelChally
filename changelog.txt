@@ -261,3 +261,11 @@ Sistema verificación de cuentas tras registro
  Próximo Push
  -- Hacer que el sistema de verificación de mail no sea el default de laravel ya que genera conflictos 
 
+
+---------------------------------
+
+15/6/2020 (Fran)
+
+Sistema de modal registro
+ -- Se implemento libreria "js-cookie" para trabajar con cookies
+ -- Se modifico handle_functions.js con ES6 
